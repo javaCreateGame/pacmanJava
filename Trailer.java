@@ -4,12 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Trailer {
-    private JFrame frame;
-    private JPanel trailerPanel;
-    private JButton nextButton;
-    private JButton skipButton;
-    private JTextArea textArea;
-    private String[] textToShow = {
+     JFrame frame;
+     JPanel trailerPanel;
+     JButton nextButton;
+     JButton skipButton;
+     JTextArea textArea;
+     String[] textToShow = {
             "Bạn là học sinh cấp 2 vừa thi và đỗ vào trường cấp 3 mong muốn.",
             "Đầu tiên chúc mừng bạn đã đỗ vào ngôi trường mơ ước nhưng đừng chủ quan, vì lúc này đây sẽ là những bước đầu trên con đường trưởng thành của bạn.",
             "Mục tiêu đầu tiên tôi muốn bạn hoàn thành đó là đỗ đại học mà bạn mong ước. Nó khá là chông gai đấy.",
@@ -19,24 +19,28 @@ public class Trailer {
             "Đôi khi trên con đường này bạn gặp 1 người tiếp bước cùng bạn trên con đường. Người này sẽ cùng bạn vượt qua những ngoại vật gây ảnh hưởng nhưng nếu bạn quá đắm chìm vào chuyện của 2 người thì mục tiêu của bạn sẽ khó có thể đước hoàn thành.",
             "Chúc bạn may mắn !!!"
     };
-    private int currentSentenceIndex = 0;
-    private boolean skipRequested = false;
+     int currentSentenceIndex = 0;
+     boolean skipRequested = false;
 
     public Trailer() {
-        frame = new JFrame();
-        frame.setSize(615, 615);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 
         trailerPanel = new JPanel();
         trailerPanel.setLayout(new BorderLayout());
-        frame.add(trailerPanel);
-
+        trailerPanel.setVisible(true);
+        
+        
+       
+        
         
         //Tạo hình nền
         ImageIcon image = new ImageIcon("./picture/trailerBgr.png");
         JLabel backgroundJLabel = new JLabel(image);
         trailerPanel.add(backgroundJLabel, BorderLayout.CENTER);
         backgroundJLabel.setBounds(0, 0, 615, 615);
+        
+        
+        
         //chọn phông chữ
         textArea = new JTextArea();
         textArea.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -49,8 +53,8 @@ public class Trailer {
         
      // Tạo panel chứa các nút Next và Skip
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        buttonPanel.setBounds(600, 600, 130, 100);
-        trailerPanel.add(buttonPanel, BorderLayout.SOUTH);
+        //buttonPanel.setBounds(600, 600, 130, 100);
+        
         //Nút Next
         nextButton = new JButton("Next");
         nextButton.addActionListener(new ActionListener() {
@@ -64,7 +68,6 @@ public class Trailer {
                 }
             }
         });
-        nextButton.setBounds(235, 390, 130, 50);
         buttonPanel.add(nextButton, BorderLayout.SOUTH);
         
         //Nút Skip
@@ -75,12 +78,11 @@ public class Trailer {
                 skipRequested = true;
             }
         });
-        skipButton.setBounds(235, 390, 130, 50);
-        skipButton.setVisible(true);
+        //skipButton.setVisible(true);
         buttonPanel.add(skipButton, BorderLayout.NORTH);
         
-        buttonPanel.setVisible(true);
-        frame.setVisible(true);
+        trailerPanel.add(buttonPanel, BorderLayout.SOUTH);
+        trailerPanel.setVisible(true);
         
     }
     
@@ -100,7 +102,7 @@ public class Trailer {
                 }
                 return null;
             }
-//thêm từng kí tự vào JTextArea
+            //thêm từng kí tự vào JTextArea
             @Override
             protected void process(java.util.List<String> chunks) {
                 for (String c : chunks) {
@@ -119,11 +121,6 @@ public class Trailer {
         worker.execute();
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new Trailer();
-            }
-        });
-    }
+    
+    
 }
