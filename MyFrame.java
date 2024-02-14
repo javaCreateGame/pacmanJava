@@ -5,7 +5,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import State.*;
+
 public class MyFrame extends JFrame implements ActionListener {
+    
+    
     JPanel cardPanel;  // Use JPanel instead of JLayeredPane
     Intro intro = new Intro();
     Trailer trailer = new Trailer();
