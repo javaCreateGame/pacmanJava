@@ -45,7 +45,7 @@ public class Intro{
         Start.setBounds(235, 340, 130, 50);
         
         // Set màu chữ ban đầu
-        Start.setForeground(Color.orange);
+        Start.setForeground(new Color(128,0,0));
         // Làm cho nút trở nên trong suốt
         Start.setOpaque(false);
         Start.setContentAreaFilled(false);
@@ -57,12 +57,12 @@ public class Intro{
         Start.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                Start.setForeground(new Color(229,141,58)); // Đổi màu chữ khi di chuột vào
+                Start.setForeground(new Color(94,8,8)); // Đổi màu chữ khi di chuột vào
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                Start.setForeground(Color.BLACK); // Đổi lại màu chữ khi chuột rời khỏi nút
+                Start.setForeground(new Color(128,0,0)); // Đổi lại màu chữ khi chuột rời khỏi nút
             }
         });
         
@@ -75,7 +75,7 @@ public class Intro{
         Exit.setBounds(235, 390, 130, 50);
         
         // Set màu chữ ban đầu
-        Exit.setForeground(Color.BLACK);
+        Exit.setForeground(new Color(128,0,0));
         // Làm cho nút trở nên trong suốt
         Exit.setOpaque(false);
         Exit.setContentAreaFilled(false);
@@ -87,12 +87,12 @@ public class Intro{
         Exit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                Exit.setForeground(Color.BLUE); // Đổi màu chữ khi di chuột vào
+                Exit.setForeground(new Color(94,8,8)); // Đổi màu chữ khi di chuột vào
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                Exit.setForeground(Color.BLACK); // Đổi lại màu chữ khi chuột rời khỏi nút
+                Exit.setForeground(new Color(128,0,0)); // Đổi lại màu chữ khi chuột rời khỏi nút
             }
         });
 
