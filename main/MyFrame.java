@@ -146,6 +146,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             lastTime=currentTime;
             if (delta>=1) {
                 update();
+                System.out.println("hoan");
                 repaint();
                 delta--;
             }
@@ -159,6 +160,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         if (nameCardLayout=="Trailer") {
             countFoot++;
         }
+        
         monster.running();
     }
  //hàm vẽ nhân vật
@@ -166,7 +168,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
       
         
-            super.paint(g);
+        super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
        
       if (nameCardLayout=="Trailer") {
