@@ -28,12 +28,11 @@ public class Intro{
         // Set font (Có thể set nhiều font với kích thước khác nhau, chỉ cần đặt khác tên đi là được)
         Font font = new Font("Arial", Font.BOLD, 24);
 
-
         // Set các thành phần cơ bản cho ứng dụng
         introPanel.setVisible(true);
         
         // Tạo ra một JLabel để chứa hình ảnh làm nền
-        JLabel background = new JLabel(new ImageIcon("./picture/bgr.png"));
+        JLabel background = new JLabel(new ImageIcon("./picture/Background_Intro.png"));
         background.setBounds(0, 0, 615, 615);
 
         // Thêm hình ảnh làm nền vào introPanel
@@ -42,7 +41,7 @@ public class Intro{
         // Tạo ra một nút Start và đặt nội dung cho nó là Start
         Start = new JButton("Start");
         Start.setFont(font);
-        Start.setBounds(235, 340, 130, 50);
+        Start.setBounds(121, 370, 130, 50);
         
         // Set màu chữ ban đầu
         Start.setForeground(new Color(128,0,0));
@@ -72,7 +71,7 @@ public class Intro{
         // Tạo ra một nút Exit và đặt nội dung cho nó là Exit
         Exit = new JButton("Exit");
         Exit.setFont(font);
-        Exit.setBounds(235, 390, 130, 50);
+        Exit.setBounds(355, 370, 130, 50);
         
         // Set màu chữ ban đầu
         Exit.setForeground(new Color(128,0,0));
