@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import Sound.SoundEffect;
 import State.*;
+import entity.Monster.Monster;
 import entity.Player.*;
 
 public class MyFrame extends JFrame implements ActionListener, Runnable {
@@ -22,10 +23,14 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     SoundEffect soundMain = new SoundEffect();
     SoundEffect soundInternal =new SoundEffect();
     SoundEffect soundNext=new SoundEffect();
+    Monster monster=new Monster(this);
+    
     Thread gameThread;
     
     String nameCardLayout;
-
+ 
+    public int jframeWidth=615,jframeHeight=615;
+    public int countFoot= 0;
     int FPS = 60;
     JPanel cardPanel; // Use JPanel instead of JLayeredPane
 
@@ -42,7 +47,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     MyFrame() {
 
         cardPanel = new JPanel(); // Use JPanel instead of JLayeredPane
-        cardPanel.setBounds(0, 0, 615, 615);
+        cardPanel.setBounds(0, 0, jframeWidth, jframeHeight);
 
         // Sử dụng CardLayout cho cardPanel
         cardPanel.setLayout(cardLayout);
@@ -160,25 +165,41 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             lastTime=currentTime;
             if (delta>=1) {
                 update();
+                System.out.println("hoan");
                 repaint();
                 delta--;
             }
+            System.out.println(countFoot);
         }
         
     }
   //Hàm để update chuyển động ,tọa độ khi nhân vật di chuyển
     public void update() {
         player.update();
+        if (nameCardLayout=="Trailer") {
+            countFoot++;
+        }
+        
+        monster.running();
     }
  //hàm vẽ nhân vật
     public void paint(Graphics g) {
 
+      
+        
         super.paint(g);
-
         Graphics2D g2 = (Graphics2D) g;
+       
+      if (nameCardLayout=="Trailer") {
         player.draw(g2);
+        monster.draw(g2);
+        repaint();
+      }
+       
         
         g2.dispose();
+        
+        
     }
 
 }
