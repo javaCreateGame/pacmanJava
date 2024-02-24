@@ -19,7 +19,9 @@ import entity.Player.*;
 public class MyFrame extends JFrame implements ActionListener, Runnable {
     PlayerMove playermove = new PlayerMove();
     Player player = new Player(this, playermove);
-    SoundEffect sound = new SoundEffect();
+    SoundEffect soundMain = new SoundEffect();
+    SoundEffect soundInternal =new SoundEffect();
+    SoundEffect soundNext=new SoundEffect();
     Thread gameThread;
     
     String nameCardLayout;
@@ -55,17 +57,25 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         // Thể hiện thẻ đầu tiên (ở đây là Intro)
         nameCardLayout = "Intro";
         cardLayout.show(cardPanel, nameCardLayout);
-
+        //Thêm sound cho phần intro
+       if (nameCardLayout=="Intro") {
+         soundMain.setFile(0);
+         soundMain.start();
+         soundMain.loop();
+       }
         // Setup Jframe
        this.init();
+       
         // Thêm ActionListener cho nút "Start" trong Intro
         intro.Start.addActionListener(this);
 
         // Thêm ActionListener cho nút "Exit" trong Intro
         intro.Exit.addActionListener(this);
         
-        // Thêm ActionListener cho nút "skipButton" trong Intro
+        // Thêm ActionListener cho nút "nextButton" trong Intro
         trailer.nextButton.addActionListener(this);
+       // Thêm ActionListener cho nút "skipButton" trong Intro
+        trailer.skipButton.addActionListener(this);
     }
     //Hàm setup các dữ liệu ban đầu của jframe
     public void init(){
@@ -81,25 +91,44 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         this.addKeyListener(playermove);
         this.setFocusable(true);
         this.StartGame();
-         // BẮT ĐẦU ÂM THANH CHO MAP phần đầu tiên
-        startSound(0);
-        this.setVisible(true);
+         this.setVisible(true);
     }
     //Hàm viết logic các nút bấm
     @Override
     public void actionPerformed(ActionEvent e) {
         // Xử lý sự kiện khi nút "Start" được nhấn
         if (e.getSource() == intro.Start) {
-            // Dừng và thoát âm thanh hiện tại
-            stopSound();
+            // Dừng âm thanh  hiện tại
+           soundMain.stop();
             // Chuyển sang cửa sổ Trailer
             nameCardLayout = "Trailer";
             cardLayout.show(cardPanel, nameCardLayout);
             trailer.timer.start();
+            
+            //Thay đổi âm thanh phần intro thành trailer
+            soundMain.setFile(2);;
+            soundMain.start();
+            //Tạo và bắt đầu sử dụng âm thanh gõ phím
+            soundInternal.setFile(1);
+            soundInternal.start();
+            soundInternal.loop();
+        }
+        else if (e.getSource()==trailer.skipButton) {
+          //Dừng âm thanh gõ phím
+           soundInternal.stop();
         }
         else if(e.getSource() == trailer.nextButton){
+            //Dừng âm thanh phần trailer
+            soundMain.stop();
             cardLayout.show(cardPanel, "FirstMap");
+            //Thay đổi âm thanh Trailer sang âm thanh của map
+            soundMain.setFile(3);
+            soundMain.start();
+            //Tạo âm thanh ăn vật phẩm và âm thanh biến hình
+            soundInternal.setFile(4);
+            soundNext.setFile(5);
         }
+       
         // Xử lý sự kiện khi nút "Exit" được nhấn
         else if (e.getSource() == intro.Exit) {
             // Thoát ứng dụng
@@ -112,17 +141,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         }
     }
 
-    // Các hàm để sử dụng sound
-    public void startSound(int i) {
-        sound.setFile(i);
-        sound.start();
-        sound.loop();
-    }
-
-    public void stopSound() {
-        sound.stop();
-        sound.close();
-    }
+   
   //Hàm để sử dụng gameloop
     public void StartGame() {
         gameThread = new Thread(this);

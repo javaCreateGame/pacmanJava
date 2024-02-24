@@ -14,8 +14,12 @@ public class SoundEffect {
     
     public SoundEffect(){
       //Lấy ra các sound
-     soundURL[0]=getClass().getResource("rumo-ao-sol-13162.wav");
-
+     soundURL[0]=getClass().getResource("SoundEffectIntro.wav");
+     soundURL[1]=getClass().getResource("SoundEffectKey.wav");
+     soundURL[2]=getClass().getResource("SoundEffectTrailer.wav");
+     soundURL[3]=getClass().getResource("SoundEffectMap.wav");
+     soundURL[4]=getClass().getResource("SoundEffectEatObject.wav");
+     soundURL[5]=getClass().getResource("SoundEffectTrailer.wav");
     }
        //Sử dụng sound
     public void setFile(int i){
