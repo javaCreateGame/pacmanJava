@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 public class Trailer  {
-   
+   MyFrame Mf;
     JTextArea textArea;
     public JButton nextButton;
     public JButton skipButton;
@@ -26,13 +26,14 @@ public class Trailer  {
             "Bạn sẽ có 3 năm để hoàn thành mục tiêu này.",
             "Trên con đường này bạn sẽ phải vừa tích lũy kiến thức để hoàn thành mục tiêu đồng thời phải tránh né các ngoại vật gây ảnh hưởng đến mục tiêu của bạn.",
             "Nếu bạn bị chúng ảnh hưởng thì mục tiêu của bạn sẽ tan tành.",
-            "Đôi khi trên con đường này bạn gặp 1 người tiếp bước cùng bạn trên con đường. Người này sẽ cùng bạn vượt qua những ngoại vật gây ảnh hưởng nhưng nếu bạn quá đắm chìm vào chuyện của 2 người thì mục tiêu của bạn sẽ khó có thể đước hoàn thành.",
+            "Đôi khi trên con đường này bạn gặp 1 người tiếp bước cùng bạn trên con đường. Người này sẽ cùng bạn vượt qua những ngoại vật gây ảnh hưởng nhưng nếu bạn quá đắm chìm vào chuyện của 2 người thì mục tiêu của bạn sẽ khó có thể được hoàn thành.",
             "Chúc bạn may mắn !!!"
     };
     int currentLineIndex = 0;
     int currentCharacterIndex = 0;
 
-    public Trailer() {
+    public Trailer(MyFrame Mf) {
+        this.Mf=Mf;
         trailerPanel= new JLayeredPane();
         
 

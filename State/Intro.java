@@ -2,6 +2,9 @@ package State;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import main.MyFrame;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -12,13 +15,15 @@ import java.awt.event.MouseEvent;
 
 
 public class Intro{
-   public JPanel introPanel;
+    MyFrame Mf;
+    public JPanel introPanel;
     public JButton Start;
     public JButton Exit;
-    public Intro(){
+    public Intro(MyFrame Mf){
+        this.Mf=Mf;
         //set up panels
         introPanel = new JPanel(null);
-        introPanel.setSize(615, 615);
+        introPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
         introPanel.setOpaque(true);
         //Code phần giao diện
         this.init();
@@ -33,7 +38,7 @@ public class Intro{
         
         // Tạo ra một JLabel để chứa hình ảnh làm nền
         JLabel background = new JLabel(new ImageIcon("./picture/Background_Intro.png"));
-        background.setBounds(0, 0, 615, 615);
+        background.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeight);
 
         // Thêm hình ảnh làm nền vào introPanel
         introPanel.add(background);

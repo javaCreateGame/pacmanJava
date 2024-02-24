@@ -2,9 +2,13 @@ package State;
 
 import javax.swing.JPanel;
 
+import main.MyFrame;
+
 public class ThirdMap {
+    MyFrame Mf;
     public JPanel thirdMapPanel;
-    public ThirdMap(){
+    public ThirdMap(MyFrame Mf){
+        this.Mf=Mf;
         //set up panel
        thirdMapPanel =new JPanel();
        thirdMapPanel.setBounds(0, 0, 615, 615);

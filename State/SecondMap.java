@@ -1,5 +1,9 @@
 package State;
+
 import javax.swing.*;
+
+import main.MyFrame;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,21 +17,21 @@ public class SecondMap {
     public JPanel childSecondMapPanel;
     public JLabel obj[];
     public JLabel heart;
-
-    public SecondMap() {
-
+    MyFrame Mf;
+    public SecondMap(MyFrame Mf) {
+        this.Mf=Mf;
         // Set layout cho map
         secondMapPanel = new JPanel();
-        secondMapPanel.setSize(615, 615);
+        secondMapPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
         secondMapPanel.setLayout(new BorderLayout());
 
         // Dịch chuyển hình nền lên 27 pixel từ dưới lên
-        secondMapPanel.setBorder(BorderFactory.createEmptyBorder(-27, 0, 0, 0));
+        // secondMapPanel.setBorder(BorderFactory.createEmptyBorder(-27, 0, 0, 0));
         // Đặt hình nền cho Second Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map2.png");
-        
+
         Image img1 = imageIcon.getImage();
-        Image newImage1 = img1.getScaledInstance(615, 615, Image.SCALE_SMOOTH);
+        Image newImage1 = img1.getScaledInstance(Mf.jframeWidth, Mf.jframeHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledImageIcon = new ImageIcon(newImage1);
 
         // // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
@@ -35,19 +39,18 @@ public class SecondMap {
 
         // Thêm JLabel vào content pane với BorderLayout
         secondMapPanel.add(background, BorderLayout.CENTER);
-        
+
         // Tạo một JPanel để chứa các thành phần khác
         childSecondMapPanel = new JPanel();
-        childSecondMapPanel.setSize(615, 615);
+        childSecondMapPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
         childSecondMapPanel.setLayout(null); // Set layout thành null để có thể đặt vị trí tự do
         childSecondMapPanel.setOpaque(false);
-        
 
         // Set size cho các obj
 
         this.obj = new JLabel[20];
         int n = this.obj.length;
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             this.obj[i] = new JLabel();
             this.obj[i].setSize(15, 15);
         }
@@ -58,7 +61,6 @@ public class SecondMap {
         Image newImage = img.getScaledInstance(15, 15, Image.SCALE_SMOOTH);
         ImageIcon newImageIcon = new ImageIcon(newImage);
 
-
         // Set hình nền cho trái tim, set up trái tim
         this.heart = new JLabel();
         this.heart.setSize(20, 20);
@@ -67,7 +69,6 @@ public class SecondMap {
         Image newImageHeart = imgHeart.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         ImageIcon newImageIconHeart = new ImageIcon(newImageHeart);
         this.heart.setIcon(newImageIconHeart);
-
 
         // ajdhjawhhdawh
         for (int i = 0; i < n; i++) {
@@ -81,28 +82,28 @@ public class SecondMap {
             Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap2.txt")));
             int i = 0; // Sử dụng biến i để xác định vị trí của mỗi JLabel trong mảng obj[]
             while (sc.hasNextInt()) {
-            int p = sc.nextInt();
-            int q = sc.nextInt();
-            
-            if (i < n) { // Đảm bảo rằng i không vượt quá số lượng JLabel trong mảng obj[]
-                x[i] = p;
-                y[i] = q;
-                i++; // Tăng biến i lên để đến JLabel tiếp theo trong mảng obj[]
+                int p = sc.nextInt();
+                int q = sc.nextInt();
+
+                if (i < n) { // Đảm bảo rằng i không vượt quá số lượng JLabel trong mảng obj[]
+                    x[i] = p;
+                    y[i] = q;
+                    i++; // Tăng biến i lên để đến JLabel tiếp theo trong mảng obj[]
+                }
             }
-        }
-        sc.close(); // Đóng luồng sau khi sử dụng xong.
+            sc.close(); // Đóng luồng sau khi sử dụng xong.
         } catch (FileNotFoundException e) {
             e.printStackTrace(); // In ra lỗi nếu tệp tin không được tìm thấy
         }
-        
-        for(int i=0;i<n;i++){
+
+        for (int i = 0; i < n; i++) {
             obj[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
             childSecondMapPanel.add(obj[i]); // Thêm JLabel vào childSecondMapPanel
-        } 
-       
+        }
 
         // Thêm trái tim vào map
-        this.heart.setLocation(556, 301);
+        int heartXLocation = 556, heartYLocation = 301;
+        this.heart.setLocation(heartXLocation, heartYLocation);
         childSecondMapPanel.add(heart);
 
         background.add(childSecondMapPanel);
@@ -123,16 +124,23 @@ public class SecondMap {
             System.out.println("X: " + x + ", Y: " + y);
         }
 
-        // Các phương thức khác của MouseListener không được sử dụng trong trường hợp này
+        // Các phương thức khác của MouseListener không được sử dụng trong trường hợp
+        // này
         @Override
-        public void mousePressed(MouseEvent e) {}
+        public void mousePressed(MouseEvent e) {
+        }
+
         @Override
-        public void mouseReleased(MouseEvent e) {}
+        public void mouseReleased(MouseEvent e) {
+        }
+
         @Override
-        public void mouseEntered(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {
+        }
+
         @Override
-        public void mouseExited(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {
+        }
     }
 
 }
-
