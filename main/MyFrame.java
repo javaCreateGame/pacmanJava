@@ -125,7 +125,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         else if(e.getSource() == trailer.nextButton){
             //Dừng âm thanh phần trailer
             soundMain.stop();
-            cardLayout.show(cardPanel, "FirstMap");
+            nameCardLayout="FirstMap";
+            cardLayout.show(cardPanel, nameCardLayout);
             //Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
             soundMain.start();
@@ -176,7 +177,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
   //Hàm để update chuyển động ,tọa độ khi nhân vật di chuyển
     public void update() {
         player.update();
-        if (nameCardLayout=="Trailer") {
+        if (nameCardLayout=="FirstMap") {
             countFoot++;
         }
         
@@ -184,19 +185,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     }
  //hàm vẽ nhân vật
     public void paint(Graphics g) {
-
-      
-        
-        super.paint(g);
+       super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
-       
-      if (nameCardLayout=="Trailer") {
+       if (nameCardLayout=="FirstMap") {
         player.draw(g2);
         monster.draw(g2);
         repaint();
-      }
-       
-        
+       }
         g2.dispose();
         
         

@@ -47,56 +47,17 @@ public class Monster   {
         MonsterHeight=MonsterWidth=defaultSize;
     }
     public void running(){
-            
-           if (xDice <= 80 ) {
-             xDice+=xVelocity[0];
-           }
-           else{
-            yDice+=yVelocity[0];
-            if (yDice >=90) {
-                xVelocity[0]=1;
-                if (xDice<=120) {
-                    xDice+=xVelocity[0];
-                }}}
-        //         else {
-        //             yDice+=yVelocity[0];
-        //             if(yDice>=120){
-        //                 xDice-=xVelocity[0];
-        //                 if (xDice==80) {
-        //                     yDice-=yVelocity[0];
-                            
-        //                 }
-        //             }
-        //         }
-                
-        //     }
-        //    }
-            
-            
-          
-        
-}
-
-// private int[] runner(int xMonster, int yMonster, int xVelocity, int yVelocity) {
-//     int[] newPosition = new int[2]; // Mảng chứa x và y mới
-//     // Biến trung gian để thay đổi giá trị xVelocity
-    
-//     if (xMonster >= Mf.jframeWidth - MonsterWidth || xMonster < 0) {
-//         xVelocity=xVelocity *-1;
-//     }
-//     xMonster = xMonster + xVelocity;
-
-//     if (yMonster >= Mf.jframeWidth - MonsterWidth || yMonster < 0) {
-//        yVelocity=yVelocity * -1;
-//     }
-//     yMonster = yMonster +  yVelocity;
-    
-//     // Cập nhật giá trị mới của x và y
-//     newPosition[0] = xMonster;
-//     newPosition[1] = yMonster;
-
-//     return newPosition; // Trả về mảng chứa giá trị mới của x và y
-// }
+    if(Mf.countFoot>=300){
+        if (xDice>=Mf.jframeWidth-MonsterWidth ||xDice<0) {
+            xVelocity[0]=xVelocity[0]*(-1);
+         }
+         xDice+=xVelocity[0];
+          if (yDice>=Mf.jframeHeight-MonsterHeight ||yDice<0) {
+            yVelocity[0]=yVelocity[0]*(-1);
+         }
+         yDice+=yVelocity[0];
+    }
+    }     
     public void draw(Graphics2D g2){
         g2.drawImage(dice, xDice, yDice,MonsterWidth,MonsterHeight ,null);
         g2.drawImage(joystick, xjoystick, yJoystick,MonsterWidth,MonsterHeight ,null);
