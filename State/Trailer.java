@@ -130,6 +130,7 @@ public class Trailer  {
                 for (String line : linesToShow) {
                     textArea.append(line + "\n");
                 }
+                Mf.soundInternal.stop();
                 
             }
         });
@@ -144,6 +145,7 @@ public class Trailer  {
                     currentLineIndex++;
                     if (currentLineIndex >= linesToShow.length) {
                         timer.stop();
+                        Mf.soundInternal.stop();
                     } else {
                         textArea.append("\n");
                         currentCharacterIndex = 0;

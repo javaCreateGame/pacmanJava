@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 import main.MyFrame;
 
-public class ThirdMap {
+public class ThirdMap extends Map {
     MyFrame Mf;
     public JPanel thirdMapPanel;
     public ThirdMap(MyFrame Mf){

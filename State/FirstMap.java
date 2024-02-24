@@ -3,7 +3,7 @@ import javax.swing.JPanel;
 
 import main.MyFrame;
 
-public class FirstMap {
+public class FirstMap extends Map {
   MyFrame Mf;
  public JPanel firstMapPanel;
    public FirstMap(MyFrame Mf){

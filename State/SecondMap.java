@@ -12,11 +12,15 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-public class SecondMap {
+public class SecondMap extends Map {
+    public ImageIcon newImageIconHeart;
+    public int heartXLocation = 556, heartYLocation = 305;
     public JPanel secondMapPanel;
     public JPanel childSecondMapPanel;
     public JLabel obj[];
     public JLabel heart;
+   
+    
     MyFrame Mf;
     public SecondMap(MyFrame Mf) {
         this.Mf=Mf;
@@ -67,7 +71,7 @@ public class SecondMap {
         ImageIcon objHeart = new ImageIcon("picture\\traitym.png");
         Image imgHeart = objHeart.getImage();
         Image newImageHeart = imgHeart.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        ImageIcon newImageIconHeart = new ImageIcon(newImageHeart);
+         newImageIconHeart = new ImageIcon(newImageHeart);
         this.heart.setIcon(newImageIconHeart);
 
         // ajdhjawhhdawh
@@ -102,10 +106,10 @@ public class SecondMap {
         }
 
         // Thêm trái tim vào map
-        int heartXLocation = 556, heartYLocation = 301;
+       
         this.heart.setLocation(heartXLocation, heartYLocation);
         childSecondMapPanel.add(heart);
-
+       addHeart=true;
         background.add(childSecondMapPanel);
 
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background

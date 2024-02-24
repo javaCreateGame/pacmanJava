@@ -58,7 +58,7 @@ public class Monster {
                 xVelocity[0] = xVelocity[0] * (-1);
             }
             xDice += xVelocity[0];
-            if (yDice >= Mf.jframeHeight - MonsterHeight || yDice < 0) {
+            if (yDice >= Mf.jframeHeight+27 - MonsterHeight || yDice < 0) {
                 yVelocity[0] = yVelocity[0] * (-1);
             }
             yDice += yVelocity[0];
@@ -68,7 +68,7 @@ public class Monster {
                 xVelocity[1] = xVelocity[1] * (-1);
             }
             xJoystick += xVelocity[1];
-            if (yJoystick >= Mf.jframeWidth - MonsterWidth || yJoystick < 0) {
+            if (yJoystick >= Mf.jframeHeight+27 - MonsterHeight|| yJoystick < 0) {
                 yVelocity[1] = yVelocity[1] * (-1);
             }
             yJoystick += yVelocity[1];
@@ -78,7 +78,7 @@ public class Monster {
                 xVelocity[2] = xVelocity[2] * (-1);
             }
             xSyrinnge += xVelocity[2];
-            if (ySyrinnge >= Mf.jframeWidth - MonsterWidth || ySyrinnge < 0) {
+            if (ySyrinnge >= Mf.jframeHeight+27 - MonsterHeight || ySyrinnge < 0) {
                 yVelocity[2] = yVelocity[2] * (-1);
             }
             ySyrinnge += yVelocity[2];
