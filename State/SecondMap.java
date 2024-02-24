@@ -102,7 +102,7 @@ public class SecondMap {
         }
 
         // Thêm trái tim vào map
-        int heartXLocation = 556, heartYLocation = 301;
+        int heartXLocation = 556, heartYLocation = 286;
         this.heart.setLocation(heartXLocation, heartYLocation);
         childSecondMapPanel.add(heart);
 
