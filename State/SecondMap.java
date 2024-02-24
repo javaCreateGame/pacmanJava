@@ -78,7 +78,7 @@ public class SecondMap {
         int x[] = new int[n];
         int y[] = new int[n];
         try {
-            Scanner sc = new Scanner(new FileInputStream(new File("./book.txt")));
+            Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap2.txt")));
             int i = 0; // Sử dụng biến i để xác định vị trí của mỗi JLabel trong mảng obj[]
             while (sc.hasNextInt()) {
             int p = sc.nextInt();
@@ -98,68 +98,8 @@ public class SecondMap {
         for(int i=0;i<n;i++){
             obj[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
             childSecondMapPanel.add(obj[i]); // Thêm JLabel vào childSecondMapPanel
-        }
-
-        
-        // obj[0].setLocation(279, 31); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[0]);
-
-        // obj[1].setLocation(279, 70); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[1]);
-
-        // obj[2].setLocation(279, 100); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[2]);
-
-        // obj[3].setLocation(279, 143); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[3]);
-
-        // obj[4].setLocation(279, 194); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[4]);
-
-        // obj[5].setLocation(279, 236); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[5]);
-
-        // obj[6].setLocation(79, 389); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[6]);
-
-        // obj[7].setLocation(111, 421); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[7]);
-
-        // obj[8].setLocation(145, 340); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[8]);
-
-        // obj[9].setLocation(255, 331); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[9]);
-
-        // obj[10].setLocation(284, 343); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[10]);
-
-        // obj[11].setLocation(293, 248); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[11]);
-
-        // obj[12].setLocation(276, 144); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[12]);
-
-        // obj[13].setLocation(290, 60); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[13]);
-
-        // obj[14].setLocation(360, 53); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[14]);
-
-        // obj[15].setLocation(329, 112); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[15]);
-
-        // obj[16].setLocation(361, 279); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[16]);
-
-        // obj[17].setLocation(323, 445); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[17]);
-
-        // obj[18].setLocation(437, 485); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[18]);
-
-        // obj[19].setLocation(559, 307); // Thay đổi tùy ý
-        // childSecondMapPanel.add(obj[19]);
+        } 
+       
 
         // Thêm trái tim vào map
         this.heart.setLocation(556, 301);
