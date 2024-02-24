@@ -2,6 +2,8 @@ package State;
 
 import javax.swing.*;
 
+import main.MyFrame;
+
 import java.awt.event.MouseEvent;
 
 import java.awt.*;
@@ -10,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 public class Trailer  {
+   
     JTextArea textArea;
     public JButton nextButton;
     public JButton skipButton;
@@ -126,6 +129,7 @@ public class Trailer  {
                 for (String line : linesToShow) {
                     textArea.append(line + "\n");
                 }
+                
             }
         });
         
