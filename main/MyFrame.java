@@ -190,7 +190,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
        if (nameCardLayout=="FirstMap") {
         player.draw(g2);
         monster.draw(g2);
-        repaint();
+
        }
         g2.dispose();
         
