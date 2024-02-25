@@ -31,8 +31,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     Thread gameThread;
 
     String nameCardLayout;
-    
-    public boolean isTransform=true;
+
     public int jframeWidth = 615, jframeHeight = 615;
     private int jframeHeightParent=690;
     public int countFoot = 0;
@@ -45,7 +44,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     FirstMap firstMap = new FirstMap(this);
     SecondMap secondMap = new SecondMap(this);
     ThirdMap thirdMap = new ThirdMap(this);
-    Map map;
+
     CardLayout cardLayout = new CardLayout();
 
     MyFrame() {
@@ -74,7 +73,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         }
         // Setup Jframe
         this.init();
-       
+
         // Thêm ActionListener cho nút "Start" trong Intro
         intro.Start.addActionListener(this);
 
@@ -85,7 +84,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         trailer.nextButton.addActionListener(this);
         // Thêm ActionListener cho nút "skipButton" trong Intro
         // trailer.skipButton.addActionListener(this);
-        
+
     }
 
     // Hàm setup các dữ liệu ban đầu của jframe
@@ -126,11 +125,11 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundInternal.start();
             soundInternal.loop();
         // } else if (e.getSource() == trailer.skipButton) {
-        //     // Dừng âm thanh gõ phím
-        //     soundInternal.stop();
+            //     // Dừng âm thanh gõ phím
+            //     soundInternal.stop();
         } else if (e.getSource() == trailer.nextButton) {
             // Dừng âm thanh phần trailer
-            soundInternal.stop();
+soundInternal.stop();
             soundMain.stop();
             nameCardLayout = "SecondMap";
             cardLayout.show(cardPanel, nameCardLayout);
@@ -175,14 +174,15 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             if (delta >= 1) {
                 update();
                 repaint();
-                transform("SecondMap",secondMap.addHeart,secondMap.removeHeart,secondMap.heartXLocation,secondMap.heartYLocation,secondMap.childSecondMapPanel,secondMap.heart);
-                System.out.println(secondMap.addHeart);
+                  transform(secondMap,"SecondMap",secondMap.addHeart,secondMap.removeHeart,secondMap.heartXLocation,secondMap.heartYLocation,secondMap.childSecondMapPanel,secondMap.heart);
+
+                  System.out.println(firstMap.addHear);
+                  System.out.println(secondMap.addHeart);
                 delta--;
-                
             }
-           
+          
         }
-       
+
     }
 
     // Hàm để update chuyển động ,tọa độ khi nhân vật di chuyển
@@ -191,28 +191,35 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             countFoot++;
         }
-      
+     
         monster.running();
     }
-    
-    
-    public void transform(String nameMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
+
+
+    public void transform(Map DefaultMap,String nameMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
        double dem=Math.floor((Math.random()*2)+1);
         if (((heartXLocation+secondMap.newImageIconHeart.getIconWidth())-(player.PlayerWidth+player.PlayerPositionX))<=2
         &&((heartYLocation+secondMap.newImageIconHeart.getIconHeight())-(player.PLayerHeight+player.PlayerPositionY))<=2
-        && addHeart==true  && removeHeart==false && nameCardLayout==nameMap &&dem==2) {
-         player.imgName="Attack";
-          childJPanel.remove(heart);
-         
-          soundNext.start();
-          Timer timer = new Timer();
-          timer.schedule(new TimerTask() {
+        && addHeart==true  && removeHeart==false && nameCardLayout==nameMap ) {
+         if (dem==1) {
+            player.imgName="";
+         }
+         if (dem==2) {
+            player.imgName="Attack";
+            soundNext.start();
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
               @Override
               public void run() {
                   player.imgName = "";
                   timer.cancel();
               }
           }, 10000);
+         }
+         childJPanel.remove(heart);
+         DefaultMap.addHeart=false;
+         DefaultMap.removeHeart=true;
+          
       }
           
           
@@ -230,5 +237,5 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         g2.dispose();
 
     }
-     
+
 }
