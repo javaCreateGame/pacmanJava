@@ -131,7 +131,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
 soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "SecondMap";
+            nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
@@ -174,10 +174,11 @@ soundInternal.stop();
             if (delta >= 1) {
                 update();
                 repaint();
-                  transform(secondMap,"SecondMap",secondMap.addHeart,secondMap.removeHeart,secondMap.heartXLocation,secondMap.heartYLocation,secondMap.childSecondMapPanel,secondMap.heart);
-
-                  System.out.println(firstMap.addHear);
-                  System.out.println(secondMap.addHeart);
+                getTransform();
+                if (countFoot >=200) {
+                    nameCardLayout="SecondMap";
+                    cardLayout.show(cardPanel, nameCardLayout);
+                }
                 delta--;
             }
           
@@ -191,22 +192,26 @@ soundInternal.stop();
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             countFoot++;
         }
-     
+      System.out.println(countFoot);
         monster.running();
     }
 
 
-    public void transform(Map DefaultMap,String nameMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
-       double dem=Math.floor((Math.random()*2)+1);
-        if (((heartXLocation+secondMap.newImageIconHeart.getIconWidth())-(player.PlayerWidth+player.PlayerPositionX))<=2
-        &&((heartYLocation+secondMap.newImageIconHeart.getIconHeight())-(player.PLayerHeight+player.PlayerPositionY))<=2
-        && addHeart==true  && removeHeart==false && nameCardLayout==nameMap ) {
+    public void transform(Map DefaultMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
+    //    double dem=Math.floor((Math.random()*2)+1);
+    double dem=2;
+       System.out.println(addHeart);
+       
+       if (((heartXLocation+20)-(player.PlayerWidth+player.PlayerPositionX))<=2
+        &&((heartYLocation+20)-(player.PLayerHeight+player.PlayerPositionY))<=2
+        && addHeart==true  && removeHeart==false  ) {
          if (dem==1) {
             player.imgName="";
          }
          if (dem==2) {
             player.imgName="Attack";
             soundNext.start();
+            
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
               @Override
@@ -216,6 +221,7 @@ soundInternal.stop();
               }
           }, 10000);
          }
+        
          childJPanel.remove(heart);
          DefaultMap.addHeart=false;
          DefaultMap.removeHeart=true;
@@ -225,6 +231,17 @@ soundInternal.stop();
           
           player.getPlayerImage(player.imgName);
 }
+
+    public void getTransform(){
+        switch (nameCardLayout) {
+            case "FirstMap":
+                transform(firstMap, firstMap.addHeart, firstMap.removeHeart, firstMap.heartXLocation, firstMap.heartYLocation, firstMap.childFirstMapPanel, firstMap.heart);
+                break;
+            case "SecondMap":
+                transform(secondMap, secondMap.addHeart, secondMap.removeHeart, secondMap.heartXLocation, secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
+            break;
+        }
+    }
     // hàm vẽ nhân vật
     public void paint(Graphics g) {
         super.paint(g);
@@ -232,7 +249,7 @@ soundInternal.stop();
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             player.draw(g2);
             monster.draw(g2);
-            
+            repaint();
         }
         g2.dispose();
 

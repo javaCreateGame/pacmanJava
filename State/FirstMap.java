@@ -17,10 +17,10 @@ public class FirstMap extends Map {
     public JLabel obj[];
     public JLabel heart;
     public boolean addHear= true;
-  public boolean removeHeart= false;
-  public int heartXLocation = 298, heartYLocation = 279;
+    public boolean removeHeart= false;
+    public int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
-   public FirstMap(MyFrame Mf){
+    public FirstMap(MyFrame Mf){
       this.Mf=Mf;
        //set up panel
        firstMapPanel =new JPanel();
@@ -106,7 +106,7 @@ public class FirstMap extends Map {
         
         this.heart.setLocation(heartXLocation, heartYLocation);
         childFirstMapPanel.add(heart);
-
+       addHeart=true;
         background.add(childFirstMapPanel);
 
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background
