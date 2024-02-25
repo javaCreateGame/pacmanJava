@@ -232,7 +232,7 @@ soundInternal.stop();
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             player.draw(g2);
             monster.draw(g2);
-            repaint();
+            
         }
         g2.dispose();
 
