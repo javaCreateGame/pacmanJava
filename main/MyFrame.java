@@ -196,18 +196,18 @@ soundInternal.stop();
         monster.running();
     }
 
-
+//Ham viet logic biến hình cho nhân vật
     public void transform(Map DefaultMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
-    //    double dem=Math.floor((Math.random()*2)+1);
-    double dem=2;
-       System.out.println(addHeart);
-       
+       double dem=Math.floor((Math.random()*2)+1);
+       //Set các điều kiện để nhân vật có thể biến hình
        if (((heartXLocation+20)-(player.PlayerWidth+player.PlayerPositionX))<=2
         &&((heartYLocation+20)-(player.PLayerHeight+player.PlayerPositionY))<=2
         && addHeart==true  && removeHeart==false  ) {
-         if (dem==1) {
+        //Nhân vật không thể biến hình và bị giảm 500 điểm
+            if (dem==1) {
             player.imgName="";
          }
+         //Cho nhân vật biến hình và sau 10s về như cũ
          if (dem==2) {
             player.imgName="Attack";
             soundNext.start();
@@ -221,17 +221,16 @@ soundInternal.stop();
               }
           }, 10000);
          }
-        
+        // Xóa hình trái tym trên map
          childJPanel.remove(heart);
          DefaultMap.addHeart=false;
          DefaultMap.removeHeart=true;
           
       }
-          
-          
           player.getPlayerImage(player.imgName);
 }
 
+//Hàm Thực hiện biến hình qua mỗi map
     public void getTransform(){
         switch (nameCardLayout) {
             case "FirstMap":
