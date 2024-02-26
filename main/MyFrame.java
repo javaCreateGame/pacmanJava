@@ -131,7 +131,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "SecondMap";
+            nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
