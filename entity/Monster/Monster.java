@@ -44,10 +44,10 @@ public class Monster {
         Arrays.fill(yVelocity, 4);
         xVelocity[1] = 5;
         yVelocity[0] = 5;
-        xDice = 50;
-        xJoystick = 70;
-        xSyrinnge = 90;
-        yDice = yJoystick = ySyrinnge = 80;
+        xDice = 10;
+        xJoystick = 40;
+        xSyrinnge = 70;
+        yDice = yJoystick = ySyrinnge = 60;
         MonsterHeight = MonsterWidth = defaultSize;
     }
 

@@ -129,16 +129,16 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             //     soundInternal.stop();
         } else if (e.getSource() == trailer.nextButton) {
             // Dừng âm thanh phần trailer
-soundInternal.stop();
+            soundInternal.stop();
             soundMain.stop();
             nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
             soundMain.start();
-            // Tạo âm thanh ăn vật phẩm và âm thanh biến hình
+            soundMain.loop();
+            // Tạo âm thanh ăn vật phẩm 
             soundInternal.setFile(4);
-            soundNext.setFile(5);
         }
 
         // Xử lý sự kiện khi nút "Exit" được nhấn
@@ -175,10 +175,6 @@ soundInternal.stop();
                 update();
                 repaint();
                 getTransform();
-                if (countFoot >=200) {
-                    nameCardLayout="SecondMap";
-                    cardLayout.show(cardPanel, nameCardLayout);
-                }
                 delta--;
             }
           
@@ -186,19 +182,19 @@ soundInternal.stop();
 
     }
 
-    // Hàm để update chuyển động ,tọa độ khi nhân vật di chuyển
+    // Hàm để update chuyển động ,tọa độ khi nhân vật ,monster di chuyển
     public void update() {
         player.update();
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             countFoot++;
         }
-      System.out.println(countFoot);
         monster.running();
     }
 
 //Ham viet logic biến hình cho nhân vật
     public void transform(Map DefaultMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
        double dem=Math.floor((Math.random()*2)+1);
+    
        //Set các điều kiện để nhân vật có thể biến hình
        if (((heartXLocation+20)-(player.PlayerWidth+player.PlayerPositionX))<=2
         &&((heartYLocation+20)-(player.PLayerHeight+player.PlayerPositionY))<=2
@@ -210,6 +206,7 @@ soundInternal.stop();
          //Cho nhân vật biến hình và sau 10s về như cũ
          if (dem==2) {
             player.imgName="Attack";
+            soundNext.setFile(5);
             soundNext.start();
             
             Timer timer = new Timer();

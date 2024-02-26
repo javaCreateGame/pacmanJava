@@ -31,8 +31,8 @@ public class Player {
     }
 
     public void setDefaultPlayer() {
-        PlayerPositionX = 40;
-        PlayerPositionY = 50;
+        PlayerPositionX = 150;
+        PlayerPositionY = 335;
         speed = 3;
         direction = "down";
     }
