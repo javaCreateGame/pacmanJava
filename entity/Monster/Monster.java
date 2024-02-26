@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import main.MyFrame;
 
 public class Monster {
-    public boolean monsterVisible[]=new boolean[3];
+    public boolean monsterVisible[] = new boolean[3];
     public final int defaultSize = 25;
     public int MonsterWidth, MonsterHeight;
     // Tạo biến lưu trữ tọa độ của nhân vật
@@ -34,7 +34,7 @@ public class Monster {
             dice = ImageIO.read(getClass().getResourceAsStream("/picture/diceMonster.png"));
             joystick = ImageIO.read(getClass().getResourceAsStream("/picture/joystickMonster.png"));
             syrinnge = ImageIO.read(getClass().getResourceAsStream("/picture/syringeMonster.png"));
-        
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class Monster {
         xJoystick = 40;
         xSyrinnge = 70;
         yDice = yJoystick = 60;
-        ySyrinnge=55; 
+        ySyrinnge = 55;
         MonsterHeight = MonsterWidth = defaultSize;
     }
 
@@ -61,7 +61,7 @@ public class Monster {
                 xVelocity[0] = xVelocity[0] * (-1);
             }
             xDice -= xVelocity[0];
-            if (yDice >= Mf.jframeHeight+27 - MonsterHeight || yDice < 0) {
+            if (yDice >= Mf.jframeHeight + 27 - MonsterHeight || yDice < 0) {
                 yVelocity[0] = yVelocity[0] * (-1);
             }
             yDice -= yVelocity[0];
@@ -71,7 +71,7 @@ public class Monster {
                 xVelocity[1] = xVelocity[1] * (-1);
             }
             xJoystick += xVelocity[1];
-            if (yJoystick >= Mf.jframeHeight+27 - MonsterHeight|| yJoystick < 0) {
+            if (yJoystick >= Mf.jframeHeight + 27 - MonsterHeight || yJoystick < 0) {
                 yVelocity[1] = yVelocity[1] * (-1);
             }
             yJoystick += yVelocity[1];
@@ -81,7 +81,7 @@ public class Monster {
                 xVelocity[2] = xVelocity[2] * (-1);
             }
             xSyrinnge += xVelocity[2];
-            if (ySyrinnge >= Mf.jframeHeight+27 - MonsterHeight || ySyrinnge < 0) {
+            if (ySyrinnge >= Mf.jframeHeight + 27 - MonsterHeight || ySyrinnge < 0) {
                 yVelocity[2] = yVelocity[2] * (-1);
             }
             ySyrinnge += yVelocity[2];
@@ -92,7 +92,7 @@ public class Monster {
     public void draw(Graphics2D g2) {
         g2.drawImage(dice, xDice, yDice, MonsterWidth, MonsterHeight, null);
         g2.drawImage(joystick, xJoystick, yJoystick, MonsterWidth, MonsterHeight, null);
-        g2.drawImage(syrinnge, xSyrinnge, ySyrinnge, MonsterWidth+10, MonsterHeight+10, null);
+        g2.drawImage(syrinnge, xSyrinnge, ySyrinnge, MonsterWidth + 10, MonsterHeight + 10, null);
     }
-    
+
 }

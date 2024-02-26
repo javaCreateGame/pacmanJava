@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import main.MyFrame;
 
 public class Player {
-    public  int defaultSize = 25;
+    public int defaultSize = 25;
     public int PlayerWidth, PLayerHeight;
     // Tạo biến lưu trữ tọa độ của nhân vật
     public int PlayerPositionX, PlayerPositionY;
@@ -56,8 +56,9 @@ public class Player {
 
     public void update() {
         // logic phần bấm bấm nút di chuyển
+
         if (playermove.playerRight || playermove.playerDown || playermove.playerUp || playermove.playerLeft) {
-          
+
             if (playermove.playerUp) {
                 direction = "up";
                 PlayerPositionY -= speed;
@@ -72,14 +73,13 @@ public class Player {
             }
             if (playermove.playerRight) {
                 direction = "right";
-                PlayerPositionX+= speed;
+                PlayerPositionX += speed;
             }
             spriteCounter++;
             if (spriteCounter >= 8) {
                 spriteNum = (spriteNum == 1) ? 2 : 1;
                 spriteCounter = 0;
             }
-
         }
     }
 
@@ -91,24 +91,24 @@ public class Player {
 
             case "up":
                 img = (spriteNum == 1) ? up1 : up2;
-                defaultSize=(imgName == "Attack") ? 20 : 25;
+                defaultSize = (imgName == "Attack") ? 20 : 25;
                 PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "down":
-                defaultSize=(imgName == "Attack") ? 20 : 25;
+                defaultSize = (imgName == "Attack") ? 20 : 25;
                 img = (spriteNum == 1) ? down1 : down2;
                 PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "left":
-               defaultSize=(imgName == "Attack") ? 20 : 25;
+                defaultSize = (imgName == "Attack") ? 20 : 25;
                 img = (spriteNum == 1) ? left1 : left2;
                 PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "right":
-            defaultSize=(imgName == "Attack") ? 18 : 25;
+                defaultSize = (imgName == "Attack") ? 18 : 25;
                 img = (spriteNum == 1) ? right1 : right2;
                 PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;

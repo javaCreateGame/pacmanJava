@@ -173,9 +173,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             delta += (currentTime - lastTime) / drawInteval;
             lastTime = currentTime;
             if (delta >= 1) {
-                update();
-                getTransform();
+                // Vào map mới bắt đầu cho nhân vật ,quái chạy thực hiện logic
                 if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
+                    update();
+                    getTransform();
                     PlayerVsMonster();
                 }
                 repaint();
@@ -200,7 +201,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     }
 
     // Ham viet logic biến hình cho nhân vật
-    public void transform(Map DefaultMap, boolean addHeart, boolean removeHeart, int heartXLocation, int heartYLocation,
+    public void transform(Map DefaultMap, int heartXLocation, int heartYLocation,
             JPanel childJPanel, JLabel heart) {
         double dem = Math.floor((Math.random() * 2) + 1);
 
@@ -209,7 +210,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 - (player.PlayerWidth + player.PlayerPositionX);
         int Y = (heartYLocation + secondMap.newImageIconHeart.getIconHeight())
                 - (player.PLayerHeight + player.PlayerPositionY);
-        if (X >= -30 && X <= 3 && Y >= -30 && Y <= 3 && addHeart == true && removeHeart == false) {
+        if (X >= -30 && X <= 3 && Y >= -30 && Y <= 3 && DefaultMap.addHeart == true
+                && DefaultMap.removeHeart == false) {
             // Nhân vật không thể biến hình và bị giảm 500 điểm
             if (dem == 1) {
                 player.imgName = "";
@@ -242,34 +244,39 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void getTransform() {
         switch (nameCardLayout) {
             case "FirstMap":
-                transform(firstMap, firstMap.addHeart, firstMap.removeHeart, firstMap.heartXLocation,
+                transform(firstMap, firstMap.heartXLocation,
                         firstMap.heartYLocation, firstMap.childFirstMapPanel, firstMap.heart);
                 break;
             case "SecondMap":
-                transform(secondMap, secondMap.addHeart, secondMap.removeHeart, secondMap.heartXLocation,
+                transform(secondMap, secondMap.heartXLocation,
                         secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
                 break;
         }
     }
 
+    // Hàm boolean trả về giá trị true nếu nhân vật chạm vào quái
     public boolean removeImage(int xMonsterImg, int yMonsterImg, boolean monsterVisible) {
         int X = (xMonsterImg + monster.MonsterWidth) - (player.PlayerWidth + player.PlayerPositionX);
         int Y = (yMonsterImg + monster.MonsterHeight) - (player.PLayerHeight + player.PlayerPositionY);
-        if (X >= -10 && X <= 8 && Y >= -30 && Y <= 8 && monsterVisible == true) {
+        if (X >= -20 && X <= 5 && Y >= -20 && Y <= 5 && monsterVisible == true) {
             return true;
         }
         return false;
     }
 
+    // hÀM setlogic cho player đánh nhau vs quái khi k ăn trái tym
     public void removePlayer() {
+        // Mảng sTRING lưu trữ các kịch bản end riêng khi quái chạm vào
         String TitleEnding[] = {
                 "Bạn đã trượt đại học do vướng vào con đường cờ bạc.Bạn có muốn làm lại cuộc đời?",
                 "Bạn đã trượt đại học do quá đắm chìm vào sự thú vị ,hay ho của game.Bạn có muốn làm lại cuộc đời?",
                 "Bạn đã bị nghiện do vô tình dẵm vào kim tiêm của người nghiện.Bạn có muốn làm lại cuộc đời?",
         };
+        // Tạo các biến boolean cho biết mình đụng vào quái nào
         boolean pVsDice = removeImage(monster.xDice, monster.yDice, monster.monsterVisible[0]);
         boolean pVsJoystick = removeImage(monster.xJoystick, monster.yJoystick, monster.monsterVisible[1]);
         boolean pVsSyrinnge = removeImage(monster.xSyrinnge, monster.ySyrinnge, monster.monsterVisible[2]);
+        // Nếu đụng vào quái nào thì hiện lên thông báo kết thúc game và lựa chọn
         if (pVsDice == true || pVsSyrinnge == true || pVsJoystick == true) {
             if (pVsDice == true) {
                 Ending = TitleEnding[0];
@@ -289,10 +296,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
+    // hÀM setlogic cho player đánh nhau vs quái khi ăn trái tym
     public void removeMonster() {
+        // Tạo các biến boolean cho biết mình đụng vào quái nào
         boolean pVsDice = removeImage(monster.xDice, monster.yDice, monster.monsterVisible[0]);
         boolean pVsJoystick = removeImage(monster.xJoystick, monster.yJoystick, monster.monsterVisible[1]);
         boolean pVsSyrinnge = removeImage(monster.xSyrinnge, monster.ySyrinnge, monster.monsterVisible[2]);
+        // Nếu đụng vào quái nào thì xóa và ẩn quái đó
         if (pVsDice == true) {
             monster.dice = null;
             monster.monsterVisible[0] = false;
@@ -306,6 +316,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
+    // Hàm tổng hợp các hàm logic trên
     public void PlayerVsMonster() {
         if (player.imgName == "") {
             removePlayer();
@@ -316,19 +327,40 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     // Hàm reset mọi thứ về trạng thái ban đầu và trở về Intro
     public void Reset() {
+        // Dừng nhạc hiện tại
         soundMain.stop();
         countFoot = 0;
+        // Đặt lại vị trí ban đầu;
         monster.getMonsterImage();
         monster.setDefaultMonster();
-        player.setDefaultPlayer();
+
+        // Gọi hàm discardHeart để setup lại tym
+        discardHeart(firstMap, firstMap.childFirstMapPanel, firstMap.heart);
+        discardHeart(secondMap, secondMap.childSecondMapPanel, secondMap.heart);
+
+        // xóa tất cả các dong chữ chạy của trailer và cho bắt đầu từ đầu
         trailer.timer.stop();
         trailer.currentLineIndex = 0;
         trailer.currentCharacterIndex = 0;
         trailer.textArea.setText("");
+
+        // Chuyển về trang Intro
         nameCardLayout = "Intro";
         cardLayout.show(cardPanel, nameCardLayout);
+        // Cho nhân vật dừng di chuyển và set lại vị trí cũ
+        playermove.playerRight = playermove.playerDown = playermove.playerUp = playermove.playerLeft = false;
+        player.setDefaultPlayer();
+        // Bật lại nhạc của intro
         soundMain.setFile(0);
         soundMain.start();
+    }
+
+    // Hàm gắn lại trái tym về chỗ cũ nếu như đã bị ăn mất
+    public void discardHeart(Map defaultMap, JPanel childJPanel, JLabel heart) {
+        defaultMap.addHeart = true;
+        defaultMap.removeHeart = false;
+        childJPanel.add(heart);
+
     }
 
     // hàm vẽ nhân vật
@@ -338,7 +370,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             player.draw(g2);
             monster.draw(g2);
-            repaint();
+
         }
         g2.dispose();
 
