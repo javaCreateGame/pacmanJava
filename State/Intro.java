@@ -23,7 +23,7 @@ public class Intro{
         this.Mf=Mf;
         //set up panels
         introPanel = new JPanel(null);
-        introPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
+        introPanel.setSize(Mf.jframeWidth,Mf.jframeHeightParent);
         introPanel.setOpaque(true);
         //Code phần giao diện
         this.init();
@@ -38,7 +38,7 @@ public class Intro{
         
         // Tạo ra một JLabel để chứa hình ảnh làm nền
         JLabel background = new JLabel(new ImageIcon("./picture/Background_Intro.png"));
-        background.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeight);
+        background.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
 
         // Thêm hình ảnh làm nền vào introPanel
         introPanel.add(background);

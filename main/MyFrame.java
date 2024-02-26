@@ -33,7 +33,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     String nameCardLayout;
 
     public int jframeWidth = 615, jframeHeight = 615;
-    private int jframeHeightParent=690;
+    public int jframeHeightParent=690;
     public int countFoot = 0;
     int FPS = 60;
     JPanel cardPanel; // Use JPanel instead of JLayeredPane
@@ -50,7 +50,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     MyFrame() {
 
         cardPanel = new JPanel(); // Use JPanel instead of JLayeredPane
-        cardPanel.setBounds(0, 0, jframeWidth, jframeHeight);
+        cardPanel.setBounds(0, 0, jframeWidth, jframeHeightParent);
 
         // Sử dụng CardLayout cho cardPanel
         cardPanel.setLayout(cardLayout);
@@ -131,7 +131,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "FirstMap";
+            nameCardLayout = "SecondMap";
             cardLayout.show(cardPanel, nameCardLayout);
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);

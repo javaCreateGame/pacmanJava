@@ -23,7 +23,7 @@ public class FirstMap extends Map {
     public int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
 
-    int score;
+    public int score;
     public JLabel mapLabel;
     public JLabel scoreLabel; // Thêm label cho điểm số
     public Timer timer;
@@ -32,7 +32,8 @@ public class FirstMap extends Map {
        //set up panel
        firstMapPanel =new JPanel();
        firstMapPanel.setSize( Mf.jframeWidth, Mf.jframeHeight);
-       firstMapPanel.setLayout(new BorderLayout());
+       firstMapPanel.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
+       firstMapPanel.setLayout(null);
         //Code Giao dien
 
         // Dịch chuyển hình nền lên 27 pixel từ dưới lên
@@ -45,9 +46,10 @@ public class FirstMap extends Map {
 
         // // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
+        background.setBounds(0,0,Mf.jframeWidth,Mf.jframeHeight);
 
         // Thêm JLabel vào content pane với BorderLayout
-        firstMapPanel.add(background, BorderLayout.CENTER);
+        firstMapPanel.add(background);
         
         // Tạo một JPanel để chứa các thành phần khác
         childFirstMapPanel = new JPanel();
@@ -132,10 +134,10 @@ public class FirstMap extends Map {
         scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
 
         // Đặt vị trí của scoreLabel
-        scoreLabel.setBounds(300, Mf.jframeHeight - 30, 100, 20); // Đặt ở góc trái dưới
+        scoreLabel.setBounds(50, 620, 100, 20); // Đặt ở góc trái dưới
 
         // Thêm scoreLabel vào panel của FirstMap
-        childFirstMapPanel.add(scoreLabel);
+        firstMapPanel.add(scoreLabel);
 
         // Khởi tạo Timer
         timer = new Timer(1000, new ActionListener() {

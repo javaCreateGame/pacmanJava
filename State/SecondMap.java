@@ -26,8 +26,8 @@ public class SecondMap extends Map {
         this.Mf=Mf;
         // Set layout cho map
         secondMapPanel = new JPanel();
-        secondMapPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
-        secondMapPanel.setLayout(new BorderLayout());
+        secondMapPanel.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
+        secondMapPanel.setLayout(null);
 
         // Dịch chuyển hình nền lên 27 pixel từ dưới lên
         // secondMapPanel.setBorder(BorderFactory.createEmptyBorder(-27, 0, 0, 0));
@@ -40,9 +40,9 @@ public class SecondMap extends Map {
 
         // // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
-
+        background.setBounds(0,0,Mf.jframeWidth,Mf.jframeHeight);
         // Thêm JLabel vào content pane với BorderLayout
-        secondMapPanel.add(background, BorderLayout.CENTER);
+        secondMapPanel.add(background);
 
         // Tạo một JPanel để chứa các thành phần khác
         childSecondMapPanel = new JPanel();
