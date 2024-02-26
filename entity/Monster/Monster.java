@@ -47,7 +47,8 @@ public class Monster {
         xDice = 10;
         xJoystick = 40;
         xSyrinnge = 70;
-        yDice = yJoystick = ySyrinnge = 60;
+        yDice = yJoystick = 60;
+        ySyrinnge=55; 
         MonsterHeight = MonsterWidth = defaultSize;
     }
 
@@ -57,11 +58,11 @@ public class Monster {
             if (xDice >= Mf.jframeWidth - MonsterWidth || xDice < 0) {
                 xVelocity[0] = xVelocity[0] * (-1);
             }
-            xDice += xVelocity[0];
+            xDice -= xVelocity[0];
             if (yDice >= Mf.jframeHeight+27 - MonsterHeight || yDice < 0) {
                 yVelocity[0] = yVelocity[0] * (-1);
             }
-            yDice += yVelocity[0];
+            yDice -= yVelocity[0];
         }
         if (Mf.countFoot >= 600) {
             if (xJoystick >= Mf.jframeWidth - MonsterWidth || xJoystick < 0) {
@@ -89,6 +90,7 @@ public class Monster {
     public void draw(Graphics2D g2) {
         g2.drawImage(dice, xDice, yDice, MonsterWidth, MonsterHeight, null);
         g2.drawImage(joystick, xJoystick, yJoystick, MonsterWidth, MonsterHeight, null);
-        g2.drawImage(syrinnge, xSyrinnge, ySyrinnge, MonsterWidth, MonsterHeight, null);
+        g2.drawImage(syrinnge, xSyrinnge, ySyrinnge, MonsterWidth+10, MonsterHeight+10, null);
     }
+    
 }
