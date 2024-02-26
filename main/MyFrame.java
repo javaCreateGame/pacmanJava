@@ -30,6 +30,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     
     Thread gameThread;
 
+    String Ending;
     String nameCardLayout;
 
     public int jframeWidth = 615, jframeHeight = 615;
@@ -173,8 +174,11 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             lastTime = currentTime;
             if (delta >= 1) {
                 update();
-                repaint();
                 getTransform();
+                if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
+                    PlayerVsMonster();
+                }
+                repaint();
                 delta--;
             }
           
@@ -196,9 +200,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
        double dem=Math.floor((Math.random()*2)+1);
     
        //Set các điều kiện để nhân vật có thể biến hình
-       if (((heartXLocation+20)-(player.PlayerWidth+player.PlayerPositionX))<=2
-        &&((heartYLocation+20)-(player.PLayerHeight+player.PlayerPositionY))<=2
-        && addHeart==true  && removeHeart==false  ) {
+     int X=(heartXLocation+secondMap.newImageIconHeart.getIconWidth())-(player.PlayerWidth+player.PlayerPositionX);
+     int Y=(heartYLocation+secondMap.newImageIconHeart.getIconHeight())-(player.PLayerHeight+player.PlayerPositionY);
+       if (X>=-30 && X<=3 && Y>=-30 && Y<=3 && addHeart==true  && removeHeart==false  ) {
         //Nhân vật không thể biến hình và bị giảm 500 điểm
             if (dem==1) {
             player.imgName="";
@@ -227,6 +231,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
           player.getPlayerImage(player.imgName);
 }
 
+   
 //Hàm Thực hiện biến hình qua mỗi map
     public void getTransform(){
         switch (nameCardLayout) {
@@ -238,6 +243,71 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             break;
         }
     }
+    public boolean removeImage( int xMonsterImg,int yMonsterImg){
+        int X=(xMonsterImg+monster.MonsterWidth)-(player.PlayerWidth+player.PlayerPositionX);
+        int Y=(yMonsterImg+monster.MonsterHeight)-(player.PLayerHeight+player.PlayerPositionY);
+        if (X>=-30 && X<=3 && Y>=-30 && Y<=3){
+            return true;
+        }
+        return false;
+    } 
+    public void removePlayer(){
+    String TitleEnding[]={
+        "Bạn đã trượt đại học do vướng vào con đường cờ bạc.Bạn có muốn làm lại cuộc đời?",
+        "Bạn đã trượt đại học do quá đắm chìm vào sự thú vị ,hay ho của game.Bạn có muốn làm lại cuộc đời?",
+        "Bạn đã bị nghiện do vô tình dẵm vào kim tiêm của người nghiện.Bạn có muốn làm lại cuộc đời?",
+    };
+   boolean pVsDice=removeImage(monster.xDice, monster.yDice);
+   boolean pVsSyrinnge=removeImage(monster.xSyrinnge, monster.ySyrinnge);
+   boolean pVsJoystick=removeImage(monster.xJoystick, monster.yJoystick);
+    if (pVsDice==true || pVsSyrinnge==true || pVsJoystick==true) {
+        if (pVsDice==true) {
+            Ending=TitleEnding[0];
+        }
+        else if(pVsJoystick==true){
+            Ending=TitleEnding[1];
+        }
+        else if(pVsSyrinnge==true){
+            Ending=TitleEnding[2];
+        }
+        int exitis = JOptionPane.showConfirmDialog(null, Ending, "Xác nhận",
+        JOptionPane.YES_NO_OPTION);
+        if (exitis==0) {
+            soundMain.stop();
+            player.setDefaultPlayer();
+            player.getPlayerImage(player.imgName);
+            nameCardLayout="Intro";
+            cardLayout.show(cardPanel, nameCardLayout);
+            soundMain.setFile(0);
+            soundMain.start();
+            
+        }
+        else{
+            System.exit(0);
+        }
+    }
+     
+    
+    }
+     public void removeMonster(){
+        if (removeImage(monster.xDice, monster.yDice)==true) {
+             monster.dice=null;   
+        }
+        else if (removeImage(monster.xSyrinnge, monster.ySyrinnge)==true) {
+            monster.syrinnge=null;   
+       }
+       else if (removeImage(monster.xJoystick, monster.yJoystick)==true) {
+        monster.joystick=null;   
+   }
+     }
+     public void PlayerVsMonster(){
+        if (player.imgName=="") {
+            removePlayer();
+        }
+        else if (player.imgName=="Attack") {
+            removeMonster();
+        }
+       }
     // hàm vẽ nhân vật
     public void paint(Graphics g) {
         super.paint(g);
@@ -245,6 +315,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             player.draw(g2);
             monster.draw(g2);
+            repaint();
         }
         g2.dispose();
 
