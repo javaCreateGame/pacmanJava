@@ -11,13 +11,16 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-public class FirstMap {
-  public JPanel firstMapPanel;
+public class FirstMap extends Map {
+    public JPanel firstMapPanel;
     public JPanel childFirstMapPanel;
     public JLabel obj[];
     public JLabel heart;
+    public boolean addHear= true;
+    public boolean removeHeart= false;
+    public int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
-   public FirstMap(MyFrame Mf){
+    public FirstMap(MyFrame Mf){
       this.Mf=Mf;
        //set up panel
        firstMapPanel =new JPanel();
@@ -100,10 +103,10 @@ public class FirstMap {
         }
 
         // Thêm trái tim vào map
-        int heartXLocation = 298, heartYLocation = 279;
+        
         this.heart.setLocation(heartXLocation, heartYLocation);
         childFirstMapPanel.add(heart);
-
+       addHeart=true;
         background.add(childFirstMapPanel);
 
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background

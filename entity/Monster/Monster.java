@@ -44,10 +44,10 @@ public class Monster {
         Arrays.fill(yVelocity, 4);
         xVelocity[1] = 5;
         yVelocity[0] = 5;
-        xDice = 50;
-        xJoystick = 70;
-        xSyrinnge = 90;
-        yDice = yJoystick = ySyrinnge = 80;
+        xDice = 10;
+        xJoystick = 40;
+        xSyrinnge = 70;
+        yDice = yJoystick = ySyrinnge = 60;
         MonsterHeight = MonsterWidth = defaultSize;
     }
 
@@ -58,7 +58,7 @@ public class Monster {
                 xVelocity[0] = xVelocity[0] * (-1);
             }
             xDice += xVelocity[0];
-            if (yDice >= Mf.jframeHeight - MonsterHeight || yDice < 0) {
+            if (yDice >= Mf.jframeHeight+27 - MonsterHeight || yDice < 0) {
                 yVelocity[0] = yVelocity[0] * (-1);
             }
             yDice += yVelocity[0];
@@ -68,7 +68,7 @@ public class Monster {
                 xVelocity[1] = xVelocity[1] * (-1);
             }
             xJoystick += xVelocity[1];
-            if (yJoystick >= Mf.jframeWidth - MonsterWidth || yJoystick < 0) {
+            if (yJoystick >= Mf.jframeHeight+27 - MonsterHeight|| yJoystick < 0) {
                 yVelocity[1] = yVelocity[1] * (-1);
             }
             yJoystick += yVelocity[1];
@@ -78,7 +78,7 @@ public class Monster {
                 xVelocity[2] = xVelocity[2] * (-1);
             }
             xSyrinnge += xVelocity[2];
-            if (ySyrinnge >= Mf.jframeWidth - MonsterWidth || ySyrinnge < 0) {
+            if (ySyrinnge >= Mf.jframeHeight+27 - MonsterHeight || ySyrinnge < 0) {
                 yVelocity[2] = yVelocity[2] * (-1);
             }
             ySyrinnge += yVelocity[2];

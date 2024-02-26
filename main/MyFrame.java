@@ -6,9 +6,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -21,7 +24,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     PlayerMove playermove = new PlayerMove();
     Player player = new Player(this, playermove);
     SoundEffect soundMain = new SoundEffect();
-    SoundEffect soundInternal = new SoundEffect();
+    public SoundEffect soundInternal = new SoundEffect();
     SoundEffect soundNext = new SoundEffect();
     Monster monster = new Monster(this);
     
@@ -80,7 +83,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         // Thêm ActionListener cho nút "nextButton" trong Intro
         trailer.nextButton.addActionListener(this);
         // Thêm ActionListener cho nút "skipButton" trong Intro
-        trailer.skipButton.addActionListener(this);
+        // trailer.skipButton.addActionListener(this);
+
     }
 
     // Hàm setup các dữ liệu ban đầu của jframe
@@ -120,20 +124,21 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundInternal.setFile(1);
             soundInternal.start();
             soundInternal.loop();
-        } else if (e.getSource() == trailer.skipButton) {
-            // Dừng âm thanh gõ phím
-            soundInternal.stop();
+        // } else if (e.getSource() == trailer.skipButton) {
+            //     // Dừng âm thanh gõ phím
+            //     soundInternal.stop();
         } else if (e.getSource() == trailer.nextButton) {
             // Dừng âm thanh phần trailer
+            soundInternal.stop();
             soundMain.stop();
             nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
             soundMain.start();
-            // Tạo âm thanh ăn vật phẩm và âm thanh biến hình
+            soundMain.loop();
+            // Tạo âm thanh ăn vật phẩm 
             soundInternal.setFile(4);
-            soundNext.setFile(5);
         }
 
         // Xử lý sự kiện khi nút "Exit" được nhấn
@@ -169,6 +174,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             if (delta >= 1) {
                 update();
                 repaint();
+                getTransform();
                 delta--;
             }
           
@@ -176,16 +182,62 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
-    // Hàm để update chuyển động ,tọa độ khi nhân vật di chuyển
+    // Hàm để update chuyển động ,tọa độ khi nhân vật ,monster di chuyển
     public void update() {
         player.update();
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             countFoot++;
         }
-     System.out.println(countFoot);
         monster.running();
     }
 
+//Ham viet logic biến hình cho nhân vật
+    public void transform(Map DefaultMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
+       double dem=Math.floor((Math.random()*2)+1);
+    
+       //Set các điều kiện để nhân vật có thể biến hình
+       if (((heartXLocation+20)-(player.PlayerWidth+player.PlayerPositionX))<=2
+        &&((heartYLocation+20)-(player.PLayerHeight+player.PlayerPositionY))<=2
+        && addHeart==true  && removeHeart==false  ) {
+        //Nhân vật không thể biến hình và bị giảm 500 điểm
+            if (dem==1) {
+            player.imgName="";
+         }
+         //Cho nhân vật biến hình và sau 10s về như cũ
+         if (dem==2) {
+            player.imgName="Attack";
+            soundNext.setFile(5);
+            soundNext.start();
+            
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+              @Override
+              public void run() {
+                  player.imgName = "";
+                  timer.cancel();
+              }
+          }, 10000);
+         }
+        // Xóa hình trái tym trên map
+         childJPanel.remove(heart);
+         DefaultMap.addHeart=false;
+         DefaultMap.removeHeart=true;
+          
+      }
+          player.getPlayerImage(player.imgName);
+}
+
+//Hàm Thực hiện biến hình qua mỗi map
+    public void getTransform(){
+        switch (nameCardLayout) {
+            case "FirstMap":
+                transform(firstMap, firstMap.addHeart, firstMap.removeHeart, firstMap.heartXLocation, firstMap.heartYLocation, firstMap.childFirstMapPanel, firstMap.heart);
+                break;
+            case "SecondMap":
+                transform(secondMap, secondMap.addHeart, secondMap.removeHeart, secondMap.heartXLocation, secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
+            break;
+        }
+    }
     // hàm vẽ nhân vật
     public void paint(Graphics g) {
         super.paint(g);
@@ -193,7 +245,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             player.draw(g2);
             monster.draw(g2);
-            
+            repaint();
         }
         g2.dispose();
 

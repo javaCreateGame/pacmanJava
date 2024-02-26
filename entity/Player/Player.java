@@ -7,10 +7,10 @@ import javax.imageio.ImageIO;
 import main.MyFrame;
 
 public class Player {
-    public final int defaultSize = 25;
+    public  int defaultSize = 25;
     public int PlayerWidth, PLayerHeight;
     // Tạo biến lưu trữ tọa độ của nhân vật
-    public int x, y;
+    public int PlayerPositionX, PlayerPositionY;
     public int speed;
     // Tạo biến lưu trữ ảnh chuyển động của nhân vâth
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
@@ -31,9 +31,9 @@ public class Player {
     }
 
     public void setDefaultPlayer() {
-        x = 40;
-        y = 50;
-        speed = 2;
+        PlayerPositionX = 150;
+        PlayerPositionY = 335;
+        speed = 3;
         direction = "down";
     }
 
@@ -59,22 +59,22 @@ public class Player {
         if (playermove.playerRight || playermove.playerDown || playermove.playerUp || playermove.playerLeft) {
             if (playermove.playerUp) {
                 direction = "up";
-                y -= speed;
+                PlayerPositionY -= speed;
             }
             if (playermove.playerDown) {
                 direction = "down";
-                y += speed;
+                PlayerPositionY += speed;
             }
             if (playermove.playerLeft) {
                 direction = "left";
-                x -= speed;
+                PlayerPositionX -= speed;
             }
             if (playermove.playerRight) {
                 direction = "right";
-                x += speed;
+                PlayerPositionX+= speed;
             }
             spriteCounter++;
-            if (spriteCounter >= 12) {
+            if (spriteCounter >= 8) {
                 spriteNum = (spriteNum == 1) ? 2 : 1;
                 spriteCounter = 0;
             }
@@ -90,25 +90,32 @@ public class Player {
 
             case "up":
                 img = (spriteNum == 1) ? up1 : up2;
+                defaultSize=(imgName == "Attack") ? 20 : 25;
                 PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
-
+                speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "down":
+                defaultSize=(imgName == "Attack") ? 20 : 25;
                 img = (spriteNum == 1) ? down1 : down2;
                 PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
+                speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "left":
+               defaultSize=(imgName == "Attack") ? 20 : 25;
                 img = (spriteNum == 1) ? left1 : left2;
                 PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
+                speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "right":
+            defaultSize=(imgName == "Attack") ? 18 : 25;
                 img = (spriteNum == 1) ? right1 : right2;
                 PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
+                speed = (imgName == "Attack") ? 5 : 3;
                 break;
         }
 
         // tạo nhân vật lên trên jframe;
-        g2.drawImage(img, x, y, PlayerWidth, PLayerHeight, null);
+        g2.drawImage(img, PlayerPositionX, PlayerPositionY, PlayerWidth, PLayerHeight, null);
 
     }
 }
