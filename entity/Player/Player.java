@@ -57,6 +57,7 @@ public class Player {
     public void update() {
         // logic phần bấm bấm nút di chuyển
         if (playermove.playerRight || playermove.playerDown || playermove.playerUp || playermove.playerLeft) {
+          
             if (playermove.playerUp) {
                 direction = "up";
                 PlayerPositionY -= speed;

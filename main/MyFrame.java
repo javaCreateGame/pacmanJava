@@ -27,14 +27,14 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public SoundEffect soundInternal = new SoundEffect();
     SoundEffect soundNext = new SoundEffect();
     Monster monster = new Monster(this);
-    
+
     Thread gameThread;
 
     String Ending;
     String nameCardLayout;
 
     public int jframeWidth = 615, jframeHeight = 615;
-    public int jframeHeightParent=690;
+    public int jframeHeightParent = 690;
     public int countFoot = 0;
     int FPS = 60;
     JPanel cardPanel; // Use JPanel instead of JLayeredPane
@@ -125,9 +125,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundInternal.setFile(1);
             soundInternal.start();
             soundInternal.loop();
-        // } else if (e.getSource() == trailer.skipButton) {
-            //     // Dừng âm thanh gõ phím
-            //     soundInternal.stop();
+            // } else if (e.getSource() == trailer.skipButton) {
+            // // Dừng âm thanh gõ phím
+            // soundInternal.stop();
         } else if (e.getSource() == trailer.nextButton) {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
@@ -138,7 +138,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundMain.setFile(3);
             soundMain.start();
             soundMain.loop();
-            // Tạo âm thanh ăn vật phẩm 
+            // Tạo âm thanh ăn vật phẩm
             soundInternal.setFile(4);
         }
 
@@ -181,7 +181,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 repaint();
                 delta--;
             }
-          
+
         }
 
     }
@@ -189,125 +189,148 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     // Hàm để update chuyển động ,tọa độ khi nhân vật ,monster di chuyển
     public void update() {
         player.update();
+        System.out.println(player.PlayerPositionX);
+        System.out.println(player.PlayerPositionY);
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
+            player.update();
+            monster.running();
             countFoot++;
         }
         monster.running();
     }
 
-//Ham viet logic biến hình cho nhân vật
-    public void transform(Map DefaultMap,boolean addHeart,boolean removeHeart,int heartXLocation,int heartYLocation,JPanel childJPanel,JLabel heart){
-       double dem=Math.floor((Math.random()*2)+1);
-    
-       //Set các điều kiện để nhân vật có thể biến hình
-     int X=(heartXLocation+secondMap.newImageIconHeart.getIconWidth())-(player.PlayerWidth+player.PlayerPositionX);
-     int Y=(heartYLocation+secondMap.newImageIconHeart.getIconHeight())-(player.PLayerHeight+player.PlayerPositionY);
-       if (X>=-30 && X<=3 && Y>=-30 && Y<=3 && addHeart==true  && removeHeart==false  ) {
-        //Nhân vật không thể biến hình và bị giảm 500 điểm
-            if (dem==1) {
-            player.imgName="";
-         }
-         //Cho nhân vật biến hình và sau 10s về như cũ
-         if (dem==2) {
-            player.imgName="Attack";
-            soundNext.setFile(5);
-            soundNext.start();
-            
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-              @Override
-              public void run() {
-                  player.imgName = "";
-                  timer.cancel();
-              }
-          }, 10000);
-         }
-        // Xóa hình trái tym trên map
-         childJPanel.remove(heart);
-         DefaultMap.addHeart=false;
-         DefaultMap.removeHeart=true;
-          
-      }
-          player.getPlayerImage(player.imgName);
-}
+    // Ham viet logic biến hình cho nhân vật
+    public void transform(Map DefaultMap, boolean addHeart, boolean removeHeart, int heartXLocation, int heartYLocation,
+            JPanel childJPanel, JLabel heart) {
+        double dem = Math.floor((Math.random() * 2) + 1);
 
-   
-//Hàm Thực hiện biến hình qua mỗi map
-    public void getTransform(){
+        // Set các điều kiện để nhân vật có thể biến hình
+        int X = (heartXLocation + secondMap.newImageIconHeart.getIconWidth())
+                - (player.PlayerWidth + player.PlayerPositionX);
+        int Y = (heartYLocation + secondMap.newImageIconHeart.getIconHeight())
+                - (player.PLayerHeight + player.PlayerPositionY);
+        if (X >= -30 && X <= 3 && Y >= -30 && Y <= 3 && addHeart == true && removeHeart == false) {
+            // Nhân vật không thể biến hình và bị giảm 500 điểm
+            if (dem == 1) {
+                player.imgName = "";
+            }
+            // Cho nhân vật biến hình và sau 10s về như cũ
+            if (dem == 2) {
+                player.imgName = "Attack";
+                soundNext.setFile(5);
+                soundNext.start();
+
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        player.imgName = "";
+                        timer.cancel();
+                    }
+                }, 10000);
+            }
+            // Xóa hình trái tym trên map
+            childJPanel.remove(heart);
+            DefaultMap.addHeart = false;
+            DefaultMap.removeHeart = true;
+
+        }
+        player.getPlayerImage(player.imgName);
+    }
+
+    // Hàm Thực hiện biến hình qua mỗi map
+    public void getTransform() {
         switch (nameCardLayout) {
             case "FirstMap":
-                transform(firstMap, firstMap.addHeart, firstMap.removeHeart, firstMap.heartXLocation, firstMap.heartYLocation, firstMap.childFirstMapPanel, firstMap.heart);
+                transform(firstMap, firstMap.addHeart, firstMap.removeHeart, firstMap.heartXLocation,
+                        firstMap.heartYLocation, firstMap.childFirstMapPanel, firstMap.heart);
                 break;
             case "SecondMap":
-                transform(secondMap, secondMap.addHeart, secondMap.removeHeart, secondMap.heartXLocation, secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
-            break;
+                transform(secondMap, secondMap.addHeart, secondMap.removeHeart, secondMap.heartXLocation,
+                        secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
+                break;
         }
     }
-    public boolean removeImage( int xMonsterImg,int yMonsterImg){
-        int X=(xMonsterImg+monster.MonsterWidth)-(player.PlayerWidth+player.PlayerPositionX);
-        int Y=(yMonsterImg+monster.MonsterHeight)-(player.PLayerHeight+player.PlayerPositionY);
-        if (X>=-30 && X<=3 && Y>=-30 && Y<=3){
+
+    public boolean removeImage(int xMonsterImg, int yMonsterImg, boolean monsterVisible) {
+        int X = (xMonsterImg + monster.MonsterWidth) - (player.PlayerWidth + player.PlayerPositionX);
+        int Y = (yMonsterImg + monster.MonsterHeight) - (player.PLayerHeight + player.PlayerPositionY);
+        if (X >= -10 && X <= 8 && Y >= -30 && Y <= 8 && monsterVisible == true) {
             return true;
         }
         return false;
-    } 
-    public void removePlayer(){
-    String TitleEnding[]={
-        "Bạn đã trượt đại học do vướng vào con đường cờ bạc.Bạn có muốn làm lại cuộc đời?",
-        "Bạn đã trượt đại học do quá đắm chìm vào sự thú vị ,hay ho của game.Bạn có muốn làm lại cuộc đời?",
-        "Bạn đã bị nghiện do vô tình dẵm vào kim tiêm của người nghiện.Bạn có muốn làm lại cuộc đời?",
-    };
-   boolean pVsDice=removeImage(monster.xDice, monster.yDice);
-   boolean pVsSyrinnge=removeImage(monster.xSyrinnge, monster.ySyrinnge);
-   boolean pVsJoystick=removeImage(monster.xJoystick, monster.yJoystick);
-    if (pVsDice==true || pVsSyrinnge==true || pVsJoystick==true) {
-        if (pVsDice==true) {
-            Ending=TitleEnding[0];
-        }
-        else if(pVsJoystick==true){
-            Ending=TitleEnding[1];
-        }
-        else if(pVsSyrinnge==true){
-            Ending=TitleEnding[2];
-        }
-        int exitis = JOptionPane.showConfirmDialog(null, Ending, "Xác nhận",
-        JOptionPane.YES_NO_OPTION);
-        if (exitis==0) {
-            soundMain.stop();
-            player.setDefaultPlayer();
-            player.getPlayerImage(player.imgName);
-            nameCardLayout="Intro";
-            cardLayout.show(cardPanel, nameCardLayout);
-            soundMain.setFile(0);
-            soundMain.start();
-            
-        }
-        else{
-            System.exit(0);
-        }
     }
-     
-    
-    }
-     public void removeMonster(){
-        if (removeImage(monster.xDice, monster.yDice)==true) {
-             monster.dice=null;   
+
+    public void removePlayer() {
+        String TitleEnding[] = {
+                "Bạn đã trượt đại học do vướng vào con đường cờ bạc.Bạn có muốn làm lại cuộc đời?",
+                "Bạn đã trượt đại học do quá đắm chìm vào sự thú vị ,hay ho của game.Bạn có muốn làm lại cuộc đời?",
+                "Bạn đã bị nghiện do vô tình dẵm vào kim tiêm của người nghiện.Bạn có muốn làm lại cuộc đời?",
+        };
+        boolean pVsDice = removeImage(monster.xDice, monster.yDice, monster.monsterVisible[0]);
+        boolean pVsJoystick = removeImage(monster.xJoystick, monster.yJoystick, monster.monsterVisible[1]);
+        boolean pVsSyrinnge = removeImage(monster.xSyrinnge, monster.ySyrinnge, monster.monsterVisible[2]);
+        if (pVsDice == true || pVsSyrinnge == true || pVsJoystick == true) {
+            if (pVsDice == true) {
+                Ending = TitleEnding[0];
+            } else if (pVsJoystick == true) {
+                Ending = TitleEnding[1];
+            } else if (pVsSyrinnge == true) {
+                Ending = TitleEnding[2];
+            }
+            int exitis = JOptionPane.showConfirmDialog(null, Ending, "Xác nhận",
+                    JOptionPane.YES_NO_OPTION);
+            if (exitis == 0) {
+                Reset();
+            } else {
+                System.exit(0);
+            }
         }
-        else if (removeImage(monster.xSyrinnge, monster.ySyrinnge)==true) {
-            monster.syrinnge=null;   
-       }
-       else if (removeImage(monster.xJoystick, monster.yJoystick)==true) {
-        monster.joystick=null;   
-   }
-     }
-     public void PlayerVsMonster(){
-        if (player.imgName=="") {
+
+    }
+
+    public void removeMonster() {
+        boolean pVsDice = removeImage(monster.xDice, monster.yDice, monster.monsterVisible[0]);
+        boolean pVsJoystick = removeImage(monster.xJoystick, monster.yJoystick, monster.monsterVisible[1]);
+        boolean pVsSyrinnge = removeImage(monster.xSyrinnge, monster.ySyrinnge, monster.monsterVisible[2]);
+        if (pVsDice == true) {
+            monster.dice = null;
+            monster.monsterVisible[0] = false;
+        } else if (pVsJoystick == true) {
+            monster.joystick = null;
+            monster.monsterVisible[1] = false;
+        } else if (pVsSyrinnge == true) {
+            monster.syrinnge = null;
+            monster.monsterVisible[2] = false;
+        }
+
+    }
+
+    public void PlayerVsMonster() {
+        if (player.imgName == "") {
             removePlayer();
-        }
-        else if (player.imgName=="Attack") {
+        } else if (player.imgName == "Attack") {
             removeMonster();
         }
-       }
+    }
+
+    // Hàm reset mọi thứ về trạng thái ban đầu và trở về Intro
+    public void Reset() {
+        soundMain.stop();
+        countFoot = 0;
+        monster.getMonsterImage();
+        monster.setDefaultMonster();
+        player.setDefaultPlayer();
+        trailer.timer.stop();
+        trailer.currentLineIndex = 0;
+        trailer.currentCharacterIndex = 0;
+        trailer.textArea.setText("");
+        nameCardLayout = "Intro";
+        cardLayout.show(cardPanel, nameCardLayout);
+        soundMain.setFile(0);
+        soundMain.start();
+    }
+
     // hàm vẽ nhân vật
     public void paint(Graphics g) {
         super.paint(g);

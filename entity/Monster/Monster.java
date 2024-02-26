@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import main.MyFrame;
 
 public class Monster {
+    public boolean monsterVisible[]=new boolean[3];
     public final int defaultSize = 25;
     public int MonsterWidth, MonsterHeight;
     // Tạo biến lưu trữ tọa độ của nhân vật
@@ -33,13 +34,14 @@ public class Monster {
             dice = ImageIO.read(getClass().getResourceAsStream("/picture/diceMonster.png"));
             joystick = ImageIO.read(getClass().getResourceAsStream("/picture/joystickMonster.png"));
             syrinnge = ImageIO.read(getClass().getResourceAsStream("/picture/syringeMonster.png"));
-
+        
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void setDefaultMonster() {
+        Arrays.fill(monsterVisible, true);
         Arrays.fill(xVelocity, 4);
         Arrays.fill(yVelocity, 4);
         xVelocity[1] = 5;
