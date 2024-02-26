@@ -13,7 +13,7 @@ import java.awt.event.MouseAdapter;
 
 public class Trailer  {
    MyFrame Mf;
-    JTextArea textArea;
+    public JTextArea textArea;
     public JButton nextButton;
     public JButton skipButton;
    
@@ -29,8 +29,8 @@ public class Trailer  {
             "Đôi khi trên con đường này bạn gặp 1 người tiếp bước cùng bạn trên con đường. Người này sẽ cùng bạn vượt qua những ngoại vật gây ảnh hưởng nhưng nếu bạn quá đắm chìm vào chuyện của 2 người thì mục tiêu của bạn sẽ khó có thể được hoàn thành.",
             "Chúc bạn may mắn !!!"
     };
-    int currentLineIndex = 0;
-    int currentCharacterIndex = 0;
+    public int currentLineIndex = 0;
+    public int currentCharacterIndex = 0;
 
     public Trailer(MyFrame Mf) {
         this.Mf=Mf;
