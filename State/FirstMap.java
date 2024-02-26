@@ -4,6 +4,8 @@ import javax.swing.*;
 import main.MyFrame;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -20,6 +22,11 @@ public class FirstMap extends Map {
     public boolean removeHeart= false;
     public int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
+
+    int score;
+    public JLabel mapLabel;
+    public JLabel scoreLabel; // Thêm label cho điểm số
+    public Timer timer;
     public FirstMap(MyFrame Mf){
       this.Mf=Mf;
        //set up panel
@@ -106,11 +113,57 @@ public class FirstMap extends Map {
         
         this.heart.setLocation(heartXLocation, heartYLocation);
         childFirstMapPanel.add(heart);
-       addHeart=true;
+        addHeart=true;
         background.add(childFirstMapPanel);
+ 
+        //*****************************************************/
+        mapLabel = new JLabel("LỚP 10");
+        mapLabel.setFont(new Font("Arial", Font.BOLD, 45));
+        mapLabel.setForeground(Color.BLACK);
+        mapLabel.setPreferredSize(new Dimension(mapLabel.getPreferredSize().width + 20, mapLabel.getPreferredSize().height));
+        int labelX = (Mf.jframeWidth - mapLabel.getPreferredSize().width) / 2;
+        int labelY = (Mf.jframeHeight - mapLabel.getPreferredSize().height) / 2;
+        mapLabel.setBounds(labelX, labelY, mapLabel.getPreferredSize().width, mapLabel.getPreferredSize().height);
+        childFirstMapPanel.add(mapLabel);
 
-        // Thêm lắng nghe sự kiện MouseListener vào JLabel background
-        background.addMouseListener(new MyMouseListener());
+        // Khởi tạo label cho điểm số và thêm vào panel của FirstMap
+        scoreLabel = new JLabel("Score: 0");
+        scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
+        scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
+
+        // Đặt vị trí của scoreLabel
+        scoreLabel.setBounds(300, Mf.jframeHeight - 30, 100, 20); // Đặt ở góc trái dưới
+
+        // Thêm scoreLabel vào panel của FirstMap
+        childFirstMapPanel.add(scoreLabel);
+
+        // Khởi tạo Timer
+        timer = new Timer(1000, new ActionListener() {
+          int count = 0;
+
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              count++;
+              if (count <= 8) { // Hiển thị trong 3 giây đầu
+                  float opacity = 1.0f - (count / 8.0f); // Ẩn dần chữ "Map 1"
+                  mapLabel.setForeground(new Color(0, 0, 0, Math.max(0, Math.min(255, (int) (opacity * 255))))); // Đặt màu chữ
+                  // mapLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+              } else {
+                  timer.stop(); // Dừng Timer sau khi đã đủ thời gian hiển thị
+                  mapLabel.setVisible(false); // Ẩn hoàn toàn chữ "Map 1"
+              }
+          }
+      });
+
+      // Bắt đầu Timer
+      timer.start();
+      
+
+        
+    // Thêm lắng nghe sự kiện MouseListener vào JLabel background
+    background.addMouseListener(new MyMouseListener());
+
+        
 
 }
 
