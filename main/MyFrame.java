@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import EndingUi.BadEnding;
+import EndingUi.ButtonEnding;
 import Sound.SoundEffect;
 import State.*;
 import entity.Monster.Monster;
@@ -27,7 +29,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public SoundEffect soundInternal = new SoundEffect();
     SoundEffect soundNext = new SoundEffect();
     Monster monster = new Monster(this);
-
+   
+    ButtonEnding buttonEnding=new ButtonEnding(this);
     Thread gameThread;
 
     String Ending;
@@ -39,6 +42,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     int FPS = 60;
     JPanel cardPanel; // Use JPanel instead of JLayeredPane
 
+    BadEnding badEnding=new BadEnding(this);
     // Tạo các object để sử dụng các biến của chúng
     Intro intro = new Intro(this);
     Trailer trailer = new Trailer(this);
@@ -47,9 +51,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     ThirdMap thirdMap = new ThirdMap(this);
 
     CardLayout cardLayout = new CardLayout();
-
+ 
     MyFrame() {
-
+        badEnding.setPanel(0);
         cardPanel = new JPanel(); // Use JPanel instead of JLayeredPane
         cardPanel.setBounds(0, 0, jframeWidth, jframeHeightParent);
 
@@ -62,9 +66,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.add(firstMap.firstMapPanel, "FirstMap");
         cardPanel.add(trailer.trailerPanel, "Trailer");
         cardPanel.add(intro.introPanel, "Intro");
-
+        cardPanel.add(badEnding.badEndingPanel, "badEnding");
         // Thể hiện thẻ đầu tiên (ở đây là Intro)
-        nameCardLayout = "Intro";
+        nameCardLayout = "badEnding";
         cardLayout.show(cardPanel, nameCardLayout);
         // Thêm sound cho phần intro
         if (nameCardLayout == "Intro") {
@@ -86,6 +90,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         // Thêm ActionListener cho nút "skipButton" trong Intro
         // trailer.skipButton.addActionListener(this);
 
+        badEnding.YesButton.addActionListener(badEnding);
+        badEnding.NoButton.addActionListener(this);
     }
 
     // Hàm setup các dữ liệu ban đầu của jframe
@@ -142,6 +148,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundInternal.setFile(4);
         }
 
+        
         // Xử lý sự kiện khi nút "Exit" được nhấn
         else if (e.getSource() == intro.Exit) {
             // Thoát ứng dụng
@@ -370,7 +377,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             player.draw(g2);
             monster.draw(g2);
-
+            repaint();
         }
         g2.dispose();
 
