@@ -32,7 +32,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     String Ending;
     String nameCardLayout;
-
+    public int score = 0;
     public int jframeWidth = 615, jframeHeight = 615;
     public int jframeHeightParent = 690;
     public int countFoot = 0;
@@ -177,6 +177,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
                     update();
                     getTransform();
+                    getEatBooks();
                     PlayerVsMonster();
                 }
                 repaint();
@@ -200,6 +201,20 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         monster.running();
     }
 
+    public void eatBooks(Map DefaultMap, int x[], int y[], JPanel chiJPanel, JLabel obj[]){
+        // Set các điều kiện để nhân vật ăn sách
+        for(int i=0;i<x.length;i++){
+            int X = (x[i]+secondMap.newImageIcon.getIconWidth()) - (player.PlayerWidth + player.PlayerPositionX);
+            int Y = (y[i]+secondMap.newImageIcon.getIconHeight()) - (player.PLayerHeight + player.PlayerPositionY);
+            if(X>=-30 && X<=3 && Y>=-30 && Y<=3 && DefaultMap.addObj[i]==true && DefaultMap.removeObj[i]==false){
+                // Xóa hình sách trên map và cộng 100 điểm
+                chiJPanel.remove(obj[i]);
+                DefaultMap.addObj[i]=false;
+                DefaultMap.removeObj[i]=true;
+                score+=100;
+            }
+        }
+    }
     // Ham viet logic biến hình cho nhân vật
     public void transform(Map DefaultMap, int heartXLocation, int heartYLocation,
             JPanel childJPanel, JLabel heart) {
@@ -215,6 +230,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Nhân vật không thể biến hình và bị giảm 500 điểm
             if (dem == 1) {
                 player.imgName = "";
+                score-=500;
             }
             // Cho nhân vật biến hình và sau 10s về như cũ
             if (dem == 2) {
@@ -250,6 +266,21 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             case "SecondMap":
                 transform(secondMap, secondMap.heartXLocation,
                         secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
+                break;
+        }
+    }
+
+    public void getEatBooks(){
+        switch (nameCardLayout) {
+            case "FirstMap":
+                for (int i=0;i<firstMap.x.length;i++){
+                    eatBooks(firstMap, firstMap.x, firstMap.y, firstMap.childFirstMapPanel, firstMap.obj);
+                }
+                break;
+            case "SecondMap":
+                for (int i=0;i<secondMap.x.length;i++){
+                    eatBooks(secondMap, secondMap.x, secondMap.y, secondMap.childSecondMapPanel, secondMap.obj);
+                }
                 break;
         }
     }
@@ -304,14 +335,17 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         boolean pVsSyrinnge = removeImage(monster.xSyrinnge, monster.ySyrinnge, monster.monsterVisible[2]);
         // Nếu đụng vào quái nào thì xóa và ẩn quái đó
         if (pVsDice == true) {
+            score+=1000;
             monster.dice = null;
             monster.monsterVisible[0] = false;
         } else if (pVsJoystick == true) {
             monster.joystick = null;
             monster.monsterVisible[1] = false;
+            score+=1000;
         } else if (pVsSyrinnge == true) {
             monster.syrinnge = null;
             monster.monsterVisible[2] = false;
+            score+=1000;
         }
 
     }

@@ -18,11 +18,12 @@ public class FirstMap extends Map {
     public JPanel childFirstMapPanel;
     public JLabel obj[];
     public JLabel heart;
-    public boolean addHear= true;
+    public boolean addHeart= true;
     public boolean removeHeart= false;
     public int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
-
+    public int x[] = new int[n];
+    public int y[] = new int[n];
     public int score;
     public JLabel mapLabel;
     public JLabel scoreLabel; // Thêm label cho điểm số
@@ -86,8 +87,6 @@ public class FirstMap extends Map {
         }
 
         // Đặt vị trí của các obj trên background
-        int x[] = new int[n];
-        int y[] = new int[n];
         try {
             Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap1.txt")));
             int i = 0; // Sử dụng biến i để xác định vị trí của mỗi JLabel trong mảng obj[]
@@ -109,6 +108,7 @@ public class FirstMap extends Map {
         for (int i = 0; i < n; i++) {
           obj[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
           childFirstMapPanel.add(obj[i]); // Thêm JLabel vào childFirstMapPanel
+          addObj[i]=true;
         }
 
         // Thêm trái tim vào map
@@ -129,7 +129,7 @@ public class FirstMap extends Map {
         childFirstMapPanel.add(mapLabel);
 
         // Khởi tạo label cho điểm số và thêm vào panel của FirstMap
-        scoreLabel = new JLabel("Score: 0");
+        scoreLabel = new JLabel("Score: ");
         scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
         scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
 
