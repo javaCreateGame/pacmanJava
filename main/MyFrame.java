@@ -189,32 +189,15 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     }
 
     // Hàm để update chuyển động ,tọa độ khi nhân vật ,monster di chuyển
-    public void update() {
-        player.update();
-        System.out.println(player.PlayerPositionX);
-        System.out.println(player.PlayerPositionY);
-        if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
+    public void update() {      
             player.update();
             monster.running();
             countFoot++;
-        }
-        monster.running();
+        
+        
     }
 
-    public void eatBooks(Map DefaultMap, int x[], int y[], JPanel chiJPanel, JLabel obj[]){
-        // Set các điều kiện để nhân vật ăn sách
-        for(int i=0;i<x.length;i++){
-            int X = (x[i]+secondMap.newImageIcon.getIconWidth()) - (player.PlayerWidth + player.PlayerPositionX);
-            int Y = (y[i]+secondMap.newImageIcon.getIconHeight()) - (player.PLayerHeight + player.PlayerPositionY);
-            if(X>=-30 && X<=3 && Y>=-30 && Y<=3 && DefaultMap.addObj[i]==true && DefaultMap.removeObj[i]==false){
-                // Xóa hình sách trên map và cộng 100 điểm
-                chiJPanel.remove(obj[i]);
-                DefaultMap.addObj[i]=false;
-                DefaultMap.removeObj[i]=true;
-                score+=100;
-            }
-        }
-    }
+    
     // Ham viet logic biến hình cho nhân vật
     public void transform(Map DefaultMap, int heartXLocation, int heartYLocation,
             JPanel childJPanel, JLabel heart) {
@@ -267,9 +250,30 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 transform(secondMap, secondMap.heartXLocation,
                         secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
                 break;
+            case "ThirdMap":
+                transform(thirdMap, thirdMap.heartXLocation,
+                          thirdMap.heartYLocation, thirdMap.childThirdMapPanel, thirdMap.heart);
+                 break;
+                
         }
     }
-
+    
+    //Hàm set sự kiến ăn sách
+    public void eatBooks(Map DefaultMap, int x[], int y[], JPanel childJPanel, JLabel obj[]){
+        // Set các điều kiện để nhân vật ăn sách
+        for(int i=0;i<x.length;i++){
+            int X = (x[i]+secondMap.newImageIcon.getIconWidth()) - (player.PlayerWidth + player.PlayerPositionX);
+            int Y = (y[i]+secondMap.newImageIcon.getIconHeight()) - (player.PLayerHeight + player.PlayerPositionY);
+            if(X>=-30 && X<=3 && Y>=-30 && Y<=3 && DefaultMap.addObj[i]==true && DefaultMap.removeObj[i]==false){
+                // Xóa hình sách trên map và cộng 100 điểm
+                childJPanel.remove(obj[i]);
+                DefaultMap.addObj[i]=false;
+                DefaultMap.removeObj[i]=true;
+                score+=100;
+            }
+        }
+    }
+   //Hàm lấy ra điểm sau khi ăn sách
     public void getEatBooks(){
         switch (nameCardLayout) {
             case "FirstMap":
@@ -280,6 +284,11 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             case "SecondMap":
                 for (int i=0;i<secondMap.x.length;i++){
                     eatBooks(secondMap, secondMap.x, secondMap.y, secondMap.childSecondMapPanel, secondMap.obj);
+                }
+                break;
+            case "ThirdMap":
+                for (int i=0;i<thirdMap.x.length;i++){
+                    eatBooks(thirdMap, thirdMap.x, thirdMap.y, thirdMap.childThirdMapPanel, thirdMap.obj);
                 }
                 break;
         }
@@ -371,6 +380,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         // Gọi hàm discardHeart để setup lại tym
         discardHeart(firstMap, firstMap.childFirstMapPanel, firstMap.heart);
         discardHeart(secondMap, secondMap.childSecondMapPanel, secondMap.heart);
+        discardHeart(thirdMap, thirdMap.childThirdMapPanel, thirdMap.heart);
+
+        //Gọi hàm discardBook để setup lại book
+        discardBook(firstMap, firstMap.childFirstMapPanel, firstMap.obj);
+        discardBook(secondMap, secondMap.childSecondMapPanel, secondMap.obj);
+        discardBook(thirdMap, thirdMap.childThirdMapPanel, thirdMap.obj);
+
 
         // xóa tất cả các dong chữ chạy của trailer và cho bắt đầu từ đầu
         trailer.timer.stop();
@@ -397,6 +413,15 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
+      // Hàm gắn lại book về chỗ cũ nếu như đã bị ăn mất
+      public void discardBook(Map defaultMap,  JPanel childJPanel, JLabel obj[]) {
+      for(int i=0;i<obj.length;i++){
+        childJPanel.add(obj[i]);
+        defaultMap.addObj[i]=true;
+        defaultMap.removeObj[i]= false;
+      }
+      score=0;
+    }
     // hàm vẽ nhân vật
     public void paint(Graphics g) {
         super.paint(g);
@@ -404,7 +429,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
             player.draw(g2);
             monster.draw(g2);
-
+            repaint();
         }
         g2.dispose();
 
