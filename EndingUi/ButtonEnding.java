@@ -2,7 +2,7 @@ package EndingUi;
 
 import javax.swing.*;
 
-import main.MyFrame;
+
 
 import java.awt.event.MouseEvent;
 
@@ -13,13 +13,13 @@ import java.awt.event.MouseAdapter;
 public class ButtonEnding {
     public JButton YesButton;
     public JButton NoButton;
-    MyFrame Mf;
-    public ButtonEnding(MyFrame Mf){
-        this.Mf=Mf;
+   
+    public ButtonEnding(){
+        
         YesButton=new JButton("Yes");
         NoButton=new JButton("No");
-        YesButton.setBounds(210, 440, 130, 50);
-        NoButton.setBounds(260, 440, 130, 50);
+        YesButton.setBounds(210, 440, 80, 50);
+        NoButton.setBounds(260, 440, 80, 50);
         
         // Set màu chữ ban đầu
         YesButton.setForeground(Color.BLACK);
@@ -30,7 +30,7 @@ public class ButtonEnding {
         YesButton.setContentAreaFilled(false);
         YesButton.setBorderPainted(false);
         YesButton.setFocusable(false);
-
+       
         // Thêm trình nghe sự kiện chuột để thay đổi màu chữ khi di chuột vào
         YesButton.addMouseListener(new MouseAdapter() {
             @Override
