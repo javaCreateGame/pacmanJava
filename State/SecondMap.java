@@ -12,18 +12,22 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-public class SecondMap {
+public class SecondMap extends Map {
+    public ImageIcon newImageIconHeart;
+    public int heartXLocation = 556, heartYLocation = 305;
     public JPanel secondMapPanel;
     public JPanel childSecondMapPanel;
     public JLabel obj[];
     public JLabel heart;
+   
+    
     MyFrame Mf;
     public SecondMap(MyFrame Mf) {
         this.Mf=Mf;
         // Set layout cho map
         secondMapPanel = new JPanel();
-        secondMapPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
-        secondMapPanel.setLayout(new BorderLayout());
+        secondMapPanel.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
+        secondMapPanel.setLayout(null);
 
         // Dịch chuyển hình nền lên 27 pixel từ dưới lên
         // secondMapPanel.setBorder(BorderFactory.createEmptyBorder(-27, 0, 0, 0));
@@ -36,9 +40,9 @@ public class SecondMap {
 
         // // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
-
+        background.setBounds(0,0,Mf.jframeWidth,Mf.jframeHeight);
         // Thêm JLabel vào content pane với BorderLayout
-        secondMapPanel.add(background, BorderLayout.CENTER);
+        secondMapPanel.add(background);
 
         // Tạo một JPanel để chứa các thành phần khác
         childSecondMapPanel = new JPanel();
@@ -67,7 +71,7 @@ public class SecondMap {
         ImageIcon objHeart = new ImageIcon("picture\\traitym.png");
         Image imgHeart = objHeart.getImage();
         Image newImageHeart = imgHeart.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-        ImageIcon newImageIconHeart = new ImageIcon(newImageHeart);
+         newImageIconHeart = new ImageIcon(newImageHeart);
         this.heart.setIcon(newImageIconHeart);
 
         // ajdhjawhhdawh
@@ -102,10 +106,10 @@ public class SecondMap {
         }
 
         // Thêm trái tim vào map
-        int heartXLocation = 556, heartYLocation = 286;
+       
         this.heart.setLocation(heartXLocation, heartYLocation);
         childSecondMapPanel.add(heart);
-
+       addHeart=true;
         background.add(childSecondMapPanel);
 
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background

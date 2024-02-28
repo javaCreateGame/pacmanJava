@@ -18,7 +18,7 @@ public class SoundEffect {
     soundURL[2] = getClass().getResource("SoundEffectTrailer.wav");
     soundURL[3] = getClass().getResource("SoundEffectMap.wav");
     soundURL[4] = getClass().getResource("SoundEffectEatObject.wav");
-    soundURL[5] = getClass().getResource("SoundEffectTrailer.wav");
+    soundURL[5] = getClass().getResource("SoundEffectPlayerTransform.wav");
   }
 
   // Sử dụng sound
@@ -50,5 +50,6 @@ public class SoundEffect {
   public void loop() {
     clip.loop(Clip.LOOP_CONTINUOUSLY);
   }
+  
 
 }

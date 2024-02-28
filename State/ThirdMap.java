@@ -4,7 +4,10 @@ import javax.swing.JPanel;
 
 import main.MyFrame;
 
-public class ThirdMap {
+public class ThirdMap extends Map {
+    public boolean addHear=false;
+  public boolean removeHeart= false;
+  public int heartXLocation = 556, heartYLocation = 305;
     MyFrame Mf;
     public JPanel thirdMapPanel;
     public ThirdMap(MyFrame Mf){
