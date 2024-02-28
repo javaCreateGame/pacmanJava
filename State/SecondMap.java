@@ -18,7 +18,8 @@ public class SecondMap extends Map {
     public int heartXLocation = 556, heartYLocation = 305;
     public JPanel secondMapPanel;
     public JPanel childSecondMapPanel;
-    
+    public boolean addHeart= true;
+    public boolean removeHeart= false;
     public JLabel heart;
     public int x[] = new int[n];
     public int y[] = new int[n];

@@ -17,6 +17,9 @@ public class Trailer  {
     public JButton nextButton;
     public JButton skipButton;
    
+    public boolean addHeart= false;
+    public boolean removeHeart= false;
+
     public Timer timer;
     public JLayeredPane trailerPanel;
     String[] linesToShow = {

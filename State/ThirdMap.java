@@ -18,7 +18,8 @@ public class ThirdMap extends Map {
     public int heartXLocation = 412, heartYLocation = 32;
     public JPanel thirdMapPanel;
     public JPanel childThirdMapPanel;
-    
+    public boolean addHeart= true;
+    public boolean removeHeart= false;
     public JLabel heart;
     public int x[] = new int[n];
     public int y[] = new int[n];

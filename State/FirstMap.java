@@ -115,7 +115,7 @@ public class FirstMap extends Map {
         
         this.heart.setLocation(heartXLocation, heartYLocation);
         childFirstMapPanel.add(heart);
-        addHeart=true;
+       
         background.add(childFirstMapPanel);
  
         //*****************************************************/

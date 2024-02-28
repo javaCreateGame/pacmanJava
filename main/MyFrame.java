@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import EndingUi.BadEnding;
-import EndingUi.ButtonEnding;
 import Sound.SoundEffect;
 import State.*;
 import entity.Monster.Monster;
@@ -138,7 +137,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "FirstMap";
+            nameCardLayout = "SecondMap";
             cardLayout.show(cardPanel, nameCardLayout);
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
@@ -190,6 +189,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                     getEatBooks();
                     PlayerVsMonster();
                 }
+                if (countFoot>=500) {
+                    nameCardLayout="FirstMap";
+                    cardLayout.show(cardPanel, nameCardLayout);
+                }
                 repaint();
                 delta--;
             }
@@ -209,17 +212,17 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     
     // Ham viet logic biến hình cho nhân vật
-    public void transform(Map DefaultMap, int heartXLocation, int heartYLocation,
-            JPanel childJPanel, JLabel heart) {
+    public void transform( int heartXLocation, int heartYLocation,
+        boolean addHeart,boolean removeHeart) {
         double dem = Math.floor((Math.random() * 2) + 1);
-
+       
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + secondMap.newImageIconHeart.getIconWidth())
                 - (player.PlayerWidth + player.PlayerPositionX);
         int Y = (heartYLocation + secondMap.newImageIconHeart.getIconHeight())
                 - (player.PLayerHeight + player.PlayerPositionY);
-        if (X >= -30 && X <= 3 && Y >= -30 && Y <= 3 && DefaultMap.addHeart == true
-                && DefaultMap.removeHeart == false) {
+        if (X >= -30 && X <= 3 && Y >= -30 && Y <= 3 && addHeart == true
+                && removeHeart == false) {
             // Nhân vật không thể biến hình và bị giảm 500 điểm
             if (dem == 1) {
                 player.imgName = "";
@@ -241,9 +244,22 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 }, 10000);
             }
             // Xóa hình trái tym trên map
-            childJPanel.remove(heart);
-            DefaultMap.addHeart = false;
-            DefaultMap.removeHeart = true;
+           
+            if(nameCardLayout=="FirstMap"){
+              firstMap.addHeart=false;
+              firstMap.removeHeart=true;
+              firstMap.childFirstMapPanel.remove(firstMap.heart);
+            }
+            else if(nameCardLayout=="SecondMap"){
+            secondMap.addHeart=false;
+              secondMap.removeHeart=true;
+              secondMap.childSecondMapPanel.remove(secondMap.heart);
+            }
+            else if(nameCardLayout=="ThirdMap"){
+                thirdMap.addHeart=false;
+                thirdMap.removeHeart=true;
+                thirdMap.childThirdMapPanel.remove(thirdMap.heart);
+            }
 
         }
         player.getPlayerImage(player.imgName);
@@ -253,16 +269,16 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void getTransform() {
         switch (nameCardLayout) {
             case "FirstMap":
-                transform(firstMap, firstMap.heartXLocation,
-                        firstMap.heartYLocation, firstMap.childFirstMapPanel, firstMap.heart);
+                transform( firstMap.heartXLocation,
+                        firstMap.heartYLocation, firstMap.addHeart,firstMap.removeHeart);
                 break;
             case "SecondMap":
-                transform(secondMap, secondMap.heartXLocation,
-                        secondMap.heartYLocation, secondMap.childSecondMapPanel, secondMap.heart);
+                transform( secondMap.heartXLocation,
+                        secondMap.heartYLocation, secondMap.addHeart,secondMap.removeHeart);
                 break;
             case "ThirdMap":
-                transform(thirdMap, thirdMap.heartXLocation,
-                          thirdMap.heartYLocation, thirdMap.childThirdMapPanel, thirdMap.heart);
+                transform( thirdMap.heartXLocation,
+                          thirdMap.heartYLocation,thirdMap.addHeart,thirdMap.removeHeart);
                  break;
                 
         }
@@ -276,6 +292,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             int Y = (y[i]+secondMap.newImageIcon.getIconHeight()) - (player.PLayerHeight + player.PlayerPositionY);
             if(X>=-30 && X<=3 && Y>=-30 && Y<=3 && DefaultMap.addObj[i]==true && DefaultMap.removeObj[i]==false){
                 // Xóa hình sách trên map và cộng 100 điểm
+                soundInternal.setFile(4);
+                soundInternal.start();
                 childJPanel.remove(obj[i]);
                 DefaultMap.addObj[i]=false;
                 DefaultMap.removeObj[i]=true;
@@ -384,9 +402,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         monster.setDefaultMonster();
 
         // Gọi hàm discardHeart để setup lại tym
-        discardHeart(firstMap, firstMap.childFirstMapPanel, firstMap.heart);
-        discardHeart(secondMap, secondMap.childSecondMapPanel, secondMap.heart);
-        discardHeart(thirdMap, thirdMap.childThirdMapPanel, thirdMap.heart);
+        discardHeart();
+       
 
         //Gọi hàm discardBook để setup lại book
         discardBook(firstMap, firstMap.childFirstMapPanel, firstMap.obj);
@@ -412,10 +429,23 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     }
 
     // Hàm gắn lại trái tym về chỗ cũ nếu như đã bị ăn mất
-    public void discardHeart(Map defaultMap, JPanel childJPanel, JLabel heart) {
-        defaultMap.addHeart = true;
-        defaultMap.removeHeart = false;
-        childJPanel.add(heart);
+    public void discardHeart() {
+        
+        if(nameCardLayout=="FirstMap"){
+            firstMap.addHeart=true;
+            firstMap.removeHeart=false;
+            firstMap.childFirstMapPanel.add(firstMap.heart);
+          }
+          else if(nameCardLayout=="SecondMap"){
+          secondMap.addHeart=true;
+            secondMap.removeHeart=false;
+            secondMap.childSecondMapPanel.add(secondMap.heart);
+          }
+          else if(nameCardLayout=="ThirdMap"){
+              thirdMap.addHeart=true;
+              thirdMap.removeHeart=false;
+              thirdMap.childThirdMapPanel.add(thirdMap.heart);
+          }
 
     }
 
