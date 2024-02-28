@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import EndingUi.BadEnding;
+import EndingUi.ButtonEnding;
 import Sound.SoundEffect;
 import State.*;
 import entity.Monster.Monster;
@@ -27,7 +29,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public SoundEffect soundInternal = new SoundEffect();
     SoundEffect soundNext = new SoundEffect();
     Monster monster = new Monster(this);
-
+   
     Thread gameThread;
 
     String Ending;
@@ -39,6 +41,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     int FPS = 60;
     JPanel cardPanel; // Use JPanel instead of JLayeredPane
 
+    BadEnding badEnding=new BadEnding();
     // Tạo các object để sử dụng các biến của chúng
     Intro intro = new Intro(this);
     Trailer trailer = new Trailer(this);
@@ -47,9 +50,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     ThirdMap thirdMap = new ThirdMap(this);
 
     CardLayout cardLayout = new CardLayout();
-
+ 
     MyFrame() {
-
+        
         cardPanel = new JPanel(); // Use JPanel instead of JLayeredPane
         cardPanel.setBounds(0, 0, jframeWidth, jframeHeightParent);
 
@@ -62,7 +65,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.add(firstMap.firstMapPanel, "FirstMap");
         cardPanel.add(trailer.trailerPanel, "Trailer");
         cardPanel.add(intro.introPanel, "Intro");
-
+        cardPanel.add(badEnding.badEndingPanelSum, "BadEnding");
         // Thể hiện thẻ đầu tiên (ở đây là Intro)
         nameCardLayout = "Intro";
         cardLayout.show(cardPanel, nameCardLayout);
@@ -85,7 +88,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         trailer.nextButton.addActionListener(this);
         // Thêm ActionListener cho nút "skipButton" trong Intro
         // trailer.skipButton.addActionListener(this);
-
+        
+        badEnding.buttonEnding.YesButton.addActionListener(this);
+        badEnding.buttonEnding.NoButton.addActionListener(this);
+       
     }
 
     // Hàm setup các dữ liệu ban đầu của jframe
@@ -142,8 +148,12 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundInternal.setFile(4);
         }
 
+        
+        else if(e.getSource()==badEnding.buttonEnding.YesButton){
+            Reset();
+        }
         // Xử lý sự kiện khi nút "Exit" được nhấn
-        else if (e.getSource() == intro.Exit) {
+        else if (e.getSource() == intro.Exit || e.getSource()==badEnding.buttonEnding.NoButton) {
             // Thoát ứng dụng
             // Tạo 1 bảng thông báo để xác nhận có muốn thoát k ,nếu có thì thoát
             int exitis = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thoát", "Xác nhận",
@@ -307,31 +317,27 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     // hÀM setlogic cho player đánh nhau vs quái khi k ăn trái tym
     public void removePlayer() {
         // Mảng sTRING lưu trữ các kịch bản end riêng khi quái chạm vào
-        String TitleEnding[] = {
-                "Bạn đã trượt đại học do vướng vào con đường cờ bạc.Bạn có muốn làm lại cuộc đời?",
-                "Bạn đã trượt đại học do quá đắm chìm vào sự thú vị ,hay ho của game.Bạn có muốn làm lại cuộc đời?",
-                "Bạn đã bị nghiện do vô tình dẵm vào kim tiêm của người nghiện.Bạn có muốn làm lại cuộc đời?",
-        };
+       
         // Tạo các biến boolean cho biết mình đụng vào quái nào
         boolean pVsDice = removeImage(monster.xDice, monster.yDice, monster.monsterVisible[0]);
         boolean pVsJoystick = removeImage(monster.xJoystick, monster.yJoystick, monster.monsterVisible[1]);
         boolean pVsSyrinnge = removeImage(monster.xSyrinnge, monster.ySyrinnge, monster.monsterVisible[2]);
         // Nếu đụng vào quái nào thì hiện lên thông báo kết thúc game và lựa chọn
         if (pVsDice == true || pVsSyrinnge == true || pVsJoystick == true) {
+            soundMain.stop();
+            soundMain.setFile(6);
+            soundMain.start();
+            nameCardLayout="BadEnding";
             if (pVsDice == true) {
-                Ending = TitleEnding[0];
+                badEnding.cardLayout.show(badEnding.cardPanel, "bad0");
             } else if (pVsJoystick == true) {
-                Ending = TitleEnding[1];
+                badEnding.cardLayout.show(badEnding.cardPanel, "bad1");
             } else if (pVsSyrinnge == true) {
-                Ending = TitleEnding[2];
+                badEnding.cardLayout.show(badEnding.cardPanel, "bad2");
             }
-            int exitis = JOptionPane.showConfirmDialog(null, Ending, "Xác nhận",
-                    JOptionPane.YES_NO_OPTION);
-            if (exitis == 0) {
-                Reset();
-            } else {
-                System.exit(0);
-            }
+           
+            cardLayout.show(cardPanel, nameCardLayout);
+
         }
 
     }

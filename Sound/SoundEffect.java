@@ -19,6 +19,8 @@ public class SoundEffect {
     soundURL[3] = getClass().getResource("SoundEffectMap.wav");
     soundURL[4] = getClass().getResource("SoundEffectEatObject.wav");
     soundURL[5] = getClass().getResource("SoundEffectPlayerTransform.wav");
+    soundURL[6] = getClass().getResource("SoundEffectBadEnding.wav");
+    soundURL[7] = getClass().getResource("SoundEffectHappyEnding.wav");
   }
 
   // Sử dụng sound
