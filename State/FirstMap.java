@@ -24,7 +24,6 @@ public class FirstMap extends Map {
     MyFrame Mf;
     public int x[] = new int[n];
     public int y[] = new int[n];
-    public int score;
     public JLabel mapLabel;
     public JLabel scoreLabel; // Thêm label cho điểm số
     public Timer timer;
@@ -129,7 +128,7 @@ public class FirstMap extends Map {
         childFirstMapPanel.add(mapLabel);
 
         // Khởi tạo label cho điểm số và thêm vào panel của FirstMap
-        scoreLabel = new JLabel("Score: ");
+        scoreLabel = new JLabel("Score: 0");
         scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
         scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
 
@@ -168,6 +167,10 @@ public class FirstMap extends Map {
         
 
 }
+    // Phương thức để cập nhật điểm số trên scoreLabel
+    public void updateScore(int score){
+        scoreLabel.setText("Score: " + score);
+    }
 
     // Lớp lắng nghe sự kiện MouseListener
     private class MyMouseListener implements MouseListener {

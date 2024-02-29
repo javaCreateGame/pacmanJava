@@ -137,7 +137,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "SecondMap";
+            nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
@@ -189,10 +189,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                     getEatBooks();
                     PlayerVsMonster();
                 }
-                if (countFoot>=500) {
-                    nameCardLayout="FirstMap";
-                    cardLayout.show(cardPanel, nameCardLayout);
-                }
+                // if (countFoot>=500) {
+                //     nameCardLayout="SecondMap";
+                //     cardLayout.show(cardPanel, nameCardLayout);
+                // }
                 repaint();
                 delta--;
             }
@@ -215,13 +215,12 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void transform( int heartXLocation, int heartYLocation,
         boolean addHeart,boolean removeHeart) {
         double dem = Math.floor((Math.random() * 2) + 1);
-       
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + secondMap.newImageIconHeart.getIconWidth())
                 - (player.PlayerWidth + player.PlayerPositionX);
         int Y = (heartYLocation + secondMap.newImageIconHeart.getIconHeight())
                 - (player.PLayerHeight + player.PlayerPositionY);
-        if (X >= -30 && X <= 3 && Y >= -30 && Y <= 3 && addHeart == true
+        if (X >= -30 && X <= 7 && Y >= -45 && Y <= -8 && addHeart == true
                 && removeHeart == false) {
             // Nhân vật không thể biến hình và bị giảm 500 điểm
             if (dem == 1) {
@@ -290,7 +289,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         for(int i=0;i<x.length;i++){
             int X = (x[i]+secondMap.newImageIcon.getIconWidth()) - (player.PlayerWidth + player.PlayerPositionX);
             int Y = (y[i]+secondMap.newImageIcon.getIconHeight()) - (player.PLayerHeight + player.PlayerPositionY);
-            if(X>=-30 && X<=3 && Y>=-30 && Y<=3 && DefaultMap.addObj[i]==true && DefaultMap.removeObj[i]==false){
+            if(((X>=-28 && X<=2 && player.imgName=="") || (X>=-45 && X<=3 && player.imgName=="Attack")) &&
+                Y>=-49 && Y<=-12 && DefaultMap.addObj[i]==true && DefaultMap.removeObj[i]==false){
                 // Xóa hình sách trên map và cộng 100 điểm
                 soundInternal.setFile(4);
                 soundInternal.start();
@@ -305,19 +305,16 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void getEatBooks(){
         switch (nameCardLayout) {
             case "FirstMap":
-                for (int i=0;i<firstMap.x.length;i++){
-                    eatBooks(firstMap, firstMap.x, firstMap.y, firstMap.childFirstMapPanel, firstMap.obj);
-                }
+                eatBooks(firstMap, firstMap.x, firstMap.y, firstMap.childFirstMapPanel, firstMap.obj);
+                firstMap.updateScore(score);
                 break;
             case "SecondMap":
-                for (int i=0;i<secondMap.x.length;i++){
-                    eatBooks(secondMap, secondMap.x, secondMap.y, secondMap.childSecondMapPanel, secondMap.obj);
-                }
+                eatBooks(secondMap, secondMap.x, secondMap.y, secondMap.childSecondMapPanel, secondMap.obj);
+                secondMap.updateScore(score);
                 break;
             case "ThirdMap":
-                for (int i=0;i<thirdMap.x.length;i++){
-                    eatBooks(thirdMap, thirdMap.x, thirdMap.y, thirdMap.childThirdMapPanel, thirdMap.obj);
-                }
+                eatBooks(thirdMap, thirdMap.x, thirdMap.y, thirdMap.childThirdMapPanel, thirdMap.obj);
+                thirdMap.updateScore(score);
                 break;
         }
     }
