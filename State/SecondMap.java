@@ -13,14 +13,17 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class SecondMap extends Map {
+    public ImageIcon newImageIcon;
     public ImageIcon newImageIconHeart;
     public int heartXLocation = 556, heartYLocation = 305;
     public JPanel secondMapPanel;
     public JPanel childSecondMapPanel;
-    public JLabel obj[];
+    public boolean addHeart= true;
+    public boolean removeHeart= false;
     public JLabel heart;
-   
-    
+    public int x[] = new int[n];
+    public int y[] = new int[n];
+    public JLabel scoreLabel; // Thêm label cho điểm số
     MyFrame Mf;
     public SecondMap(MyFrame Mf) {
         this.Mf=Mf;
@@ -34,9 +37,9 @@ public class SecondMap extends Map {
         // Đặt hình nền cho Second Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map2.png");
 
-        Image img1 = imageIcon.getImage();
-        Image newImage1 = img1.getScaledInstance(Mf.jframeWidth, Mf.jframeHeight, Image.SCALE_SMOOTH);
-        ImageIcon scaledImageIcon = new ImageIcon(newImage1);
+        Image imgBgr = imageIcon.getImage();
+        Image newImageBgr = imgBgr.getScaledInstance(Mf.jframeWidth, Mf.jframeHeight, Image.SCALE_SMOOTH);
+        ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
 
         // // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
@@ -52,8 +55,8 @@ public class SecondMap extends Map {
 
         // Set size cho các obj
 
-        this.obj = new JLabel[20];
-        int n = this.obj.length;
+         
+        
         for (int i = 0; i < n; i++) {
             this.obj[i] = new JLabel();
             this.obj[i].setSize(15, 15);
@@ -63,7 +66,7 @@ public class SecondMap extends Map {
         ImageIcon objBgr = new ImageIcon("picture\\Book.png");
         Image img = objBgr.getImage();
         Image newImage = img.getScaledInstance(15, 15, Image.SCALE_SMOOTH);
-        ImageIcon newImageIcon = new ImageIcon(newImage);
+        newImageIcon = new ImageIcon(newImage);
 
         // Set hình nền cho trái tim, set up trái tim
         this.heart = new JLabel();
@@ -80,8 +83,6 @@ public class SecondMap extends Map {
         }
 
         // Đặt vị trí của các obj trên background
-        int x[] = new int[n];
-        int y[] = new int[n];
         try {
             Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap2.txt")));
             int i = 0; // Sử dụng biến i để xác định vị trí của mỗi JLabel trong mảng obj[]
@@ -103,6 +104,7 @@ public class SecondMap extends Map {
         for (int i = 0; i < n; i++) {
             obj[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
             childSecondMapPanel.add(obj[i]); // Thêm JLabel vào childSecondMapPanel
+            addObj[i]=true;
         }
 
         // Thêm trái tim vào map
@@ -115,8 +117,22 @@ public class SecondMap extends Map {
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background
         background.addMouseListener(new MyMouseListener());
 
-    }
+        // Khởi tạo label cho điểm số và thêm vào panel của SecondMap
+        scoreLabel = new JLabel();
+        scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
+        scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
 
+        // Đặt vị trí của scoreLabel
+        scoreLabel.setBounds(50, 620, 100, 20); // Đặt ở góc trái dưới
+
+        // Thêm scoreLabel vào panel của SecondMap
+        secondMapPanel.add(scoreLabel);
+
+    }
+    // Phương thức để cập nhật điểm số trên scoreLabel
+    public void updateScore(int score){
+        scoreLabel.setText("Score: " + score);
+    }
     // Lớp lắng nghe sự kiện MouseListener
     private class MyMouseListener implements MouseListener {
         @Override

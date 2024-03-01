@@ -18,12 +18,12 @@ public class FirstMap extends Map {
     public JPanel childFirstMapPanel;
     public JLabel obj[];
     public JLabel heart;
-    public boolean addHear= true;
+    public boolean addHeart= true;
     public boolean removeHeart= false;
     public int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
-
-    public int score;
+    public int x[] = new int[n];
+    public int y[] = new int[n];
     public JLabel mapLabel;
     public JLabel scoreLabel; // Thêm label cho điểm số
     public Timer timer;
@@ -86,8 +86,6 @@ public class FirstMap extends Map {
         }
 
         // Đặt vị trí của các obj trên background
-        int x[] = new int[n];
-        int y[] = new int[n];
         try {
             Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap1.txt")));
             int i = 0; // Sử dụng biến i để xác định vị trí của mỗi JLabel trong mảng obj[]
@@ -109,13 +107,14 @@ public class FirstMap extends Map {
         for (int i = 0; i < n; i++) {
           obj[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
           childFirstMapPanel.add(obj[i]); // Thêm JLabel vào childFirstMapPanel
+          addObj[i]=true;
         }
 
         // Thêm trái tim vào map
         
         this.heart.setLocation(heartXLocation, heartYLocation);
         childFirstMapPanel.add(heart);
-        addHeart=true;
+       
         background.add(childFirstMapPanel);
  
         //*****************************************************/
@@ -168,6 +167,10 @@ public class FirstMap extends Map {
         
 
 }
+    // Phương thức để cập nhật điểm số trên scoreLabel
+    public void updateScore(int score){
+        scoreLabel.setText("Score: " + score);
+    }
 
     // Lớp lắng nghe sự kiện MouseListener
     private class MyMouseListener implements MouseListener {
