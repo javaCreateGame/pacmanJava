@@ -188,6 +188,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                     getTransform();
                     getEatBooks();
                     PlayerVsMonster();
+                    nextMap();
                 }
                 // if (countFoot>=500) {
                 //     nameCardLayout="SecondMap";
@@ -282,7 +283,20 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 
         }
     }
-    
+    // chuyển Map
+    public void nextMap() {
+        int x= player.PlayerPositionX;
+        int y = player.PlayerPositionY;
+        if (x >= 612 && (y > 209 && y < 347)  && nameCardLayout == "FirstMap"){
+            nameCardLayout = "SecondMap";
+            cardLayout.show(cardPanel, nameCardLayout);
+            player.PlayerPositionX = 1; 
+            player.PlayerPositionY = 315;
+            monster.xDice= 322; monster.yDice= 295;
+            monster.xJoystick=379; monster.yJoystick=295;
+            monster.xSyrinnge=339;monster.ySyrinnge=321;
+        }  
+    }
     //Hàm set sự kiến ăn sách
     public void eatBooks(Map DefaultMap, int x[], int y[], JPanel childJPanel, JLabel obj[]){
         // Set các điều kiện để nhân vật ăn sách
