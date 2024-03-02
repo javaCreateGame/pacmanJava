@@ -188,6 +188,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                     getTransform();
                     getEatBooks();
                     PlayerVsMonster();
+                    nextMap2();
+                    nextMap3();
                 }
                 // if (countFoot>=500) {
                 //     nameCardLayout="SecondMap";
@@ -281,6 +283,40 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                  break;
                 
         }
+    }
+    // chuyển Map1-->2
+    public void nextMap2() {
+        int x= player.PlayerPositionX;
+        int y = player.PlayerPositionY;
+        if (x >= 612 && (y > 209 && y < 300)  && nameCardLayout == "FirstMap"){
+            player.PlayerPositionX = 1; 
+            player.PlayerPositionY = 315;
+            countFoot = 0;
+            nameCardLayout = "SecondMap";
+            cardLayout.show(cardPanel, nameCardLayout);
+            
+            monster.xDice= 322; monster.yDice= 295;
+            monster.xJoystick=379; monster.yJoystick=295;
+            monster.xSyrinnge=339;monster.ySyrinnge=321;
+        }  
+        
+    }
+    //chuyển map2-->3
+    public void nextMap3() {
+        int x= player.PlayerPositionX;
+        int y = player.PlayerPositionY;
+        if (x >= 596 && (y > 272 && y < 318)  && nameCardLayout == "SecondMap"){
+            player.PlayerPositionX = 1; 
+            player.PlayerPositionY = 315;
+            countFoot = 0;
+            nameCardLayout = "ThirdMap";
+            cardLayout.show(cardPanel, nameCardLayout);
+            
+            monster.xDice= 322; monster.yDice= 295;
+            monster.xJoystick=379; monster.yJoystick=295;
+            monster.xSyrinnge=339;monster.ySyrinnge=321;
+       } 
+        
     }
     
     //Hàm set sự kiến ăn sách
