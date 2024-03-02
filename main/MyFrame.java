@@ -217,6 +217,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void transform( int heartXLocation, int heartYLocation,
         boolean addHeart,boolean removeHeart) {
         double dem = Math.floor((Math.random() * 2) + 1);
+       //double dem =2;  //muốn test lúc nv biến hình thì dùng
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + secondMap.newImageIconHeart.getIconWidth())
                 - (player.PlayerWidth + player.PlayerPositionX);
@@ -295,6 +296,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             nameCardLayout = "SecondMap";
             cardLayout.show(cardPanel, nameCardLayout);
             
+            monster.getMonsterImage();
+            monster.monsterVisible[0] = true;
+            monster.monsterVisible[1] = true;
+            monster.monsterVisible[2] = true;
             monster.xDice= 322; monster.yDice= 295;
             monster.xJoystick=379; monster.yJoystick=295;
             monster.xSyrinnge=339;monster.ySyrinnge=321;
@@ -311,7 +316,11 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             countFoot = 0;
             nameCardLayout = "ThirdMap";
             cardLayout.show(cardPanel, nameCardLayout);
-            
+
+            monster.getMonsterImage();
+            monster.monsterVisible[0] = true;
+            monster.monsterVisible[1] = true;
+            monster.monsterVisible[2] = true;
             monster.xDice= 322; monster.yDice= 295;
             monster.xJoystick=379; monster.yJoystick=295;
             monster.xSyrinnge=339;monster.ySyrinnge=321;
