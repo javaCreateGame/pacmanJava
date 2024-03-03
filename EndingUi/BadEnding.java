@@ -1,7 +1,5 @@
 package EndingUi;
 
-import java.net.URL;
-
 import javax.swing.ImageIcon;
 
 import javax.swing.JLabel;

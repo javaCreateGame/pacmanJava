@@ -44,7 +44,7 @@ public class HappyEnding {
        }
        
        
-       happyURL[0] ="./picture/bgr.bng";
+       happyURL[0] ="./picture/bgr.png";
 
        
          
@@ -97,11 +97,9 @@ public class HappyEnding {
         happyEndingPanelSum.setOpaque(true);
         happyEndingPanelSum.setVisible(true);
         happyEndingPanelSum.setLayout(null);
-        happyEndingPanelSum.add(buttonEnding.YesButton);
-        happyEndingPanelSum.add(buttonEnding.NoButton);
+        // happyEndingPanelSum.add(buttonEnding.YesButton);
+        // happyEndingPanelSum.add(buttonEnding.NoButton);
         happyEndingPanelSum.add(cardPanel);
-        
-
     }
     
    

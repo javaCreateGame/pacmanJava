@@ -11,6 +11,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import EndingUi.BadEnding;
+
 
 public class ThirdMap extends Map {
     public ImageIcon newImageIcon;
@@ -24,6 +28,12 @@ public class ThirdMap extends Map {
     public int x[] = new int[n];
     public int y[] = new int[n];
     public JLabel scoreLabel; // Thêm label cho điểm số
+    public static JLabel timerJLabel;
+    public static Timer timerThirdMap;
+    public static int secondsLeft;
+    public static int thirdMapScoreTake;
+    public BadEnding badEndingThirdMap;
+    public JPanel cardPanel;
     MyFrame Mf;
     public ThirdMap(MyFrame Mf) {
         this.Mf=Mf;
@@ -31,6 +41,11 @@ public class ThirdMap extends Map {
         thirdMapPanel = new JPanel();
         thirdMapPanel.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
         thirdMapPanel.setLayout(null);
+
+        // Set time đếm ngược
+       
+        // Set up bad ending
+        badEndingThirdMap = new BadEnding();
 
         // Đặt hình nền cho Third Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map3.png");
@@ -120,6 +135,17 @@ public class ThirdMap extends Map {
         scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
         scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
 
+       
+
+        // Khởi tạo các thành phần của biến Timer
+        timerJLabel = new JLabel();
+        timerJLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        timerJLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
+        // Đặt vị trí của scoreLabel
+        timerJLabel.setBounds(285, 620, 100, 20); // Đặt ở giữa
+        // Thêm scoreLabel vào panel của ThirdMap
+        thirdMapPanel.add(timerJLabel);
+
         // Đặt vị trí của scoreLabel
         scoreLabel.setBounds(50, 620, 100, 20); // Đặt ở góc trái dưới
 
@@ -130,6 +156,23 @@ public class ThirdMap extends Map {
     // Phương thức để cập nhật điểm số trên scoreLabel
     public void updateScore(int score){
         scoreLabel.setText("Score: " + score);
+        thirdMapScoreTake = score;
+    }
+
+    // // Phương thức để cập nhật thời gian trên timerJlabel
+    public static void updateTimer(int time){
+        secondsLeft = time;
+        timerThirdMap = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (secondsLeft > 0) {
+                    secondsLeft--;
+                    timerJLabel.setText("Time: " + secondsLeft);
+                } else {
+                    timerThirdMap.stop();
+                }
+            }
+        });
     }
 
     // Lớp lắng nghe sự kiện MouseListener
