@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import EndingUi.BadEnding;
+import EndingUi.HappyEnding;
 import Sound.SoundEffect;
 import State.*;
 import entity.Monster.Monster;
@@ -32,7 +33,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     Thread gameThread;
 
     String Ending;
-    String nameCardLayout;
+    public static String nameCardLayout;
     public int score = 0;
     public int jframeWidth = 615, jframeHeight = 615;
     public int jframeHeightParent = 690;
@@ -41,6 +42,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     JPanel cardPanel; // Use JPanel instead of JLayeredPane
 
     BadEnding badEnding=new BadEnding();
+    HappyEnding happyEnding = new HappyEnding();
     // Tạo các object để sử dụng các biến của chúng
     Intro intro = new Intro(this);
     Trailer trailer = new Trailer(this);
@@ -65,6 +67,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.add(trailer.trailerPanel, "Trailer");
         cardPanel.add(intro.introPanel, "Intro");
         cardPanel.add(badEnding.badEndingPanelSum, "BadEnding");
+        cardPanel.add(happyEnding.happyEndingPanelSum, "HappyEnding");
         // Thể hiện thẻ đầu tiên (ở đây là Intro)
         nameCardLayout = "Intro";
         cardLayout.show(cardPanel, nameCardLayout);
@@ -122,6 +125,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             cardLayout.show(cardPanel, nameCardLayout);
             trailer.timer.start();
 
+
             // Thay đổi âm thanh phần intro thành trailer
             soundMain.setFile(2);
             ;
@@ -137,8 +141,14 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "FirstMap";
+            nameCardLayout = "ThirdMap";
             cardLayout.show(cardPanel, nameCardLayout);
+
+            // Hàm chạy thời gian third map
+            if(nameCardLayout == "ThirdMap") {
+                ThirdMap.updateTimer(5);
+                ThirdMap.timerThirdMap.start(); 
+            }
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
             soundMain.start();
@@ -188,8 +198,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                     getTransform();
                     getEatBooks();
                     PlayerVsMonster();
-                    nextMap2();
-                    nextMap3();
+                }
+
+                if(nameCardLayout == "ThirdMap") {
+                    finalEnding();
                 }
                 // if (countFoot>=500) {
                 //     nameCardLayout="SecondMap";
@@ -200,7 +212,6 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             }
 
         }
-
     }
 
     // Hàm để update chuyển động ,tọa độ khi nhân vật ,monster di chuyển
@@ -217,7 +228,6 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void transform( int heartXLocation, int heartYLocation,
         boolean addHeart,boolean removeHeart) {
         double dem = Math.floor((Math.random() * 2) + 1);
-       //double dem =2;  //muốn test lúc nv biến hình thì dùng
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + secondMap.newImageIconHeart.getIconWidth())
                 - (player.PlayerWidth + player.PlayerPositionX);
@@ -284,48 +294,6 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                  break;
                 
         }
-    }
-    // chuyển Map1-->2
-    public void nextMap2() {
-        int x= player.PlayerPositionX;
-        int y = player.PlayerPositionY;
-        if (x >= 612 && (y > 209 && y < 300)  && nameCardLayout == "FirstMap"){
-            player.PlayerPositionX = 1; 
-            player.PlayerPositionY = 315;
-            countFoot = 0;
-            nameCardLayout = "SecondMap";
-            cardLayout.show(cardPanel, nameCardLayout);
-            
-            monster.getMonsterImage();
-            monster.monsterVisible[0] = true;
-            monster.monsterVisible[1] = true;
-            monster.monsterVisible[2] = true;
-            monster.xDice= 322; monster.yDice= 295;
-            monster.xJoystick=379; monster.yJoystick=295;
-            monster.xSyrinnge=339;monster.ySyrinnge=321;
-        }  
-        
-    }
-    //chuyển map2-->3
-    public void nextMap3() {
-        int x= player.PlayerPositionX;
-        int y = player.PlayerPositionY;
-        if (x >= 596 && (y > 272 && y < 318)  && nameCardLayout == "SecondMap"){
-            player.PlayerPositionX = 1; 
-            player.PlayerPositionY = 315;
-            countFoot = 0;
-            nameCardLayout = "ThirdMap";
-            cardLayout.show(cardPanel, nameCardLayout);
-
-            monster.getMonsterImage();
-            monster.monsterVisible[0] = true;
-            monster.monsterVisible[1] = true;
-            monster.monsterVisible[2] = true;
-            monster.xDice= 322; monster.yDice= 295;
-            monster.xJoystick=379; monster.yJoystick=295;
-            monster.xSyrinnge=339;monster.ySyrinnge=321;
-       } 
-        
     }
     
     //Hàm set sự kiến ăn sách
@@ -402,6 +370,21 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
+    public void finalEnding() {
+        if(ThirdMap.secondsLeft <= 0) {
+            if(ThirdMap.thirdMapScoreTake <= 0) {
+                nameCardLayout="BadEnding";
+                badEnding.cardLayout.show(badEnding.cardPanel, "bad4");
+                cardLayout.show(cardPanel, nameCardLayout);
+            }
+            else {
+                nameCardLayout="HappyEnding";
+                happyEnding.cardLayout.show(happyEnding.cardPanel, "happy0");
+                cardLayout.show(cardPanel, nameCardLayout);
+            }
+        }
+    }
+
     // hÀM setlogic cho player đánh nhau vs quái khi ăn trái tym
     public void removeMonster() {
         // Tạo các biến boolean cho biết mình đụng vào quái nào
@@ -458,6 +441,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         trailer.currentLineIndex = 0;
         trailer.currentCharacterIndex = 0;
         trailer.textArea.setText("");
+
+
 
         // Chuyển về trang Intro
         nameCardLayout = "Intro";
