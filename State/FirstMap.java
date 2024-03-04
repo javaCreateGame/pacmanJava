@@ -14,19 +14,19 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class FirstMap extends Map {
-    public JPanel firstMapPanel;
-    public JPanel childFirstMapPanel;
-    public JLabel obj[];
-    public JLabel heart;
-    public boolean addHeart= true;
-    public boolean removeHeart= false;
-    public int heartXLocation = 298, heartYLocation = 279;
+    private JPanel firstMapPanel;
+    private JPanel childFirstMapPanel;
+    private JLabel obj[];
+    private JLabel heart;
+    private boolean addHeart= true;
+    private boolean removeHeart= false;
+    private int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
-    public int x[] = new int[n];
-    public int y[] = new int[n];
-    public JLabel mapLabel;
-    public JLabel scoreLabel; // Thêm label cho điểm số
-    public Timer timer;
+    private int x[] = new int[n];
+    private int y[] = new int[n];
+    private JLabel mapLabel;
+    private JLabel scoreLabel; // Thêm label cho điểm số
+    private Timer timer;
     public FirstMap(MyFrame Mf){
       this.Mf=Mf;
        //set up panel
@@ -36,6 +36,9 @@ public class FirstMap extends Map {
        firstMapPanel.setLayout(null);
         //Code Giao dien
 
+       
+       
+       
         // Dịch chuyển hình nền lên 27 pixel từ dưới lên
         // Đặt hình nền cho First Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map1.png");
@@ -174,32 +177,120 @@ public class FirstMap extends Map {
 
     // Lớp lắng nghe sự kiện MouseListener
     private class MyMouseListener implements MouseListener {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-          // Lấy tọa độ x và y của sự kiện click chuột
-          int x = e.getX();
-          int y = e.getY();
-          // In tọa độ x và y ra màn hình
-          System.out.println("X: " + x + ", Y: " + y);
-      }
-
-      // Các phương thức khác của MouseListener không được sử dụng trong trường hợp
-      // này
-      @Override
-      public void mousePressed(MouseEvent e) {
-      }
-
-      @Override
-      public void mouseReleased(MouseEvent e) {
-      }
-
-      @Override
-      public void mouseEntered(MouseEvent e) {
-      }
-
-      @Override
-      public void mouseExited(MouseEvent e) {
-      }
-  }
+	      @Override
+	      public void mouseClicked(MouseEvent e) {
+	          // Lấy tọa độ x và y của sự kiện click chuột
+	          int x = e.getX();
+	          int y = e.getY();
+	          // In tọa độ x và y ra màn hình
+	          System.out.println("X: " + x + ", Y: " + y);
+	      }
+	
+	      // Các phương thức khác của MouseListener không được sử dụng trong trường hợp
+	      // này
+	      @Override
+	      public void mousePressed(MouseEvent e) {
+	      }
+	
+	      @Override
+	      public void mouseReleased(MouseEvent e) {
+	      }
+	
+	      @Override
+	      public void mouseEntered(MouseEvent e) {
+	      }
+	
+	      @Override
+	      public void mouseExited(MouseEvent e) {
+	      }
+    }
+    
+    //	Generate get and set
+	public JPanel getFirstMapPanel() {
+		return firstMapPanel;
+	}
+	public void setFirstMapPanel(JPanel firstMapPanel) {
+		this.firstMapPanel = firstMapPanel;
+	}
+	public JPanel getChildFirstMapPanel() {
+		return childFirstMapPanel;
+	}
+	public void setChildFirstMapPanel(JPanel childFirstMapPanel) {
+		this.childFirstMapPanel = childFirstMapPanel;
+	}
+	public JLabel[] getObj() {
+		return obj;
+	}
+    public JLabel getObjI(int i) {
+		return obj[i];
+	}
+	public void setObj(JLabel[] obj) {
+		this.obj = obj;
+	}
+    public void setObjI(JLabel obj, int i) {
+		this.obj[i] = obj;
+	}
+	public JLabel getHeart() {
+		return heart;
+	}
+	public void setHeart(JLabel heart) {
+		this.heart = heart;
+	}
+	public boolean isAddHeart() {
+		return addHeart;
+	}
+	public void setAddHeart(boolean addHeart) {
+		this.addHeart = addHeart;
+	}
+	public boolean isRemoveHeart() {
+		return removeHeart;
+	}
+	public void setRemoveHeart(boolean removeHeart) {
+		this.removeHeart = removeHeart;
+	}
+	public int getHeartXLocation() {
+		return heartXLocation;
+	}
+	public void setHeartXLocation(int heartXLocation) {
+		this.heartXLocation = heartXLocation;
+	}
+	public int getHeartYLocation() {
+		return heartYLocation;
+	}
+	public void setHeartYLocation(int heartYLocation) {
+		this.heartYLocation = heartYLocation;
+	}
+	public int[] getX() {
+		return x;
+	}
+	public void setX(int[] x) {
+		this.x = x;
+	}
+	public int[] getY() {
+		return y;
+	}
+	public void setY(int[] y) {
+		this.y = y;
+	}
+	public JLabel getMapLabel() {
+		return mapLabel;
+	}
+	public void setMapLabel(JLabel mapLabel) {
+		this.mapLabel = mapLabel;
+	}
+	public JLabel getScoreLabel() {
+		return scoreLabel;
+	}
+	public void setScoreLabel(JLabel scoreLabel) {
+		this.scoreLabel = scoreLabel;
+	}
+	public Timer getTimer() {
+		return timer;
+	}
+	public void setTimer(Timer timer) {
+		this.timer = timer;
+	}
+    
+    
 
 }
