@@ -59,6 +59,7 @@ public class Player {
 
         if (playermove.playerRight || playermove.playerDown || playermove.playerUp || playermove.playerLeft) {
 
+          
             if (playermove.playerUp) {
                 direction = "up";
                 PlayerPositionY -= speed;

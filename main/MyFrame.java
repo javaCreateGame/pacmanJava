@@ -189,7 +189,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                     getEatBooks();
                     PlayerVsMonster();
                     nextMap2();
-                    nextMap3();
+                    
                 }
                 // if (countFoot>=500) {
                 //     nameCardLayout="SecondMap";
@@ -289,44 +289,36 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void nextMap2() {
         int x= player.PlayerPositionX;
         int y = player.PlayerPositionY;
-        if (x >= 612 && (y > 209 && y < 300)  && nameCardLayout == "FirstMap"){
-            player.PlayerPositionX = 1; 
-            player.PlayerPositionY = 315;
-            countFoot = 0;
-            nameCardLayout = "SecondMap";
-            cardLayout.show(cardPanel, nameCardLayout);
-            
-            monster.getMonsterImage();
-            monster.monsterVisible[0] = true;
-            monster.monsterVisible[1] = true;
-            monster.monsterVisible[2] = true;
-            monster.xDice= 322; monster.yDice= 295;
-            monster.xJoystick=379; monster.yJoystick=295;
-            monster.xSyrinnge=339;monster.ySyrinnge=321;
-        }  
-        
-    }
+        boolean next=false;
+        if (nameCardLayout=="SecondMap" || nameCardLayout=="FirstMap") {
+            if (x >= 612 && (y > 209 && y < 300)  && nameCardLayout == "FirstMap"){
+                nameCardLayout="SecondMap";
+                next=true;
+            }
+            if (x >= 596 && (y > 272 && y < 318)  && nameCardLayout == "SecondMap"){
+               nameCardLayout="ThirdMap";
+               next=true;
+            }
+            if(next==true){
+                cardLayout.show(cardPanel, nameCardLayout);
+                player.PlayerPositionX = 1; 
+                player.PlayerPositionY = 315;
+                countFoot = 0;
+                monster.getMonsterImage();
+                monster.setDefaultMonster();
+               
+                monster.xDice= 322; monster.yDice= 295;
+                monster.xJoystick=379; monster.yJoystick=295;
+                monster.xSyrinnge=339;monster.ySyrinnge=321;
+            }
+               
+            }  
+              
+        }
+    
+    
     //chuyển map2-->3
-    public void nextMap3() {
-        int x= player.PlayerPositionX;
-        int y = player.PlayerPositionY;
-        if (x >= 596 && (y > 272 && y < 318)  && nameCardLayout == "SecondMap"){
-            player.PlayerPositionX = 1; 
-            player.PlayerPositionY = 315;
-            countFoot = 0;
-            nameCardLayout = "ThirdMap";
-            cardLayout.show(cardPanel, nameCardLayout);
 
-            monster.getMonsterImage();
-            monster.monsterVisible[0] = true;
-            monster.monsterVisible[1] = true;
-            monster.monsterVisible[2] = true;
-            monster.xDice= 322; monster.yDice= 295;
-            monster.xJoystick=379; monster.yJoystick=295;
-            monster.xSyrinnge=339;monster.ySyrinnge=321;
-       } 
-        
-    }
     
     //Hàm set sự kiến ăn sách
     public void eatBooks(Map DefaultMap, int x[], int y[], JPanel childJPanel, JLabel obj[]){
@@ -472,24 +464,18 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     // Hàm gắn lại trái tym về chỗ cũ nếu như đã bị ăn mất
     public void discardHeart() {
-        
-        if(nameCardLayout=="FirstMap"){
             firstMap.addHeart=true;
             firstMap.removeHeart=false;
             firstMap.childFirstMapPanel.add(firstMap.heart);
-          }
-          else if(nameCardLayout=="SecondMap"){
-          secondMap.addHeart=true;
+        
+            secondMap.addHeart=true;
             secondMap.removeHeart=false;
             secondMap.childSecondMapPanel.add(secondMap.heart);
-          }
-          else if(nameCardLayout=="ThirdMap"){
-              thirdMap.addHeart=true;
-              thirdMap.removeHeart=false;
-              thirdMap.childThirdMapPanel.add(thirdMap.heart);
-          }
-
-    }
+          
+            thirdMap.addHeart=true;
+            thirdMap.removeHeart=false;
+            thirdMap.childThirdMapPanel.add(thirdMap.heart);
+        }
 
       // Hàm gắn lại book về chỗ cũ nếu như đã bị ăn mất
       public void discardBook(Map defaultMap,  JPanel childJPanel, JLabel obj[]) {
