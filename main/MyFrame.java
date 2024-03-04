@@ -63,7 +63,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         // Thêm các panel vào cardPanel với tên đặc biệt
         cardPanel.add(thirdMap.thirdMapPanel, "ThirdMap");
         cardPanel.add(secondMap.secondMapPanel, "SecondMap");
-        cardPanel.add(firstMap.firstMapPanel, "FirstMap");
+        cardPanel.add(firstMap.getFirstMapPanel(), "FirstMap");
         cardPanel.add(trailer.trailerPanel, "Trailer");
         cardPanel.add(intro.introPanel, "Intro");
         cardPanel.add(badEnding.badEndingPanelSum, "BadEnding");
@@ -141,7 +141,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "ThirdMap";
+            nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
 
             // Hàm chạy thời gian third map
@@ -261,9 +261,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Xóa hình trái tym trên map
            
             if(nameCardLayout=="FirstMap"){
-              firstMap.addHeart=false;
-              firstMap.removeHeart=true;
-              firstMap.childFirstMapPanel.remove(firstMap.heart);
+              firstMap.setAddHeart(false);
+              firstMap.setRemoveHeart(true);
+              firstMap.getChildFirstMapPanel().remove(firstMap.getHeart());
             }
             else if(nameCardLayout=="SecondMap"){
             secondMap.addHeart=false;
@@ -284,8 +284,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void getTransform() {
         switch (nameCardLayout) {
             case "FirstMap":
-                transform( firstMap.heartXLocation,
-                        firstMap.heartYLocation, firstMap.addHeart,firstMap.removeHeart);
+                transform( firstMap.getHeartXLocation(),
+                        firstMap.getHeartYLocation(), firstMap.isAddHeart(),firstMap.isRemoveHeart());
                 break;
             case "SecondMap":
                 transform( secondMap.heartXLocation,
@@ -355,7 +355,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void getEatBooks(){
         switch (nameCardLayout) {
             case "FirstMap":
-                eatBooks(firstMap, firstMap.x, firstMap.y, firstMap.childFirstMapPanel, firstMap.obj);
+                eatBooks(firstMap, firstMap.getX(), firstMap.getY(), firstMap.getChildFirstMapPanel(), firstMap.getObj());
                 firstMap.updateScore(score);
                 break;
             case "SecondMap":
@@ -468,7 +468,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
        
 
         //Gọi hàm discardBook để setup lại book
-        discardBook(firstMap, firstMap.childFirstMapPanel, firstMap.obj);
+        discardBook(firstMap, firstMap.getChildFirstMapPanel(), firstMap.getObj());
         discardBook(secondMap, secondMap.childSecondMapPanel, secondMap.obj);
         discardBook(thirdMap, thirdMap.childThirdMapPanel, thirdMap.obj);
 
@@ -494,9 +494,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     // Hàm gắn lại trái tym về chỗ cũ nếu như đã bị ăn mất
     public void discardHeart() {
-            firstMap.addHeart=true;
-            firstMap.removeHeart=false;
-            firstMap.childFirstMapPanel.add(firstMap.heart);
+            firstMap.setAddHeart(true);
+            firstMap.setRemoveHeart(false);
+            firstMap.getChildFirstMapPanel().add(firstMap.getHeart());
         
             secondMap.addHeart=true;
             secondMap.removeHeart=false;
