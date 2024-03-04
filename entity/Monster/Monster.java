@@ -55,7 +55,7 @@ public class Monster {
     }
 
     public void running() {
-        if (Mf.countFoot >= 300) {
+        if (Mf.countFoot >= 100) {
 
             if (xDice >= Mf.jframeWidth - MonsterWidth || xDice < 0) {
                 xVelocity[0] = xVelocity[0] * (-1);
@@ -66,7 +66,7 @@ public class Monster {
             }
             yDice -= yVelocity[0];
         }
-        if (Mf.countFoot >= 600) {
+        if (Mf.countFoot >= 200) {
             if (xJoystick >= Mf.jframeWidth - MonsterWidth || xJoystick < 0) {
                 xVelocity[1] = xVelocity[1] * (-1);
             }
@@ -76,7 +76,7 @@ public class Monster {
             }
             yJoystick += yVelocity[1];
         }
-        if (Mf.countFoot >= 800) {
+        if (Mf.countFoot >= 300) {
             if (xSyrinnge >= Mf.jframeWidth - MonsterWidth | xSyrinnge < 0) {
                 xVelocity[2] = xVelocity[2] * (-1);
             }
@@ -86,7 +86,13 @@ public class Monster {
             }
             ySyrinnge += yVelocity[2];
         }
-
+           if (Mf.countFoot==800) {
+           
+            Arrays.fill(xVelocity, 8);
+            Arrays.fill(yVelocity, 8);
+            xVelocity[1] = 9;
+            yVelocity[0] = 9;
+           }
     }
 
     public void draw(Graphics2D g2) {
