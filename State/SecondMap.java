@@ -13,16 +13,16 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class SecondMap extends Map {
-    public ImageIcon newImageIcon;
-    public ImageIcon newImageIconHeart;
-    public int heartXLocation = 556, heartYLocation = 305;
-    public JPanel secondMapPanel;
-    public JPanel childSecondMapPanel;
-    public boolean addHeart= true;
-    public boolean removeHeart= false;
-    public JLabel heart;
-    public int x[] = new int[n];
-    public int y[] = new int[n];
+    private ImageIcon newImageIcon;
+    private ImageIcon newImageIconHeart;
+    private int heartXLocation = 556, heartYLocation = 305;
+    private JPanel secondMapPanel;
+    private JPanel childSecondMapPanel;
+    private boolean addHeart= true;
+    private boolean removeHeart= false;
+    private JLabel heart;
+    private int x[] = new int[n];
+    private int y[] = new int[n];
     MyFrame Mf;
     public SecondMap(MyFrame Mf) {
         this.Mf=Mf;
@@ -148,4 +148,94 @@ public class SecondMap extends Map {
         }
     }
 
+    
+//  Generat get and set
+
+	public ImageIcon getNewImageIcon() {
+		return newImageIcon;
+	}
+
+	public void setNewImageIcon(ImageIcon newImageIcon) {
+		this.newImageIcon = newImageIcon;
+	}
+
+	public ImageIcon getNewImageIconHeart() {
+		return newImageIconHeart;
+	}
+
+	public void setNewImageIconHeart(ImageIcon newImageIconHeart) {
+		this.newImageIconHeart = newImageIconHeart;
+	}
+
+	public int getHeartXLocation() {
+		return heartXLocation;
+	}
+
+	public void setHeartXLocation(int heartXLocation) {
+		this.heartXLocation = heartXLocation;
+	}
+
+	public int getHeartYLocation() {
+		return heartYLocation;
+	}
+
+	public void setHeartYLocation(int heartYLocation) {
+		this.heartYLocation = heartYLocation;
+	}
+
+	public JPanel getSecondMapPanel() {
+		return secondMapPanel;
+	}
+
+	public void setSecondMapPanel(JPanel secondMapPanel) {
+		this.secondMapPanel = secondMapPanel;
+	}
+
+	public JPanel getChildSecondMapPanel() {
+		return childSecondMapPanel;
+	}
+
+	public void setChildSecondMapPanel(JPanel childSecondMapPanel) {
+		this.childSecondMapPanel = childSecondMapPanel;
+	}
+
+	public boolean isAddHeart() {
+		return addHeart;
+	}
+
+	public void setAddHeart(boolean addHeart) {
+		this.addHeart = addHeart;
+	}
+
+	public boolean isRemoveHeart() {
+		return removeHeart;
+	}
+
+	public void setRemoveHeart(boolean removeHeart) {
+		this.removeHeart = removeHeart;
+	}
+
+	public JLabel getHeart() {
+		return heart;
+	}
+
+	public void setHeart(JLabel heart) {
+		this.heart = heart;
+	}
+
+	public int[] getX() {
+		return x;
+	}
+
+	public void setX(int[] x) {
+		this.x = x;
+	}
+
+	public int[] getY() {
+		return y;
+	}
+
+	public void setY(int[] y) {
+		this.y = y;
+	}
 }
