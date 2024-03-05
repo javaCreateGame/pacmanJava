@@ -11,8 +11,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 
 public class ButtonEnding {
-    public JButton YesButton;
-    public JButton NoButton;
+    private JButton YesButton;
+	private JButton NoButton;
    
     public ButtonEnding(){
         
@@ -63,4 +63,20 @@ public class ButtonEnding {
             }
         });
     }
+    
+    public JButton getYesButton() {
+		return YesButton;
+	}
+
+	public void setYesButton(JButton yesButton) {
+		YesButton = yesButton;
+	}
+
+	public JButton getNoButton() {
+		return NoButton;
+	}
+
+	public void setNoButton(JButton noButton) {
+		NoButton = noButton;
+	}
 }

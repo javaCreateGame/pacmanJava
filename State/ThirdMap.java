@@ -17,22 +17,22 @@ import EndingUi.BadEnding;
 
 
 public class ThirdMap extends Map {
-    public ImageIcon newImageIcon;
-    public ImageIcon newImageIconHeart;
-    public int heartXLocation = 412, heartYLocation = 32;
-    public JPanel thirdMapPanel;
-    public JPanel childThirdMapPanel;
-    public boolean addHeart= true;
-    public boolean removeHeart= false;
-    public JLabel heart;
-    public int x[] = new int[n];
-    public int y[] = new int[n];
-    public static JLabel timerJLabel;
-    public static Timer timerThirdMap;
-    public static int secondsLeft;
-    public static int thirdMapScoreTake;
-    public BadEnding badEndingThirdMap;
-    public JPanel cardPanel;
+    private ImageIcon newImageIcon;
+    private ImageIcon newImageIconHeart;
+    private int heartXLocation = 412, heartYLocation = 32;
+    private JPanel thirdMapPanel;
+    private JPanel childThirdMapPanel;
+    private boolean addHeart= true;
+    private boolean removeHeart= false;
+    private JLabel heart;
+    private int x[] = new int[n];
+    private int y[] = new int[n];
+    private static JLabel timerJLabel;
+    private static Timer timerThirdMap;
+    private static int secondsLeft;
+    private static int thirdMapScoreTake;
+    private BadEnding badEndingThirdMap;
+    private JPanel cardPanel;
     MyFrame Mf;
     public ThirdMap(MyFrame Mf) {
         this.Mf=Mf;
@@ -123,7 +123,7 @@ public class ThirdMap extends Map {
        
         this.heart.setLocation(heartXLocation, heartYLocation);
         childThirdMapPanel.add(heart);
-       addHeart=true;
+        addHeart=true;
         background.add(childThirdMapPanel);
 
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background
@@ -145,7 +145,7 @@ public class ThirdMap extends Map {
     // // Phương thức để cập nhật thời gian trên timerJlabel
     public static void updateTimer(int time){
         secondsLeft = time;
-        timerThirdMap = new Timer(1000, new ActionListener() {
+        timerThirdMap = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (secondsLeft > 0) {
@@ -188,4 +188,141 @@ public class ThirdMap extends Map {
         }
     }
 
+	public ImageIcon getNewImageIcon() {
+		return newImageIcon;
+	}
+
+	public void setNewImageIcon(ImageIcon newImageIcon) {
+		this.newImageIcon = newImageIcon;
+	}
+
+	public ImageIcon getNewImageIconHeart() {
+		return newImageIconHeart;
+	}
+
+	public void setNewImageIconHeart(ImageIcon newImageIconHeart) {
+		this.newImageIconHeart = newImageIconHeart;
+	}
+
+	public int getHeartXLocation() {
+		return heartXLocation;
+	}
+
+	public void setHeartXLocation(int heartXLocation) {
+		this.heartXLocation = heartXLocation;
+	}
+
+	public int getHeartYLocation() {
+		return heartYLocation;
+	}
+
+	public void setHeartYLocation(int heartYLocation) {
+		this.heartYLocation = heartYLocation;
+	}
+
+	public JPanel getThirdMapPanel() {
+		return thirdMapPanel;
+	}
+
+	public void setThirdMapPanel(JPanel thirdMapPanel) {
+		this.thirdMapPanel = thirdMapPanel;
+	}
+
+	public JPanel getChildThirdMapPanel() {
+		return childThirdMapPanel;
+	}
+
+	public void setChildThirdMapPanel(JPanel childThirdMapPanel) {
+		this.childThirdMapPanel = childThirdMapPanel;
+	}
+
+	public boolean isAddHeart() {
+		return addHeart;
+	}
+
+	public void setAddHeart(boolean addHeart) {
+		this.addHeart = addHeart;
+	}
+
+	public boolean isRemoveHeart() {
+		return removeHeart;
+	}
+
+	public void setRemoveHeart(boolean removeHeart) {
+		this.removeHeart = removeHeart;
+	}
+
+	public JLabel getHeart() {
+		return heart;
+	}
+
+	public void setHeart(JLabel heart) {
+		this.heart = heart;
+	}
+
+	public int[] getX() {
+		return x;
+	}
+
+	public void setX(int[] x) {
+		this.x = x;
+	}
+
+	public int[] getY() {
+		return y;
+	}
+
+	public void setY(int[] y) {
+		this.y = y;
+	}
+
+	public static JLabel getTimerJLabel() {
+		return timerJLabel;
+	}
+
+	public static void setTimerJLabel(JLabel timerJLabel) {
+		ThirdMap.timerJLabel = timerJLabel;
+	}
+
+	public static Timer getTimerThirdMap() {
+		return timerThirdMap;
+	}
+
+	public static void setTimerThirdMap(Timer timerThirdMap) {
+		ThirdMap.timerThirdMap = timerThirdMap;
+	}
+
+	public static int getSecondsLeft() {
+		return secondsLeft;
+	}
+
+	public static void setSecondsLeft(int secondsLeft) {
+		ThirdMap.secondsLeft = secondsLeft;
+	}
+
+	public static int getThirdMapScoreTake() {
+		return thirdMapScoreTake;
+	}
+
+	public static void setThirdMapScoreTake(int thirdMapScoreTake) {
+		ThirdMap.thirdMapScoreTake = thirdMapScoreTake;
+	}
+
+	public BadEnding getBadEndingThirdMap() {
+		return badEndingThirdMap;
+	}
+
+	public void setBadEndingThirdMap(BadEnding badEndingThirdMap) {
+		this.badEndingThirdMap = badEndingThirdMap;
+	}
+
+	public JPanel getCardPanel() {
+		return cardPanel;
+	}
+
+	public void setCardPanel(JPanel cardPanel) {
+		this.cardPanel = cardPanel;
+	}
+
+    
 }

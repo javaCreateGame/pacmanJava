@@ -17,7 +17,7 @@ import Sound.SoundEffect;
 import State.*;
 import entity.Monster.Monster;
 import entity.Player.*;
-import javax.swing.JLabel;
+// import javax.swing.JLabel;
 import java.awt.*;
 
 public class MyFrame extends JFrame implements ActionListener, Runnable {
@@ -59,13 +59,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.setLayout(cardLayout);
 
         // Thêm các panel vào cardPanel với tên đặc biệt
-        cardPanel.add(thirdMap.thirdMapPanel, "ThirdMap");
-        cardPanel.add(secondMap.secondMapPanel, "SecondMap");
+        cardPanel.add(thirdMap.getThirdMapPanel(), "ThirdMap");
+        cardPanel.add(secondMap.getSecondMapPanel(), "SecondMap");
         cardPanel.add(firstMap.getFirstMapPanel(), "FirstMap");
         cardPanel.add(trailer.trailerPanel, "Trailer");
         cardPanel.add(intro.introPanel, "Intro");
-        cardPanel.add(badEnding.badEndingPanelSum, "BadEnding");
-        cardPanel.add(happyEnding.happyEndingPanelSum, "HappyEnding");
+        cardPanel.add(badEnding.getBadEndingPanelSum(), "BadEnding");
+        cardPanel.add(happyEnding.getHappyEndingPanelSum(), "HappyEnding");
         // Thể hiện thẻ đầu tiên (ở đây là Intro)
         nameCardLayout = "Intro";
         cardLayout.show(cardPanel, nameCardLayout);
@@ -89,8 +89,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         // Thêm ActionListener cho nút "skipButton" trong Intro
         // trailer.skipButton.addActionListener(this);
         
-        badEnding.buttonEnding.YesButton.addActionListener(this);
-        badEnding.buttonEnding.NoButton.addActionListener(this);
+        badEnding.getButtonEnding().getYesButton().addActionListener(this);
+        badEnding.getButtonEnding().getNoButton().addActionListener(this);
        
         //Khởi tạo label cho điểm số và thêm vào panel
         scoreLabel = new JLabel();
@@ -112,10 +112,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 firstMap.getFirstMapPanel().add(scoreLabel);
                 break;
             case "SecondMap":
-                secondMap.secondMapPanel.add(scoreLabel);
+                secondMap.getSecondMapPanel().add(scoreLabel);
                 break;
             case "ThirdMap":
-                thirdMap.thirdMapPanel.add(scoreLabel);
+                thirdMap.getThirdMapPanel().add(scoreLabel);
                 break;
             
         }
@@ -168,11 +168,6 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
 
-            // Hàm chạy thời gian third map
-            if(nameCardLayout == "ThirdMap") {
-                ThirdMap.updateTimer(5);
-                ThirdMap.timerThirdMap.start(); 
-            }
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
             soundMain.start();
@@ -182,11 +177,11 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         }
 
         
-        else if(e.getSource()==badEnding.buttonEnding.YesButton){
+        else if(e.getSource()==badEnding.getButtonEnding().getYesButton()){
             Reset();
         }
         // Xử lý sự kiện khi nút "Exit" được nhấn
-        else if (e.getSource() == intro.Exit || e.getSource()==badEnding.buttonEnding.NoButton) {
+        else if (e.getSource() == intro.Exit || e.getSource()==badEnding.getButtonEnding().getNoButton()) {
             // Thoát ứng dụng
             // Tạo 1 bảng thông báo để xác nhận có muốn thoát k ,nếu có thì thoát
             int exitis = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thoát", "Xác nhận",
@@ -257,9 +252,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         boolean addHeart,boolean removeHeart) {
         double dem = Math.floor((Math.random() * 2) + 1);
         // Set các điều kiện để nhân vật có thể biến hình
-        int X = (heartXLocation + secondMap.newImageIconHeart.getIconWidth())
+        int X = (heartXLocation + secondMap.getNewImageIconHeart().getIconWidth())
                 - (player.PlayerWidth + player.PlayerPositionX);
-        int Y = (heartYLocation + secondMap.newImageIconHeart.getIconHeight())
+        int Y = (heartYLocation + secondMap.getNewImageIconHeart().getIconHeight())
                 - (player.PLayerHeight + player.PlayerPositionY);
         if (X >= -30 && X <= 7 && Y >= -45 && Y <= -8 && addHeart == true
                 && removeHeart == false) {
@@ -291,14 +286,14 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
               firstMap.getChildFirstMapPanel().remove(firstMap.getHeart());
             }
             else if(nameCardLayout=="SecondMap"){
-            secondMap.addHeart=false;
-              secondMap.removeHeart=true;
-              secondMap.childSecondMapPanel.remove(secondMap.heart);
+                secondMap.setAddHeart(false);
+                secondMap.setRemoveHeart(true);
+                secondMap.getChildSecondMapPanel().remove(secondMap.getHeart());
             }
             else if(nameCardLayout=="ThirdMap"){
-                thirdMap.addHeart=false;
-                thirdMap.removeHeart=true;
-                thirdMap.childThirdMapPanel.remove(thirdMap.heart);
+                thirdMap.setAddHeart(false);
+                thirdMap.setRemoveHeart(true);
+                thirdMap.getChildThirdMapPanel().remove(thirdMap.getHeart());
             }
 
         }
@@ -313,12 +308,12 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                         firstMap.getHeartYLocation(), firstMap.isAddHeart(),firstMap.isRemoveHeart());
                 break;
             case "SecondMap":
-                transform( secondMap.heartXLocation,
-                        secondMap.heartYLocation, secondMap.addHeart,secondMap.removeHeart);
+                transform( secondMap.getHeartXLocation(),
+                        secondMap.getHeartYLocation(), secondMap.isAddHeart(),secondMap.isRemoveHeart());
                 break;
             case "ThirdMap":
-                transform( thirdMap.heartXLocation,
-                          thirdMap.heartYLocation,thirdMap.addHeart,thirdMap.removeHeart);
+                transform( thirdMap.getHeartXLocation(),
+                          thirdMap.getHeartYLocation(),thirdMap.isAddHeart(),thirdMap.isRemoveHeart());
                  break;
                 
         }
@@ -338,6 +333,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                next=true;
             }
             if(next==true){
+                // Hàm chạy thời gian third map
+                ThirdMap.updateTimer(10);
+                ThirdMap.getTimerThirdMap().start(); 
                 cardLayout.show(cardPanel, nameCardLayout);
                 player.PlayerPositionX = 1; 
                 player.PlayerPositionY = 315;
@@ -362,8 +360,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void eatBooks(Map DefaultMap, int x[], int y[], JPanel childJPanel, JLabel obj[]){
         // Set các điều kiện để nhân vật ăn sách
         for(int i=0;i<x.length;i++){
-            int X = (x[i]+secondMap.newImageIcon.getIconWidth()) - (player.PlayerWidth + player.PlayerPositionX);
-            int Y = (y[i]+secondMap.newImageIcon.getIconHeight()) - (player.PLayerHeight + player.PlayerPositionY);
+            int X = (x[i]+secondMap.getNewImageIcon().getIconWidth()) - (player.PlayerWidth + player.PlayerPositionX);
+            int Y = (y[i]+secondMap.getNewImageIcon().getIconHeight()) - (player.PLayerHeight + player.PlayerPositionY);
             if(((X>=-28 && X<=2 && player.imgName=="") || (X>=-45 && X<=3 && player.imgName=="Attack")) &&
                 Y>=-49 && Y<=-12 && DefaultMap.addObj[i]==true && DefaultMap.removeObj[i]==false){
                 // Xóa hình sách trên map và cộng 100 điểm
@@ -384,11 +382,11 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                 updateScore();
                 break;
             case "SecondMap":
-                eatBooks(secondMap, secondMap.x, secondMap.y, secondMap.childSecondMapPanel, secondMap.obj);
+                eatBooks(secondMap, secondMap.getX(), secondMap.getY(), secondMap.getChildSecondMapPanel(), secondMap.obj);
                 updateScore();
                 break;
             case "ThirdMap":
-                eatBooks(thirdMap, thirdMap.x, thirdMap.y, thirdMap.childThirdMapPanel, thirdMap.obj);
+                eatBooks(thirdMap, thirdMap.getX(), thirdMap.getY(), thirdMap.getChildThirdMapPanel(), thirdMap.obj);
                 updateScore();
                 break;
         }
@@ -419,34 +417,18 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundMain.start();
             nameCardLayout="BadEnding";
             if (pVsDice == true) {
-                badEnding.numberBad=0;
+                badEnding.setNumberBad(0);
             } else if (pVsJoystick == true) {
-                badEnding.numberBad=1;
+                badEnding.setNumberBad(1);
             } else if (pVsSyrinnge == true) {
-                badEnding.numberBad=2;
+                badEnding.setNumberBad(2);
             }
-            badEnding.cardLayout.show(badEnding.cardPanel, "bad"+badEnding.numberBad);
+            badEnding.getCardLayout().show(badEnding.getCardPanel(), "bad"+badEnding.getNumberBad());
             cardLayout.show(cardPanel, nameCardLayout);
-        badEnding.timerBad.start();
-        }
-
-    }
-
-    public void finalEnding() {
-        if(ThirdMap.secondsLeft <= 0) {
-            if(ThirdMap.thirdMapScoreTake <= 0) {
-                nameCardLayout="BadEnding";
-                badEnding.cardLayout.show(badEnding.cardPanel, "bad4");
-                cardLayout.show(cardPanel, nameCardLayout);
-            }
-            else {
-                nameCardLayout="HappyEnding";
-                happyEnding.cardLayout.show(happyEnding.cardPanel, "happy0");
-                cardLayout.show(cardPanel, nameCardLayout);
-            }
+        badEnding.getTimerBad().start();
         }
     }
-
+    
     
     // hÀM setlogic cho player đánh nhau vs quái khi ăn trái tym
     public void removeMonster() {
@@ -498,8 +480,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
         //Gọi hàm discardBook để setup lại book
         discardBook(firstMap, firstMap.getChildFirstMapPanel(), firstMap.getObj());
-        discardBook(secondMap, secondMap.childSecondMapPanel, secondMap.obj);
-        discardBook(thirdMap, thirdMap.childThirdMapPanel, thirdMap.obj);
+        discardBook(secondMap, secondMap.getChildSecondMapPanel(), secondMap.obj);
+        discardBook(thirdMap, thirdMap.getChildThirdMapPanel(), thirdMap.obj);
 
         // xóa tất cả các dong chữ chạy của trailer và cho bắt đầu từ đầu
         trailer.timer.stop();
@@ -524,15 +506,15 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     }
 
     public void dicardEnding(){
-       badEnding.timerBad.stop();
-       badEnding.currentCharacterIndex=0;
-       happyEnding.currentCharacterIndex=0;
-       happyEnding.timerHappy.stop();
-        for(int i=0;i<badEnding.text.length;i++){
-            badEnding.text[i].setText("");
+       badEnding.getTimerBad().stop();
+       badEnding.setCurrentCharacterIndex(0);
+       happyEnding.setCurrentCharacterIndex(0);
+       happyEnding.getTimerHappy().stop();
+        for(int i=0;i<badEnding.getText().length;i++){
+            badEnding.getTextI(i).setText("");
         }
-        for(int i=0;i<happyEnding.text.length;i++){
-            happyEnding.text[i].setText("");
+        for(int i=0;i<happyEnding.getText().length;i++){
+            happyEnding.getTextI(i).setText("");
         }
     }
 
@@ -543,13 +525,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             firstMap.setRemoveHeart(false);
             firstMap.getChildFirstMapPanel().add(firstMap.getHeart());
         
-            secondMap.addHeart=true;
-            secondMap.removeHeart=false;
-            secondMap.childSecondMapPanel.add(secondMap.heart);
+            secondMap.setAddHeart(true);
+            secondMap.setRemoveHeart(false);
+            secondMap.getChildSecondMapPanel().add(secondMap.getHeart());
           
-            thirdMap.addHeart=true;
-            thirdMap.removeHeart=false;
-            thirdMap.childThirdMapPanel.add(thirdMap.heart);
+            thirdMap.setAddHeart(true);
+            thirdMap.setRemoveHeart(false);
+            thirdMap.getChildThirdMapPanel().add(thirdMap.getHeart());
         }
 
    
@@ -575,6 +557,24 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         }
         g2.dispose();
 
+    }
+
+    // Hàm trả về kết thúc cuối cùng
+    public void finalEnding() {
+        if(ThirdMap.getSecondsLeft() <= 0) {
+            // Nếu điểm nhỏ hơn 4500, bạn thua
+            if(this.score <= 4500) {
+                nameCardLayout="BadEnding";
+                badEnding.getCardLayout().show(badEnding.getCardPanel(), "bad4");
+                cardLayout.show(cardPanel, nameCardLayout);
+            }
+            // Ngược lại bạn chiến thắng
+            else {
+                nameCardLayout="HappyEnding";
+                happyEnding.getCardLayout().show(happyEnding.getCardPanel(), "happy0");
+                cardLayout.show(cardPanel, nameCardLayout);
+            }
+        }
     }
 
 }
