@@ -6,11 +6,11 @@ import javax.swing.JLabel;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
-
-
+import javax.swing.Timer;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
@@ -19,7 +19,9 @@ public class BadEnding {
         public CardLayout cardLayout = new CardLayout();
   
    public JPanel badEndingPanelSum;
-    
+    public int numberBad;
+    public Timer timerBad;
+    public int currentCharacterIndex = 0;
    public JPanel cardPanel;
    public ButtonEnding buttonEnding=new ButtonEnding();
     public JPanel badEndingPanel[]=new JPanel[4];
@@ -29,7 +31,7 @@ public class BadEnding {
         "Bạn đã bị nghiện do vô tình dẵm vào kim tiêm của người nghiện.Bạn có muốn làm lại cuộc đời?",
         "Tôi không ngờ bạn lại ngủ quên trên chiến thắng lâu như vậy.Bạn đã không hoàn thành mục tiêu.Bạn có muốn làm lại cuộc đời?"
 };
-   JTextArea text[] =new JTextArea[4];
+   public JTextArea text[] =new JTextArea[4];
    JLabel img[]=new JLabel[4];
     String badURL[] = new String[30];
     public BadEnding(){
@@ -40,7 +42,7 @@ public class BadEnding {
        badEndingPanel[i].setOpaque(true);
        badEndingPanel[i].setVisible(true);
        badEndingPanel[i].setLayout(null);
-       badEndingPanel[i].setBackground(new Color(145,147,148));
+       badEndingPanel[i].setBackground(new Color(76,82,82));
        }
        
        
@@ -52,14 +54,29 @@ public class BadEnding {
          
         setPanel();
         setUp();
+        timerBad=new Timer(25,new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if (currentCharacterIndex < Ending[numberBad].length()) {
+                    text[numberBad].append(String.valueOf(Ending[numberBad].charAt(currentCharacterIndex)));
+                    currentCharacterIndex++;
+                }
+                else{
+                    timerBad.stop();
+                    
+                }
+            }
+            
+        } );
     } 
     public void setPanel(){
         for(int i=0;i<4;i++){
-            text[i]=new JTextArea(Ending[i]);
+            text[i]=new JTextArea();
             text[i].setBounds(80,420,455,40);
             text[i].setEnabled(false);
-            text[i].setBackground(new Color(145,147,148));
-            text[i].setForeground(new Color(222,13,13));
+            text[i].setBackground(new Color(76,82,82));
             text[i].setAlignmentY(JTextArea.CENTER_ALIGNMENT);
             text[i].setLineWrap(true);
             text[i].setWrapStyleWord(true);
@@ -72,7 +89,7 @@ public class BadEnding {
 
             badEndingPanel[i].add(text[i]);
             badEndingPanel[i].add(img[i]);
-            badEndingPanel[i].setBackground(new Color(145,147,148));
+            
         }
         
        

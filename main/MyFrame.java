@@ -24,11 +24,11 @@ import entity.Player.*;
 
 public class MyFrame extends JFrame implements ActionListener, Runnable {
     PlayerMove playermove = new PlayerMove();
-    Player player = new Player(this, playermove);
+    public Player player = new Player(this, playermove);
     SoundEffect soundMain = new SoundEffect();
     public SoundEffect soundInternal = new SoundEffect();
     SoundEffect soundNext = new SoundEffect();
-    Monster monster = new Monster(this);
+    public Monster monster = new Monster(this);
    
     Thread gameThread;
 
@@ -112,7 +112,6 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         this.StartGame();
         this.setVisible(true);
     }
-
     // Hàm viết logic các nút bấm
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -141,7 +140,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
-            nameCardLayout = "ThirdMap";
+            nameCardLayout = "FirstMap";
             cardLayout.show(cardPanel, nameCardLayout);
 
             // Hàm chạy thời gian third map
@@ -394,15 +393,15 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundMain.start();
             nameCardLayout="BadEnding";
             if (pVsDice == true) {
-                badEnding.cardLayout.show(badEnding.cardPanel, "bad0");
+                badEnding.numberBad=0;
             } else if (pVsJoystick == true) {
-                badEnding.cardLayout.show(badEnding.cardPanel, "bad1");
+                badEnding.numberBad=1;
             } else if (pVsSyrinnge == true) {
-                badEnding.cardLayout.show(badEnding.cardPanel, "bad2");
+                badEnding.numberBad=2;
             }
-           
+            badEnding.cardLayout.show(badEnding.cardPanel, "bad"+badEnding.numberBad);
             cardLayout.show(cardPanel, nameCardLayout);
-
+        badEnding.timerBad.start();
         }
 
     }
@@ -422,6 +421,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         }
     }
 
+    
     // hÀM setlogic cho player đánh nhau vs quái khi ăn trái tym
     public void removeMonster() {
         // Tạo các biến boolean cho biết mình đụng vào quái nào
@@ -445,6 +445,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
+
     // Hàm tổng hợp các hàm logic trên
     public void PlayerVsMonster() {
         if (player.imgName == "") {
@@ -454,11 +455,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         }
     }
 
+
     // Hàm reset mọi thứ về trạng thái ban đầu và trở về Intro
     public void Reset() {
         // Dừng nhạc hiện tại
         soundMain.stop();
         countFoot = 0;
+        
         // Đặt lại vị trí ban đầu;
         monster.getMonsterImage();
         monster.setDefaultMonster();
@@ -466,12 +469,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         // Gọi hàm discardHeart để setup lại tym
         discardHeart();
        
-
-        //Gọi hàm discardBook để setup lại book
+         //Gọi hàm discardBook để setup lại book
         discardBook(firstMap, firstMap.childFirstMapPanel, firstMap.obj);
         discardBook(secondMap, secondMap.childSecondMapPanel, secondMap.obj);
         discardBook(thirdMap, thirdMap.childThirdMapPanel, thirdMap.obj);
-
 
         // xóa tất cả các dong chữ chạy của trailer và cho bắt đầu từ đầu
         trailer.timer.stop();
@@ -479,19 +480,36 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         trailer.currentCharacterIndex = 0;
         trailer.textArea.setText("");
 
-
+        dicardEnding();
 
         // Chuyển về trang Intro
         nameCardLayout = "Intro";
         cardLayout.show(cardPanel, nameCardLayout);
+        
         // Cho nhân vật dừng di chuyển và set lại vị trí cũ
         playermove.playerRight = playermove.playerDown = playermove.playerUp = playermove.playerLeft = false;
         player.setDefaultPlayer();
+
+        
         // Bật lại nhạc của intro
         soundMain.setFile(0);
         soundMain.start();
     }
 
+    public void dicardEnding(){
+       badEnding.timerBad.stop();
+       badEnding.currentCharacterIndex=0;
+       happyEnding.currentCharacterIndex=0;
+       happyEnding.timerHappy.stop();
+        for(int i=0;i<badEnding.text.length;i++){
+            badEnding.text[i].setText("");
+        }
+        for(int i=0;i<happyEnding.text.length;i++){
+            happyEnding.text[i].setText("");
+        }
+    }
+
+   
     // Hàm gắn lại trái tym về chỗ cũ nếu như đã bị ăn mất
     public void discardHeart() {
             firstMap.addHeart=true;
@@ -507,7 +525,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             thirdMap.childThirdMapPanel.add(thirdMap.heart);
         }
 
-      // Hàm gắn lại book về chỗ cũ nếu như đã bị ăn mất
+   
+        // Hàm gắn lại book về chỗ cũ nếu như đã bị ăn mất
       public void discardBook(Map defaultMap,  JPanel childJPanel, JLabel obj[]) {
       for(int i=0;i<obj.length;i++){
         childJPanel.add(obj[i]);
@@ -516,6 +535,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
       }
       score=0;
     }
+   
+   
     // hàm vẽ nhân vật
     public void paint(Graphics g) {
         super.paint(g);
