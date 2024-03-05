@@ -1,9 +1,5 @@
 package main;
 
-import java.awt.CardLayout;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -21,6 +17,8 @@ import Sound.SoundEffect;
 import State.*;
 import entity.Monster.Monster;
 import entity.Player.*;
+import javax.swing.JLabel;
+import java.awt.*;
 
 public class MyFrame extends JFrame implements ActionListener, Runnable {
     PlayerMove playermove = new PlayerMove();
@@ -31,7 +29,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     Monster monster = new Monster(this);
    
     Thread gameThread;
-
+    JLabel scoreLabel;
     String Ending;
     public static String nameCardLayout;
     public int score = 0;
@@ -94,6 +92,33 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         badEnding.buttonEnding.YesButton.addActionListener(this);
         badEnding.buttonEnding.NoButton.addActionListener(this);
        
+        //Khởi tạo label cho điểm số và thêm vào panel
+        scoreLabel = new JLabel();
+        scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
+        scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
+        // Đặt vị trí của scoreLabel
+        scoreLabel.setBounds(50, 620, 100, 20); // Đặt ở góc trái dưới
+    }
+
+    //Phương thức để cập nhật điểm số trên scoreLabel
+    public void updateScore() {
+        scoreLabel.setText("Score: " + score);
+    }
+
+    //Phương thức để cập nhật scoreLabel vào JPanel dựa trên giá trị của nameCardLayout
+    public void updateScoreLabel() {
+        switch (nameCardLayout) {
+            case "FirstMap":
+                firstMap.getFirstMapPanel().add(scoreLabel);
+                break;
+            case "SecondMap":
+                secondMap.secondMapPanel.add(scoreLabel);
+                break;
+            case "ThirdMap":
+                thirdMap.thirdMapPanel.add(scoreLabel);
+                break;
+            
+        }
     }
 
     // Hàm setup các dữ liệu ban đầu của jframe
@@ -198,6 +223,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
                     getTransform();
                     getEatBooks();
                     PlayerVsMonster();
+                    updateScoreLabel();
                     nextMap();
                 }
 
@@ -356,15 +382,15 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         switch (nameCardLayout) {
             case "FirstMap":
                 eatBooks(firstMap, firstMap.getX(), firstMap.getY(), firstMap.getChildFirstMapPanel(), firstMap.getObj());
-                firstMap.updateScore(score);
+                updateScore();
                 break;
             case "SecondMap":
                 eatBooks(secondMap, secondMap.x, secondMap.y, secondMap.childSecondMapPanel, secondMap.obj);
-                secondMap.updateScore(score);
+                updateScore();
                 break;
             case "ThirdMap":
                 eatBooks(thirdMap, thirdMap.x, thirdMap.y, thirdMap.childThirdMapPanel, thirdMap.obj);
-                thirdMap.updateScore(score);
+                updateScore();
                 break;
         }
     }

@@ -27,7 +27,6 @@ public class ThirdMap extends Map {
     public JLabel heart;
     public int x[] = new int[n];
     public int y[] = new int[n];
-    public JLabel scoreLabel; // Thêm label cho điểm số
     public static JLabel timerJLabel;
     public static Timer timerThirdMap;
     public static int secondsLeft;
@@ -130,11 +129,6 @@ public class ThirdMap extends Map {
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background
         background.addMouseListener(new MyMouseListener());
 
-        // Khởi tạo label cho điểm số và thêm vào panel của ThirdMap
-        scoreLabel = new JLabel();
-        scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
-        scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
-
        
 
         // Khởi tạo các thành phần của biến Timer
@@ -146,17 +140,6 @@ public class ThirdMap extends Map {
         // Thêm scoreLabel vào panel của ThirdMap
         thirdMapPanel.add(timerJLabel);
 
-        // Đặt vị trí của scoreLabel
-        scoreLabel.setBounds(50, 620, 100, 20); // Đặt ở góc trái dưới
-
-        // Thêm scoreLabel vào panel của ThirdMap
-        thirdMapPanel.add(scoreLabel);
-    }
-
-    // Phương thức để cập nhật điểm số trên scoreLabel
-    public void updateScore(int score){
-        scoreLabel.setText("Score: " + score);
-        thirdMapScoreTake = score;
     }
 
     // // Phương thức để cập nhật thời gian trên timerJlabel

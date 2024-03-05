@@ -25,7 +25,6 @@ public class FirstMap extends Map {
     private int x[] = new int[n];
     private int y[] = new int[n];
     private JLabel mapLabel;
-    private JLabel scoreLabel; // Thêm label cho điểm số
     private Timer timer;
     public FirstMap(MyFrame Mf){
       this.Mf=Mf;
@@ -38,8 +37,7 @@ public class FirstMap extends Map {
 
        
        
-       
-        // Dịch chuyển hình nền lên 27 pixel từ dưới lên
+
         // Đặt hình nền cho First Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map1.png");
 
@@ -130,17 +128,6 @@ public class FirstMap extends Map {
         mapLabel.setBounds(labelX, labelY, mapLabel.getPreferredSize().width, mapLabel.getPreferredSize().height);
         childFirstMapPanel.add(mapLabel);
 
-        // Khởi tạo label cho điểm số và thêm vào panel của FirstMap
-        scoreLabel = new JLabel("Score: 0");
-        scoreLabel.setFont(new Font("Arial", Font.PLAIN, 16)); // Điều chỉnh font và kích thước chữ
-        scoreLabel.setForeground(Color.BLACK); // Điều chỉnh màu chữ
-
-        // Đặt vị trí của scoreLabel
-        scoreLabel.setBounds(50, 620, 100, 20); // Đặt ở góc trái dưới
-
-        // Thêm scoreLabel vào panel của FirstMap
-        firstMapPanel.add(scoreLabel);
-
         // Khởi tạo Timer
         timer = new Timer(1000, new ActionListener() {
           int count = 0;
@@ -167,13 +154,7 @@ public class FirstMap extends Map {
     // Thêm lắng nghe sự kiện MouseListener vào JLabel background
     background.addMouseListener(new MyMouseListener());
 
-        
-
 }
-    // Phương thức để cập nhật điểm số trên scoreLabel
-    public void updateScore(int score){
-        scoreLabel.setText("Score: " + score);
-    }
 
     // Lớp lắng nghe sự kiện MouseListener
     private class MyMouseListener implements MouseListener {
@@ -278,12 +259,6 @@ public class FirstMap extends Map {
 	public void setMapLabel(JLabel mapLabel) {
 		this.mapLabel = mapLabel;
 	}
-	public JLabel getScoreLabel() {
-		return scoreLabel;
-	}
-	public void setScoreLabel(JLabel scoreLabel) {
-		this.scoreLabel = scoreLabel;
-	}
 	public Timer getTimer() {
 		return timer;
 	}
@@ -291,6 +266,4 @@ public class FirstMap extends Map {
 		this.timer = timer;
 	}
     
-    
-
 }
