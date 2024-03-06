@@ -198,7 +198,9 @@ public class SecondMap extends Map {
 	public void setChildSecondMapPanel(JPanel childSecondMapPanel) {
 		this.childSecondMapPanel = childSecondMapPanel;
 	}
-
+    public JLabel[] getObj() {
+		return obj;
+	}
 	public boolean isAddHeart() {
 		return addHeart;
 	}
@@ -238,4 +240,12 @@ public class SecondMap extends Map {
 	public void setY(int[] y) {
 		this.y = y;
 	}
+
+    public MyFrame getMf() {
+        return Mf;
+    }
+
+    public void setMf(MyFrame mf) {
+        Mf = mf;
+    }
 }

@@ -55,7 +55,7 @@ public class Monster {
     }
 
     public void running() {
-        if (Mf.countFoot >= 100) {
+        if (Mf.getCountFoot() >= 100) {
 
             if (xDice >= Mf.jframeWidth - MonsterWidth || xDice < 0) {
                 xVelocity[0] = xVelocity[0] * (-1);
@@ -66,7 +66,7 @@ public class Monster {
             }
             yDice -= yVelocity[0];
         }
-        if (Mf.countFoot >= 200) {
+        if (Mf.getCountFoot() >= 200) {
             if (xJoystick >= Mf.jframeWidth - MonsterWidth || xJoystick < 0) {
                 xVelocity[1] = xVelocity[1] * (-1);
             }
@@ -76,7 +76,7 @@ public class Monster {
             }
             yJoystick += yVelocity[1];
         }
-        if (Mf.countFoot >= 300) {
+        if (Mf.getCountFoot() >= 300) {
             if (xSyrinnge >= Mf.jframeWidth - MonsterWidth | xSyrinnge < 0) {
                 xVelocity[2] = xVelocity[2] * (-1);
             }
@@ -86,7 +86,7 @@ public class Monster {
             }
             ySyrinnge += yVelocity[2];
         }
-           if (Mf.countFoot==800) {
+           if (Mf.getCountFoot()==800) {
            
             Arrays.fill(xVelocity, 8);
             Arrays.fill(yVelocity, 8);
@@ -100,5 +100,63 @@ public class Monster {
         g2.drawImage(joystick, xJoystick, yJoystick, MonsterWidth, MonsterHeight, null);
         g2.drawImage(syrinnge, xSyrinnge, ySyrinnge, MonsterWidth + 10, MonsterHeight + 10, null);
     }
+
+    public boolean getMonsterVisible(int i) {
+        return monsterVisible[i];
+    }
+
+    public void setMonsterVisible(boolean monsterVisible,int i) {
+        this.monsterVisible[i] = monsterVisible;
+    }
+
+    public int getxDice() {
+        return xDice;
+    }
+
+    public void setxDice(int xDice) {
+        this.xDice = xDice;
+    }
+
+    public int getyDice() {
+        return yDice;
+    }
+
+    public void setyDice(int yDice) {
+        this.yDice = yDice;
+    }
+
+    public int getxSyrinnge() {
+        return xSyrinnge;
+    }
+
+    public void setxSyrinnge(int xSyrinnge) {
+        this.xSyrinnge = xSyrinnge;
+    }
+
+    public int getySyrinnge() {
+        return ySyrinnge;
+    }
+
+    public void setySyrinnge(int ySyrinnge) {
+        this.ySyrinnge = ySyrinnge;
+    }
+
+    public int getxJoystick() {
+        return xJoystick;
+    }
+
+    public void setxJoystick(int xJoystick) {
+        this.xJoystick = xJoystick;
+    }
+
+    public int getyJoystick() {
+        return yJoystick;
+    }
+
+    public void setyJoystick(int yJoystick) {
+        this.yJoystick = yJoystick;
+    }
+
+  
 
 }

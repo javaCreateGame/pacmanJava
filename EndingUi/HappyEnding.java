@@ -27,7 +27,7 @@ public class HappyEnding {
    private JPanel happyEndingPanel[]=new JPanel[4];
     String Ending[] = {
     "Chúc mừng bạn đã hoàn thành xuất sắc mục tiêu được đề ra! Thành thật mà nói, tôi khá bất ngờ vì không nghĩ bạn có thể đạt được kết quả cao đến vậy. Nhưng sự quyết tâm và kỷ luật của bạn trong suốt những năm tháng qua đã chứng minh điều ngược lại. Đó sẽ là chìa khóa giúp bạn tiếp bước trên con đường trưởng thành của mình.Nhiệm vụ của tôi với bạn đã hoàn thành. Chúc bạn sẽ trải qua khoảng thời gian đẹp đẽ thời sinh viên. Bây giờ, tôi sẽ tiếp tục hành trình của mình để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn. Bạn có muốn cùng tôi tham gia?",
-    "Wow, thật tuyệt vời! Tôi thực sự bất ngờ khi bạn hoàn thành mục tiêu xuất sắc  như vậy. Chắc chắn bạn sẽ trở thành một tinh anh của xã hội, góp phần xây dựng đất nước ngày càng phát triển.Nhiệm vụ của tôi với bạn đã hoàn thành. Bạn có muốn cùng tôi tiếp bước để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn? Tôi tin rằng với sự góp sức của bạn, mọi thử thách đều sẽ diễn ra suôn sẻ."
+    "Wow, thật tuyệt vời! Tôi thực sự bất ngờ khi bạn hoàn thành mục tiêu nhanh và xuất sắc  như vậy. Chắc chắn bạn sẽ trở thành một tinh anh của xã hội, góp phần xây dựng đất nước ngày càng phát triển.Nhiệm vụ của tôi với bạn đã hoàn thành. Bạn có muốn cùng tôi tiếp bước để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn? Tôi tin rằng với sự góp sức của bạn, mọi thử thách đều sẽ diễn ra suôn sẻ."
 };
    private JTextArea text[] =new JTextArea[2];
    JLabel img[]=new JLabel[2];
@@ -68,8 +68,8 @@ public class HappyEnding {
     } 
     public void setPanel(){
         for(int i=0;i<2;i++){
-            text[i]=new JTextArea(Ending[i]);
-            text[i].setBounds(80,420,455,140);
+            text[i]=new JTextArea();
+            text[i].setBounds(80,420,455,170);
             text[i].setEnabled(false);
             text[i].setBackground(new Color(173,85,63));
             text[i].setAlignmentY(JTextArea.CENTER_ALIGNMENT);
@@ -111,8 +111,8 @@ public class HappyEnding {
         happyEndingPanelSum.setOpaque(true);
         happyEndingPanelSum.setVisible(true);
         happyEndingPanelSum.setLayout(null);
-        buttonEnding.getYesButton().setBounds(210, 550, 80, 50);
-        buttonEnding.getNoButton().setBounds(260, 550, 80, 50);
+        buttonEnding.getYesButton().setBounds(210, 580, 80, 50);
+        buttonEnding.getNoButton().setBounds(260, 580, 80, 50);
         happyEndingPanelSum.add(buttonEnding.getYesButton());
         happyEndingPanelSum.add(buttonEnding.getNoButton());
         happyEndingPanelSum.add(cardPanel);
