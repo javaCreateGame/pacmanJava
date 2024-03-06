@@ -68,7 +68,7 @@ public class HappyEnding {
     } 
     public void setPanel(){
         for(int i=0;i<2;i++){
-            text[i]=new JTextArea(Ending[i]);
+            text[i]=new JTextArea();
             text[i].setBounds(80,420,455,170);
             text[i].setEnabled(false);
             text[i].setBackground(new Color(173,85,63));

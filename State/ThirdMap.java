@@ -295,7 +295,9 @@ public class ThirdMap extends Map {
 	public static int getSecondsLeft() {
 		return secondsLeft;
 	}
-
+    public JLabel[] getObj() {
+		return obj;
+	}
 	public static void setSecondsLeft(int secondsLeft) {
 		ThirdMap.secondsLeft = secondsLeft;
 	}
