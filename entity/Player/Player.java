@@ -14,7 +14,7 @@ public class Player {
     public int speed;
     // Tạo biến lưu trữ ảnh chuyển động của nhân vâth
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public String imgName;
+    private String imgName;
     public String direction;// biến để cho biết khi nào nên dùng hành động nào
     // Biến lưu trữ để khiến thay đổi giữa up1 và up2
     public int spriteCounter = 0, spriteNum = 1;
@@ -120,4 +120,13 @@ public class Player {
         g2.drawImage(img, PlayerPositionX, PlayerPositionY, PlayerWidth, PLayerHeight, null);
 
     }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
+    }
+    
 }
