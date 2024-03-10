@@ -37,8 +37,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     
     private String nameCardLayout;
     private int score = 0;
-    public int jframeWidth = 615, jframeHeight = 615;
-    public int jframeHeightParent = 690;
+    private int jframeWidth = 615, jframeHeight = 615;
+    private int jframeHeightParent = 690;
     private int countFoot = 0;
     private int FPS = 60;
    
@@ -66,8 +66,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.add(thirdMap.getThirdMapPanel(), "ThirdMap");
         cardPanel.add(secondMap.getSecondMapPanel(), "SecondMap");
         cardPanel.add(firstMap.getFirstMapPanel(), "FirstMap");
-        cardPanel.add(trailer.trailerPanel, "Trailer");
-        cardPanel.add(intro.introPanel, "Intro");
+        cardPanel.add(trailer.getTrailerPanel(), "Trailer");
+        cardPanel.add(intro.getIntroPanel(), "Intro");
         cardPanel.add(badEnding.getBadEndingPanelSum(), "BadEnding");
         cardPanel.add(happyEnding.getHappyEndingPanelSum(), "HappyEnding");
         
@@ -91,13 +91,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         this.init();
 
         // Thêm ActionListener cho nút "Start" trong Intro
-        intro.Start.addActionListener(this);
+        intro.getStart().addActionListener(this);
 
         // Thêm ActionListener cho nút "Exit" trong Intro
-        intro.Exit.addActionListener(this);
+        intro.getExit().addActionListener(this);
 
         // Thêm ActionListener cho nút "nextButton" trong Intro
-        trailer.nextButton.addActionListener(this);
+        trailer.getNextButton().addActionListener(this);
        
         badEnding.getButtonEnding().getYesButton().addActionListener(this);
         badEnding.getButtonEnding().getNoButton().addActionListener(this);
@@ -131,13 +131,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Xử lý sự kiện khi nút "Start" được nhấn
-        if (e.getSource() == intro.Start) {
+        if (e.getSource() == intro.getStart()) {
             // Dừng âm thanh hiện tại
             soundMain.stop();
             // Chuyển sang cửa sổ Trailer
             nameCardLayout = "Trailer";
             cardLayout.show(cardPanel, nameCardLayout);
-            trailer.timer.start();
+            trailer.getTimer().start();
 
             // Thay đổi âm thanh phần intro thành trailer
             soundMain.setFile(2);
@@ -150,7 +150,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // } else if (e.getSource() == trailer.skipButton) {
             // // Dừng âm thanh gõ phím
             // soundInternal.stop();
-        } else if (e.getSource() == trailer.nextButton) {
+        } else if (e.getSource() == trailer.getNextButton()) {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
@@ -170,7 +170,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             Reset.ResetAll(this);
         }
         // Xử lý sự kiện khi nút "Exit" được nhấn
-        else if (e.getSource() == intro.Exit || e.getSource() == badEnding.getButtonEnding().getNoButton()
+        else if (e.getSource() == intro.getExit() || e.getSource() == badEnding.getButtonEnding().getNoButton()
                 || e.getSource() == happyEnding.getButtonEnding().getNoButton()) {
             // Thoát ứng dụng
             // Tạo 1 bảng thông báo để xác nhận có muốn thoát k ,nếu có thì thoát
@@ -264,15 +264,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
-    
-   
-
-
-    //getter
     public String getNameCardLayout() {
         return nameCardLayout;
     }
 
+    public void setNameCardLayout(String nameCardLayout) {
+        this.nameCardLayout = nameCardLayout;
+    }
 
     public HappyEnding getHappyEnding() {
         return happyEnding;
@@ -342,13 +340,19 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         return countFoot;
     }
 
-
-    //Setter
-    public void setNameCardLayout(String nameCardLayout) {
-        this.nameCardLayout = nameCardLayout;
-    }
     public void setCountFoot(int countFoot) {
         this.countFoot = countFoot;
     }
 
+    public int getJframeWidth() {
+        return jframeWidth;
+    }
+
+    public int getJframeHeight() {
+        return jframeHeight;
+    }
+
+    public int getJframeHeightParent() {
+        return jframeHeightParent;
+    }
 }

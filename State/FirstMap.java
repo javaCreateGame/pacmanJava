@@ -16,22 +16,21 @@ import java.io.FileNotFoundException;
 public class FirstMap extends Map {
     private JPanel firstMapPanel;
     private JPanel childFirstMapPanel;
-    private JLabel obj[];
     private JLabel heart;
     private boolean addHeart= true;
     private boolean removeHeart= false;
     private int heartXLocation = 298, heartYLocation = 279;
     MyFrame Mf;
-    private int x[] = new int[n];
-    private int y[] = new int[n];
+    private int x[] = new int[getN()];
+    private int y[] = new int[getN()];
     private JLabel mapLabel;
     private Timer timer;
     public FirstMap(MyFrame Mf){
       this.Mf=Mf;
        //set up panel
        firstMapPanel =new JPanel();
-       firstMapPanel.setSize( Mf.jframeWidth, Mf.jframeHeight);
-       firstMapPanel.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
+       firstMapPanel.setSize( Mf.getJframeWidth(), Mf.getJframeHeight());
+       firstMapPanel.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
        firstMapPanel.setLayout(null);
         //Code Giao dien
 
@@ -41,30 +40,28 @@ public class FirstMap extends Map {
         // Đặt hình nền cho First Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map1.png");
 
-        Image img1 = imageIcon.getImage();
-        Image newImage1 = img1.getScaledInstance(Mf.jframeWidth, Mf.jframeHeight, Image.SCALE_SMOOTH);
-        ImageIcon scaledImageIcon = new ImageIcon(newImage1);
+        Image imgBgr = imageIcon.getImage();
+        Image newImageBgr = imgBgr.getScaledInstance(Mf.getJframeWidth(), Mf.getJframeHeight(), Image.SCALE_SMOOTH);
+        ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
 
         // // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
-        background.setBounds(0,0,Mf.jframeWidth,Mf.jframeHeight);
+        background.setBounds(0,0,Mf.getJframeWidth(),Mf.getJframeHeight());
 
         // Thêm JLabel vào content pane với BorderLayout
         firstMapPanel.add(background);
         
         // Tạo một JPanel để chứa các thành phần khác
         childFirstMapPanel = new JPanel();
-        childFirstMapPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
+        childFirstMapPanel.setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
         childFirstMapPanel.setLayout(null); // Set layout thành null để có thể đặt vị trí tự do
         childFirstMapPanel.setOpaque(false);
 
         // Set size cho các obj
 
-        this.obj = new JLabel[20];
-        int n = this.obj.length;
-        for (int i = 0; i < n; i++) {
-            this.obj[i] = new JLabel();
-            this.obj[i].setSize(15, 15);
+        for (int i = 0; i < getN(); i++) {
+            this.getObj()[i] = new JLabel();
+            this.getObj()[i].setSize(15, 15);
         }
 
         // Đặt hình nền cho obj
@@ -82,8 +79,8 @@ public class FirstMap extends Map {
         ImageIcon newImageIconHeart = new ImageIcon(newImageHeart);
         this.heart.setIcon(newImageIconHeart);
 
-        for (int i = 0; i < n; i++) {
-          this.obj[i].setIcon(newImageIcon);
+        for (int i = 0; i < getN(); i++) {
+          this.getObj()[i].setIcon(newImageIcon);
         }
 
         // Đặt vị trí của các obj trên background
@@ -94,7 +91,7 @@ public class FirstMap extends Map {
                 int p = sc.nextInt();
                 int q = sc.nextInt();
 
-                if (i < n) { // Đảm bảo rằng i không vượt quá số lượng JLabel trong mảng obj[]
+                if (i < getN()) { // Đảm bảo rằng i không vượt quá số lượng JLabel trong mảng obj[]
                     x[i] = p;
                     y[i] = q;
                     i++; // Tăng biến i lên để đến JLabel tiếp theo trong mảng obj[]
@@ -105,17 +102,17 @@ public class FirstMap extends Map {
             e.printStackTrace(); // In ra lỗi nếu tệp tin không được tìm thấy
         }
 
-        for (int i = 0; i < n; i++) {
-          obj[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
-          childFirstMapPanel.add(obj[i]); // Thêm JLabel vào childFirstMapPanel
-          addObj[i]=true;
+        for (int i = 0; i < getN(); i++) {
+          getObj()[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
+          childFirstMapPanel.add(getObj()[i]); // Thêm JLabel vào childFirstMapPanel
+          setAddObj(true, i);
         }
 
         // Thêm trái tim vào map
         
         this.heart.setLocation(heartXLocation, heartYLocation);
         childFirstMapPanel.add(heart);
-       
+        addHeart=true;
         background.add(childFirstMapPanel);
  
         //*****************************************************/
@@ -123,8 +120,8 @@ public class FirstMap extends Map {
         mapLabel.setFont(new Font("Arial", Font.BOLD, 45));
         mapLabel.setForeground(Color.BLACK);
         mapLabel.setPreferredSize(new Dimension(mapLabel.getPreferredSize().width + 20, mapLabel.getPreferredSize().height));
-        int labelX = (Mf.jframeWidth - mapLabel.getPreferredSize().width) / 2;
-        int labelY = (Mf.jframeHeight - mapLabel.getPreferredSize().height) / 2;
+        int labelX = (Mf.getJframeWidth() - mapLabel.getPreferredSize().width) / 2;
+        int labelY = (Mf.getJframeHeight() - mapLabel.getPreferredSize().height) / 2;
         mapLabel.setBounds(labelX, labelY, mapLabel.getPreferredSize().width, mapLabel.getPreferredSize().height);
         childFirstMapPanel.add(mapLabel);
 
@@ -190,80 +187,45 @@ public class FirstMap extends Map {
 	public JPanel getFirstMapPanel() {
 		return firstMapPanel;
 	}
-	public void setFirstMapPanel(JPanel firstMapPanel) {
-		this.firstMapPanel = firstMapPanel;
-	}
+    
 	public JPanel getChildFirstMapPanel() {
 		return childFirstMapPanel;
 	}
-	public void setChildFirstMapPanel(JPanel childFirstMapPanel) {
-		this.childFirstMapPanel = childFirstMapPanel;
-	}
-	public JLabel[] getObj() {
-		return obj;
-	}
-    public JLabel getObjI(int i) {
-		return obj[i];
-	}
-	public void setObj(JLabel[] obj) {
-		this.obj = obj;
-	}
-    public void setObjI(JLabel obj, int i) {
-		this.obj[i] = obj;
-	}
+
 	public JLabel getHeart() {
 		return heart;
 	}
-	public void setHeart(JLabel heart) {
-		this.heart = heart;
-	}
+    
 	public boolean isAddHeart() {
 		return addHeart;
 	}
+    
 	public void setAddHeart(boolean addHeart) {
 		this.addHeart = addHeart;
 	}
+
 	public boolean isRemoveHeart() {
 		return removeHeart;
 	}
+    
 	public void setRemoveHeart(boolean removeHeart) {
 		this.removeHeart = removeHeart;
 	}
+    
 	public int getHeartXLocation() {
 		return heartXLocation;
 	}
-	public void setHeartXLocation(int heartXLocation) {
-		this.heartXLocation = heartXLocation;
-	}
+	
 	public int getHeartYLocation() {
 		return heartYLocation;
 	}
-	public void setHeartYLocation(int heartYLocation) {
-		this.heartYLocation = heartYLocation;
-	}
+
 	public int[] getX() {
 		return x;
 	}
-	public void setX(int[] x) {
-		this.x = x;
-	}
+	
 	public int[] getY() {
 		return y;
-	}
-	public void setY(int[] y) {
-		this.y = y;
-	}
-	public JLabel getMapLabel() {
-		return mapLabel;
-	}
-	public void setMapLabel(JLabel mapLabel) {
-		this.mapLabel = mapLabel;
-	}
-	public Timer getTimer() {
-		return timer;
-	}
-	public void setTimer(Timer timer) {
-		this.timer = timer;
 	}
     
 }

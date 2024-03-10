@@ -12,18 +12,17 @@ public class EatBook {
     public static void eatBooks(MyFrame Mf,Map DefaultMap, int x[], int y[], JPanel childJPanel, JLabel obj[]) {
         // Set các điều kiện để nhân vật ăn sách
         for (int i = 0; i < x.length; i++) {
-            int X = (x[i] + Mf.getSecondMap().getNewImageIcon().getIconWidth()) - (Mf.getPlayer().PlayerWidth + Mf.getPlayer().PlayerPositionX);
-            int Y = (y[i] + Mf.getSecondMap().getNewImageIcon().getIconHeight())
-                    - (Mf.getPlayer().PLayerHeight + Mf.getPlayer().PlayerPositionY);
+            int X = (x[i] + Mf.getSecondMap().getNewImageIcon().getIconWidth()) - (Mf.getPlayer().getPlayerWidth() + Mf.getPlayer().getPlayerPositionX());
+            int Y = (y[i] + Mf.getSecondMap().getNewImageIcon().getIconHeight()) - (Mf.getPlayer().getPLayerHeight() + Mf.getPlayer().getPlayerPositionY());
             if (((X >= -28 && X <= 2 && Mf.getPlayer().getImgName() == "")
                     || (X >= -45 && X <= 3 && Mf.getPlayer().getImgName() == "Attack")) &&
-                    Y >= -49 && Y <= -12 && DefaultMap.addObj[i] == true && DefaultMap.removeObj[i] == false) {
+                    Y >= -49 && Y <= -12 && DefaultMap.getAddObj()[i] == true && DefaultMap.getRemoveObj()[i] == false) {
                 // Xóa hình sách trên map và cộng 100 điểm
                 Mf.getSoundInternal().setFile(4);
                 Mf.getSoundInternal().start();
                 childJPanel.remove(obj[i]);
-                DefaultMap.addObj[i] = false;
-                DefaultMap.removeObj[i] = true;
+                DefaultMap.setAddObj(false, i);
+                DefaultMap.setRemoveObj(true, i);
                 Mf.setScore(Mf.getScore()+100);
             }
         }

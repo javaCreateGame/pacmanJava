@@ -5,8 +5,8 @@ import main.MyFrame;
 
 public class NextMap {
     public static void nextMap(MyFrame Mf) {
-        int x = Mf.getPlayer().PlayerPositionX;
-        int y = Mf.getPlayer().PlayerPositionY;
+        int x = Mf.getPlayer().getPlayerPositionX();
+        int y = Mf.getPlayer().getPlayerPositionY();
         boolean next = false;
         if (Mf.getNameCardLayout() == "SecondMap" || Mf.getNameCardLayout() == "FirstMap") {
             if (Mf.getNameCardLayout() == "SecondMap" && Mf.getScore() >= 6000) {
@@ -27,8 +27,8 @@ public class NextMap {
                 ThirdMap.updateTimer(10);
                 ThirdMap.getTimerThirdMap().start();
                 Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
-                Mf.getPlayer().PlayerPositionX = 1;
-                Mf.getPlayer().PlayerPositionY = 315;
+                Mf.getPlayer().setPlayerPositionX(1);
+                Mf.getPlayer().setPlayerPositionY(315);
                 Mf.setCountFoot(0);
                 Mf.getMonster().getMonsterImage();
                 Mf.getMonster().setDefaultMonster();
