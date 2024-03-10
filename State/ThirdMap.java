@@ -25,8 +25,8 @@ public class ThirdMap extends Map {
     private boolean addHeart= true;
     private boolean removeHeart= false;
     private JLabel heart;
-    private int x[] = new int[n];
-    private int y[] = new int[n];
+    private int x[] = new int[getN()];
+    private int y[] = new int[getN()];
     private static JLabel timerJLabel;
     private static Timer timerThirdMap;
     private static int secondsLeft;
@@ -38,7 +38,7 @@ public class ThirdMap extends Map {
         this.Mf=Mf;
         // Set layout cho map
         thirdMapPanel = new JPanel();
-        thirdMapPanel.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
+        thirdMapPanel.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
         thirdMapPanel.setLayout(null);
 
         // Set time đếm ngược
@@ -50,18 +50,18 @@ public class ThirdMap extends Map {
         ImageIcon imageIcon = new ImageIcon("./picture/Map3.png");
 
         Image imgBgr = imageIcon.getImage();
-        Image newImageBgr = imgBgr.getScaledInstance(Mf.jframeWidth, Mf.jframeHeight, Image.SCALE_SMOOTH);
+        Image newImageBgr = imgBgr.getScaledInstance(Mf.getJframeWidth(), Mf.getJframeWidth(), Image.SCALE_SMOOTH);
         ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
 
         // // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
-        background.setBounds(0,0,Mf.jframeWidth,Mf.jframeHeight);
+        background.setBounds(0,0,Mf.getJframeWidth(),Mf.getJframeHeight());
         // Thêm JLabel vào content pane với BorderLayout
         thirdMapPanel.add(background);
 
         // Tạo một JPanel để chứa các thành phần khác
         childThirdMapPanel = new JPanel();
-        childThirdMapPanel.setSize(Mf.jframeWidth, Mf.jframeHeight);
+        childThirdMapPanel.setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
         childThirdMapPanel.setLayout(null); // Set layout thành null để có thể đặt vị trí tự do
         childThirdMapPanel.setOpaque(false);
 
@@ -69,9 +69,9 @@ public class ThirdMap extends Map {
 
          
         
-        for (int i = 0; i < n; i++) {
-            this.obj[i] = new JLabel();
-            this.obj[i].setSize(15, 15);
+        for (int i = 0; i < getN(); i++) {
+            this.getObj()[i] = new JLabel();
+            this.getObj()[i].setSize(15, 15);
         }
 
         // Đặt hình nền cho obj
@@ -90,8 +90,8 @@ public class ThirdMap extends Map {
         this.heart.setIcon(newImageIconHeart);
 
         // ajdhjawhhdawh
-        for (int i = 0; i < n; i++) {
-            this.obj[i].setIcon(newImageIcon);
+        for (int i = 0; i < getN(); i++) {
+            this.getObj()[i].setIcon(newImageIcon);
         }
 
         // Đặt vị trí của các obj trên background
@@ -102,7 +102,7 @@ public class ThirdMap extends Map {
                 int p = sc.nextInt();
                 int q = sc.nextInt();
 
-                if (i < n) { // Đảm bảo rằng i không vượt quá số lượng JLabel trong mảng obj[]
+                if (i < getN()) { // Đảm bảo rằng i không vượt quá số lượng JLabel trong mảng obj[]
                     x[i] = p;
                     y[i] = q;
                     i++; // Tăng biến i lên để đến JLabel tiếp theo trong mảng obj[]
@@ -113,10 +113,10 @@ public class ThirdMap extends Map {
             e.printStackTrace(); // In ra lỗi nếu tệp tin không được tìm thấy
         }
 
-        for (int i = 0; i < n; i++) {
-            obj[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
-            childThirdMapPanel.add(obj[i]); // Thêm JLabel vào childFirstMapPanel
-            addObj[i]=true;
+        for (int i = 0; i < getN(); i++) {
+            getObj()[i].setLocation(x[i], y[i]); // Thiết lập vị trí của JLabel thứ i
+            childThirdMapPanel.add(getObj()[i]); // Thêm JLabel vào childFirstMapPanel
+            setAddObj(true, i);
         }
 
         // Thêm trái tim vào map
@@ -294,9 +294,6 @@ public class ThirdMap extends Map {
 
 	public static int getSecondsLeft() {
 		return secondsLeft;
-	}
-    public JLabel[] getObj() {
-		return obj;
 	}
 	public static void setSecondsLeft(int secondsLeft) {
 		ThirdMap.secondsLeft = secondsLeft;

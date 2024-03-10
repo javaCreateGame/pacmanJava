@@ -37,8 +37,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     
     private String nameCardLayout;
     private int score = 0;
-    public int jframeWidth = 615, jframeHeight = 615;
-    public int jframeHeightParent = 690;
+    private int jframeWidth = 615, jframeHeight = 615;
+    private int jframeHeightParent = 690;
     private int countFoot = 0;
     private int FPS = 60;
    
@@ -66,8 +66,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.add(thirdMap.getThirdMapPanel(), "ThirdMap");
         cardPanel.add(secondMap.getSecondMapPanel(), "SecondMap");
         cardPanel.add(firstMap.getFirstMapPanel(), "FirstMap");
-        cardPanel.add(trailer.trailerPanel, "Trailer");
-        cardPanel.add(intro.introPanel, "Intro");
+        cardPanel.add(trailer.getTrailerPanel(), "Trailer");
+        cardPanel.add(intro.getIntroPanel(), "Intro");
         cardPanel.add(badEnding.getBadEndingPanelSum(), "BadEnding");
         cardPanel.add(happyEnding.getHappyEndingPanelSum(), "HappyEnding");
         
@@ -91,13 +91,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         this.init();
 
         // Thêm ActionListener cho nút "Start" trong Intro
-        intro.Start.addActionListener(this);
+        intro.getStart().addActionListener(this);
 
         // Thêm ActionListener cho nút "Exit" trong Intro
-        intro.Exit.addActionListener(this);
+        intro.getExit().addActionListener(this);
 
         // Thêm ActionListener cho nút "nextButton" trong Intro
-        trailer.nextButton.addActionListener(this);
+        trailer.getNextButton().addActionListener(this);
        
         badEnding.getButtonEnding().getYesButton().addActionListener(this);
         badEnding.getButtonEnding().getNoButton().addActionListener(this);
@@ -131,13 +131,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Xử lý sự kiện khi nút "Start" được nhấn
-        if (e.getSource() == intro.Start) {
+        if (e.getSource() == intro.getStart()) {
             // Dừng âm thanh hiện tại
             soundMain.stop();
             // Chuyển sang cửa sổ Trailer
             nameCardLayout = "Trailer";
             cardLayout.show(cardPanel, nameCardLayout);
-            trailer.timer.start();
+            trailer.getTimer().start();
 
             // Thay đổi âm thanh phần intro thành trailer
             soundMain.setFile(2);
@@ -150,7 +150,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             // } else if (e.getSource() == trailer.skipButton) {
             // // Dừng âm thanh gõ phím
             // soundInternal.stop();
-        } else if (e.getSource() == trailer.nextButton) {
+        } else if (e.getSource() == trailer.getNextButton()) {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
@@ -170,7 +170,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             Reset.ResetAll(this);
         }
         // Xử lý sự kiện khi nút "Exit" được nhấn
-        else if (e.getSource() == intro.Exit || e.getSource() == badEnding.getButtonEnding().getNoButton()
+        else if (e.getSource() == intro.getExit() || e.getSource() == badEnding.getButtonEnding().getNoButton()
                 || e.getSource() == happyEnding.getButtonEnding().getNoButton()) {
             // Thoát ứng dụng
             // Tạo 1 bảng thông báo để xác nhận có muốn thoát k ,nếu có thì thoát
@@ -264,58 +264,100 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     }
 
-    
-   
-
-
-    //getter
     public String getNameCardLayout() {
         return nameCardLayout;
     }
 
+    public void setNameCardLayout(String nameCardLayout) {
+        this.nameCardLayout = nameCardLayout;
+    }
 
     public HappyEnding getHappyEnding() {
         return happyEnding;
+    }
+
+    public void setHappyEnding(HappyEnding happyEnding) {
+        this.happyEnding = happyEnding;
     }
 
     public BadEnding getBadEnding() {
         return badEnding;
     }
 
+    public void setBadEnding(BadEnding badEnding) {
+        this.badEnding = badEnding;
+    }
+
     public CardLayout getCardLayout() {
         return cardLayout;
+    }
+
+    public void setCardLayout(CardLayout cardLayout) {
+        this.cardLayout = cardLayout;
     }
 
     public JPanel getCardPanel() {
         return cardPanel;
     }
 
+    public void setCardPanel(JPanel cardPanel) {
+        this.cardPanel = cardPanel;
+    }
+
     public SoundEffect getSoundMain() {
         return soundMain;
+    }
+
+    public void setSoundMain(SoundEffect soundMain) {
+        this.soundMain = soundMain;
     }
 
     public SoundEffect getSoundInternal() {
         return soundInternal;
     }
 
+    public void setSoundInternal(SoundEffect soundInternal) {
+        this.soundInternal = soundInternal;
+    }
+
     public SoundEffect getSoundNext() {
         return soundNext;
+    }
+
+    public void setSoundNext(SoundEffect soundNext) {
+        this.soundNext = soundNext;
     }
 
     public Player getPlayer() {
         return player;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public FirstMap getFirstMap() {
         return firstMap;
+    }
+
+    public void setFirstMap(FirstMap firstMap) {
+        this.firstMap = firstMap;
     }
 
     public SecondMap getSecondMap() {
         return secondMap;
     }
 
+    public void setSecondMap(SecondMap secondMap) {
+        this.secondMap = secondMap;
+    }
+
     public ThirdMap getThirdMap() {
         return thirdMap;
+    }
+
+    public void setThirdMap(ThirdMap thirdMap) {
+        this.thirdMap = thirdMap;
     }
 
     public int getScore() {
@@ -330,25 +372,55 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         return monster;
     }
 
+    public void setMonster(Monster monster) {
+        this.monster = monster;
+    }
+
     public PlayerMove getPlayermove() {
         return playermove;
+    }
+
+    public void setPlayermove(PlayerMove playermove) {
+        this.playermove = playermove;
     }
 
     public Trailer getTrailer() {
         return trailer;
     }
 
+    public void setTrailer(Trailer trailer) {
+        this.trailer = trailer;
+    }
+
     public int getCountFoot() {
         return countFoot;
     }
 
-
-    //Setter
-    public void setNameCardLayout(String nameCardLayout) {
-        this.nameCardLayout = nameCardLayout;
-    }
     public void setCountFoot(int countFoot) {
         this.countFoot = countFoot;
     }
 
+    public int getJframeWidth() {
+        return jframeWidth;
+    }
+
+    public void setJframeWidth(int jframeWidth) {
+        this.jframeWidth = jframeWidth;
+    }
+
+    public int getJframeHeight() {
+        return jframeHeight;
+    }
+
+    public void setJframeHeight(int jframeHeight) {
+        this.jframeHeight = jframeHeight;
+    }
+
+    public int getJframeHeightParent() {
+        return jframeHeightParent;
+    }
+
+    public void setJframeHeightParent(int jframeHeightParent) {
+        this.jframeHeightParent = jframeHeightParent;
+    }
 }

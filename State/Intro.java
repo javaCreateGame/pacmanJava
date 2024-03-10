@@ -16,14 +16,14 @@ import java.awt.event.MouseEvent;
 
 public class Intro{
     MyFrame Mf;
-    public JPanel introPanel;
-    public JButton Start;
-    public JButton Exit;
+    private JPanel introPanel;
+    private JButton Start;
+    private JButton Exit;
     public Intro(MyFrame Mf){
         this.Mf=Mf;
         //set up panels
         introPanel = new JPanel(null);
-        introPanel.setSize(Mf.jframeWidth,Mf.jframeHeightParent);
+        introPanel.setSize(Mf.getJframeWidth(),Mf.getJframeHeightParent());
         introPanel.setOpaque(true);
         //Code phần giao diện
         this.init();
@@ -38,7 +38,7 @@ public class Intro{
         
         // Tạo ra một JLabel để chứa hình ảnh làm nền
         JLabel background = new JLabel(new ImageIcon("./picture/Background_Intro.png"));
-        background.setBounds(0, 0, Mf.jframeWidth, Mf.jframeHeightParent);
+        background.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
 
         // Thêm hình ảnh làm nền vào introPanel
         introPanel.add(background);
@@ -102,5 +102,29 @@ public class Intro{
 
         // Thêm nút Exit vào introPanel với index = 1, là đặt nút này ở vị trí sau nút Start (dưới cùng)
         introPanel.add(Exit, 1);
+    }
+
+    public JPanel getIntroPanel() {
+        return introPanel;
+    }
+
+    public void setIntroPanel(JPanel introPanel) {
+        this.introPanel = introPanel;
+    }
+
+    public JButton getStart() {
+        return Start;
+    }
+
+    public void setStart(JButton start) {
+        Start = start;
+    }
+
+    public JButton getExit() {
+        return Exit;
+    }
+
+    public void setExit(JButton exit) {
+        Exit = exit;
     }
 }
