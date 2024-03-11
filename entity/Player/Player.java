@@ -7,17 +7,17 @@ import javax.imageio.ImageIO;
 import main.MyFrame;
 
 public class Player {
-    public int defaultSize = 25;
-    public int PlayerWidth, PLayerHeight;
+    private int defaultSize = 25;
+    private int PlayerWidth, PLayerHeight;
     // Tạo biến lưu trữ tọa độ của nhân vật
-    public int PlayerPositionX, PlayerPositionY;
-    public int speed;
+    private int PlayerPositionX, PlayerPositionY;
+    private int speed;
     // Tạo biến lưu trữ ảnh chuyển động của nhân vâth
-    public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     private String imgName;
-    public String direction;// biến để cho biết khi nào nên dùng hành động nào
+    private String direction;// biến để cho biết khi nào nên dùng hành động nào
     // Biến lưu trữ để khiến thay đổi giữa up1 và up2
-    public int spriteCounter = 0, spriteNum = 1;
+    private int spriteCounter = 0, spriteNum = 1;
     PlayerMove playermove;
     MyFrame Mf;
 
@@ -119,6 +119,31 @@ public class Player {
         // tạo nhân vật lên trên jframe;
         g2.drawImage(img, PlayerPositionX, PlayerPositionY, PlayerWidth, PLayerHeight, null);
 
+    }
+
+    
+    public int getPlayerWidth() {
+        return PlayerWidth;
+    }
+
+    public int getPLayerHeight() {
+        return PLayerHeight;
+    }
+
+    public int getPlayerPositionX() {
+        return PlayerPositionX;
+    }
+
+    public void setPlayerPositionX(int playerPositionX) {
+        PlayerPositionX = playerPositionX;
+    }
+
+    public int getPlayerPositionY() {
+        return PlayerPositionY;
+    }
+
+    public void setPlayerPositionY(int playerPositionY) {
+        PlayerPositionY = playerPositionY;
     }
 
     public String getImgName() {

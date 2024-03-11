@@ -13,15 +13,15 @@ import java.awt.event.MouseAdapter;
 
 public class Trailer  {
    MyFrame Mf;
-    public JTextArea textArea;
-    public JButton nextButton;
-    public JButton skipButton;
+    private JTextArea textArea;
+    private JButton nextButton;
+    private JButton skipButton;
    
     public boolean addHeart= false;
     public boolean removeHeart= false;
 
-    public Timer timer;
-    public JLayeredPane trailerPanel;
+    private Timer timer;
+    private JLayeredPane trailerPanel;
     String[] linesToShow = {
             "Bạn là học sinh cấp 2 vừa thi và đỗ vào trường cấp 3 mong muốn.",
             "Đầu tiên chúc mừng bạn đã đỗ vào ngôi trường mơ ước nhưng đừng chủ quan, vì lúc này đây sẽ là những bước đầu trên con đường trưởng thành của bạn.",
@@ -32,8 +32,8 @@ public class Trailer  {
             "Đôi khi trên con đường này bạn gặp 1 người tiếp bước cùng bạn trên con đường. Người này sẽ cùng bạn vượt qua những ngoại vật gây ảnh hưởng nhưng nếu bạn quá đắm chìm vào chuyện của 2 người thì mục tiêu của bạn sẽ khó có thể được hoàn thành.",
             "Chúc bạn may mắn !!!"
     };
-    public int currentLineIndex = 0;
-    public int currentCharacterIndex = 0;
+    private int currentLineIndex = 0;
+    private int currentCharacterIndex = 0;
 
     public Trailer(MyFrame Mf) {
         this.Mf=Mf;
@@ -156,6 +156,34 @@ public class Trailer  {
                 }
             }
         });
+    }
+
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+
+    public JButton getNextButton() {
+        return nextButton;
+    }
+
+    public JButton getSkipButton() {
+        return skipButton;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public JLayeredPane getTrailerPanel() {
+        return trailerPanel;
+    }
+
+    public void setCurrentLineIndex(int currentLineIndex) {
+        this.currentLineIndex = currentLineIndex;
+    }
+
+    public void setCurrentCharacterIndex(int currentCharacterIndex) {
+        this.currentCharacterIndex = currentCharacterIndex;
     }
 }
 

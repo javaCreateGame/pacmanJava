@@ -11,9 +11,9 @@ public class Transform {
         double dem = Math.floor((Math.random()*2)+1);
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + Mf.getSecondMap().getNewImageIconHeart().getIconWidth())
-                - (Mf.getPlayer().PlayerWidth + Mf.getPlayer().PlayerPositionX);
+                - (Mf.getPlayer().getPlayerWidth() + Mf.getPlayer().getPlayerPositionX());
         int Y = (heartYLocation + Mf.getSecondMap().getNewImageIconHeart().getIconHeight())
-                - (Mf.getPlayer().PLayerHeight + Mf.getPlayer().PlayerPositionY);
+                - (Mf.getPlayer().getPLayerHeight() + Mf.getPlayer().getPlayerPositionY());
         if (X >= -30 && X <= 7 && Y >= -45 && Y <= -8 && addHeart == true
                 && removeHeart == false) {
             // Nhân vật không thể biến hình và bị giảm 500 điểm

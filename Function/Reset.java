@@ -24,14 +24,14 @@ public class Reset {
 
         //Gọi hàm discardBook để setup lại book
         discardBook(Mf,Mf.getFirstMap(), Mf.getFirstMap().getChildFirstMapPanel(), Mf.getFirstMap().getObj());
-        discardBook(Mf,Mf.getSecondMap(), Mf.getSecondMap().getChildSecondMapPanel(), Mf.getSecondMap().obj);
-        discardBook(Mf,Mf.getThirdMap(), Mf.getThirdMap().getChildThirdMapPanel(), Mf.getThirdMap().obj);
+        discardBook(Mf,Mf.getSecondMap(), Mf.getSecondMap().getChildSecondMapPanel(), Mf.getSecondMap().getObj());
+        discardBook(Mf,Mf.getThirdMap(), Mf.getThirdMap().getChildThirdMapPanel(), Mf.getThirdMap().getObj());
 
         // xóa tất cả các dong chữ chạy của trailer và cho bắt đầu từ đầu
-        Mf.getTrailer().timer.stop();
-        Mf.getTrailer().currentLineIndex = 0;
-        Mf.getTrailer().currentCharacterIndex = 0;
-        Mf.getTrailer().textArea.setText("");
+        Mf.getTrailer().getTimer().stop();
+        Mf.getTrailer().setCurrentLineIndex(0);
+        Mf.getTrailer().setCurrentCharacterIndex(0);
+        Mf.getTrailer().getTextArea().setText("");
 
         dicardEnding(Mf);
 
@@ -83,8 +83,8 @@ public class Reset {
       public static void discardBook(MyFrame Mf,Map defaultMap,  JPanel childJPanel, JLabel obj[]) {
       for(int i=0;i<obj.length;i++){
         childJPanel.add(obj[i]);
-        defaultMap.addObj[i]=true;
-        defaultMap.removeObj[i]= false;
+        defaultMap.setAddObj(true, i);
+        defaultMap.setRemoveObj(false, i);
       }
       Mf.setScore(0);
     }

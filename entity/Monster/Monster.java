@@ -11,15 +11,15 @@ import javax.imageio.ImageIO;
 import main.MyFrame;
 
 public class Monster {
-    public boolean monsterVisible[] = new boolean[3];
-    public final int defaultSize = 25;
-    public int MonsterWidth, MonsterHeight;
+    private boolean monsterVisible[] = new boolean[3];
+    private final int defaultSize = 25;
+    private int MonsterWidth, MonsterHeight;
     // Tạo biến lưu trữ tọa độ của nhân vật
-    public int xJoystick, yJoystick, xDice, yDice, xSyrinnge, ySyrinnge;
-    public int xVelocity[] = new int[3];
-    public int yVelocity[] = new int[3];
+    private int xJoystick, yJoystick, xDice, yDice, xSyrinnge, ySyrinnge;
+    private int xVelocity[] = new int[3];
+    private int yVelocity[] = new int[3];
     // Tạo biến lưu trữ ảnh chuyển động của nhân vâth
-    public BufferedImage dice, joystick, syrinnge;
+    private BufferedImage dice, joystick, syrinnge;
     MyFrame Mf;
 
     public Monster(MyFrame Mf) {
@@ -57,31 +57,31 @@ public class Monster {
     public void running() {
         if (Mf.getCountFoot() >= 100) {
 
-            if (xDice >= Mf.jframeWidth - MonsterWidth || xDice < 0) {
+            if (xDice >= Mf.getJframeWidth() - MonsterWidth || xDice < 0) {
                 xVelocity[0] = xVelocity[0] * (-1);
             }
             xDice -= xVelocity[0];
-            if (yDice >= Mf.jframeHeight + 27 - MonsterHeight || yDice < 0) {
+            if (yDice >= Mf.getJframeHeight() + 27 - MonsterHeight || yDice < 0) {
                 yVelocity[0] = yVelocity[0] * (-1);
             }
             yDice -= yVelocity[0];
         }
         if (Mf.getCountFoot() >= 200) {
-            if (xJoystick >= Mf.jframeWidth - MonsterWidth || xJoystick < 0) {
+            if (xJoystick >= Mf.getJframeWidth() - MonsterWidth || xJoystick < 0) {
                 xVelocity[1] = xVelocity[1] * (-1);
             }
             xJoystick += xVelocity[1];
-            if (yJoystick >= Mf.jframeHeight + 27 - MonsterHeight || yJoystick < 0) {
+            if (yJoystick >= Mf.getJframeHeight() + 27 - MonsterHeight || yJoystick < 0) {
                 yVelocity[1] = yVelocity[1] * (-1);
             }
             yJoystick += yVelocity[1];
         }
         if (Mf.getCountFoot() >= 300) {
-            if (xSyrinnge >= Mf.jframeWidth - MonsterWidth | xSyrinnge < 0) {
+            if (xSyrinnge >= Mf.getJframeWidth() - MonsterWidth | xSyrinnge < 0) {
                 xVelocity[2] = xVelocity[2] * (-1);
             }
             xSyrinnge += xVelocity[2];
-            if (ySyrinnge >= Mf.jframeHeight + 27 - MonsterHeight || ySyrinnge < 0) {
+            if (ySyrinnge >= Mf.getJframeHeight() + 27 - MonsterHeight || ySyrinnge < 0) {
                 yVelocity[2] = yVelocity[2] * (-1);
             }
             ySyrinnge += yVelocity[2];
@@ -108,6 +108,17 @@ public class Monster {
     public void setMonsterVisible(boolean monsterVisible,int i) {
         this.monsterVisible[i] = monsterVisible;
     }
+
+
+    public int getMonsterWidth() {
+        return MonsterWidth;
+    }
+
+
+    public int getMonsterHeight() {
+        return MonsterHeight;
+    }
+
 
     public int getxDice() {
         return xDice;
@@ -157,6 +168,15 @@ public class Monster {
         this.yJoystick = yJoystick;
     }
 
-  
+    public void setDice(BufferedImage dice) {
+        this.dice = dice;
+    }
 
+    public void setJoystick(BufferedImage joystick) {
+        this.joystick = joystick;
+    }
+
+    public void setSyrinnge(BufferedImage syrinnge) {
+        this.syrinnge = syrinnge;
+    }
 }
