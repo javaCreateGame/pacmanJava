@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+
 import EndingUi.BadEnding;
 import EndingUi.HappyEnding;
 import Sound.SoundEffect;
@@ -25,6 +26,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     private Player player = new Player(this, playermove);
     private Monster monster = new Monster(this);
      
+    private SignIn_Up Login;
     private SoundEffect soundMain = new SoundEffect();
     private SoundEffect soundInternal = new SoundEffect();
     private SoundEffect soundNext = new SoundEffect();
@@ -55,7 +57,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     private CardLayout cardLayout = new CardLayout();
 
     MyFrame() {
-
+ 
+       
         cardPanel = new JPanel(); // Use JPanel instead of JLayeredPane
         cardPanel.setBounds(0, 0, jframeWidth, jframeHeightParent);
 
@@ -88,13 +91,16 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundMain.loop();
         }
         // Setup Jframe
+       
         this.init();
+        
 
-        // Thêm ActionListener cho nút "Start" trong Intro
-        intro.getStart().addActionListener(this);
+            // Thêm ActionListener cho nút "Start" trong Intro
+            intro.getStart().addActionListener(this);
 
-        // Thêm ActionListener cho nút "Exit" trong Intro
-        intro.getExit().addActionListener(this);
+            // Thêm ActionListener cho nút "Exit" trong Intro
+            intro.getExit().addActionListener(this);
+
 
         // Thêm ActionListener cho nút "nextButton" trong Intro
         trailer.getNextButton().addActionListener(this);
@@ -125,6 +131,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         this.setFocusable(true);
         this.StartGame();
         this.setVisible(true);
+         Login=new SignIn_Up(this);
     }
 
     // Hàm viết logic các nút bấm
@@ -132,24 +139,26 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
         // Xử lý sự kiện khi nút "Start" được nhấn
         if (e.getSource() == intro.getStart()) {
-            // Dừng âm thanh hiện tại
-            soundMain.stop();
-            // Chuyển sang cửa sổ Trailer
-            nameCardLayout = "Trailer";
-            cardLayout.show(cardPanel, nameCardLayout);
-            trailer.getTimer().start();
-
-            // Thay đổi âm thanh phần intro thành trailer
-            soundMain.setFile(2);
-            ;
-            soundMain.start();
-            // Tạo và bắt đầu sử dụng âm thanh gõ phím
-            soundInternal.setFile(1);
-            soundInternal.start();
-            soundInternal.loop();
-            // } else if (e.getSource() == trailer.skipButton) {
-            // // Dừng âm thanh gõ phím
-            // soundInternal.stop();
+           if (Login.isOutDialog()==true) {
+             // Dừng âm thanh hiện tại
+             soundMain.stop();
+             // Chuyển sang cửa sổ Trailer
+             nameCardLayout = "Trailer";
+             cardLayout.show(cardPanel, nameCardLayout);
+             trailer.getTimer().start();
+ 
+             // Thay đổi âm thanh phần intro thành trailer
+             soundMain.setFile(2);
+             ;
+             soundMain.start();
+             // Tạo và bắt đầu sử dụng âm thanh gõ phím
+             soundInternal.setFile(1);
+             soundInternal.start();
+             soundInternal.loop();
+             // } else if (e.getSource() == trailer.skipButton) {
+             // // Dừng âm thanh gõ phím
+             // soundInternal.stop();
+           }
         } else if (e.getSource() == trailer.getNextButton()) {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
@@ -263,15 +272,12 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         g2.dispose();
 
     }
-
+   //getter
     public String getNameCardLayout() {
         return nameCardLayout;
     }
 
-    public void setNameCardLayout(String nameCardLayout) {
-        this.nameCardLayout = nameCardLayout;
-    }
-
+   
     public HappyEnding getHappyEnding() {
         return happyEnding;
     }
@@ -320,9 +326,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
+    
 
     public Monster getMonster() {
         return monster;
@@ -340,9 +344,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         return countFoot;
     }
 
-    public void setCountFoot(int countFoot) {
-        this.countFoot = countFoot;
-    }
+  
 
     public int getJframeWidth() {
         return jframeWidth;
@@ -354,5 +356,17 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
     public int getJframeHeightParent() {
         return jframeHeightParent;
+    }
+
+    //Setter
+    public void setNameCardLayout(String nameCardLayout) {
+        this.nameCardLayout = nameCardLayout;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+    public void setCountFoot(int countFoot) {
+        this.countFoot = countFoot;
     }
 }
