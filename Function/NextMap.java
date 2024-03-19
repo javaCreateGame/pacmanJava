@@ -8,8 +8,8 @@ public class NextMap {
         int x = Mf.getPlayer().getPlayerPositionX();
         int y = Mf.getPlayer().getPlayerPositionY();
         boolean next = false;
-        if (Mf.getNameCardLayout() == "SecondMap" || Mf.getNameCardLayout() == "FirstMap") {
-            if (Mf.getNameCardLayout() == "SecondMap" && Mf.getScore() >= 6000) {
+        if (Mf.getNameCardLayout() == "SecondMap" ) {
+            if (Mf.getNameCardLayout() == "SecondMap" && Mf.getScore() >= 9000) {
                 Mf.getSoundMain().stop();
                 Mf.getHappyEnding().setNumberHappy(1);
                 Ending.HappyEnding(Mf, Mf.getHappyEnding().getNumberHappy());
@@ -23,10 +23,11 @@ public class NextMap {
                 next = true;
             }
             if (next == true) {
+                Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
                 // Hàm chạy thời gian third map
                 ThirdMap.updateTimer(10);
                 ThirdMap.getTimerThirdMap().start();
-                Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
+            
                 Mf.getPlayer().setPlayerPositionX(1);
                 Mf.getPlayer().setPlayerPositionY(315);
                 Mf.setCountFoot(0);

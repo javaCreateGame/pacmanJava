@@ -33,12 +33,13 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
    
     Thread gameThread;
     
-    JLabel scoreLabel;
+   JLabel scoreLabel;
+  
     private JPanel cardPanel; // Use JPanel instead of JLayeredPane
 
     
     private String nameCardLayout;
-    private int score = 0;
+    private int score = 15000;
     private int jframeWidth = 615, jframeHeight = 615;
     private int jframeHeightParent = 690;
     private int countFoot = 0;

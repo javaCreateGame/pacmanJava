@@ -24,17 +24,18 @@ public class HappyEnding {
    private int numberHappy=0;
    private JPanel cardPanel;
    private ButtonEnding buttonEnding=new ButtonEnding();
-   private JPanel happyEndingPanel[]=new JPanel[4];
+   private JPanel happyEndingPanel[]=new JPanel[3];
     String Ending[] = {
-    "Chúc mừng bạn đã hoàn thành xuất sắc mục tiêu được đề ra! Thành thật mà nói, tôi khá bất ngờ vì không nghĩ bạn có thể đạt được kết quả cao đến vậy. Nhưng sự quyết tâm và kỷ luật của bạn trong suốt những năm tháng qua đã chứng minh điều ngược lại. Đó sẽ là chìa khóa giúp bạn tiếp bước trên con đường trưởng thành của mình.Nhiệm vụ của tôi với bạn đã hoàn thành. Chúc bạn sẽ trải qua khoảng thời gian đẹp đẽ thời sinh viên. Bây giờ, tôi sẽ tiếp tục hành trình của mình để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn. Bạn có muốn cùng tôi tham gia?",
-    "Wow, thật tuyệt vời! Tôi thực sự bất ngờ khi bạn hoàn thành mục tiêu nhanh và xuất sắc  như vậy. Chắc chắn bạn sẽ trở thành một tinh anh của xã hội, góp phần xây dựng đất nước ngày càng phát triển.Nhiệm vụ của tôi với bạn đã hoàn thành. Bạn có muốn cùng tôi tiếp bước để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn? Tôi tin rằng với sự góp sức của bạn, mọi thử thách đều sẽ diễn ra suôn sẻ."
+    "Chúc mừng bạn đã hoàn thành  mục tiêu được đề ra! Thành thật mà nói, tôi khá bất ngờ vì không nghĩ bạn có thể đạt được kết quả cao đến vậy. Nhưng sự quyết tâm và kỷ luật của bạn trong suốt những năm tháng qua đã chứng minh điều ngược lại. Đó sẽ là chìa khóa giúp bạn tiếp bước trên con đường trưởng thành của mình.Nhiệm vụ của tôi với bạn đã hoàn thành. Chúc bạn sẽ trải qua khoảng thời gian đẹp đẽ thời sinh viên. Bây giờ, tôi sẽ tiếp tục hành trình của mình để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn. Bạn có muốn cùng tôi tham gia?",
+    "Wow, thật tuyệt vời! Tôi thực sự bất ngờ khi bạn hoàn thành mục tiêu nhanh và xuất sắc  như vậy. Chắc chắn bạn sẽ trở thành một tinh anh của xã hội, góp phần xây dựng đất nước ngày càng phát triển.Nhiệm vụ của tôi với bạn đã hoàn thành. Bạn có muốn cùng tôi tiếp bước để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn? Tôi tin rằng với sự góp sức của bạn, mọi thử thách đều sẽ diễn ra suôn sẻ.",
+    "Chúc mừng bạn đã hoàn thành mục tiêu! Bạn không chỉ hoàn thành mà còn đạt thành tích xuất sắc, trở thành thủ khoa cả nước và nhận được học bổng của đại học Ha Vớt. Tôi rất tự hào vì là người hướng dẫn của bạn. Nhiệm vụ của tôi cũng đã hoàn thành. Bạn có muốn về với tôi để chia sẻ kiến thức,kinh nghiệm và trải nghiệm đạt thủ khoa cho những người có ước mơ ,có hoài bão và trên con đường trưởng thành không?"
 };
-   private JTextArea text[] =new JTextArea[2];
-   JLabel img[]=new JLabel[2];
+   private JTextArea text[] =new JTextArea[3];
+   JLabel img[]=new JLabel[3];
     String happyURL[] = new String[30];
     public HappyEnding(){
       
-        for(int i=0;i<2;i++){
+        for(int i=0;i<happyEndingPanel.length;i++){
     happyEndingPanel[i] = new JPanel();
        happyEndingPanel[i].setBounds(0,0,615,690);
        happyEndingPanel[i].setOpaque(true);
@@ -67,7 +68,7 @@ public class HappyEnding {
         } );
     } 
     public void setPanel(){
-        for(int i=0;i<2;i++){
+        for(int i=0;i<text.length;i++){
             text[i]=new JTextArea();
             text[i].setBounds(80,420,455,170);
             text[i].setEnabled(false);
@@ -97,7 +98,7 @@ public class HappyEnding {
         // Sử dụng CardLayout cho cardPanel
         cardPanel.setLayout(cardLayout);
         
-        for(int i=0;i<2;i++){
+        for(int i=0;i<happyEndingPanel.length;i++){
             cardPanel.add(happyEndingPanel[i], "happy"+i);
             
             

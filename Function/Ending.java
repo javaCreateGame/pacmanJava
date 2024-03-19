@@ -31,8 +31,12 @@ public class Ending {
                 BadEnding(Mf, Mf.getBadEnding().getNumberBad());
             }
             // Ngược lại bạn chiến thắng
-            else {
+            else if(Mf.getScore()>4500 && Mf.getScore()<=13900) {
                 Mf.getHappyEnding().setNumberHappy(0);
+                HappyEnding(Mf, Mf.getHappyEnding().getNumberHappy());
+            }
+            else{
+                Mf.getHappyEnding().setNumberHappy(2);
                 HappyEnding(Mf, Mf.getHappyEnding().getNumberHappy());
             }
         }
