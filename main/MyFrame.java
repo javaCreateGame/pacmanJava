@@ -26,7 +26,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     private Player player = new Player(this, playermove);
     private Monster monster = new Monster(this);
      
-    private SignIn_Up Login;
+    private SignIn_Up Login=new SignIn_Up(this);
     private SoundEffect soundMain = new SoundEffect();
     private SoundEffect soundInternal = new SoundEffect();
     private SoundEffect soundNext = new SoundEffect();
@@ -100,7 +100,8 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
             // Thêm ActionListener cho nút "Exit" trong Intro
             intro.getExit().addActionListener(this);
-
+            // Thêm ActionListener cho nút "loginButton" để đăng nhập
+            intro.getLoginButton().addActionListener(this);
 
         // Thêm ActionListener cho nút "nextButton" trong Intro
         trailer.getNextButton().addActionListener(this);
@@ -131,7 +132,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         this.setFocusable(true);
         this.StartGame();
         this.setVisible(true);
-         Login=new SignIn_Up(this);
+         
     }
 
     // Hàm viết logic các nút bấm
@@ -139,7 +140,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
         // Xử lý sự kiện khi nút "Start" được nhấn
         if (e.getSource() == intro.getStart()) {
-           if (Login.isOutDialog()==true) {
+            if (Login.isOutDialog()==true) {
              // Dừng âm thanh hiện tại
              soundMain.stop();
              // Chuyển sang cửa sổ Trailer
@@ -155,11 +156,30 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
              soundInternal.setFile(1);
              soundInternal.start();
              soundInternal.loop();
-             // } else if (e.getSource() == trailer.skipButton) {
-             // // Dừng âm thanh gõ phím
-             // soundInternal.stop();
+            }
+           else{
+            JOptionPane.showConfirmDialog(null, "Bạn chưa đăng nhập", "Warning", JOptionPane.PLAIN_MESSAGE);
+
            }
-        } else if (e.getSource() == trailer.getNextButton()) {
+        } 
+        else if (e.getSource()==intro.getLoginButton()) {
+            
+            if (intro.getLoginButton().getText().equals("Đăng nhập")) {
+                Login.setVisible(true);
+                Login.resetLoginDialog();
+                return;
+            }
+            
+            int confirm = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn đăng xuất khỏi tài khoản", "Xác nhận",
+                JOptionPane.YES_NO_OPTION);
+            if (confirm==0) {
+                Login.setVisible(true);
+                Login.resetLoginDialog();
+                Login.setOutDialog(false);
+            }
+            
+        }
+        else if (e.getSource() == trailer.getNextButton()) {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
             soundMain.stop();
@@ -339,6 +359,12 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public Trailer getTrailer() {
         return trailer;
     }
+
+    public Intro getIntro() {
+        return intro;
+    }
+
+
 
     public int getCountFoot() {
         return countFoot;
