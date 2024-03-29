@@ -8,12 +8,13 @@ import main.MyFrame;
 
 public class Player {
     private int defaultSize = 25;
-    private int PlayerWidth, PLayerHeight;
+    int ImgNumber=2;
+    private int PlayerWidth=35, PLayerHeight=50;
     // Tạo biến lưu trữ tọa độ của nhân vật
     private int PlayerPositionX, PlayerPositionY;
     private int speed;
     // Tạo biến lưu trữ ảnh chuyển động của nhân vâth
-    private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    private BufferedImage up1, up2, up3, down1, down2,down3, left1, left2,left3, right1, right2,right3;
     private String imgName;
     private String direction;// biến để cho biết khi nào nên dùng hành động nào
     // Biến lưu trữ để khiến thay đổi giữa up1 và up2
@@ -42,12 +43,16 @@ public class Player {
             // lấy ảnh chuyển động ra từ folder picture
             up1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerUp" + imageName + "1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerUp" + imageName + "2.png"));
+            // up3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerUp" + imageName + "3.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "2.png"));
+            //down3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "3.png"));
             left1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "2.png"));
+            //left3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "3.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "2.png"));
+            //right3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "3.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,27 +96,79 @@ public class Player {
         switch (direction) {
 
             case "up":
-                img = (spriteNum == 1) ? up1 : up2;
+            if (spriteNum==1) {
+                if (ImgNumber==2) {
+                    img=up2;
+                    ImgNumber=3;
+                }
+                else{
+                    img=up3;
+                    ImgNumber=2;
+                }
+            
+            }
+            else if (spriteNum!=1) {
+                img=up1;
+            }
                 defaultSize = (imgName == "Attack") ? 20 : 25;
-                PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
+                // PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "down":
                 defaultSize = (imgName == "Attack") ? 20 : 25;
-                img = (spriteNum == 1) ? down1 : down2;
-                PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
+                if (spriteNum==1) {
+                    if (ImgNumber==2) {
+                        img=down2;
+                        ImgNumber=3;
+                    }
+                    else{
+                        img=down3;
+                        ImgNumber=2;
+                    }
+                
+                }
+                else if (spriteNum!=1) {
+                    img=down1;
+                }
+                // PlayerWidth = PLayerHeight = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "left":
                 defaultSize = (imgName == "Attack") ? 20 : 25;
-                img = (spriteNum == 1) ? left1 : left2;
-                PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
+                if (spriteNum==1) {
+                    if (ImgNumber==2) {
+                        img=left2;
+                        ImgNumber=3;
+                    }
+                    else{
+                        img=left3;
+                        ImgNumber=2;
+                    }
+                
+                }
+                else if (spriteNum!=1) {
+                    img=left1;
+                }
+                // PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;
                 break;
             case "right":
                 defaultSize = (imgName == "Attack") ? 18 : 25;
-                img = (spriteNum == 1) ? right1 : right2;
-                PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
+                if (spriteNum==1) {
+                    if (ImgNumber==2) {
+                        img=right2;
+                        ImgNumber=3;
+                    }
+                    else{
+                        img=right3;
+                        ImgNumber=2;
+                    }
+                
+                }
+                else if (spriteNum!=1) {
+                    img=right1;
+                }
+                // PLayerHeight = PlayerWidth = (imgName == "Attack") ? defaultSize * 2 : defaultSize;
                 speed = (imgName == "Attack") ? 5 : 3;
                 break;
         }
