@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
+import Controller.IntroController;
 import EndingUi.BadEnding;
 import EndingUi.HappyEnding;
 import Sound.SoundEffect;
@@ -46,7 +46,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
    
     
     // Tạo các object để sử dụng các biến của chúng
-    private Intro intro = new Intro(this);
+    private IntroController intro = new IntroController(this);
     private Trailer trailer = new Trailer(this);
     private FirstMap firstMap = new FirstMap(this);
     private SecondMap secondMap = new SecondMap(this);
@@ -70,7 +70,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.add(secondMap.getSecondMapPanel(), "SecondMap");
         cardPanel.add(firstMap.getFirstMapPanel(), "FirstMap");
         cardPanel.add(trailer.getTrailerPanel(), "Trailer");
-        cardPanel.add(intro.getIntroPanel(), "Intro");
+        cardPanel.add(intro.getIntroModel().getIntroPanel(), "Intro");
         cardPanel.add(badEnding.getBadEndingPanelSum(), "BadEnding");
         cardPanel.add(happyEnding.getHappyEndingPanelSum(), "HappyEnding");
         
@@ -96,12 +96,12 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         
 
             // Thêm ActionListener cho nút "Start" trong Intro
-            intro.getStart().addActionListener(this);
+            intro.getIntroModel().getStart().addActionListener(this);
 
             // Thêm ActionListener cho nút "Exit" trong Intro
-            intro.getExit().addActionListener(this);
+            intro.getIntroModel().getExit().addActionListener(this);
             // Thêm ActionListener cho nút "loginButton" để đăng nhập
-            intro.getLoginButton().addActionListener(this);
+            intro.getIntroModel().getLoginButton().addActionListener(this);
 
         // Thêm ActionListener cho nút "nextButton" trong Intro
         trailer.getNextButton().addActionListener(this);
@@ -139,7 +139,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Xử lý sự kiện khi nút "Start" được nhấn
-        if (e.getSource() == intro.getStart()) {
+        if (e.getSource() == intro.getIntroModel().getStart()) {
             if (Login.isOutDialog()==true) {
              // Dừng âm thanh hiện tại
              soundMain.stop();
@@ -162,9 +162,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
            }
         } 
-        else if (e.getSource()==intro.getLoginButton()) {
+        else if (e.getSource()==intro.getIntroModel().getLoginButton()) {
             
-            if (intro.getLoginButton().getText().equals("Đăng nhập")) {
+            if (intro.getIntroModel().getLoginButton().getText().equals("Đăng nhập")) {
                 Login.setVisible(true);
                 Login.resetLoginDialog();
                 return;
@@ -199,7 +199,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             Reset.ResetAll(this);
         }
         // Xử lý sự kiện khi nút "Exit" được nhấn
-        else if (e.getSource() == intro.getExit() || e.getSource() == badEnding.getButtonEnding().getNoButton()
+        else if (e.getSource() == intro.getIntroModel().getExit() || e.getSource() == badEnding.getButtonEnding().getNoButton()
                 || e.getSource() == happyEnding.getButtonEnding().getNoButton()) {
             // Thoát ứng dụng
             // Tạo 1 bảng thông báo để xác nhận có muốn thoát k ,nếu có thì thoát
@@ -360,7 +360,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         return trailer;
     }
 
-    public Intro getIntro() {
+    public IntroController getIntro() {
         return intro;
     }
 
