@@ -35,7 +35,7 @@ public class BadEnding {
    String badURL[] = new String[30];
     public BadEnding(){
       
-        for(int i=0;i<4;i++){
+        for(int i=0;i<badEndingPanel.length;i++){
         badEndingPanel[i] = new JPanel();
        badEndingPanel[i].setBounds(0,0,615,690);
        badEndingPanel[i].setOpaque(true);
@@ -71,7 +71,7 @@ public class BadEnding {
         } );
     } 
     public void setPanel(){
-        for(int i=0;i<4;i++){
+        for(int i=0;i<text.length;i++){
             text[i]=new JTextArea();
             text[i].setBounds(80,420,455,40);
             text[i].setEnabled(false);
@@ -101,7 +101,7 @@ public class BadEnding {
         // Sử dụng CardLayout cho cardPanel
         cardPanel.setLayout(cardLayout);
         
-        for(int i=0;i<4;i++){
+        for(int i=0;i<badEndingPanel.length;i++){
             cardPanel.add(badEndingPanel[i], "bad"+i);
             
             

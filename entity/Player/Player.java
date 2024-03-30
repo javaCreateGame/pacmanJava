@@ -34,7 +34,7 @@ public class Player {
     public void setDefaultPlayer() {
         PlayerPositionX = 150;
         PlayerPositionY = 335;
-        speed = 3;
+        speed = 10;
         direction = "down";
     }
 
@@ -64,10 +64,8 @@ public class Player {
 
         if (playermove.playerRight || playermove.playerDown || playermove.playerUp || playermove.playerLeft) {
 
-           if (PlayerPositionX>300) {
-              speed=(PlayerPositionX>300)?0:3;
-              PlayerPositionX=PlayerPositionX-3;
-           }
+           
+           
             if (playermove.playerUp) {
                 direction = "up";
                 PlayerPositionY -= speed;
@@ -142,7 +140,7 @@ public class Player {
         defaultSize = (imgName == "Attack") ? 35 : 30;
         PlayerWidth = defaultSize;
         PLayerHeight=(imgName == "Attack")? defaultSize+15 :defaultSize+10;
-        speed = (imgName == "Attack") ? 6 : 3;
+        speed = (imgName == "Attack") ? 20 : 10;
     }
     public int getPlayerWidth() {
         return PlayerWidth;

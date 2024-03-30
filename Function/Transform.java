@@ -8,7 +8,8 @@ import main.MyFrame;
 public class Transform {
      public static void transform( MyFrame Mf,int heartXLocation, int heartYLocation,
         boolean addHeart,boolean removeHeart) {
-        double dem = Math.floor((Math.random()*2)+1);
+        // double dem = Math.floor((Math.random()*2)+1);
+        double dem=2;
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + Mf.getSecondMap().getNewImageIconHeart().getIconWidth())
                 - (Mf.getPlayer().getPlayerWidth() + Mf.getPlayer().getPlayerPositionX());
