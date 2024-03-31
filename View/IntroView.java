@@ -26,6 +26,7 @@ public class IntroView {
         introModel.getIntroPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeightParent());
         introModel.getIntroPanel().setOpaque(true);
         introModel.getIntroPanel().setLayout(null);
+        introModel.getIntroPanel.setVisible(true);
         // Code phần giao diện
         this.init();
 
