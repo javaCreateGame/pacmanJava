@@ -45,7 +45,7 @@ public class LoginController implements ActionListener {
     if (e.getSource() == loginModel.getLargeButton()) {
       if (loginModel.getEncodeCheckBox().getText().equals(loginModel.getEncodeVisible().getText())) {
        loginModel.setOutDialog(true);
-        Mf.getIntro().getIntroModel().getLoginButton().setText(loginModel.getUsername()[0].getText());
+        Mf.getIntro().getLoginButton().setText(loginModel.getUsername()[0].getText());
         loginModel.setVisible(false);
       } 
       else {

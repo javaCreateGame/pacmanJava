@@ -182,7 +182,7 @@ public class SignIn_Up extends JDialog implements ActionListener {
     if (e.getSource() == largeButton) {
       if (encodeCheckBox.getText().equals(EncodeVisible.getText())) {
         outDialog = true;
-        Mf.getIntro().getIntroModel().getLoginButton().setText(username[0].getText());
+        Mf.getIntro().getLoginButton().setText(username[0].getText());
         this.setVisible(false);
       } 
       else {
