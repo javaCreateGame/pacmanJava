@@ -34,7 +34,7 @@ public class Player {
     public void setDefaultPlayer() {
         PlayerPositionX = 150;
         PlayerPositionY = 335;
-        speed = 10;
+        speed = 3;
         direction = "down";
     }
 
@@ -46,13 +46,13 @@ public class Player {
             up3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerUp" + imageName + "3.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "3.png"));
+            //down3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "3.png"));
             left1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "3.png"));
+            //left3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "3.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "3.png"));
+            //right3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "3.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,10 +137,10 @@ public class Player {
             return action1;
     }
     public void changeSpeed_Size(){
-        defaultSize = (imgName == "Attack") ? 35 : 30;
+        defaultSize = (imgName.contains("Attack")) ? 35 : 30;
         PlayerWidth = defaultSize;
         PLayerHeight=(imgName == "Attack")? defaultSize+15 :defaultSize+10;
-        speed = (imgName == "Attack") ? 20 : 10;
+        speed = (imgName == "Attack") ? 6 : 3;
     }
     public int getPlayerWidth() {
         return PlayerWidth;
