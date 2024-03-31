@@ -55,8 +55,10 @@ public class Player {
     }
 
     public void update() {
+        //Timer của mapLabel đang chạy thì nv ko di chuyển
+        if (Mf.getFirstMap().getTimer1().isRunning() == true || Mf.getSecondMap().getTimer2().isRunning() == true || Mf.getThirdMap().getTimer3().isRunning() == true){}
+        else
         // logic phần bấm bấm nút di chuyển
-
         if (playermove.playerRight || playermove.playerDown || playermove.playerUp || playermove.playerLeft) {
 
           

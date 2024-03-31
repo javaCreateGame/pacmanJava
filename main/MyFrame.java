@@ -157,10 +157,10 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
              soundInternal.start();
              soundInternal.loop();
             }
-           else{
-            JOptionPane.showConfirmDialog(null, "Bạn chưa đăng nhập", "Warning", JOptionPane.PLAIN_MESSAGE);
+            else{
+             JOptionPane.showConfirmDialog(null, "Bạn chưa đăng nhập", "Warning", JOptionPane.PLAIN_MESSAGE);
 
-           }
+            }
         } 
         else if (e.getSource()==intro.getLoginButton()) {
             
@@ -184,8 +184,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             soundInternal.stop();
             soundMain.stop();
             nameCardLayout = "FirstMap";
+            firstMap.getTimer1().restart();
             cardLayout.show(cardPanel, nameCardLayout);
-
+            
             // Thay đổi âm thanh Trailer sang âm thanh của map
             soundMain.setFile(3);
             soundMain.start();

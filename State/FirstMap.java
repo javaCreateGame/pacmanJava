@@ -132,19 +132,18 @@ public class FirstMap extends Map {
           @Override
           public void actionPerformed(ActionEvent e) {
               count++;
-              if (count <= 8) { // Hiển thị trong 3 giây đầu
+              if (count <= 3) { // Hiển thị trong 3 giây đầu
                   float opacity = 1.0f - (count / 8.0f); // Ẩn dần chữ "Map 1"
                   mapLabel.setForeground(new Color(0, 0, 0, Math.max(0, Math.min(255, (int) (opacity * 255))))); // Đặt màu chữ
                   // mapLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
               } else {
                   timer.stop(); // Dừng Timer sau khi đã đủ thời gian hiển thị
                   mapLabel.setVisible(false); // Ẩn hoàn toàn chữ "Map 1"
+                  count = 0;
               }
           }
       });
 
-      // Bắt đầu Timer
-      timer.start();
       
 
         
@@ -227,5 +226,13 @@ public class FirstMap extends Map {
 	public int[] getY() {
 		return y;
 	}
+
+    public JLabel getMapLabel(){
+        return mapLabel;
+    }
+    
+    public Timer getTimer1(){
+        return timer;
+    }
     
 }
