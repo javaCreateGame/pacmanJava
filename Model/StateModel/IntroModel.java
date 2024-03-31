@@ -1,4 +1,4 @@
-package Model;
+package Model.StateModel;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

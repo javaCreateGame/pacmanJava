@@ -1,7 +1,7 @@
-package Controller;
+package Controller.StateController;
 
-import Model.IntroModel;
-import View.IntroView;
+import Model.StateModel.IntroModel;
+import View.StateView.IntroView;
 import main.MyFrame;
 
 public class IntroController {

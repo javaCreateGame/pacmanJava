@@ -1,15 +1,16 @@
-package View;
+package View.StateView;
 
 import javax.swing.JButton;
 
-
-import Model.IntroModel;
 import main.MyFrame;
 
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import Model.StateModel.IntroModel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -26,7 +27,7 @@ public class IntroView {
         introModel.getIntroPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeightParent());
         introModel.getIntroPanel().setOpaque(true);
         introModel.getIntroPanel().setLayout(null);
-        introModel.getIntroPanel.setVisible(true);
+        
         // Code phần giao diện
         this.init();
 
@@ -55,7 +56,7 @@ public class IntroView {
 
         // Thêm nút Start vào introPanel với index = 0, là đặt nút này ở vị trí đầu tiên
         // (trên cùng)
-        introModel.getIntroPanel().add(introModel.getStart());
+        introModel.getIntroPanel().add(introModel.getStart(),0);
 
         // Tạo ra một nút Exit và đặt nội dung cho nó là Exit
 
@@ -66,17 +67,17 @@ public class IntroView {
 
         // Thêm Exit vào introPanel với index = 1, là đặt nút này ở vị trí sau nút Start
         // (dưới cùng)
-        introModel.getIntroPanel().add(introModel.getExit());
+        introModel.getIntroPanel().add(introModel.getExit(),1);
 
         // Tạo ra một nút loginButton nhấn sẽ đến cửa sổ đăng nhập
         introModel.getLoginButton().setFont(new Font("Arial", Font.BOLD, 16));
         introModel.getLoginButton().setBounds(Mf.getJframeWidth() - 130, Mf.getJframeHeight() - 620, 130, 50);
 
         setUpButton(introModel.getLoginButton());
-        introModel.getIntroPanel().add(introModel.getLoginButton());
+        introModel.getIntroPanel().add(introModel.getLoginButton(),1);
 
     }
-
+//Hàm setup button
     public void setUpButton(JButton button) {
         // Set màu chữ ban đầu
         button.setForeground(new Color(128, 0, 0));
