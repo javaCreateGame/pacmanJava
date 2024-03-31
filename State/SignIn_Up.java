@@ -138,7 +138,7 @@ public class SignIn_Up extends JDialog implements ActionListener {
 
   //chỉnh trang windown để hiện login
   private void SetUpJDialog() {
-    this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+    this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
     this.setLayout(null);
 
     this.setSize(300, 300);
