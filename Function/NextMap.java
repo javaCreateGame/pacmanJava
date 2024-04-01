@@ -14,13 +14,17 @@ public class NextMap {
                 Mf.getHappyEnding().setNumberHappy(1);
                 Ending.HappyEnding(Mf, Mf.getHappyEnding().getNumberHappy());
             }
-            if (x >= 612 && (y > 209 && y < 300) && Mf.getNameCardLayout() == "FirstMap") {
+            if (x >= 588 && (y > 235 && y < 275) && Mf.getNameCardLayout() == "FirstMap") {
                 Mf.setNameCardLayout("SecondMap"); 
+                Mf.getSecondMap().getTimer2().restart();
                 next = true;
+                
             }
-            if (x >= 596 && (y > 272 && y < 318) &&  Mf.getNameCardLayout() == "SecondMap") {
+            if (x >= 588 && (y > 278 && y < 318) &&  Mf.getNameCardLayout() == "SecondMap") {
                 Mf.setNameCardLayout("ThirdMap"); 
+                Mf.getThirdMap().getTimer3().restart();
                 next = true;
+                
             }
             if (next == true) {
                 // Hàm chạy thời gian third map

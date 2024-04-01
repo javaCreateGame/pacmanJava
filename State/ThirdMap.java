@@ -25,6 +25,8 @@ public class ThirdMap extends Map {
     private boolean addHeart= true;
     private boolean removeHeart= false;
     private JLabel heart;
+    private JLabel mapLabel;
+    private Timer timer3;
     private int x[] = new int[getN()];
     private int y[] = new int[getN()];
     private static JLabel timerJLabel;
@@ -125,6 +127,35 @@ public class ThirdMap extends Map {
         childThirdMapPanel.add(heart);
         addHeart=true;
         background.add(childThirdMapPanel);
+
+        //*****************************************************/
+        mapLabel = new JLabel("LỚP 12");
+        mapLabel.setFont(new Font("Arial", Font.BOLD, 45));
+        mapLabel.setForeground(Color.BLACK);
+        mapLabel.setPreferredSize(new Dimension(mapLabel.getPreferredSize().width + 20, mapLabel.getPreferredSize().height));
+        int labelX = (Mf.getJframeWidth() - mapLabel.getPreferredSize().width) / 2;
+        int labelY = (Mf.getJframeHeight() - mapLabel.getPreferredSize().height) / 2;
+        mapLabel.setBounds(labelX, labelY, mapLabel.getPreferredSize().width, mapLabel.getPreferredSize().height);
+        childThirdMapPanel.add(mapLabel);
+
+        // Khởi tạo Timer
+        timer3 = new Timer(1000, new ActionListener() {
+          int count = 0;
+
+          @Override
+          public void actionPerformed(ActionEvent e) {
+              count++;
+              if (count <= 3) { // Hiển thị trong 3 giây đầu
+                  float opacity = 1.0f - (count / 8.0f); // Ẩn dần chữ "Map 1"
+                  mapLabel.setForeground(new Color(0, 0, 0, Math.max(0, Math.min(255, (int) (opacity * 255))))); // Đặt màu chữ
+                  // mapLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+              } else {
+                  timer3.stop(); // Dừng Timer sau khi đã đủ thời gian hiển thị                 
+                  mapLabel.setVisible(false); // Ẩn hoàn toàn chữ "Map 1"
+                  count = 0;
+              }
+          }
+      });   
 
         // Thêm lắng nghe sự kiện MouseListener vào JLabel background
         background.addMouseListener(new MyMouseListener());
@@ -287,5 +318,11 @@ public class ThirdMap extends Map {
 		this.cardPanel = cardPanel;
 	}
 
+    public JLabel getMapLabel3(){
+        return mapLabel;
+    }
     
+    public Timer getTimer3(){
+        return timer3;
+    }
 }
