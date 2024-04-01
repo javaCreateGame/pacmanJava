@@ -187,9 +187,7 @@ public class SignIn_Up extends JDialog implements ActionListener {
       } 
       else {
         JOptionPane.showConfirmDialog(null, "Bạn đã nhập sai check box", "Warning", JOptionPane.PLAIN_MESSAGE);
-        code.newKey();
-        code.encrypt((int) Math.floor((Math.random() * 3) + 1));
-        EncodeVisible.setText(String.valueOf(code.getLetter()));
+        resetLoginDialog();
       }
     }
   }

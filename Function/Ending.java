@@ -32,8 +32,14 @@ public class Ending {
             }
             // Ngược lại bạn chiến thắng
             else {
+               if (Mf.getScore()>4500 && Mf.getScore() <11000) {
                 Mf.getHappyEnding().setNumberHappy(0);
-                HappyEnding(Mf, Mf.getHappyEnding().getNumberHappy());
+                
+               }
+               else{
+                Mf.getHappyEnding().setNumberHappy(2);
+               }
+               HappyEnding(Mf, Mf.getHappyEnding().getNumberHappy());
             }
         }
     }

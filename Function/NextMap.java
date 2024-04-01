@@ -9,7 +9,7 @@ public class NextMap {
         int y = Mf.getPlayer().getPlayerPositionY();
         boolean next = false;
         if (Mf.getNameCardLayout() == "SecondMap" || Mf.getNameCardLayout() == "FirstMap") {
-            if (Mf.getNameCardLayout() == "SecondMap" && Mf.getScore() >= 6000) {
+            if (Mf.getNameCardLayout() == "SecondMap" && Mf.getScore() >= 9900) {
                 Mf.getSoundMain().stop();
                 Mf.getHappyEnding().setNumberHappy(1);
                 Ending.HappyEnding(Mf, Mf.getHappyEnding().getNumberHappy());
