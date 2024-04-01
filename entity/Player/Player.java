@@ -83,7 +83,7 @@ public class Player {
                 PlayerPositionX += speed;
             }
             spriteCounter++;
-            if (spriteCounter >= 2) {
+            if (spriteCounter >= 3) {
                 spriteNum = (spriteNum == 1) ? 2 : 1;
                 spriteCounter = 0;
             }
