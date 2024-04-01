@@ -46,13 +46,13 @@ public class Player {
             up3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerUp" + imageName + "3.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "2.png"));
-            //down3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "3.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerDown" + imageName + "3.png"));
             left1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "2.png"));
-            //left3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "3.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerLeft" + imageName + "3.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "1.png"));
             right2 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "2.png"));
-            //right3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "3.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "3.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,7 +83,7 @@ public class Player {
                 PlayerPositionX += speed;
             }
             spriteCounter++;
-            if (spriteCounter >= 4) {
+            if (spriteCounter >= 2) {
                 spriteNum = (spriteNum == 1) ? 2 : 1;
                 spriteCounter = 0;
             }

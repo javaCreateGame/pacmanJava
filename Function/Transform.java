@@ -6,10 +6,11 @@ import java.util.TimerTask;
 import main.MyFrame;
 
 public class Transform {
+    private static int countTranform =0;
      public static void transform( MyFrame Mf,int heartXLocation, int heartYLocation,
         boolean addHeart,boolean removeHeart) {
-        // double dem = Math.floor((Math.random()*2)+1);
-        double dem=2;
+        double dem = Math.floor((Math.random()*2)+1);
+     
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + Mf.getSecondMap().getNewImageIconHeart().getIconWidth())
                 - (Mf.getPlayer().getPlayerWidth() + Mf.getPlayer().getPlayerPositionX());
@@ -21,10 +22,13 @@ public class Transform {
             if (dem == 1) {
                 Mf.getPlayer().setImgName("") ;
                 Mf.setScore(Mf.getScore()-500);
+               countTranform++;
             }
             // Cho nhân vật biến hình và sau 10s về như cũ
             if (dem == 2) {
-                Mf.getPlayer().setImgName("Attack");;
+                String form;
+                form=(countTranform==2)?"DarkAttack":"Attack";
+                Mf.getPlayer().setImgName(form);
                 Mf.getSoundNext().setFile(5);
                 Mf.getSoundNext().start();
 
@@ -77,4 +81,15 @@ public class Transform {
                 
         }
     }
+
+
+    public static int getCountTranform() {
+        return countTranform;
+    }
+
+
+    public static void setCountTranform(int countTranform) {
+        Transform.countTranform = countTranform;
+    }
+    
 }
