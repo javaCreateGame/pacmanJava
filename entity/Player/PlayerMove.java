@@ -27,7 +27,6 @@ public class PlayerMove implements KeyListener {
         if (code == KeyEvent.VK_D) {
             playerRight = true;
         }
-
     }
 
     @Override
@@ -44,7 +43,7 @@ public class PlayerMove implements KeyListener {
         }
         if (code == KeyEvent.VK_D) {
             playerRight = false;
-        }
+        }    
     }
 
 }

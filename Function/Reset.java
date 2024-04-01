@@ -10,6 +10,10 @@ public class Reset {
     
     // Hàm reset mọi thứ về trạng thái ban đầu và trở về Intro
     public static void ResetAll(MyFrame Mf) {
+        
+        Mf.getFirstMap().getMapLabel().setVisible(true);
+        Mf.getSecondMap().getMapLabel2().setVisible(true);
+        Mf.getThirdMap().getMapLabel3().setVisible(true);
         // Dừng nhạc hiện tại
         Mf.getSoundMain().stop();
         Mf.setCountFoot(0);
