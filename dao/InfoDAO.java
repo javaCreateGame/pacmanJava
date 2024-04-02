@@ -26,8 +26,8 @@ public class InfoDAO implements DAOInterface<Info>{
 				Statement st = con.createStatement();
 			
 			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "INSERT INTO info (tenDangNhap, Diem)" + 
-			" VALUES ('"+t.getTenDangNhap()+"' , "+t.getDiem()+" )";
+			String sql = "INSERT INTO info (tenDangNhap, matKhau, Diem)" + 
+			" VALUES ('"+t.getTenDangNhap()+"' , '"+t.getMatKhau()+"' ,"+t.getDiem()+" )";
 			System.out.println(sql);
 			kq = st.executeUpdate(sql);
 			
@@ -39,7 +39,6 @@ public class InfoDAO implements DAOInterface<Info>{
 			JDBCUtil.closeConnection(con);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return kq;
@@ -72,7 +71,6 @@ public class InfoDAO implements DAOInterface<Info>{
 			JDBCUtil.closeConnection(con);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return kq;
@@ -103,7 +101,6 @@ public class InfoDAO implements DAOInterface<Info>{
 			JDBCUtil.closeConnection(con);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return kq;
@@ -129,8 +126,9 @@ public class InfoDAO implements DAOInterface<Info>{
 			System.out.println("Ban da thuc thi: " + sql);
 			while(rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
+				String matKhau = rs.getString("matKhau");
 				int Diem = rs.getInt("Diem");
-				Info info = new Info(tenDangNhap, Diem);
+				Info info = new Info(tenDangNhap, matKhau, Diem);
 				kq.add(info);
 			}
 			
@@ -138,7 +136,6 @@ public class InfoDAO implements DAOInterface<Info>{
 			JDBCUtil.closeConnection(con);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return kq;
@@ -164,16 +161,16 @@ public class InfoDAO implements DAOInterface<Info>{
 			System.out.println("Ban da thuc thi: " + sql);
 			while(rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
+				String matKhau = rs.getString("matKhau");
 				int Diem = rs.getInt("Diem");
 				
-				kq = new Info(tenDangNhap, Diem);
+				kq = new Info(tenDangNhap, matKhau, Diem);
 			}
 			
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return kq;
@@ -199,9 +196,10 @@ public class InfoDAO implements DAOInterface<Info>{
 			System.out.println("Ban da thuc thi: " + sql);
 			while(rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
+				String matKhau = rs.getString("matKhau");
 				int Diem = rs.getInt("Diem");
 				
-				Info info = new Info(tenDangNhap, Diem);
+				Info info = new Info(tenDangNhap, matKhau, Diem);
 				kq.add(info);
 			}
 			
@@ -209,7 +207,6 @@ public class InfoDAO implements DAOInterface<Info>{
 			JDBCUtil.closeConnection(con);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return kq;
