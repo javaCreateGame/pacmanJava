@@ -2,6 +2,7 @@ package State;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,6 +20,9 @@ import java.awt.Font;
 
 import Encode.EncryptionProgram;
 import main.MyFrame;
+
+import daoModel.*;
+import dao.*;
 
 public class SignIn_Up extends JDialog implements ActionListener {
   private String nameLargeButton = "Đăng nhập";
@@ -180,9 +184,58 @@ public class SignIn_Up extends JDialog implements ActionListener {
     }
 
     if (e.getSource() == largeButton) {
+
       if (encodeCheckBox.getText().equals(EncodeVisible.getText())) {
         outDialog = true;
-        Mf.getIntro().getLoginButton().setText(username[0].getText());
+        
+        // Import vào database
+      
+        // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
+        if(largeButton.getText()=="Đăng ký") {
+          ArrayList<Info> list = InfoDAO.getInstance().selectAll();
+          String usernameKiemTra = username[0].getText();
+          boolean contains = false;
+          for (Info info : list) {
+            if(info.getTenDangNhap().equals(usernameKiemTra)) {
+              contains = true;
+              break;
+            }
+          }
+          // Nếu tồn tại rồi, thông báo là đã tồn tại đồng thời reset login dialog
+          if(contains) {
+            JOptionPane.showConfirmDialog(null, "Tên đăng nhập đã tồn tại, vui lòng thử lại với tên khác", "Warning", JOptionPane.PLAIN_MESSAGE);
+            resetLoginDialog();
+          }
+          // Ngược lại nếu chưa tồn tại, import thông tin xuống cơ sở dữ liệu
+          else {
+            int diem = 0;
+            String tenDangNhap = username[0].getText();
+            String matKhau = password[0].getText();
+            Info if1 = new Info(tenDangNhap, matKhau, diem);
+            InfoDAO.getInstance().insert(if1);
+            Mf.getIntro().getLoginButton().setText(username[0].getText());
+          }
+        }
+
+        // Nếu là đăng nhập, kiểm tra điều kiện là mật khẩu phải chính xác với tài khoản
+        if(largeButton.getText()=="Đăng nhập") {
+          String usernameKiemTra = username[0].getText();
+          String matKhauKiemTra = password[0].getText();
+          String query = "tenDangNhap = '"+usernameKiemTra+"' "  ;
+          ArrayList<Info> list = InfoDAO.getInstance().selectByCondition(query);
+          for (Info info : list) {
+            if (info.getMatKhau().equals(matKhauKiemTra)) {
+              Mf.getIntro().getLoginButton().setText(username[0].getText());
+            }
+            // Nếu mật khẩu không chính xác, in ra thông báo đồng thời reset login dialog
+            else {
+              JOptionPane.showConfirmDialog(null, "Tên tài khoản hoặc mật khẩu không đúng, vui lòng kiểm tra lại", "Warning", JOptionPane.PLAIN_MESSAGE);
+              resetLoginDialog();
+            }
+          }
+        }
+
+
         this.setVisible(false);
       } 
       else {
