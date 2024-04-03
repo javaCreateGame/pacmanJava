@@ -5,15 +5,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import Model.SoundModel.SoundEffectModel;
-import View.SoundView.SoundEffectView;
 
 public class SoundEffectController {
     SoundEffectModel soundEffectModel;
-    SoundEffectView soundEffectView;
 
     public SoundEffectController() {
         soundEffectModel = new SoundEffectModel();
-        soundEffectView = new SoundEffectView(soundEffectModel);
     }
 
     // Sử dụng sound
