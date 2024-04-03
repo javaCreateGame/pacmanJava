@@ -160,44 +160,61 @@ public class SignIn_Up extends JDialog implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    //Sự kiên bấm vào nút nhỏ
     if (e.getSource() == smallButton) {
+      //Nếu largerButton hiện có chữ đăng ký thì đổi thành đăng nhập và nguoc lại
       largeButton.setText(nameLargeButton.equals("Đăng ký") ? "Đăng nhập" : "Đăng ký");
+       //Nếu smallButton hiện có chữ đăng ký thì đổi thành đăng ký và ngược lại
       smallButton.setText(nameLargeButton.equals("Đăng ký") ? "Đăng ký" : "Đăng nhập");
 
       // Cập nhật biến sau khi đặt văn bản nút
       nameLargeButton = largeButton.getText(); // Lấy văn bản cập nhật từ nút
       nameSmallButton= smallButton.getText(); // Lấy văn bản cập nhật từ nút
 
+       //Sự kiện chuyển từ trang đăng nhập sang đăng ký
       if (largeButton.getText()=="Đăng ký" && smallButton.getText()=="Đăng nhập" ) {
         setLocationInput_Button(165, 165, 200, 135,true);
       }
+      //Sự kiện chuyển từ trang đăng nhập sang đăng ký
       else{
        setLocationInput_Button(115, 115, 150, 85,false);
       }
+      //thay chuỗi mã hóa thành chuỗi mã hóa mới
       code.newKey();
       code.encrypt((int) Math.floor((Math.random() * 3) + 1));
       EncodeVisible.setText(String.valueOf(code.getLetter()));
     }
 
+    //Sự kiện nhấn nút to
     if (e.getSource() == largeButton) {
+      //Nếu nhập đúng chuỗi mã hóa
       if (encodeCheckBox.getText().equals(EncodeVisible.getText())) {
-        outDialog = true;
+        //Cho biến outDialog bằng true để đảm báo trang Login sẽ đóng
+        outDialog = true; 
+
+        //Lấy settext của loginButton trong intro bằng đúng tên tài khoản vừa nhập
         Mf.getIntro().getLoginButton().setText(username[0].getText());
+        //Ânr trang login
         this.setVisible(false);
+        
       } 
+      //Nếu nhập sai chuỗi mã hóa in ra thông báo
       else {
         JOptionPane.showConfirmDialog(null, "Bạn đã nhập sai check box", "Warning", JOptionPane.PLAIN_MESSAGE);
         resetLoginDialog();
       }
     }
   }
-
+//Hàm reset lại Login
   public void resetLoginDialog(){
+   //đặt lại các input của username và passwword 
     for(int i=0; i< username.length;i++){
       username[i].setText("");
       password[i].setText("");
     }
+    //Đặt lại input phần checkBox
     encodeCheckBox.setText("");
+    //Thay chuỗi mã hóa thành chuỗi mới
     code.newKey();
     code.encrypt((int) Math.floor((Math.random() * 3) + 1));
     EncodeVisible.setText(String.valueOf(code.getLetter()));

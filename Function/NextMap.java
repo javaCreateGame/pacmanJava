@@ -32,7 +32,7 @@ public class NextMap {
                 ThirdMap.getTimerThirdMap().start();
                 Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
                 Mf.getPlayer().setPlayerPositionX(1);
-                Mf.getPlayer().setPlayerPositionY(315);
+                Mf.getPlayer().setPlayerPositionY(290);
                 Mf.setCountFoot(0);
                 Mf.getMonster().getMonsterImage();
                 Mf.getMonster().setDefaultMonster();

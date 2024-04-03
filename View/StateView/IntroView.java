@@ -33,7 +33,7 @@ public class IntroView {
 
     }
 
-    public void init() {
+    private void init() {
         // Set font (Có thể set nhiều font với kích thước khác nhau, chỉ cần đặt khác
         // tên đi là được)
         Font font = new Font("Arial", Font.BOLD, 24);
@@ -78,7 +78,7 @@ public class IntroView {
 
     }
 //Hàm setup button
-    public void setUpButton(JButton button) {
+    private void setUpButton(JButton button) {
         // Set màu chữ ban đầu
         button.setForeground(new Color(128, 0, 0));
         // Làm cho nút trở nên trong suốt

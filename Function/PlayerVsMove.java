@@ -46,7 +46,9 @@ public static void removeMonster(MyFrame Mf) {
     boolean pVsSyrinnge = removeImage(Mf,Mf.getMonster().getxSyrinnge(), Mf.getMonster().getySyrinnge(), Mf.getMonster().getMonsterVisible(2));
     // Nếu đụng vào quái nào thì xóa và ẩn quái đó
     if (pVsDice == true) {
-        Mf.setScore(Mf.getScore()+1000);
+        int eatMonsterScore;
+        eatMonsterScore=(Transform.getCountTranform()==2)?2000:1000;
+        Mf.setScore(Mf.getScore()+eatMonsterScore);
         Mf.getMonster().setDice(null);
         Mf.getMonster().setMonsterVisible(false, 0);
     } else if (pVsJoystick == true) {
