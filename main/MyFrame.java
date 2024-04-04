@@ -10,8 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Controller.LoginController.LoginController;
-import Controller.StateController.IntroController;
+
 import EndingUi.BadEnding;
 import EndingUi.HappyEnding;
 import Sound.SoundEffect;
@@ -27,7 +26,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     private Player player = new Player(this, playermove);
     private Monster monster = new Monster(this);
      
-    private LoginController Login=new LoginController(this);
+    private SignIn_Up Login=new SignIn_Up(this);
     private SoundEffect soundMain = new SoundEffect();
     private SoundEffect soundInternal = new SoundEffect();
     private SoundEffect soundNext = new SoundEffect();
@@ -141,7 +140,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     public void actionPerformed(ActionEvent e) {
         // Xử lý sự kiện khi nút "Start" được nhấn
         if (e.getSource() == intro.getStart()) {
-            if (Login.getLoginModel().isOutDialog()==true) {
+            if (Login.isOutDialog()==true) {
              // Dừng âm thanh hiện tại
              soundMain.stop();
              // Chuyển sang cửa sổ Trailer
@@ -166,7 +165,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         else if (e.getSource()==intro.getLoginButton()) {
             
             if (intro.getLoginButton().getText().equals("Đăng nhập")) {
-                Login.getLoginModel().setVisible(true);
+                Login.setVisible(true);
                 Login.resetLoginDialog();
                 return;
             }
@@ -174,9 +173,9 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             int confirm = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn đăng xuất khỏi tài khoản", "Xác nhận",
                 JOptionPane.YES_NO_OPTION);
             if (confirm==0) {
-                Login.getLoginModel().setVisible(true);
+                Login.setVisible(true);
                 Login.resetLoginDialog();
-                Login.getLoginModel().setOutDialog(false);
+                Login.setOutDialog(false);
             }
             
         }

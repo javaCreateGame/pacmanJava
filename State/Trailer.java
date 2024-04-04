@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 public class Trailer  {
-   MyFrame Mf;
+    MyFrame Mf;
     private JTextArea textArea;
     private JButton nextButton;
     private JButton skipButton;
@@ -42,12 +42,12 @@ public class Trailer  {
 
         //set font
         textArea = new JTextArea();
-        Font font = new Font("Arial", Font.BOLD, 13);
+        Font font = new Font("Arial", Font.BOLD, 12);
         textArea.setFont(font);
         textArea.setForeground(Color.BLACK);
         
         
-        textArea.setBounds(105, 180, 410, 265);
+        textArea.setBounds(105, 193, 410, 265);
         textArea.setOpaque(false);
         textArea.setEnabled(false);
         
@@ -65,8 +65,8 @@ public class Trailer  {
         nextButton = new JButton("Next");
         
         //set size buttons
-        skipButton.setBounds(343, 440, 130, 50);
-        nextButton.setBounds(430, 440, 130, 50);
+        skipButton.setBounds(335, 448, 130, 50);
+        nextButton.setBounds(415, 448, 130, 50);
         
         // Set màu chữ ban đầu
         skipButton.setForeground(Color.BLACK);
