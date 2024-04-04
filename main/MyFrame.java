@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Controller.StateController.IntroController;
+
 import EndingUi.BadEnding;
 import EndingUi.HappyEnding;
 import Sound.SoundEffect;
