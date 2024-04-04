@@ -1,10 +1,18 @@
 package View.EndingView;
 
-import javax.swing.JButton;
 
-import org.w3c.dom.events.MouseEvent;
 
 import Model.EndingModel.ButtonEndingModel;
+
+import javax.swing.*;
+
+
+
+import java.awt.event.MouseEvent;
+
+import java.awt.*;
+
+import java.awt.event.MouseAdapter;
 
 public class ButtonEndingView {
     ButtonEndingModel buttonEndingModel;
@@ -23,7 +31,6 @@ public class ButtonEndingView {
         button.setBorderPainted(false);
         button.setFocusable(false);
        
-        // Thêm trình nghe sự kiện chuột để thay đổi màu chữ khi di chuột vào
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

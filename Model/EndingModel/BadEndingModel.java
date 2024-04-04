@@ -13,7 +13,7 @@ public class BadEndingModel {
     private CardLayout cardLayout = new CardLayout();
    private JPanel badEndingPanelSum=new JPanel();
    private int numberBad;
-   private Timer timerBad;
+  
    private int currentCharacterIndex = 0;
    private JPanel cardPanel=new JPanel();
    private ButtonEnding buttonEnding=new ButtonEnding();
@@ -36,9 +36,7 @@ public JPanel getBadEndingPanelSum() {
 public int getNumberBad() {
     return numberBad;
 }
-public Timer getTimerBad() {
-    return timerBad;
-}
+
 public int getCurrentCharacterIndex() {
     return currentCharacterIndex;
 }
@@ -62,6 +60,12 @@ public JLabel[] getImg() {
 }
 public String[] getBadURL() {
     return badURL;
+}
+public void setCurrentCharacterIndex(int currentCharacterIndex) {
+    this.currentCharacterIndex = currentCharacterIndex;
+}
+public void setNumberBad(int numberBad) {
+    this.numberBad = numberBad;
 }
    
 }

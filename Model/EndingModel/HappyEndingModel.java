@@ -12,7 +12,7 @@ import javax.swing.Timer;
 public class HappyEndingModel {
      private CardLayout cardLayout = new CardLayout();
    private JPanel happyEndingPanelSum= new JPanel();
-   private Timer timerHappy;
+
    private int currentCharacterIndex = 0;
    private int numberHappy=0;
    private JPanel cardPanel=new JPanel();
@@ -34,9 +34,7 @@ public class HappyEndingModel {
     public JPanel getHappyEndingPanelSum() {
         return happyEndingPanelSum;
     }
-    public Timer getTimerHappy() {
-        return timerHappy;
-    }
+  
     public int getCurrentCharacterIndex() {
         return currentCharacterIndex;
     }
@@ -64,6 +62,13 @@ public class HappyEndingModel {
     }
     public ButtonEndingModel getButtonEnding() {
         return buttonEnding;
+    }
+    
+    public void setCurrentCharacterIndex(int currentCharacterIndex) {
+        this.currentCharacterIndex = currentCharacterIndex;
+    }
+    public void setNumberHappy(int numberHappy) {
+        this.numberHappy = numberHappy;
     }
 
     

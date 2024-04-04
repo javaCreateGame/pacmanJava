@@ -53,6 +53,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
     private ThirdMap thirdMap = new ThirdMap(this);
     private BadEnding badEnding = new BadEnding();
     private HappyEnding happyEnding = new HappyEnding();
+    private ScoreBoard scoreBoard = new ScoreBoard(this);
 
     private CardLayout cardLayout = new CardLayout();
 
@@ -73,6 +74,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         cardPanel.add(intro.getIntroPanel(), "Intro");
         cardPanel.add(badEnding.getBadEndingPanelSum(), "BadEnding");
         cardPanel.add(happyEnding.getHappyEndingPanelSum(), "HappyEnding");
+        cardPanel.add(scoreBoard.getscoreBoard(), "ScoreBoard");
         
         // Khởi tạo label cho điểm số và thêm vào panel
         scoreLabel = new JLabel();
@@ -96,13 +98,19 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
         
 
             // Thêm ActionListener cho nút "Start" trong Intro
-            intro.getStart().addActionListener(this);
+        intro.getStart().addActionListener(this);
 
             // Thêm ActionListener cho nút "Exit" trong Intro
-            intro.getExit().addActionListener(this);
+        intro.getExit().addActionListener(this);
             // Thêm ActionListener cho nút "loginButton" để đăng nhập
-            intro.getLoginButton().addActionListener(this);
+        intro.getLoginButton().addActionListener(this);
+         // Thêm ActionListener cho nút "Scoreboard" trong Intro
+         intro.getscoreBoard().addActionListener(this);
+  // Thêm ActionListener cho nút "Scoreboard" trong Intro
+  intro.getscoreBoard().addActionListener(this);
 
+  // Thêm ActionListener cho nút "back" trong Intro
+  scoreBoard.getBack().addActionListener(this);
         // Thêm ActionListener cho nút "nextButton" trong Intro
         trailer.getNextButton().addActionListener(this);
        
@@ -162,6 +170,21 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
 
             }
         } 
+        else if(e.getSource() == intro.getscoreBoard()){
+            // Dừng âm thanh hiện tại
+            soundMain.stop();
+            // Chuyển sang cửa sổ scoreBoard
+            nameCardLayout = "ScoreBoard";
+            cardLayout.show(cardPanel, nameCardLayout);
+        }
+        else if(e.getSource() == scoreBoard.getBack()){
+            // Dừng âm thanh hiện tại
+            soundMain.stop();
+            // Chuyển sang cửa sổ scoreBoard
+            nameCardLayout = "Intro";
+            cardLayout.show(cardPanel, nameCardLayout);
+        }
+
         else if (e.getSource()==intro.getLoginButton()) {
             
             if (intro.getLoginButton().getText().equals("Đăng nhập")) {
@@ -179,6 +202,7 @@ public class MyFrame extends JFrame implements ActionListener, Runnable {
             }
             
         }
+      
         else if (e.getSource() == trailer.getNextButton()) {
             // Dừng âm thanh phần trailer
             soundInternal.stop();
