@@ -6,29 +6,27 @@ import java.util.TimerTask;
 import main.MyFrame;
 
 public class Transform {
-    private static int countTranform =0;
+    
      public static void transform( MyFrame Mf,int heartXLocation, int heartYLocation,
         boolean addHeart,boolean removeHeart) {
         double dem = Math.floor((Math.random()*2)+1);
      
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + Mf.getSecondMap().getNewImageIconHeart().getIconWidth())
-                - (Mf.getPlayer().getPlayerWidth() + Mf.getPlayer().getPlayerPositionX());
+                - (Mf.getPlayer().getPlayerModel().getPlayerWidth() + Mf.getPlayer().getPlayerModel().getPlayerPositionX());
         int Y = (heartYLocation + Mf.getSecondMap().getNewImageIconHeart().getIconHeight())
-                - (Mf.getPlayer().getPLayerHeight() + Mf.getPlayer().getPlayerPositionY());
+                - (Mf.getPlayer().getPlayerModel().getPLayerHeight() + Mf.getPlayer().getPlayerModel().getPlayerPositionY());
         if (X >= -30 && X <= 7 && Y >= -45 && Y <= -8 && addHeart == true
                 && removeHeart == false) {
             // Nhân vật không thể biến hình và bị giảm 500 điểm
             if (dem == 1) {
-                Mf.getPlayer().setImgName("") ;
+                Mf.getPlayer().getPlayerModel().setImgName("") ;
                 Mf.setScore(Mf.getScore()-500);
-               countTranform++;
+               
             }
             // Cho nhân vật biến hình và sau 10s về như cũ
             if (dem == 2) {
-                String form;
-                form=(countTranform==2)?"DarkAttack":"Attack";
-                Mf.getPlayer().setImgName(form);
+                Mf.getPlayer().getPlayerModel().setImgName("Attack");
                 Mf.getSoundNext().setFile(5);
                 Mf.getSoundNext().start();
 
@@ -36,7 +34,7 @@ public class Transform {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        Mf.getPlayer().setImgName("");
+                        Mf.getPlayer().getPlayerModel().setImgName("");
                         timer.cancel();
                     }
                 }, 10000);
@@ -60,7 +58,7 @@ public class Transform {
             }
 
         }
-        Mf.getPlayer().getPlayerImage( Mf.getPlayer().getImgName());
+        Mf.getPlayer().getPlayerView().getPlayerImage( Mf.getPlayer().getPlayerModel().getImgName());
     }
 
     
@@ -83,13 +81,6 @@ public class Transform {
     }
 
 
-    public static int getCountTranform() {
-        return countTranform;
-    }
 
-
-    public static void setCountTranform(int countTranform) {
-        Transform.countTranform = countTranform;
-    }
     
 }

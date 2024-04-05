@@ -35,9 +35,15 @@ public class HappyEndingController {
             
         } );
     }
+    
+   
+
     public HappyEndingModel getHappyEndingModel() {
         return happyEndingModel;
     }
+
+
+
     public Timer getTimerHappy() {
         return timerHappy;
     }
