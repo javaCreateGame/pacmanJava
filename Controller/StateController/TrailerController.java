@@ -28,7 +28,7 @@ public class TrailerController {
                 trailerModel.getSkipButton().setForeground(Color.BLUE); // Đổi màu chữ khi di chuột vào
             }
 
-            @Override
+            @Overrides
             public void mouseExited(MouseEvent e) {
                 trailerModel.getSkipButton().setForeground(Color.BLACK); // Đổi lại màu chữ khi chuột rời khỏi nút
             }

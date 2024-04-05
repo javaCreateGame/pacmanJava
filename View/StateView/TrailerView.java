@@ -1,6 +1,7 @@
 package View.StateView;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
@@ -35,34 +36,30 @@ public class TrailerView {
         //tự động xuống dòng
         trailerModel.getTextArea().setLineWrap(true);
         trailerModel.getTextArea().setWrapStyleWord(true);
-
-        //set size buttons
-        trailerModel.getSkipButton().setBounds(343, 440, 130, 50);
-        trailerModel.getNextButton().setBounds(430, 440, 130, 50);
         
-        // Set màu chữ ban đầu
-        trailerModel.getSkipButton().setForeground(Color.BLACK);
-        trailerModel.getNextButton().setForeground(Color.BLACK);
-        
-        // Làm cho nút skip trở nên trong suốt
-        trailerModel.getSkipButton().setOpaque(false);
-        trailerModel.getSkipButton().setContentAreaFilled(false);
-        trailerModel.getSkipButton().setBorderPainted(false);
-        trailerModel.getSkipButton().setFocusable(false);
-
-        // Làm cho nút next trở nên trong suốt
-        trailerModel.getNextButton().setOpaque(false);
-        trailerModel.getNextButton().setContentAreaFilled(false);
-        trailerModel.getNextButton().setBorderPainted(false);
-        trailerModel.getNextButton().setFocusable(false);
-        
-        trailerModel.getNextButton().setFont(font);
-        trailerModel.getSkipButton().setFont(font);
+        //Đặt button (x, y là tọa độ của button)
+        setUpButton(trailerModel.getNextButton(),430, 440);
+        setUpButton(trailerModel.getSkipButton(),343, 440);       
 
         // Thêm buttonPanel vào trailerModel.getTrailerPanel()  
         trailerModel.getTrailerPanel().add(trailerModel.getSkipButton());
         trailerModel.getTrailerPanel().add(trailerModel.getNextButton());
         trailerModel.getTrailerPanel().add(trailerModel.getTextArea(), JLayeredPane.DEFAULT_LAYER);
         trailerModel.getTrailerPanel().add(backgroundLabel, JLayeredPane.DEFAULT_LAYER);
+    }
+
+    public void setUpButton(JButton button, int x, int y){
+        // Set màu chữ ban đầu
+        button.setForeground(Color.BLACK);
+        //Làm cho nút trong suốt
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.setFocusable(false);
+        //chọn font chữ
+        Font font = new Font("Arial", Font.BOLD, 13);
+        button.setFont(font);
+        //kích cỡ button
+        button.setBounds(x, y, 130, 50);
     }
 }
