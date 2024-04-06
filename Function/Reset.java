@@ -81,7 +81,7 @@ public class Reset {
             Mf.getThirdMap().setRemoveHeart(false);
             Mf.getThirdMap().getChildThirdMapPanel().add(Mf.getThirdMap().getHeart());
               
-            Transform.setCountTranform(0);
+            
         }
 
    

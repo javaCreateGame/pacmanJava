@@ -13,20 +13,20 @@ public class Transform {
      
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + Mf.getSecondMap().getNewImageIconHeart().getIconWidth())
-                - (Mf.getPlayer().getPlayerModel().getPlayerWidth() + Mf.getPlayer().getPlayerModel().getPlayerPositionX());
+                - (Mf.getPlayer().getPlayerWidth() + Mf.getPlayer().getPlayerPositionX());
         int Y = (heartYLocation + Mf.getSecondMap().getNewImageIconHeart().getIconHeight())
-                - (Mf.getPlayer().getPlayerModel().getPLayerHeight() + Mf.getPlayer().getPlayerModel().getPlayerPositionY());
+                - (Mf.getPlayer().getPLayerHeight() + Mf.getPlayer().getPlayerPositionY());
         if (X >= -30 && X <= 7 && Y >= -45 && Y <= -8 && addHeart == true
                 && removeHeart == false) {
             // Nhân vật không thể biến hình và bị giảm 500 điểm
             if (dem == 1) {
-                Mf.getPlayer().getPlayerModel().setImgName("") ;
+                Mf.getPlayer().setImgName("") ;
                 Mf.setScore(Mf.getScore()-500);
                
             }
             // Cho nhân vật biến hình và sau 10s về như cũ
             if (dem == 2) {
-                Mf.getPlayer().getPlayerModel().setImgName("Attack");
+                Mf.getPlayer().setImgName("Attack");
                 Mf.getSoundNext().setFile(5);
                 Mf.getSoundNext().start();
 
@@ -34,7 +34,7 @@ public class Transform {
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        Mf.getPlayer().getPlayerModel().setImgName("");
+                        Mf.getPlayer().setImgName("");
                         timer.cancel();
                     }
                 }, 10000);
@@ -58,7 +58,7 @@ public class Transform {
             }
 
         }
-        Mf.getPlayer().getPlayerView().getPlayerImage( Mf.getPlayer().getPlayerModel().getImgName());
+        Mf.getPlayer().getPlayerImage( Mf.getPlayer().getImgName());
     }
 
     

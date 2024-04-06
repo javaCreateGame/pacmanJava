@@ -36,7 +36,7 @@ public class IntroView {
     private void init() {
         // Set font (Có thể set nhiều font với kích thước khác nhau, chỉ cần đặt khác
         // tên đi là được)
-        Font font = new Font("Arial", Font.BOLD, 24);
+        Font font = new Font("Arial", Font.BOLD, 28);
 
         // Set các thành phần cơ bản cho ứng dụng
         introModel.getIntroPanel().setVisible(true);
@@ -51,7 +51,7 @@ public class IntroView {
         // Tạo ra một nút Start và đặt nội dung cho nó là Start
 
         introModel.getStart().setFont(font);
-        introModel.getStart().setBounds(121, 370, 130, 50);
+        introModel.getStart().setBounds(220, 445, 150, 70);
         setUpButton(introModel.getStart());
 
         // Thêm nút Start vào introPanel với index = 0, là đặt nút này ở vị trí đầu tiên
@@ -65,9 +65,8 @@ public class IntroView {
         introModel.getIntroPanel().add(introModel.getScoreBoard(), 1);
         // Tạo ra một nút Exit và đặt nội dung cho nó là Exit
 
-        introModel.getExit().setFont(font);
-        introModel.getExit().setBounds(355, 370, 130, 50);
-
+        introModel.getExit().setFont(new Font("Arial", Font.BOLD, 20));
+        introModel.getExit().setBounds(380, 555, 130, 50);
         setUpButton(introModel.getExit());
 
         // Thêm Exit vào introPanel với index = 1, là đặt nút này ở vị trí sau nút Start
@@ -76,7 +75,7 @@ public class IntroView {
 
         // Tạo ra một nút loginButton nhấn sẽ đến cửa sổ đăng nhập
         introModel.getLoginButton().setFont(new Font("Arial", Font.BOLD, 16));
-        introModel.getLoginButton().setBounds(Mf.getJframeWidth() - 130, Mf.getJframeHeight() - 620, 130, 50);
+        introModel.getLoginButton().setBounds(Mf.getJframeWidth()-135, Mf.getJframeHeight()-610, 130, 50);
 
         setUpButton(introModel.getLoginButton());
         introModel.getIntroPanel().add(introModel.getLoginButton(),1);
