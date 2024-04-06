@@ -46,7 +46,7 @@ public class PlayerController {
         }
        playerModel.setSpriteCounter(playerModel.getSpriteCounter()+1);
         if (playerModel.getSpriteCounter() >= 3) {
-            int Number=1;
+            int Number;
             playerModel.setSpriteNum(Number=(playerModel.getSpriteNum()==1)?2:1);
             playerModel.setSpriteCounter(0);
         }
@@ -95,7 +95,7 @@ public BufferedImage swapImage(BufferedImage action1,BufferedImage action2,Buffe
         }
     
     }
-    int Number=2;
+    int Number;
     playerModel.setImgNumber(Number=(playerModel.getImgNumber()==2)?3:2);
         return action1;
 }

@@ -13,5 +13,8 @@ public class ButtonEndingControllor {
     public ButtonEndingModel getButtonEndingModel() {
         return buttonEndingModel;
     }
+    public ButtonEndingView getButtonEndingView() {
+        return buttonEndingView;
+    }
     
 }

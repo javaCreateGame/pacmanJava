@@ -97,4 +97,8 @@ public class LoginController implements ActionListener {
     return loginModel;
   }
 
+  public LoginView getLoginView() {
+    return loginView;
+  }
+
 }

@@ -39,4 +39,8 @@ public class BadEndingController {
     public Timer getTimerBad() {
         return timerBad;
     }
+    public BadEndingView getBadEndingView() {
+        return badEndingView;
+    }
+    
 }

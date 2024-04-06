@@ -16,5 +16,8 @@ public class ScoreBoardController {
     public ScoreBoardModel getScoreBoardModel() {
         return scoreBoardModel;
     }
+    public ScoreBoardView getScoreBoardView() {
+        return scoreBoardView;
+    }
     
 }

@@ -47,5 +47,11 @@ public class HappyEndingController {
     public Timer getTimerHappy() {
         return timerHappy;
     }
+
+
+
+    public HappyEndingView getHappyEndingView() {
+        return happyEndingView;
+    }
     
 }
