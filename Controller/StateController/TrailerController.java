@@ -15,7 +15,7 @@ public class TrailerController {
     TrailerModel trailerModel;
     TrailerView trailerView;
 
-    TrailerController(MyFrame Mf){
+    public TrailerController(MyFrame Mf){
         this.Mf = Mf;
         trailerModel = new TrailerModel(Mf);
         trailerView = new TrailerView(Mf, trailerModel);
@@ -28,7 +28,7 @@ public class TrailerController {
                 trailerModel.getSkipButton().setForeground(Color.BLUE); // Đổi màu chữ khi di chuột vào
             }
 
-            @Overrides
+            @Override
             public void mouseExited(MouseEvent e) {
                 trailerModel.getSkipButton().setForeground(Color.BLACK); // Đổi lại màu chữ khi chuột rời khỏi nút
             }
@@ -66,9 +66,9 @@ public class TrailerController {
             public void actionPerformed(ActionEvent e) {
                 if (trailerModel.getCurrentCharacterIndex() < trailerModel.getLinesToShow()[trailerModel.getCurrentLineIndex()].length()) {
                     trailerModel.getTextArea().append(String.valueOf(trailerModel.getLinesToShow()[trailerModel.getCurrentLineIndex()].charAt(trailerModel.getCurrentCharacterIndex())));
-                    trailerModel.setCurrentLineIndex(trailerModel.getCurrentCharacterIndex()+1);
+                    trailerModel.setCurrentCharacterIndex(trailerModel.getCurrentCharacterIndex()+1);
                 } else {
-                    trailerModel.setCurrentLineIndex(trailerModel.getCurrentCharacterIndex()+1);
+                    trailerModel.setCurrentLineIndex(trailerModel.getCurrentLineIndex()+1);
                     if (trailerModel.getCurrentLineIndex() >= trailerModel.getLinesToShow().length) {
                         trailerModel.getTimer().stop();
                         Mf.getSoundInternal().stop();
@@ -79,5 +79,13 @@ public class TrailerController {
                 }
             }
         });
+    }
+
+    public TrailerModel getTrailerModel() {
+        return trailerModel;
+    }
+
+    public void setTrailerModel(TrailerModel trailerModel) {
+        this.trailerModel = trailerModel;
     }
 }

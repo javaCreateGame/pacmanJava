@@ -14,7 +14,7 @@ public class FirstMapController {
     FirstMapModel firstMapModel;
     FirstMapView firstMapView;
     
-    FirstMapController(MyFrame Mf){
+    public FirstMapController(MyFrame Mf){
         this.Mf = Mf;
         firstMapModel = new FirstMapModel(Mf);
         firstMapView = new FirstMapView(Mf, firstMapModel);
@@ -25,7 +25,7 @@ public class FirstMapController {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                count++;
+                count++;               
                 if (count <= 3) { // Hiển thị trong 3 giây đầu
                     float opacity = 1.0f - (count / 8.0f); // Ẩn dần chữ "Map 1"
                     firstMapModel.getMapLabel().setForeground(new Color(0, 0, 0, Math.max(0, Math.min(255, (int) (opacity * 255))))); // Đặt màu chữ
@@ -38,7 +38,8 @@ public class FirstMapController {
             }
         });
     }
-    public FirstMapModel getSecondMapModel() {
+
+    public FirstMapModel getFirstMapModel() {
         return firstMapModel;
     }
 }
