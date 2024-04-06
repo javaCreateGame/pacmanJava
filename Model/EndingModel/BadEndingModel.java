@@ -5,8 +5,8 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.Timer;
 
+import Controller.EndingController.ButtonEndingControllor;
 import EndingUi.ButtonEnding;
 
 public class BadEndingModel {
@@ -16,7 +16,7 @@ public class BadEndingModel {
   
    private int currentCharacterIndex = 0;
    private JPanel cardPanel=new JPanel();
-   private ButtonEnding buttonEnding=new ButtonEnding();
+   private ButtonEndingControllor buttonEnding=new ButtonEndingControllor();
    private JPanel badEndingPanel[]=new JPanel[4];
     String Ending[] = {
         "Bạn đã trượt đại học do vướng vào con đường cờ bạc.Bạn có muốn làm lại cuộc đời?",
@@ -43,7 +43,7 @@ public int getCurrentCharacterIndex() {
 public JPanel getCardPanel() {
     return cardPanel;
 }
-public ButtonEnding getButtonEnding() {
+public ButtonEndingControllor getButtonEnding() {
     return buttonEnding;
 }
 public JPanel[] getBadEndingPanel() {

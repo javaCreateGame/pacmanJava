@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 import Model.EntityModel.PlayerModel.PlayerModel;
 import View.EntityView.PlayerView.PlayerView;
-import entity.Player.PlayerMove;
+
 import main.MyFrame;
 
 public class PlayerController {

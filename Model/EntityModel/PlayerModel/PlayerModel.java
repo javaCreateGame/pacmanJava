@@ -1,7 +1,6 @@
 package Model.EntityModel.PlayerModel;
 
 
-import main.MyFrame;
 import java.awt.image.BufferedImage;
 public class PlayerModel {
      private int defaultSize = 30;

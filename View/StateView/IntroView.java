@@ -58,6 +58,11 @@ public class IntroView {
         // (trên cùng)
         introModel.getIntroPanel().add(introModel.getStart(),0);
 
+
+        introModel.getScoreBoard().setFont(new Font("Arial", Font.BOLD, 19));
+        introModel.getScoreBoard().setBounds(65, 555, 200, 50);
+        setUpButton(introModel.getScoreBoard());
+        introModel.getIntroPanel().add(introModel.getScoreBoard(), 1);
         // Tạo ra một nút Exit và đặt nội dung cho nó là Exit
 
         introModel.getExit().setFont(font);

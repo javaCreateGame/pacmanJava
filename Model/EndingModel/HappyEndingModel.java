@@ -5,7 +5,9 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.Timer;
+
+import Controller.EndingController.ButtonEndingControllor;
+
 
 
 
@@ -16,7 +18,7 @@ public class HappyEndingModel {
    private int currentCharacterIndex = 0;
    private int numberHappy=0;
    private JPanel cardPanel=new JPanel();
-   private ButtonEndingModel buttonEnding=new ButtonEndingModel();
+   private ButtonEndingControllor buttonEnding=new ButtonEndingControllor();
    private JPanel happyEndingPanel[]=new JPanel[3];
     String Ending[] = {
     "Chúc mừng bạn đã hoàn thành xuất sắc mục tiêu được đề ra! Thành thật mà nói, tôi khá bất ngờ vì không nghĩ bạn có thể đạt được kết quả cao đến vậy. Nhưng sự quyết tâm và kỷ luật của bạn trong suốt những năm tháng qua đã chứng minh điều ngược lại. Đó sẽ là chìa khóa giúp bạn tiếp bước trên con đường trưởng thành của mình.Nhiệm vụ của tôi với bạn đã hoàn thành. Chúc bạn sẽ trải qua khoảng thời gian đẹp đẽ thời sinh viên. Bây giờ, tôi sẽ tiếp tục hành trình của mình để giúp đỡ những người khác, đặc biệt là những học sinh có ước mơ ,có hoài bão như bạn. Bạn có muốn cùng tôi tham gia?",
@@ -28,6 +30,7 @@ public class HappyEndingModel {
    private JTextArea text[] =new JTextArea[3];
    JLabel img[]=new JLabel[3];
     String happyURL[] = new String[30];
+   
     public CardLayout getCardLayout() {
         return cardLayout;
     }
@@ -60,16 +63,17 @@ public class HappyEndingModel {
     public String[] getHappyURL() {
         return happyURL;
     }
-    public ButtonEndingModel getButtonEnding() {
+   
+    
+    public ButtonEndingControllor getButtonEnding() {
         return buttonEnding;
     }
-    
     public void setCurrentCharacterIndex(int currentCharacterIndex) {
         this.currentCharacterIndex = currentCharacterIndex;
     }
     public void setNumberHappy(int numberHappy) {
         this.numberHappy = numberHappy;
     }
-
+  
     
 }

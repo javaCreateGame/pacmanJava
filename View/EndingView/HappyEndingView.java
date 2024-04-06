@@ -74,10 +74,10 @@ public class HappyEndingView {
         happyEndingModel.getHappyEndingPanelSum().setOpaque(true);
         happyEndingModel.getHappyEndingPanelSum().setVisible(true);
         happyEndingModel.getHappyEndingPanelSum().setLayout(null);
-        happyEndingModel.getButtonEnding().getYesButton().setBounds(210, 580, 80, 50);
-        happyEndingModel.getButtonEnding().getNoButton().setBounds(260, 580, 80, 50);
-        happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getButtonEnding().getYesButton());
-        happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getButtonEnding().getNoButton());
+        happyEndingModel.getButtonEnding().getButtonEndingModel().getYesButton().setBounds(210, 580, 80, 50);
+        happyEndingModel.getButtonEnding().getButtonEndingModel().getNoButton().setBounds(260, 580, 80, 50);
+        happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getButtonEnding().getButtonEndingModel().getYesButton());
+        happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getButtonEnding().getButtonEndingModel().getNoButton());
         happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getCardPanel());
     }
 

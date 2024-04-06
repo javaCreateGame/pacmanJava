@@ -3,8 +3,8 @@ package Model.EndingModel;
 import javax.swing.JButton;
 
 public class ButtonEndingModel {
-    private JButton YesButton;
-	private JButton NoButton;
+    private JButton YesButton=new JButton("YES");
+	private JButton NoButton=new JButton("NO");
     public JButton getYesButton() {
         return YesButton;
     }

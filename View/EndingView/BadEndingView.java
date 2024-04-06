@@ -82,8 +82,8 @@ public class BadEndingView {
        badEndingModel.getBadEndingPanelSum().setOpaque(true);
        badEndingModel.getBadEndingPanelSum().setVisible(true);
        badEndingModel.getBadEndingPanelSum().setLayout(null);
-       badEndingModel.getBadEndingPanelSum().add(badEndingModel.getButtonEnding().getYesButton());
-       badEndingModel.getBadEndingPanelSum().add(badEndingModel.getButtonEnding().getNoButton());
+       badEndingModel.getBadEndingPanelSum().add(badEndingModel.getButtonEnding().getButtonEndingModel().getYesButton());
+       badEndingModel.getBadEndingPanelSum().add(badEndingModel.getButtonEnding().getButtonEndingModel().getNoButton());
        badEndingModel.getBadEndingPanelSum().add(badEndingModel.getCardPanel());
     }
 }
