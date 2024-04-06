@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import Model.LoginModel.LoginModel;
-import main.MyFrame;
+
 
 public class LoginView {
 private LoginModel loginModel;

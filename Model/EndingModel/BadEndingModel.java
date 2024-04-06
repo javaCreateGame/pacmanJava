@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import Controller.EndingController.ButtonEndingControllor;
-import EndingUi.ButtonEnding;
+
 
 public class BadEndingModel {
     private CardLayout cardLayout = new CardLayout();
