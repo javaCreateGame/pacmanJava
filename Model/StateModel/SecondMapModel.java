@@ -1,6 +1,6 @@
 package Model.StateModel;
 
-import main.MyFrame;
+
 
 import javax.swing.*;
 public class SecondMapModel extends MapModel {
@@ -16,10 +16,10 @@ public class SecondMapModel extends MapModel {
     private Timer timer;
     private int x[] = new int[getN()];
     private int y[] = new int[getN()];
-    MyFrame Mf;
+   
 	
-    public SecondMapModel(MyFrame Mf) {
-        this.Mf = Mf;
+    public SecondMapModel() {
+       
         secondMapPanel = new JPanel();
         childSecondMapPanel = new JPanel();
         heart = new JLabel();
@@ -60,7 +60,7 @@ public class SecondMapModel extends MapModel {
 		return childSecondMapPanel;
 	}
 
-	public boolean getAddHeart() {
+	public boolean isAddHeart() {
 		return addHeart;
 	}
 
@@ -68,7 +68,7 @@ public class SecondMapModel extends MapModel {
 		this.addHeart = addHeart;
 	}
 
-	public boolean getRemoveHeart() {
+	public boolean isRemoveHeart() {
 		return removeHeart;
 	}
 

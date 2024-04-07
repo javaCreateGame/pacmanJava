@@ -1,6 +1,7 @@
 package View.StateView;
 
-import main.MyFrame;
+
+import Model.GameModel.GameModel;
 import Model.StateModel.ThirdMapModel;
 
 import javax.swing.*;
@@ -11,10 +12,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ThirdMapView {
-    MyFrame Mf;
+    GameModel Mf;
     ThirdMapModel thirdMapModel;
 
-    public ThirdMapView(MyFrame Mf, ThirdMapModel thirdMapModel) {
+    public ThirdMapView(GameModel Mf, ThirdMapModel thirdMapModel) {
         this.Mf = Mf;
         this.thirdMapModel = thirdMapModel;
 
@@ -110,11 +111,11 @@ public class ThirdMapView {
         thirdMapModel.getChildThirdMapPanel().add(thirdMapModel.getMapLabel3());
         
         // Khởi tạo các thành phần của biến Timer
-        ThirdMapModel.getTimerJLabel().setFont(new Font("Arial", Font.PLAIN, 16));
-        ThirdMapModel.getTimerJLabel().setForeground(Color.BLACK); // Điều chỉnh màu chữ
+        thirdMapModel.getTimerJLabel().setFont(new Font("Arial", Font.PLAIN, 16));
+        thirdMapModel.getTimerJLabel().setForeground(Color.BLACK); // Điều chỉnh màu chữ
         // Đặt vị trí của scoreLabel
-        ThirdMapModel.getTimerJLabel().setBounds(285, 620, 100, 20); // Đặt ở giữa
+        thirdMapModel.getTimerJLabel().setBounds(285, 620, 100, 20); // Đặt ở giữa
         // Thêm scoreLabel vào panel của ThirdMap
-        thirdMapModel.getThirdMapPanel().add(ThirdMapModel.getTimerJLabel());
+        thirdMapModel.getThirdMapPanel().add(thirdMapModel.getTimerJLabel());
     }    
 }

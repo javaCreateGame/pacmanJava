@@ -1,6 +1,7 @@
 package Controller.StateController;
 
-import main.MyFrame;
+
+import Model.GameModel.GameModel;
 import Model.StateModel.ThirdMapModel;
 import View.StateView.ThirdMapView;
 
@@ -9,13 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ThirdMapController {
-    MyFrame Mf;
+    GameModel Mf;
     ThirdMapModel thirdMapModel;
     ThirdMapView thirdMapView;
     
-    public ThirdMapController(MyFrame Mf) {
+    public ThirdMapController(GameModel Mf) {
         this.Mf = Mf;
-        thirdMapModel = new ThirdMapModel(Mf);
+        thirdMapModel = new ThirdMapModel();
         thirdMapView = new ThirdMapView(Mf, thirdMapModel);
 
         // Gán ActionListener cho Timer
@@ -38,16 +39,16 @@ public class ThirdMapController {
     }
 
     // Phương thức để cập nhật thời gian trên timerJlabel
-    public static void updateTimer(int time){
-        ThirdMapModel.setSecondsLeft(time);
-        ThirdMapModel.getTimerThirdMap().addActionListener(new ActionListener() {
+    public  void updateTimer(int time){
+        thirdMapModel.setSecondsLeft(time);
+        thirdMapModel.getTimerThirdMap().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (ThirdMapModel.getSecondsLeft() > 0) {
-                    ThirdMapModel.setSecondsLeft(ThirdMapModel.getSecondsLeft()-1);
-                    ThirdMapModel.getTimerJLabel().setText("Time: " + ThirdMapModel.getSecondsLeft());
+                if (thirdMapModel.getSecondsLeft() > 0) {
+                    thirdMapModel.setSecondsLeft(thirdMapModel.getSecondsLeft()-1);
+                    thirdMapModel.getTimerJLabel().setText("Time: " + thirdMapModel.getSecondsLeft());
                 } else {
-                    ThirdMapModel.getTimerThirdMap().stop();
+                    thirdMapModel.getTimerThirdMap().stop();
                 }
             }
         });

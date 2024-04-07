@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Encode.EncryptionProgram;
-import main.MyFrame;
+import Model.GameModel.GameModel;
+
 
 public class LoginModel extends JDialog {
     private String nameLargeButton = "Đăng nhập";
@@ -34,7 +35,7 @@ public class LoginModel extends JDialog {
   private JTextField username[] = new JTextField[2];
   private JTextField password[] = new JTextField[2];
   private JLabel EncodeVisible = new JLabel();
-  public LoginModel(MyFrame Mf){
+  public LoginModel(GameModel Mf){
     super(Mf,"Login");
   }
 public String getNameLargeButton() {

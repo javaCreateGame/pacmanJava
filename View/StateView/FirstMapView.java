@@ -12,14 +12,15 @@ import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Model.GameModel.GameModel;
 import Model.StateModel.FirstMapModel;
-import main.MyFrame;
+
 
 public class FirstMapView {
-    MyFrame Mf;
+    GameModel Mf;
     FirstMapModel firstMapModel;
 
-    public FirstMapView(MyFrame Mf, FirstMapModel firstMapModel){
+    public FirstMapView(GameModel Mf, FirstMapModel firstMapModel){
         this.Mf = Mf;
         this.firstMapModel = firstMapModel;
 

@@ -2,21 +2,22 @@ package Controller.StateController;
 
 import java.awt.Color;
 
+import Model.GameModel.GameModel;
 import Model.StateModel.FirstMapModel;
 import View.StateView.FirstMapView;
-import main.MyFrame;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FirstMapController {
-    MyFrame Mf;
+    GameModel Mf;
     FirstMapModel firstMapModel;
     FirstMapView firstMapView;
     
-    public FirstMapController(MyFrame Mf){
+    public FirstMapController(GameModel Mf){
         this.Mf = Mf;
-        firstMapModel = new FirstMapModel(Mf);
+        firstMapModel = new FirstMapModel();
         firstMapView = new FirstMapView(Mf, firstMapModel);
         
         // Gán ActionListener cho Timer

@@ -1,7 +1,6 @@
 package Model.StateModel;
 
-import main.MyFrame;
-import EndingUi.BadEnding;
+
 
 import javax.swing.*;
 
@@ -18,18 +17,18 @@ public class ThirdMapModel extends MapModel {
     private Timer timer3;
     private int x[] = new int[getN()];
     private int y[] = new int[getN()];
-    private static JLabel timerJLabel;
-    private static Timer timerThirdMap;
-    private static int secondsLeft;
-    private static int thirdMapScoreTake;
-    private BadEnding badEndingThirdMap;
+    private JLabel timerJLabel;
+    private  Timer timerThirdMap;
+    private  int secondsLeft;
+    private  int thirdMapScoreTake;
+    
     private JPanel cardPanel;
-    MyFrame Mf;
+    
 	
-    public ThirdMapModel(MyFrame Mf) {
-        this.Mf = Mf;
+    public ThirdMapModel() {
+       
         thirdMapPanel = new JPanel();
-        badEndingThirdMap = new BadEnding();
+        
         childThirdMapPanel = new JPanel();
         heart = new JLabel();
         mapLabel = new JLabel("LỚP 12");
@@ -99,44 +98,40 @@ public class ThirdMapModel extends MapModel {
 		return y;
 	}
 
-	public static JLabel getTimerJLabel() {
+
+	public JLabel getTimerJLabel() {
 		return timerJLabel;
 	}
 
-	public static void setTimerJLabel(JLabel timerJLabel) {
-		ThirdMapModel.timerJLabel = timerJLabel;
+	public void setTimerJLabel(JLabel timerJLabel) {
+		this.timerJLabel = timerJLabel;
 	}
 
-	public static Timer getTimerThirdMap() {
+	public Timer getTimerThirdMap() {
 		return timerThirdMap;
 	}
 
-    public static void setTimerThirdMap(Timer timerThirdMap) {
-        ThirdMapModel.timerThirdMap = timerThirdMap;
-    }    
+	public void setTimerThirdMap(Timer timerThirdMap) {
+		this.timerThirdMap = timerThirdMap;
+	}
 
-	public static int getSecondsLeft() {
+	public int getSecondsLeft() {
 		return secondsLeft;
 	}
-	public static void setSecondsLeft(int secondsLeft) {
-		ThirdMapModel.secondsLeft = secondsLeft;
+
+	public void setSecondsLeft(int secondsLeft) {
+		this.secondsLeft = secondsLeft;
 	}
 
-	public static int getThirdMapScoreTake() {
+	public int getThirdMapScoreTake() {
 		return thirdMapScoreTake;
 	}
 
-	public static void setThirdMapScoreTake(int thirdMapScoreTake) {
-		ThirdMapModel.thirdMapScoreTake = thirdMapScoreTake;
+	public void setThirdMapScoreTake(int thirdMapScoreTake) {
+		this.thirdMapScoreTake = thirdMapScoreTake;
 	}
 
-	public BadEnding getBadEndingThirdMap() {
-		return badEndingThirdMap;
-	}
-
-	public void setBadEndingThirdMap(BadEnding badEndingThirdMap) {
-		this.badEndingThirdMap = badEndingThirdMap;
-	}
+	
 
 	public JPanel getCardPanel() {
 		return cardPanel;

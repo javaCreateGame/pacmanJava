@@ -4,18 +4,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-
-import Model.StateModel.TrailerModel;
-import main.MyFrame;
-
-import java.awt.Font;
 import java.awt.Color;
 
+
+import Model.GameModel.GameModel;
+import Model.StateModel.TrailerModel;
+
+
+import java.awt.Font;
+
+
 public class TrailerView {
-    MyFrame Mf;
+    GameModel Mf;
     TrailerModel trailerModel;
 
-    public TrailerView(MyFrame Mf, TrailerModel trailerModel){
+    public TrailerView(GameModel Mf, TrailerModel trailerModel){
         this.Mf = Mf;
         this.trailerModel = trailerModel;
 
@@ -24,7 +27,7 @@ public class TrailerView {
         trailerModel.getTextArea().setFont(font);
         trailerModel.getTextArea().setForeground(Color.BLACK);
 
-        trailerModel.getTextArea().setBounds(105, 180, 410, 265);
+        trailerModel.getTextArea().setBounds(105, 193, 410, 265);
         trailerModel.getTextArea().setOpaque(false);
         trailerModel.getTextArea().setEnabled(false);
 
@@ -38,8 +41,8 @@ public class TrailerView {
         trailerModel.getTextArea().setWrapStyleWord(true);
         
         //Đặt button (x, y là tọa độ của button)
-        setUpButton(trailerModel.getNextButton(),430, 440);
-        setUpButton(trailerModel.getSkipButton(),343, 440);       
+        setUpButton(trailerModel.getNextButton(),415, 448);
+        setUpButton(trailerModel.getSkipButton(),335, 448);       
 
         // Thêm buttonPanel vào trailerModel.getTrailerPanel()  
         trailerModel.getTrailerPanel().add(trailerModel.getSkipButton());
@@ -61,5 +64,7 @@ public class TrailerView {
         button.setFont(font);
         //kích cỡ button
         button.setBounds(x, y, 130, 50);
+         // Thêm trình nghe sự kiện chuột để thay đổi màu chữ khi di chuột vào
+         
     }
 }
