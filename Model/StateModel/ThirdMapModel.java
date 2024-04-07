@@ -24,10 +24,10 @@ public class ThirdMapModel extends MapModel {
     private static int thirdMapScoreTake;
     private BadEnding badEndingThirdMap;
     private JPanel cardPanel;
-    MyFrame Mf;
+    
 	
-    public ThirdMapModel(MyFrame Mf) {
-        this.Mf = Mf;
+    public ThirdMapModel() {
+       
         thirdMapPanel = new JPanel();
         badEndingThirdMap = new BadEnding();
         childThirdMapPanel = new JPanel();

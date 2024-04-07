@@ -5,12 +5,13 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 import Model.EntityModel.MonsterModel.MonsterModel;
-import main.MyFrame;
+import Model.GameModel.GameModel;
+
 
 public class MonsterView {
     private MonsterModel monsterModel;
-    private MyFrame Mf;
-    public MonsterView(MyFrame Mf,MonsterModel monsterModel){
+    private GameModel Mf;
+    public MonsterView(GameModel Mf,MonsterModel monsterModel){
        this.Mf=Mf;
        this.monsterModel=monsterModel;
        getMonsterImage();

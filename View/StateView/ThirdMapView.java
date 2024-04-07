@@ -1,6 +1,7 @@
 package View.StateView;
 
 import main.MyFrame;
+import Model.GameModel.GameModel;
 import Model.StateModel.ThirdMapModel;
 
 import javax.swing.*;
@@ -11,10 +12,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class ThirdMapView {
-    MyFrame Mf;
+    GameModel Mf;
     ThirdMapModel thirdMapModel;
 
-    public ThirdMapView(MyFrame Mf, ThirdMapModel thirdMapModel) {
+    public ThirdMapView(GameModel Mf, ThirdMapModel thirdMapModel) {
         this.Mf = Mf;
         this.thirdMapModel = thirdMapModel;
 

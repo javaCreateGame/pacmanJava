@@ -1,6 +1,7 @@
 package Controller.StateController;
 
 import main.MyFrame;
+import Model.GameModel.GameModel;
 import Model.StateModel.ThirdMapModel;
 import View.StateView.ThirdMapView;
 
@@ -9,13 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ThirdMapController {
-    MyFrame Mf;
+    GameModel Mf;
     ThirdMapModel thirdMapModel;
     ThirdMapView thirdMapView;
     
-    public ThirdMapController(MyFrame Mf) {
+    public ThirdMapController(GameModel Mf) {
         this.Mf = Mf;
-        thirdMapModel = new ThirdMapModel(Mf);
+        thirdMapModel = new ThirdMapModel();
         thirdMapView = new ThirdMapView(Mf, thirdMapModel);
 
         // Gán ActionListener cho Timer

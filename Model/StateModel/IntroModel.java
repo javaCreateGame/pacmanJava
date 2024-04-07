@@ -3,22 +3,23 @@ package Model.StateModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Model.GameModel.GameModel;
 import main.MyFrame;
 
 public class IntroModel {
-    MyFrame Mf;
+  
     private JPanel introPanel;
     private JButton Start;
     private JButton Exit;
     private JButton loginButton; 
-    private JButton scoreBoard;
-    public IntroModel(MyFrame Mf){
-        this.Mf=Mf;
+    private JButton scoreBoardButton;
+    public IntroModel(){
+        
         introPanel=new JPanel();
         Start=new JButton("Start");
         Exit=new JButton("Exit");
         loginButton=new JButton("Đăng nhập");
-        scoreBoard = new JButton("SCORE BOARD");
+        scoreBoardButton = new JButton("SCORE BOARD");
     }
     public JPanel getIntroPanel() {
         return introPanel;
@@ -35,8 +36,8 @@ public class IntroModel {
     public JButton getLoginButton() {
         return loginButton;
     }
-    public JButton getScoreBoard() {
-        return scoreBoard;
+    public JButton getScoreBoardButton() {
+        return scoreBoardButton;
     }
     
 }

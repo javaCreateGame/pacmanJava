@@ -4,16 +4,17 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import Model.EntityModel.PlayerModel.PlayerModel;
+import Model.GameModel.GameModel;
 import View.EntityView.PlayerView.PlayerView;
 
 import main.MyFrame;
 
 public class PlayerController {
-   MyFrame Mf;
+   GameModel Mf;
    PlayerModel playerModel;
    PlayerMoveController playerMoveController;
    PlayerView playerView;
-   public PlayerController(MyFrame Mf,PlayerMoveController playerMoveController){
+   public PlayerController(GameModel Mf,PlayerMoveController playerMoveController){
     this.Mf=Mf;
     this.playerMoveController=playerMoveController;
     playerModel=new PlayerModel( );
@@ -21,7 +22,7 @@ public class PlayerController {
    }
    public void update() {
     //Timer của mapLabel đang chạy thì nv ko di chuyển
-    if (Mf.getFirstMap().getTimer1().isRunning() == true || Mf.getSecondMap().getTimer2().isRunning() == true || Mf.getThirdMap().getTimer3().isRunning() == true){}
+    if (Mf.getFirstMap().getFirstMapModel().getTimer().isRunning() == true || Mf.getSecondMap().getSecondMapModel().getTimer2().isRunning() == true || Mf.getThirdMap().getThirdMapModel().getTimer3().isRunning() == true){}
     else
     // logic phần bấm bấm nút di chuyển
     if (playerMoveController.getPlayerMoveModel().isPlayerUp() || playerMoveController.getPlayerMoveModel().isPlayerDown() || playerMoveController.getPlayerMoveModel().isPlayerLeft() || playerMoveController.getPlayerMoveModel().isPlayerRight()) {

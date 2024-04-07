@@ -1,6 +1,7 @@
 package Controller.StateController;
 
 import main.MyFrame;
+import Model.GameModel.GameModel;
 import Model.StateModel.SecondMapModel;
 import View.StateView.SecondMapView;
 
@@ -9,13 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SecondMapController {
-    MyFrame Mf;
+    GameModel Mf;
     SecondMapModel secondMapModel;
     SecondMapView secondMapView;
     
-    public SecondMapController(MyFrame Mf) {
+    public SecondMapController(GameModel Mf) {
         this.Mf = Mf;
-        secondMapModel = new SecondMapModel(Mf);
+        secondMapModel = new SecondMapModel();
         secondMapView = new SecondMapView(Mf, secondMapModel);
 
         // Gán ActionListener cho Timer

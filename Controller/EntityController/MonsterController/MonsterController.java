@@ -4,20 +4,21 @@ import java.awt.Graphics2D;
 import java.util.Arrays;
 
 import Model.EntityModel.MonsterModel.MonsterModel;
+import Model.GameModel.GameModel;
 import View.EntityView.MonsterView.MonsterView;
 import main.MyFrame;
 
 public class MonsterController {
-    MyFrame Mf;
+    GameModel Mf;
     private MonsterModel monsterModel;
     private MonsterView monsterView;
-    public MonsterController(MyFrame Mf){
+    public MonsterController(GameModel Mf){
         this.Mf=Mf;
         monsterModel=new MonsterModel();
         monsterView=new MonsterView(Mf, monsterModel);
     }
     public void running() {
-        if (Mf.getCountFoot() >= 100) {
+        if (Mf.getCountFoot() >= 300) {
 
             if (monsterModel.getxDice() >= Mf.getJframeWidth() - monsterModel.getMonsterWidth() || monsterModel.getxDice() < 0) {
                 monsterModel.getxVelocity()[0] =monsterModel.getxVelocity()[0] * (-1);
@@ -29,7 +30,7 @@ public class MonsterController {
             }
             monsterModel.setyDice(monsterModel.getyDice()-monsterModel.getyVelocity()[0]);
         }
-        if (Mf.getCountFoot() >= 200) {
+        if (Mf.getCountFoot() >= 400) {
             if (monsterModel.getxJoystick() >= Mf.getJframeWidth() - monsterModel.getMonsterWidth() || monsterModel.getxJoystick() < 0) {
                 monsterModel.getxVelocity()[1] =monsterModel.getxVelocity()[1] * (-1);
             }
@@ -39,7 +40,7 @@ public class MonsterController {
             }
             monsterModel.setyJoystick((monsterModel.getyJoystick()-monsterModel.getyVelocity()[1]));
         }
-        if (Mf.getCountFoot() >= 300) {
+        if (Mf.getCountFoot() >= 500) {
             if (monsterModel.getxJoystick() >= Mf.getJframeWidth() - monsterModel.getMonsterWidth() | monsterModel.getxJoystick() < 0) {
                 monsterModel.getxVelocity()[2] =monsterModel.getxVelocity()[2] * (-1);
             }
@@ -49,7 +50,7 @@ public class MonsterController {
             }
             monsterModel.setySyrinnge(monsterModel.getySyrinnge()-monsterModel.getyVelocity()[2]);
         }
-           if (Mf.getCountFoot()==800) {
+           if (Mf.getCountFoot()==1200) {
            
             Arrays.fill(monsterModel.getxVelocity(), 8);
             Arrays.fill(monsterModel.getyVelocity(), 8);

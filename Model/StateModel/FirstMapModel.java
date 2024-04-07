@@ -13,13 +13,13 @@ public class FirstMapModel extends Map {
     private boolean addHeart= true;
     private boolean removeHeart= false;
     private int heartXLocation = 298, heartYLocation = 279;
-    MyFrame Mf;
+  
     private int x[] = new int[getN()];
     private int y[] = new int[getN()];
     private JLabel mapLabel;
     private Timer timer;
-    public FirstMapModel(MyFrame Mf){
-        this.Mf=Mf;
+    public FirstMapModel(){
+        
         //set up panel
         firstMapPanel =new JPanel();
         childFirstMapPanel = new JPanel();
@@ -70,12 +70,7 @@ public class FirstMapModel extends Map {
     public void setHeartYLocation(int heartYLocation) {
         this.heartYLocation = heartYLocation;
     }
-    public MyFrame getMf() {
-        return Mf;
-    }
-    public void setMf(MyFrame mf) {
-        Mf = mf;
-    }
+  
     public int[] getX() {
         return x;
     }

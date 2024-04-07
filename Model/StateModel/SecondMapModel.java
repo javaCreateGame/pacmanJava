@@ -16,10 +16,10 @@ public class SecondMapModel extends MapModel {
     private Timer timer;
     private int x[] = new int[getN()];
     private int y[] = new int[getN()];
-    MyFrame Mf;
+   
 	
-    public SecondMapModel(MyFrame Mf) {
-        this.Mf = Mf;
+    public SecondMapModel() {
+       
         secondMapPanel = new JPanel();
         childSecondMapPanel = new JPanel();
         heart = new JLabel();

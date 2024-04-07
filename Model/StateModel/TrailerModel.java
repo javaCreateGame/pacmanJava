@@ -7,7 +7,7 @@ import javax.swing.Timer;
 import main.MyFrame;
 
 public class TrailerModel {
-    MyFrame Mf;
+    
     private JLayeredPane trailerPanel;
     private JTextArea textArea;
     private JButton skipButton;
@@ -29,8 +29,8 @@ public class TrailerModel {
     private int currentLineIndex = 0;
     private int currentCharacterIndex = 0;
 
-    public TrailerModel(MyFrame Mf) {
-        this.Mf=Mf;
+    public TrailerModel() {
+   
         trailerPanel= new JLayeredPane();
         textArea = new JTextArea();
         skipButton = new JButton("Skip");
@@ -39,13 +39,7 @@ public class TrailerModel {
     }
     // GET SET
 
-    public MyFrame getMf() {
-        return Mf;
-    }
-
-    public void setMf(MyFrame mf) {
-        Mf = mf;
-    }
+   
 
     public JLayeredPane getTrailerPanel() {
         return trailerPanel;

@@ -1,5 +1,6 @@
 package View.StateView;
 
+import Model.GameModel.GameModel;
 import Model.StateModel.ScoreBoardModel;
 import main.MyFrame;
 
@@ -11,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 public class ScoreBoardView {
     private ScoreBoardModel scoreBoardModel;
-    MyFrame Mf;
-    public ScoreBoardView(MyFrame Mf,ScoreBoardModel scoreBoardModel){
+    GameModel Mf;
+    public ScoreBoardView(GameModel Mf,ScoreBoardModel scoreBoardModel){
         this.Mf=Mf;
         this.scoreBoardModel=scoreBoardModel;
 

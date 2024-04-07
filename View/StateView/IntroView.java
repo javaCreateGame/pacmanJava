@@ -9,6 +9,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Model.GameModel.GameModel;
 import Model.StateModel.IntroModel;
 
 import java.awt.event.MouseAdapter;
@@ -17,9 +18,9 @@ import java.awt.event.MouseEvent;
 public class IntroView {
 
     IntroModel introModel;
-    MyFrame Mf;
+    GameModel Mf;
 
-    public IntroView(MyFrame Mf, IntroModel introModel) {
+    public IntroView(GameModel Mf, IntroModel introModel) {
         this.Mf = Mf;
         this.introModel = introModel;
 
@@ -59,10 +60,10 @@ public class IntroView {
         introModel.getIntroPanel().add(introModel.getStart(),0);
 
 
-        introModel.getScoreBoard().setFont(new Font("Arial", Font.BOLD, 19));
-        introModel.getScoreBoard().setBounds(65, 555, 200, 50);
-        setUpButton(introModel.getScoreBoard());
-        introModel.getIntroPanel().add(introModel.getScoreBoard(), 1);
+        introModel.getScoreBoardButton().setFont(new Font("Arial", Font.BOLD, 19));
+        introModel.getScoreBoardButton().setBounds(65, 555, 200, 50);
+        setUpButton(introModel.getScoreBoardButton());
+        introModel.getIntroPanel().add(introModel.getScoreBoardButton(), 1);
         // Tạo ra một nút Exit và đặt nội dung cho nó là Exit
 
         introModel.getExit().setFont(new Font("Arial", Font.BOLD, 20));
