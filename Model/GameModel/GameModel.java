@@ -13,6 +13,7 @@ import Controller.EndingController.HappyEndingController;
 import Controller.EntityController.MonsterController.MonsterController;
 import Controller.EntityController.PlayerController.PlayerController;
 import Controller.EntityController.PlayerController.PlayerMoveController;
+import Controller.LoginController.LoginController;
 import Controller.SoundController.SoundEffectController;
 import Controller.StateController.FirstMapController;
 import Controller.StateController.IntroController;
@@ -26,7 +27,7 @@ public class GameModel extends JFrame {
     private PlayerController player = new PlayerController(this, playermove);
     private MonsterController monster = new MonsterController(this);
      
-    //private SignIn_Up Login=new SignIn_Up(this);
+    private LoginController Login=new LoginController(this);
     private SoundEffectController soundMain = new SoundEffectController();
     private SoundEffectController soundInternal = new SoundEffectController();
     private SoundEffectController soundNext = new SoundEffectController();
@@ -263,6 +264,12 @@ public class GameModel extends JFrame {
 
     public void setCardLayout(CardLayout cardLayout) {
         this.cardLayout = cardLayout;
+    }
+    public LoginController getLogin() {
+        return Login;
+    }
+    public void setLogin(LoginController login) {
+        Login = login;
     }
     
 }

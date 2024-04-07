@@ -60,7 +60,7 @@ public class SecondMapModel extends MapModel {
 		return childSecondMapPanel;
 	}
 
-	public boolean getAddHeart() {
+	public boolean isAddHeart() {
 		return addHeart;
 	}
 
@@ -68,7 +68,7 @@ public class SecondMapModel extends MapModel {
 		this.addHeart = addHeart;
 	}
 
-	public boolean getRemoveHeart() {
+	public boolean isRemoveHeart() {
 		return removeHeart;
 	}
 

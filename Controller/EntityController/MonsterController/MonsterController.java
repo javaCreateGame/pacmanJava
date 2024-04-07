@@ -18,7 +18,7 @@ public class MonsterController {
         monsterView=new MonsterView(Mf, monsterModel);
     }
     public void running() {
-        if (Mf.getCountFoot() >= 300) {
+        if (Mf.getCountFoot() >= 200) {
 
             if (monsterModel.getxDice() >= Mf.getJframeWidth() - monsterModel.getMonsterWidth() || monsterModel.getxDice() < 0) {
                 monsterModel.getxVelocity()[0] =monsterModel.getxVelocity()[0] * (-1);
@@ -30,7 +30,7 @@ public class MonsterController {
             }
             monsterModel.setyDice(monsterModel.getyDice()-monsterModel.getyVelocity()[0]);
         }
-        if (Mf.getCountFoot() >= 400) {
+        if (Mf.getCountFoot() >= 300) {
             if (monsterModel.getxJoystick() >= Mf.getJframeWidth() - monsterModel.getMonsterWidth() || monsterModel.getxJoystick() < 0) {
                 monsterModel.getxVelocity()[1] =monsterModel.getxVelocity()[1] * (-1);
             }
@@ -40,7 +40,7 @@ public class MonsterController {
             }
             monsterModel.setyJoystick((monsterModel.getyJoystick()-monsterModel.getyVelocity()[1]));
         }
-        if (Mf.getCountFoot() >= 500) {
+        if (Mf.getCountFoot() >= 400) {
             if (monsterModel.getxJoystick() >= Mf.getJframeWidth() - monsterModel.getMonsterWidth() | monsterModel.getxJoystick() < 0) {
                 monsterModel.getxVelocity()[2] =monsterModel.getxVelocity()[2] * (-1);
             }
@@ -50,7 +50,7 @@ public class MonsterController {
             }
             monsterModel.setySyrinnge(monsterModel.getySyrinnge()-monsterModel.getyVelocity()[2]);
         }
-           if (Mf.getCountFoot()==1200) {
+           if (Mf.getCountFoot()==900) {
            
             Arrays.fill(monsterModel.getxVelocity(), 8);
             Arrays.fill(monsterModel.getyVelocity(), 8);

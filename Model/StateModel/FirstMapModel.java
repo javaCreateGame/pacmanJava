@@ -6,7 +6,7 @@ import javax.swing.Timer;
 import State.Map;
 import main.MyFrame;
 
-public class FirstMapModel extends Map {
+public class FirstMapModel extends MapModel {
     private JPanel firstMapPanel;
     private JPanel childFirstMapPanel;
     private JLabel heart;

@@ -1,10 +1,10 @@
 package main;
 
-import Controller.GameModelController.GameModelController;
+import Controller.GameController.GameController;
 
 public class Main{
     public static void main(String[] args) {
         //new MyFrame();
-        new GameModelController();   
+        new GameController();   
     }
 }   

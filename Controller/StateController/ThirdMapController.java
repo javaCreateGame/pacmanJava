@@ -39,16 +39,16 @@ public class ThirdMapController {
     }
 
     // Phương thức để cập nhật thời gian trên timerJlabel
-    public static void updateTimer(int time){
-        ThirdMapModel.setSecondsLeft(time);
-        ThirdMapModel.getTimerThirdMap().addActionListener(new ActionListener() {
+    public  void updateTimer(int time){
+        thirdMapModel.setSecondsLeft(time);
+        thirdMapModel.getTimerThirdMap().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (ThirdMapModel.getSecondsLeft() > 0) {
-                    ThirdMapModel.setSecondsLeft(ThirdMapModel.getSecondsLeft()-1);
-                    ThirdMapModel.getTimerJLabel().setText("Time: " + ThirdMapModel.getSecondsLeft());
+                if (thirdMapModel.getSecondsLeft() > 0) {
+                    thirdMapModel.setSecondsLeft(thirdMapModel.getSecondsLeft()-1);
+                    thirdMapModel.getTimerJLabel().setText("Time: " + thirdMapModel.getSecondsLeft());
                 } else {
-                    ThirdMapModel.getTimerThirdMap().stop();
+                    thirdMapModel.getTimerThirdMap().stop();
                 }
             }
         });
