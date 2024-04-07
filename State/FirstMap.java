@@ -32,10 +32,6 @@ public class FirstMap extends Map {
        firstMapPanel.setSize( Mf.getJframeWidth(), Mf.getJframeHeight());
        firstMapPanel.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
        firstMapPanel.setLayout(null);
-        //Code Giao dien
-
-       
-       
 
         // Đặt hình nền cho First Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map1.png");
