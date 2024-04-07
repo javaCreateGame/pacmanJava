@@ -26,27 +26,22 @@ public class GameModel extends JFrame {
     private PlayerMoveController playermove = new PlayerMoveController();
     private PlayerController player = new PlayerController(this, playermove);
     private MonsterController monster = new MonsterController(this);
-     
-    private LoginController Login=new LoginController(this);
+
+    private LoginController Login = new LoginController(this);
     private SoundEffectController soundMain = new SoundEffectController();
     private SoundEffectController soundInternal = new SoundEffectController();
     private SoundEffectController soundNext = new SoundEffectController();
-   
-   
-    
-    
-    JLabel scoreLabel= new JLabel();
-    private JPanel cardPanel=new JPanel(); // Use JPanel instead of JLayeredPane
 
-    
+    JLabel scoreLabel = new JLabel();
+    private JPanel cardPanel = new JPanel(); // Use JPanel instead of JLayeredPane
+
     private String nameCardLayout;
     private int score = 0;
     private int jframeWidth = 615, jframeHeight = 615;
     private int jframeHeightParent = 690;
     private int countFoot = 0;
     private int FPS = 60;
-   
-    
+
     // Tạo các object để sử dụng các biến của chúng
     private IntroController intro = new IntroController(this);
     private TrailerController trailer = new TrailerController(this);
@@ -59,19 +54,19 @@ public class GameModel extends JFrame {
 
     private CardLayout cardLayout = new CardLayout();
 
- 
- // hàm vẽ nhân vật
- public void paint(Graphics g) {
-    super.paint(g);
-    Graphics2D g2 = (Graphics2D) g;
-    if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
-        player.draw(g2);
-        monster.draw(g2);
-        repaint();
-    }
-    g2.dispose();
+    // hàm vẽ nhân vật
+    public void paint(Graphics g) {
+        super.paint(g);
+        Graphics2D g2 = (Graphics2D) g;
+        if (nameCardLayout == "FirstMap" || nameCardLayout == "SecondMap" || nameCardLayout == "ThirdMap") {
+            player.draw(g2);
+            monster.draw(g2);
+            repaint();
+        }
+        g2.dispose();
 
-}
+    }
+
     public PlayerMoveController getPlayermove() {
         return playermove;
     }
@@ -119,8 +114,6 @@ public class GameModel extends JFrame {
     public void setSoundNext(SoundEffectController soundNext) {
         this.soundNext = soundNext;
     }
-
-  
 
     public JLabel getScoreLabel() {
         return scoreLabel;
@@ -265,11 +258,13 @@ public class GameModel extends JFrame {
     public void setCardLayout(CardLayout cardLayout) {
         this.cardLayout = cardLayout;
     }
+
     public LoginController getLogin() {
         return Login;
     }
+
     public void setLogin(LoginController login) {
         Login = login;
     }
-    
+
 }

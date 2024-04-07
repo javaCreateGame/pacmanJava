@@ -8,7 +8,7 @@ import java.sql.Statement;
 import daoModel.Info;
 import database.JDBCUtil;
 
-public class InfoDAO implements DAOInterface<Info>{
+public class InfoDAO implements DAOInterface<Info> {
 
 	public static InfoDAO getInstance() {
 		return new InfoDAO();
@@ -20,24 +20,24 @@ public class InfoDAO implements DAOInterface<Info>{
 		try {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
-			
+
 			// Buoc 2: Tao ra doi tuong statement
-			
-				Statement st = con.createStatement();
-			
+
+			Statement st = con.createStatement();
+
 			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "INSERT INTO info (tenDangNhap, matKhau, Diem)" + 
-			" VALUES ('"+t.getTenDangNhap()+"' , '"+t.getMatKhau()+"' ,"+t.getDiem()+" )";
+			String sql = "INSERT INTO info (tenDangNhap, matKhau, Diem)" +
+					" VALUES ('" + t.getTenDangNhap() + "' , '" + t.getMatKhau() + "' ," + t.getDiem() + " )";
 			System.out.println(sql);
 			kq = st.executeUpdate(sql);
-			
+
 			// Buoc 4:
 			System.out.println("Ban da thuc thi: " + sql);
 			System.out.println("Co " + kq + " dong bi thay doi");
-			
+
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,26 +50,26 @@ public class InfoDAO implements DAOInterface<Info>{
 		try {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
-			
+
 			// Buoc 2: Tao ra doi tuong statement
-			
-				Statement st = con.createStatement();
-			
+
+			Statement st = con.createStatement();
+
 			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "UPDATE info " + 
-			" SET " +
-			" Diem = "+t.getDiem()+" " +
-			" WHERE tenDangNhap = '"+t.getTenDangNhap()+"' ";
+			String sql = "UPDATE info " +
+					" SET " +
+					" Diem = " + t.getDiem() + " " +
+					" WHERE tenDangNhap = '" + t.getTenDangNhap() + "' ";
 			System.out.println(sql);
 			kq = st.executeUpdate(sql);
-			
+
 			// Buoc 4:
 			System.out.println("Ban da thuc thi: " + sql);
 			System.out.println("Co " + kq + " dong bi thay doi");
-			
+
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,24 +82,24 @@ public class InfoDAO implements DAOInterface<Info>{
 		try {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
-			
+
 			// Buoc 2: Tao ra doi tuong statement
-			
-				Statement st = con.createStatement();
-			
+
+			Statement st = con.createStatement();
+
 			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "DELETE from info " + 
-			"WHERE tenDangNhap = '"+t.getTenDangNhap()+"'";
+			String sql = "DELETE from info " +
+					"WHERE tenDangNhap = '" + t.getTenDangNhap() + "'";
 			System.out.println(sql);
 			kq = st.executeUpdate(sql);
-			
+
 			// Buoc 4:
 			System.out.println("Ban da thuc thi: " + sql);
 			System.out.println("Co " + kq + " dong bi thay doi");
-			
+
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -112,29 +112,29 @@ public class InfoDAO implements DAOInterface<Info>{
 		try {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
-			
+
 			// Buoc 2: Tao ra doi tuong statement
-			
-				Statement st = con.createStatement();
-			
+
+			Statement st = con.createStatement();
+
 			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "SELECT * from info " ;
-			
+			String sql = "SELECT * from info ";
+
 			ResultSet rs = st.executeQuery(sql);
-			
+
 			// Buoc 4:
 			System.out.println("Ban da thuc thi: " + sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");
 				int Diem = rs.getInt("Diem");
 				Info info = new Info(tenDangNhap, matKhau, Diem);
 				kq.add(info);
 			}
-			
+
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -147,29 +147,29 @@ public class InfoDAO implements DAOInterface<Info>{
 		try {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
-			
+
 			// Buoc 2: Tao ra doi tuong statement
-			
-				Statement st = con.createStatement();
-			
+
+			Statement st = con.createStatement();
+
 			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "SELECT * from info WHERE tenDangNhap = '"+t.getTenDangNhap()+"'" ;
-			
+			String sql = "SELECT * from info WHERE tenDangNhap = '" + t.getTenDangNhap() + "'";
+
 			ResultSet rs = st.executeQuery(sql);
-			
+
 			// Buoc 4:
 			System.out.println("Ban da thuc thi: " + sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");
 				int Diem = rs.getInt("Diem");
-				
+
 				kq = new Info(tenDangNhap, matKhau, Diem);
 			}
-			
+
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -182,30 +182,30 @@ public class InfoDAO implements DAOInterface<Info>{
 		try {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
-			
+
 			// Buoc 2: Tao ra doi tuong statement
-			
-				Statement st = con.createStatement();
-			
+
+			Statement st = con.createStatement();
+
 			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "SELECT * from info WHERE " + condition ;
-			
+			String sql = "SELECT * from info WHERE " + condition;
+
 			ResultSet rs = st.executeQuery(sql);
-			
+
 			// Buoc 4:
 			System.out.println("Ban da thuc thi: " + sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");
 				int Diem = rs.getInt("Diem");
-				
+
 				Info info = new Info(tenDangNhap, matKhau, Diem);
 				kq.add(info);
 			}
-			
+
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

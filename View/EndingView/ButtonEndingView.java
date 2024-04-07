@@ -1,12 +1,8 @@
 package View.EndingView;
 
-
-
 import Model.EndingModel.ButtonEndingModel;
 
 import javax.swing.*;
-
-
 
 import java.awt.event.MouseEvent;
 
@@ -16,21 +12,23 @@ import java.awt.event.MouseAdapter;
 
 public class ButtonEndingView {
     ButtonEndingModel buttonEndingModel;
-    public ButtonEndingView(ButtonEndingModel buttonEndingModel){
-        this.buttonEndingModel=buttonEndingModel;
+
+    public ButtonEndingView(ButtonEndingModel buttonEndingModel) {
+        this.buttonEndingModel = buttonEndingModel;
         buttonEndingModel.getYesButton().setBounds(210, 440, 80, 50);
         buttonEndingModel.getNoButton().setBounds(260, 440, 80, 50);
         setUpButton(buttonEndingModel.getYesButton());
         setUpButton(buttonEndingModel.getNoButton());
     }
-    private void setUpButton(JButton button){
-       button.setForeground(Color.BLACK);
-       // Làm cho nút skip trở nên trong suốt
+
+    private void setUpButton(JButton button) {
+        button.setForeground(Color.BLACK);
+        // Làm cho nút skip trở nên trong suốt
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
         button.setFocusable(false);
-       
+
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -42,6 +40,6 @@ public class ButtonEndingView {
                 button.setForeground(Color.BLACK); // Đổi lại màu chữ khi chuột rời khỏi nút
             }
         });
-        
+
     }
 }

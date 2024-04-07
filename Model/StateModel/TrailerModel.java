@@ -1,21 +1,20 @@
 package Model.StateModel;
+
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 
-
-
 public class TrailerModel {
-    
+
     private JLayeredPane trailerPanel;
     private JTextArea textArea;
     private JButton skipButton;
     private JButton nextButton;
-    public boolean addHeart= false;
-    public boolean removeHeart= false;
+    public boolean addHeart = false;
+    public boolean removeHeart = false;
     private Timer timer;
-    
+
     String[] linesToShow = {
             "Bạn là học sinh cấp 2 vừa thi và đỗ vào trường cấp 3 mong muốn.",
             "Đầu tiên chúc mừng bạn đã đỗ vào ngôi trường mơ ước nhưng đừng chủ quan, vì lúc này đây sẽ là những bước đầu trên con đường trưởng thành của bạn.",
@@ -30,16 +29,14 @@ public class TrailerModel {
     private int currentCharacterIndex = 0;
 
     public TrailerModel() {
-   
-        trailerPanel= new JLayeredPane();
+
+        trailerPanel = new JLayeredPane();
         textArea = new JTextArea();
         skipButton = new JButton("Skip");
         nextButton = new JButton("Next");
-        timer = new Timer(100,null);
+        timer = new Timer(100, null);
     }
     // GET SET
-
-   
 
     public JLayeredPane getTrailerPanel() {
         return trailerPanel;
@@ -120,5 +117,5 @@ public class TrailerModel {
     public void setCurrentCharacterIndex(int currentCharacterIndex) {
         this.currentCharacterIndex = currentCharacterIndex;
     }
-    
+
 }

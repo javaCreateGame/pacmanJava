@@ -1,6 +1,5 @@
 package View.StateView;
 
-
 import Model.GameModel.GameModel;
 import Model.StateModel.SecondMapModel;
 
@@ -32,7 +31,7 @@ public class SecondMapView {
 
         // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
-        background.setBounds(0,0,Mf.getJframeWidth(),Mf.getJframeHeight());
+        background.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeight());
         // Thêm JLabel vào content pane với BorderLayout
         secondMapModel.getSecondMapPanel().add(background);
 
@@ -60,7 +59,7 @@ public class SecondMapView {
         Image img = objBgr.getImage();
         Image newImage = img.getScaledInstance(15, 15, Image.SCALE_SMOOTH);
         secondMapModel.setNewImageIcon(new ImageIcon(newImage));
-        
+
         for (int i = 0; i < secondMapModel.getN(); i++) {
             this.secondMapModel.getObj()[i].setIcon(secondMapModel.getNewImageIcon());
         }
@@ -86,24 +85,31 @@ public class SecondMapView {
 
         // add obj vào map
         for (int i = 0; i < secondMapModel.getN(); i++) {
-            secondMapModel.getObj()[i].setLocation(secondMapModel.getX()[i], secondMapModel.getY()[i]); // Thiết lập vị trí của JLabel thứ i
-            secondMapModel.getChildSecondMapPanel().add(secondMapModel.getObj()[i]); // Thêm JLabel vào childSecondMapPanel
+            secondMapModel.getObj()[i].setLocation(secondMapModel.getX()[i], secondMapModel.getY()[i]); // Thiết lập vị
+                                                                                                        // trí của
+                                                                                                        // JLabel thứ i
+            secondMapModel.getChildSecondMapPanel().add(secondMapModel.getObj()[i]); // Thêm JLabel vào
+                                                                                     // childSecondMapPanel
             secondMapModel.setAddObj(true, i);
         }
 
         // Thêm trái tim vào map
-        this.secondMapModel.getHeart().setLocation(secondMapModel.getHeartXLocation(), secondMapModel.getHeartYLocation());
+        this.secondMapModel.getHeart().setLocation(secondMapModel.getHeartXLocation(),
+                secondMapModel.getHeartYLocation());
         secondMapModel.getChildSecondMapPanel().add(secondMapModel.getHeart());
         secondMapModel.setAddHeart(true);
         background.add(secondMapModel.getChildSecondMapPanel());
 
-        //*****************************************************/
+        // *****************************************************/
         secondMapModel.getMapLabel2().setFont(new Font("Arial", Font.BOLD, 45));
         secondMapModel.getMapLabel2().setForeground(Color.BLACK);
-        secondMapModel.getMapLabel2().setPreferredSize(new Dimension(secondMapModel.getMapLabel2().getPreferredSize().width + 20, secondMapModel.getMapLabel2().getPreferredSize().height));
+        secondMapModel.getMapLabel2()
+                .setPreferredSize(new Dimension(secondMapModel.getMapLabel2().getPreferredSize().width + 20,
+                        secondMapModel.getMapLabel2().getPreferredSize().height));
         int labelX = (Mf.getJframeWidth() - secondMapModel.getMapLabel2().getPreferredSize().width) / 2;
         int labelY = (Mf.getJframeHeight() - secondMapModel.getMapLabel2().getPreferredSize().height) / 2;
-        secondMapModel.getMapLabel2().setBounds(labelX, labelY, secondMapModel.getMapLabel2().getPreferredSize().width, secondMapModel.getMapLabel2().getPreferredSize().height);
+        secondMapModel.getMapLabel2().setBounds(labelX, labelY, secondMapModel.getMapLabel2().getPreferredSize().width,
+                secondMapModel.getMapLabel2().getPreferredSize().height);
         secondMapModel.getChildSecondMapPanel().add(secondMapModel.getMapLabel2());
     }
 }

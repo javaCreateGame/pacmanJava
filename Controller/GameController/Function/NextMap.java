@@ -1,8 +1,6 @@
 package Controller.GameController.Function;
 
-
 import Model.GameModel.GameModel;
-
 
 public class NextMap {
     public static void nextMap(GameModel Mf) {
@@ -16,19 +14,19 @@ public class NextMap {
                 Ending.HappyEnding(Mf, Mf.getHappyEnding().getHappyEndingModel().getNumberHappy());
             }
             if (x >= 588 && (y > 235 && y < 275) && Mf.getNameCardLayout() == "FirstMap") {
-                Mf.setNameCardLayout("SecondMap"); 
+                Mf.setNameCardLayout("SecondMap");
                 Mf.getSecondMap().getSecondMapModel().getTimer2().restart();
                 next = true;
-                
+
             }
-            if (x >= 588 && (y > 278 && y < 318) &&  Mf.getNameCardLayout() == "SecondMap") {
-                Mf.setNameCardLayout("ThirdMap"); 
+            if (x >= 588 && (y > 278 && y < 318) && Mf.getNameCardLayout() == "SecondMap") {
+                Mf.setNameCardLayout("ThirdMap");
                 Mf.getThirdMap().getThirdMapModel().getTimer3().restart();
                 next = true;
-                
+
             }
             if (next == true) {
-                //Hàm chạy thời gian third map
+                // Hàm chạy thời gian third map
                 Mf.getThirdMap().updateTimer(10);
                 Mf.getThirdMap().getThirdMapModel().getTimerThirdMap().start();
                 Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
@@ -40,10 +38,10 @@ public class NextMap {
 
                 Mf.getMonster().getMonsterModel().setxDice(322);
                 Mf.getMonster().getMonsterModel().setyDice(295);
-                Mf.getMonster().getMonsterModel().setxJoystick(379); 
-                Mf.getMonster().getMonsterModel().setyJoystick(295); 
-                Mf.getMonster().getMonsterModel().setxSyrinnge(339); 
-                Mf.getMonster().getMonsterModel().setySyrinnge(321); 
+                Mf.getMonster().getMonsterModel().setxJoystick(379);
+                Mf.getMonster().getMonsterModel().setyJoystick(295);
+                Mf.getMonster().getMonsterModel().setxSyrinnge(339);
+                Mf.getMonster().getMonsterModel().setySyrinnge(321);
             }
 
         }

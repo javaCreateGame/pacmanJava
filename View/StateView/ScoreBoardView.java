@@ -3,19 +3,20 @@ package View.StateView;
 import Model.GameModel.GameModel;
 import Model.StateModel.ScoreBoardModel;
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+
 public class ScoreBoardView {
     private ScoreBoardModel scoreBoardModel;
     GameModel Mf;
-    public ScoreBoardView(GameModel Mf,ScoreBoardModel scoreBoardModel){
-        this.Mf=Mf;
-        this.scoreBoardModel=scoreBoardModel;
+
+    public ScoreBoardView(GameModel Mf, ScoreBoardModel scoreBoardModel) {
+        this.Mf = Mf;
+        this.scoreBoardModel = scoreBoardModel;
 
         Font font = new Font("Arial", Font.BOLD, 13);
         scoreBoardModel.getFieldText().setFont(font);
@@ -34,7 +35,7 @@ public class ScoreBoardView {
         backgroundLabel.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
 
         // Initialize the Back button
-       
+
         scoreBoardModel.getBack().setBounds(Mf.getJframeWidth() - 107, Mf.getJframeHeight() - 597, 130, 50);
         scoreBoardModel.getBack().setForeground(Color.BLACK);
         scoreBoardModel.getBack().setOpaque(false);
@@ -56,7 +57,7 @@ public class ScoreBoardView {
         });
 
         // Initialize JLabels for player names and scores
-      
+
         for (int i = 0; i < scoreBoardModel.getPlayerLabels().length; i++) {
             scoreBoardModel.getPlayerLabels()[i] = new JLabel();
             scoreBoardModel.getPlayerLabels()[i].setFont(new Font("Arial", Font.BOLD, 16));
@@ -66,7 +67,8 @@ public class ScoreBoardView {
         }
 
         // Set player names and scores
-        String[] players = { "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN" , "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN"};
+        String[] players = { "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN",
+                "NGUYỄN VĂN HOÀN" };
         int[] scores = { 300, 255, 430, 422, 344 };
         for (int i = 0; i < scoreBoardModel.getPlayerLabels().length; i++) {
             scoreBoardModel.getPlayerLabels()[i].setText(players[i] + " - " + scores[i]);

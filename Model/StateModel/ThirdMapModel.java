@@ -1,58 +1,55 @@
 package Model.StateModel;
 
-
-
 import javax.swing.*;
 
 public class ThirdMapModel extends MapModel {
-    private ImageIcon newImageIcon;
-    private ImageIcon newImageIconHeart;
-    private int heartXLocation = 412, heartYLocation = 32;
-    private JPanel thirdMapPanel;
-    private JPanel childThirdMapPanel;
-    private boolean addHeart= true;
-    private boolean removeHeart= false;
-    private JLabel heart;
-    private JLabel mapLabel;
-    private Timer timer3;
-    private int x[] = new int[getN()];
-    private int y[] = new int[getN()];
-    private JLabel timerJLabel;
-    private  Timer timerThirdMap;
-    private  int secondsLeft;
-    private  int thirdMapScoreTake;
-    
-    private JPanel cardPanel;
-    
-	
-    public ThirdMapModel() {
-       
-        thirdMapPanel = new JPanel();
-        
-        childThirdMapPanel = new JPanel();
-        heart = new JLabel();
-        mapLabel = new JLabel("LỚP 12");
-        timer3 = new Timer(1000, null);
-        timerJLabel = new JLabel();
-		timerThirdMap = new Timer(2000, null);
-    }
+	private ImageIcon newImageIcon;
+	private ImageIcon newImageIconHeart;
+	private int heartXLocation = 412, heartYLocation = 32;
+	private JPanel thirdMapPanel;
+	private JPanel childThirdMapPanel;
+	private boolean addHeart = true;
+	private boolean removeHeart = false;
+	private JLabel heart;
+	private JLabel mapLabel;
+	private Timer timer3;
+	private int x[] = new int[getN()];
+	private int y[] = new int[getN()];
+	private JLabel timerJLabel;
+	private Timer timerThirdMap;
+	private int secondsLeft;
+	private int thirdMapScoreTake;
 
-    //getter and setter
-    public ImageIcon getNewImageIcon() {
+	private JPanel cardPanel;
+
+	public ThirdMapModel() {
+
+		thirdMapPanel = new JPanel();
+
+		childThirdMapPanel = new JPanel();
+		heart = new JLabel();
+		mapLabel = new JLabel("LỚP 12");
+		timer3 = new Timer(1000, null);
+		timerJLabel = new JLabel();
+		timerThirdMap = new Timer(2000, null);
+	}
+
+	// getter and setter
+	public ImageIcon getNewImageIcon() {
 		return newImageIcon;
 	}
 
-    public void setNewImageIcon(ImageIcon newImageIcon) {
-        this.newImageIcon = newImageIcon;
-    }
+	public void setNewImageIcon(ImageIcon newImageIcon) {
+		this.newImageIcon = newImageIcon;
+	}
 
 	public ImageIcon getNewImageIconHeart() {
 		return newImageIconHeart;
 	}
 
-    public void setNewImageIconHeart(ImageIcon newImageIconHeart) {
-        this.newImageIconHeart = newImageIconHeart;
-    }
+	public void setNewImageIconHeart(ImageIcon newImageIconHeart) {
+		this.newImageIconHeart = newImageIconHeart;
+	}
 
 	public int getHeartXLocation() {
 		return heartXLocation;
@@ -98,7 +95,6 @@ public class ThirdMapModel extends MapModel {
 		return y;
 	}
 
-
 	public JLabel getTimerJLabel() {
 		return timerJLabel;
 	}
@@ -131,8 +127,6 @@ public class ThirdMapModel extends MapModel {
 		this.thirdMapScoreTake = thirdMapScoreTake;
 	}
 
-	
-
 	public JPanel getCardPanel() {
 		return cardPanel;
 	}
@@ -141,11 +135,11 @@ public class ThirdMapModel extends MapModel {
 		this.cardPanel = cardPanel;
 	}
 
-    public JLabel getMapLabel3(){
-        return mapLabel;
-    }
-    
-    public Timer getTimer3(){
-        return timer3;
-    }
+	public JLabel getMapLabel3() {
+		return mapLabel;
+	}
+
+	public Timer getTimer3() {
+		return timer3;
+	}
 }

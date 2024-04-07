@@ -8,7 +8,7 @@ public class SoundEffectModel {
     // biến lưu trữ đường dẫn của các sound
     URL soundURL[] = new URL[30];
     Clip clip;
-    
+
     public SoundEffectModel() {
         // Lấy ra các sound
         soundURL[0] = getClass().getResource("SoundEffectIntro.wav");
@@ -21,7 +21,7 @@ public class SoundEffectModel {
         soundURL[7] = getClass().getResource("SoundEffectHappyEnding.wav");
     }
 
-    //getter and setter
+    // getter and setter
     public URL[] getSoundURL() {
         return soundURL;
     }

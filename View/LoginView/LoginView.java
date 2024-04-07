@@ -10,13 +10,11 @@ import javax.swing.JTextField;
 
 import Model.LoginModel.LoginModel;
 
-
 public class LoginView {
-private LoginModel loginModel;
+  private LoginModel loginModel;
 
-
-public LoginView(LoginModel loginModel){
-    this.loginModel=loginModel;
+  public LoginView(LoginModel loginModel) {
+    this.loginModel = loginModel;
     setUpButton();
     setUpLabel();
     setInput();
@@ -25,9 +23,9 @@ public LoginView(LoginModel loginModel){
     setUpLogin();
     SetUpJDialog();
 
-}
-        
-private void setUpButton() {
+  }
+
+  private void setUpButton() {
     loginModel.getLargeButton().setBounds(45, 150, 190, 40);
     loginModel.getLargeButton().setFocusable(false);
     loginModel.getLargeButton().setVisible(true);
@@ -41,13 +39,13 @@ private void setUpButton() {
 
   }
 
-  //set các dòng chữ tiêu đề như là chữ tài khoản.mật khẩu,..
+  // set các dòng chữ tiêu đề như là chữ tài khoản.mật khẩu,..
   private void setUpLabel() {
     loginModel.getUserNameLabel().setBounds(15, 0, 70, 20);
     loginModel.getPassWordLabel().setBounds(15, 50, 70, 20);
     loginModel.getConfirmPassLabel().setBounds(15, 100, 140, 20);
     loginModel.getConfirmPassLabel().setVisible(false);
-    
+
     loginModel.getCode().encrypt((int) Math.floor((Math.random() * 3) + 1));
     loginModel.getEncodeVisible().setText(String.valueOf(loginModel.getCode().getLetter()));
     loginModel.getEncodeVisible().setBounds(17, 115, 60, 20);
@@ -56,7 +54,7 @@ private void setUpButton() {
 
   }
 
-  //chỉnh tọa độ vị trí ,kích thước cho các dòng nhập
+  // chỉnh tọa độ vị trí ,kích thước cho các dòng nhập
   private void setInput() {
     for (int i = 0; i < loginModel.getUsername().length; i++) {
       loginModel.getUsername()[i] = new JTextField();
@@ -67,12 +65,13 @@ private void setUpButton() {
       loginModel.getPassword()[i] = new JTextField();
       loginModel.getPassword()[i].setBounds(15, 50, 250, 20);
     }
-   loginModel.getConfirmPassInput().setBounds(15, 120, 250, 20);
-   loginModel.getConfirmPassInput().setVisible(false);
+    loginModel.getConfirmPassInput().setBounds(15, 120, 250, 20);
+    loginModel.getConfirmPassInput().setVisible(false);
     loginModel.getEncodeCheckBox().setBounds(80, 115, 185, 20);
 
   }
- //chỉnh phần trang đăng nhập
+
+  // chỉnh phần trang đăng nhập
   private void setUpSignIn() {
     loginModel.getSignIn().setLayout(null);
     loginModel.getSignIn().setBounds(0, 0, 300, 270);
@@ -83,17 +82,17 @@ private void setUpButton() {
     loginModel.getSignIn().setVisible(true);
   }
 
-   //chỉnh phần trang đăng ký
+  // chỉnh phần trang đăng ký
   private void setUpSignUp() {
     loginModel.getSignUp().setLayout(null);
     loginModel.getSignUp().setBounds(0, 0, 300, 270);
     loginModel.getSignUp().add(loginModel.getUsername()[1]);
     loginModel.getSignUp().add(loginModel.getPassword()[1]);
-    
+
     loginModel.getSignUp().setVisible(true);
   }
 
-  //chỉnh phần trang tổng chứa trang đăng nhập ,đăng ký
+  // chỉnh phần trang tổng chứa trang đăng nhập ,đăng ký
   private void setUpLogin() {
     loginModel.getLogin().setLayout(loginModel.getCardLayout());
     loginModel.getLogin().setBounds(0, 20, 300, 270);
@@ -103,7 +102,7 @@ private void setUpButton() {
     loginModel.getLogin().setVisible(true);
   }
 
-  //chỉnh trang windown để hiện login
+  // chỉnh trang windown để hiện login
   private void SetUpJDialog() {
     loginModel.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
     loginModel.setLayout(null);
@@ -125,8 +124,8 @@ private void setUpButton() {
 
   }
 
-public LoginModel getLoginModel() {
+  public LoginModel getLoginModel() {
     return loginModel;
-}
+  }
 
 }

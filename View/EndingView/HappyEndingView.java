@@ -20,7 +20,8 @@ public class HappyEndingView {
         setPanel();
         setUp();
     }
-    //Set Up Các trang to của từng ending
+
+    // Set Up Các trang to của từng ending
     private void setParentPanel() {
         for (int i = 0; i < happyEndingModel.getHappyEndingPanel().length; i++) {
             happyEndingModel.getHappyEndingPanel()[i] = new JPanel();
@@ -31,7 +32,8 @@ public class HappyEndingView {
             happyEndingModel.getHappyEndingPanel()[i].setBackground(new Color(173, 85, 63));
         }
     }
-     //Set Up câu chữ và ảnh của từng ending
+
+    // Set Up câu chữ và ảnh của từng ending
     private void setPanel() {
         for (int i = 0; i < happyEndingModel.getText().length; i++) {
             happyEndingModel.getText()[i] = new JTextArea();
@@ -55,7 +57,8 @@ public class HappyEndingView {
         }
 
     }
-   //Set up nút và trang to chứa tất cả các trang ending
+
+    // Set up nút và trang to chứa tất cả các trang ending
     private void setUp() {
 
         happyEndingModel.getCardPanel().setBounds(0, 0, 615, 690);
@@ -76,8 +79,10 @@ public class HappyEndingView {
         happyEndingModel.getHappyEndingPanelSum().setLayout(null);
         happyEndingModel.getButtonEnding().getButtonEndingModel().getYesButton().setBounds(210, 580, 80, 50);
         happyEndingModel.getButtonEnding().getButtonEndingModel().getNoButton().setBounds(260, 580, 80, 50);
-        happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getButtonEnding().getButtonEndingModel().getYesButton());
-        happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getButtonEnding().getButtonEndingModel().getNoButton());
+        happyEndingModel.getHappyEndingPanelSum()
+                .add(happyEndingModel.getButtonEnding().getButtonEndingModel().getYesButton());
+        happyEndingModel.getHappyEndingPanelSum()
+                .add(happyEndingModel.getButtonEnding().getButtonEndingModel().getNoButton());
         happyEndingModel.getHappyEndingPanelSum().add(happyEndingModel.getCardPanel());
     }
 

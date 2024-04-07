@@ -3,25 +3,25 @@ package Controller.EntityController.PlayerController;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
 import Model.EntityModel.PlayerModel.PlayerMoveModel;
 
-
-public class PlayerMoveController implements KeyListener  {
+public class PlayerMoveController implements KeyListener {
     private PlayerMoveModel playerMoveModel;
-    public PlayerMoveController(){
-               playerMoveModel=new PlayerMoveModel();
+
+    public PlayerMoveController() {
+        playerMoveModel = new PlayerMoveModel();
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-           playerMoveModel.setPlayerUp(true);
+            playerMoveModel.setPlayerUp(true);
         }
         if (code == KeyEvent.VK_A) {
             playerMoveModel.setPlayerLeft(true);
@@ -38,7 +38,7 @@ public class PlayerMoveController implements KeyListener  {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-           playerMoveModel.setPlayerUp(false);
+            playerMoveModel.setPlayerUp(false);
         }
         if (code == KeyEvent.VK_A) {
             playerMoveModel.setPlayerLeft(false);
@@ -50,8 +50,9 @@ public class PlayerMoveController implements KeyListener  {
             playerMoveModel.setPlayerRight(false);
         }
     }
+
     public PlayerMoveModel getPlayerMoveModel() {
         return playerMoveModel;
     }
-    
+
 }

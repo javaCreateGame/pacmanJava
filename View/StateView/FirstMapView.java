@@ -15,21 +15,20 @@ import javax.swing.JLabel;
 import Model.GameModel.GameModel;
 import Model.StateModel.FirstMapModel;
 
-
 public class FirstMapView {
     GameModel Mf;
     FirstMapModel firstMapModel;
 
-    public FirstMapView(GameModel Mf, FirstMapModel firstMapModel){
+    public FirstMapView(GameModel Mf, FirstMapModel firstMapModel) {
         this.Mf = Mf;
         this.firstMapModel = firstMapModel;
 
-        //set up panel
-       firstMapModel.getFirstMapPanel().setSize( Mf.getJframeWidth(), Mf.getJframeHeight());
-       firstMapModel.getFirstMapPanel().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
-       firstMapModel.getFirstMapPanel().setLayout(null);
-       
-       // Đặt hình nền cho First Map
+        // set up panel
+        firstMapModel.getFirstMapPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
+        firstMapModel.getFirstMapPanel().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
+        firstMapModel.getFirstMapPanel().setLayout(null);
+
+        // Đặt hình nền cho First Map
         ImageIcon imageIcon = new ImageIcon("./picture/Map1.png");
 
         Image imgBgr = imageIcon.getImage();
@@ -38,7 +37,7 @@ public class FirstMapView {
 
         // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
         JLabel background = new JLabel(scaledImageIcon);
-        background.setBounds(0,0,Mf.getJframeWidth(),Mf.getJframeHeight());
+        background.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeight());
         // Thêm JLabel vào content pane với BorderLayout
         firstMapModel.getFirstMapPanel().add(background);
 
@@ -67,7 +66,7 @@ public class FirstMapView {
         ImageIcon newImageIconHeart = new ImageIcon(newImageHeart);
         this.firstMapModel.getHeart().setIcon(newImageIconHeart);
 
-        for (int i = 0; i <firstMapModel.getN(); i++) {
+        for (int i = 0; i < firstMapModel.getN(); i++) {
             this.firstMapModel.getObj()[i].setIcon(newImageIcon);
         }
 
@@ -91,9 +90,10 @@ public class FirstMapView {
         }
 
         for (int i = 0; i < firstMapModel.getN(); i++) {
-          firstMapModel.getObj()[i].setLocation(firstMapModel.getX()[i], firstMapModel.getY()[i]); // Thiết lập vị trí của JLabel thứ i
-          firstMapModel.getChildFirstMapPanel().add(firstMapModel.getObj()[i]); // Thêm JLabel vào childFirstMapPanel
-          firstMapModel.setAddObj(true, i);
+            firstMapModel.getObj()[i].setLocation(firstMapModel.getX()[i], firstMapModel.getY()[i]); // Thiết lập vị trí
+                                                                                                     // của JLabel thứ i
+            firstMapModel.getChildFirstMapPanel().add(firstMapModel.getObj()[i]); // Thêm JLabel vào childFirstMapPanel
+            firstMapModel.setAddObj(true, i);
         }
 
         // Thêm trái tim vào map
@@ -102,13 +102,16 @@ public class FirstMapView {
         firstMapModel.setAddHeart(true);
         background.add(firstMapModel.getChildFirstMapPanel());
 
-        //*****************************************************/
+        // *****************************************************/
         firstMapModel.getMapLabel().setFont(new Font("Arial", Font.BOLD, 45));
         firstMapModel.getMapLabel().setForeground(Color.BLACK);
-        firstMapModel.getMapLabel().setPreferredSize(new Dimension(firstMapModel.getMapLabel().getPreferredSize().width + 20, firstMapModel.getMapLabel().getPreferredSize().height));
+        firstMapModel.getMapLabel()
+                .setPreferredSize(new Dimension(firstMapModel.getMapLabel().getPreferredSize().width + 20,
+                        firstMapModel.getMapLabel().getPreferredSize().height));
         int labelX = (Mf.getJframeWidth() - firstMapModel.getMapLabel().getPreferredSize().width) / 2;
         int labelY = (Mf.getJframeHeight() - firstMapModel.getMapLabel().getPreferredSize().height) / 2;
-        firstMapModel.getMapLabel().setBounds(labelX, labelY, firstMapModel.getMapLabel().getPreferredSize().width, firstMapModel.getMapLabel().getPreferredSize().height);
+        firstMapModel.getMapLabel().setBounds(labelX, labelY, firstMapModel.getMapLabel().getPreferredSize().width,
+                firstMapModel.getMapLabel().getPreferredSize().height);
         firstMapModel.getChildFirstMapPanel().add(firstMapModel.getMapLabel());
     }
 }
