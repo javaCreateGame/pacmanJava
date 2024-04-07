@@ -1,7 +1,6 @@
 package Model.StateModel;
 
-import main.MyFrame;
-import EndingUi.BadEnding;
+
 
 import javax.swing.*;
 
@@ -22,14 +21,14 @@ public class ThirdMapModel extends MapModel {
     private  Timer timerThirdMap;
     private  int secondsLeft;
     private  int thirdMapScoreTake;
-    private BadEnding badEndingThirdMap;
+    
     private JPanel cardPanel;
     
 	
     public ThirdMapModel() {
        
         thirdMapPanel = new JPanel();
-        badEndingThirdMap = new BadEnding();
+        
         childThirdMapPanel = new JPanel();
         heart = new JLabel();
         mapLabel = new JLabel("LỚP 12");
@@ -132,13 +131,7 @@ public class ThirdMapModel extends MapModel {
 		this.thirdMapScoreTake = thirdMapScoreTake;
 	}
 
-	public BadEnding getBadEndingThirdMap() {
-		return badEndingThirdMap;
-	}
-
-	public void setBadEndingThirdMap(BadEnding badEndingThirdMap) {
-		this.badEndingThirdMap = badEndingThirdMap;
-	}
+	
 
 	public JPanel getCardPanel() {
 		return cardPanel;

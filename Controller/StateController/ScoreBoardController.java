@@ -3,7 +3,7 @@ package Controller.StateController;
 import Model.GameModel.GameModel;
 import Model.StateModel.ScoreBoardModel;
 import View.StateView.ScoreBoardView;
-import main.MyFrame;
+
 
 public class ScoreBoardController {
     private ScoreBoardModel scoreBoardModel;

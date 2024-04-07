@@ -3,8 +3,8 @@ package Model.StateModel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Model.GameModel.GameModel;
-import main.MyFrame;
+
+
 
 public class IntroModel {
   

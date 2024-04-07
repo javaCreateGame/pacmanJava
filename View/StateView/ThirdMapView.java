@@ -1,6 +1,6 @@
 package View.StateView;
 
-import main.MyFrame;
+
 import Model.GameModel.GameModel;
 import Model.StateModel.ThirdMapModel;
 

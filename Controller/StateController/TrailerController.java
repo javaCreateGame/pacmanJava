@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import Model.GameModel.GameModel;
 import Model.StateModel.TrailerModel;
 import View.StateView.TrailerView;
-import main.MyFrame;
+
 
 public class TrailerController {
     GameModel Mf;

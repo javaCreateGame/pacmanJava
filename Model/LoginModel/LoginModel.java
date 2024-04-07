@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import Encode.EncryptionProgram;
 import Model.GameModel.GameModel;
-import main.MyFrame;
+
 
 public class LoginModel extends JDialog {
     private String nameLargeButton = "Đăng nhập";

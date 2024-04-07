@@ -3,8 +3,7 @@ package Model.StateModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import State.Map;
-import main.MyFrame;
+
 
 public class FirstMapModel extends MapModel {
     private JPanel firstMapPanel;

@@ -3,7 +3,7 @@ package Controller.StateController;
 import Model.GameModel.GameModel;
 import Model.StateModel.IntroModel;
 import View.StateView.IntroView;
-import main.MyFrame;
+
 
 public class IntroController {
     GameModel Mf;

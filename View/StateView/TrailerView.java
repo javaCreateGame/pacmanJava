@@ -5,12 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 
 import Model.GameModel.GameModel;
 import Model.StateModel.TrailerModel;
-import main.MyFrame;
+
 
 import java.awt.Font;
 

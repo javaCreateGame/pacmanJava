@@ -2,7 +2,7 @@ package Controller.GameController.Function;
 
 
 import Model.GameModel.GameModel;
-import Model.StateModel.ThirdMapModel;
+
 
 public class Ending {
     public static void HappyEnding(GameModel Mf,int numberHappy){

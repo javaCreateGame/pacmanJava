@@ -2,7 +2,7 @@ package View.StateView;
 
 import Model.GameModel.GameModel;
 import Model.StateModel.ScoreBoardModel;
-import main.MyFrame;
+
 
 import java.awt.Color;
 import java.awt.Font;

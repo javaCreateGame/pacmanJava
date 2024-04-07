@@ -2,7 +2,7 @@ package View.StateView;
 
 import javax.swing.JButton;
 
-import main.MyFrame;
+
 
 import java.awt.Font;
 import java.awt.Color;

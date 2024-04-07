@@ -2,7 +2,7 @@ package Controller.LoginController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+
 
 import javax.swing.JOptionPane;
 
@@ -11,7 +11,7 @@ import Model.LoginModel.LoginModel;
 import View.LoginView.LoginView;
 import dao.InfoDAO;
 import daoModel.Info;
-import main.MyFrame;
+
 
 public class LoginController implements ActionListener {
   GameModel Mf;

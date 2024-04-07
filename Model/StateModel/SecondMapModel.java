@@ -1,6 +1,6 @@
 package Model.StateModel;
 
-import main.MyFrame;
+
 
 import javax.swing.*;
 public class SecondMapModel extends MapModel {

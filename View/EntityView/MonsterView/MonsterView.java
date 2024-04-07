@@ -5,14 +5,14 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 import Model.EntityModel.MonsterModel.MonsterModel;
-import Model.GameModel.GameModel;
+
 
 
 public class MonsterView {
     private MonsterModel monsterModel;
-    private GameModel Mf;
-    public MonsterView(GameModel Mf,MonsterModel monsterModel){
-       this.Mf=Mf;
+    
+    public MonsterView(MonsterModel monsterModel){
+     
        this.monsterModel=monsterModel;
        getMonsterImage();
        setDefaultMonster();

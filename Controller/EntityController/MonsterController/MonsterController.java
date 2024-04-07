@@ -6,7 +6,7 @@ import java.util.Arrays;
 import Model.EntityModel.MonsterModel.MonsterModel;
 import Model.GameModel.GameModel;
 import View.EntityView.MonsterView.MonsterView;
-import main.MyFrame;
+
 
 public class MonsterController {
     GameModel Mf;
@@ -15,7 +15,7 @@ public class MonsterController {
     public MonsterController(GameModel Mf){
         this.Mf=Mf;
         monsterModel=new MonsterModel();
-        monsterView=new MonsterView(Mf, monsterModel);
+        monsterView=new MonsterView(monsterModel);
     }
     public void running() {
         if (Mf.getCountFoot() >= 200) {

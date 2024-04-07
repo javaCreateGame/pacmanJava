@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 import Model.GameModel.GameModel;
 import Model.StateModel.FirstMapModel;
-import main.MyFrame;
+
 
 public class FirstMapView {
     GameModel Mf;

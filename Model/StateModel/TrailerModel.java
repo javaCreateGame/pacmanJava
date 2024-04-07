@@ -4,7 +4,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 
-import main.MyFrame;
+
 
 public class TrailerModel {
     

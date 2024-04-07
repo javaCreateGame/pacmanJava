@@ -1,8 +1,8 @@
 package Controller.GameController.Function;
 
-import Controller.StateController.ThirdMapController;
+
 import Model.GameModel.GameModel;
-import Model.StateModel.ThirdMapModel;
+
 
 public class NextMap {
     public static void nextMap(GameModel Mf) {

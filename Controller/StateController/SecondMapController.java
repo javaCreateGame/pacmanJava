@@ -1,6 +1,6 @@
 package Controller.StateController;
 
-import main.MyFrame;
+
 import Model.GameModel.GameModel;
 import Model.StateModel.SecondMapModel;
 import View.StateView.SecondMapView;

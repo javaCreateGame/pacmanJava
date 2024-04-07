@@ -7,7 +7,7 @@ import Model.EntityModel.PlayerModel.PlayerModel;
 import Model.GameModel.GameModel;
 import View.EntityView.PlayerView.PlayerView;
 
-import main.MyFrame;
+
 
 public class PlayerController {
    GameModel Mf;
