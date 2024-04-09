@@ -102,6 +102,10 @@ public class LoginModel extends JDialog {
         return username;
     }
 
+    public String getUsernameI() {
+        return username[0].getText();
+    }
+
     public JTextField[] getPassword() {
         return password;
     }

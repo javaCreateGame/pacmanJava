@@ -13,6 +13,10 @@ import javax.swing.JLayeredPane;
 public class ScoreBoardView {
     private ScoreBoardModel scoreBoardModel;
     GameModel Mf;
+    public static String[] players = new String[5];
+    public static int[] scores = new int[5];
+
+    
 
     public ScoreBoardView(GameModel Mf, ScoreBoardModel scoreBoardModel) {
         this.Mf = Mf;
@@ -67,12 +71,11 @@ public class ScoreBoardView {
         }
 
         // Set player names and scores
-        String[] players = { "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN", "NGUYỄN VĂN HOÀN",
-                "NGUYỄN VĂN HOÀN" };
-        int[] scores = { 300, 255, 430, 422, 344 };
-        for (int i = 0; i < scoreBoardModel.getPlayerLabels().length; i++) {
-            scoreBoardModel.getPlayerLabels()[i].setText(players[i] + " - " + scores[i]);
-        }
+        // Lấy thông tin của người chơi từ database rồi hiện lên bảng xếp hạng
+
+        
+        scoreBoardModel.refreshScoreboard(players, scores);
+        scoreBoardModel.setUserScore(players, scores);
 
         scoreBoardModel.getScoreBoard().add(scoreBoardModel.getBack());
         scoreBoardModel.getScoreBoard().add(scoreBoardModel.getFieldText(), JLayeredPane.DEFAULT_LAYER);

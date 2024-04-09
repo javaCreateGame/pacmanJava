@@ -1,6 +1,8 @@
 package Controller.GameController.Function;
 
 import Model.GameModel.GameModel;
+import dao.*;
+import daoModel.*;
 
 public class Ending {
     public static void HappyEnding(GameModel Mf, int numberHappy) {
@@ -23,6 +25,23 @@ public class Ending {
         Mf.getBadEnding().getTimerBad().start();
         Mf.getSoundMain().setFile(6);
         Mf.getSoundMain().start();
+
+        // Phần lấy điểm và import vào database
+        // Tạo ra hai object Info để lấy tên đăng nhập và điểm từ database
+        Info condition = new Info(Mf.getLogin().getUsernameI());
+        Info temp = InfoDAO.getInstance().selectByID(condition);
+
+        // Nếu như điểm của tên đăng nhập người chơi đang chơi hiện tại ở trong database mà lớn hơn điểm người chơi vừa
+        // nhận được thì không làm gì cả
+        if (temp.getDiem() > Mf.getScore()) {
+            System.out.println("");
+        }
+        // Ngược lại nếu điểm trong database nhỏ hơn điểm người chơi vừa nhận được,
+        // thì lưu xuống csdl bằng hàm updateScore
+        else {
+            Info t = new Info(Mf.getLogin().getUsernameI());
+            InfoDAO.getInstance().updateScore(t, Mf.getScore());
+        }
     }
 
     public static void finalEnding(GameModel Mf) {
