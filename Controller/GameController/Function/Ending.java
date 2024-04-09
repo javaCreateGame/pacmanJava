@@ -14,18 +14,10 @@ public class Ending {
         Mf.getHappyEnding().getTimerHappy().start();
         Mf.getSoundMain().setFile(7);
         Mf.getSoundMain().start();
+        updateScoreDB(Mf);
     }
 
-    public static void BadEnding(GameModel Mf, int numberBad) {
-        Mf.setNameCardLayout("BadEnding");
-        Mf.getBadEnding().getBadEndingModel().setNumberBad(numberBad);
-        Mf.getBadEnding().getBadEndingModel().getCardLayout().show(Mf.getBadEnding().getBadEndingModel().getCardPanel(),
-                "bad" + numberBad);
-        Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
-        Mf.getBadEnding().getTimerBad().start();
-        Mf.getSoundMain().setFile(6);
-        Mf.getSoundMain().start();
-
+    public static void updateScoreDB(GameModel Mf) {
         // Phần lấy điểm và import vào database
         // Tạo ra hai object Info để lấy tên đăng nhập và điểm từ database
         Info condition = new Info(Mf.getLogin().getUsernameI());
@@ -42,6 +34,18 @@ public class Ending {
             Info t = new Info(Mf.getLogin().getUsernameI());
             InfoDAO.getInstance().updateScore(t, Mf.getScore());
         }
+    }
+
+    public static void BadEnding(GameModel Mf, int numberBad) {
+        Mf.setNameCardLayout("BadEnding");
+        Mf.getBadEnding().getBadEndingModel().setNumberBad(numberBad);
+        Mf.getBadEnding().getBadEndingModel().getCardLayout().show(Mf.getBadEnding().getBadEndingModel().getCardPanel(),
+                "bad" + numberBad);
+        Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
+        Mf.getBadEnding().getTimerBad().start();
+        Mf.getSoundMain().setFile(6);
+        Mf.getSoundMain().start();
+        updateScoreDB(Mf);
     }
 
     public static void finalEnding(GameModel Mf) {

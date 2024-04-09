@@ -34,12 +34,6 @@ public class ScoreBoardModel {
         return playerLabels;
     }
     
-    public void setUserScore(String[] players, int[] scores) {
-        for(int i = 0; i < this.getPlayerLabels().length; i++) {
-            this.getPlayerLabels()[i].setText(players[i] + " - " + scores[i]);
-        }
-    }
-
     public void refreshScoreboard(String[] players, int[] scores) {
         ArrayList<Info> kq = new ArrayList<Info>();
         kq = InfoDAO.getInstance().selectAll();
