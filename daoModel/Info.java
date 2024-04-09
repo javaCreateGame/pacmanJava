@@ -9,6 +9,10 @@ public class Info {
 		super();
 	}
 
+	public Info(String tenDangNhap) {
+		this.tenDangNhap = tenDangNhap;
+	}
+
 	public Info(String tenDangNhap, String matKhau, int diem) {
 		super();
 		this.tenDangNhap = tenDangNhap;
@@ -28,7 +32,7 @@ public class Info {
 		return matKhau;
 	}
 
-	public void setMatKhau(String tenDangNhap) {
+	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
 	}
 
@@ -44,5 +48,7 @@ public class Info {
 	public String toString() {
 		return "Info [tenDangNhap=" + tenDangNhap + ", diem=" + diem + "]";
 	}
+
+	
 
 }
