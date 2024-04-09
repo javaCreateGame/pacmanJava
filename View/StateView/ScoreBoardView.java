@@ -16,7 +16,11 @@ public class ScoreBoardView {
     public static String[] players = new String[5];
     public static int[] scores = new int[5];
 
-    
+    public void setUserScore(String[] players, int[] scores) {
+        for(int i = 0; i < scoreBoardModel.getPlayerLabels().length; i++) {
+            scoreBoardModel.getPlayerLabels()[i].setText(players[i] + " - " + scores[i]);
+        }
+    }
 
     public ScoreBoardView(GameModel Mf, ScoreBoardModel scoreBoardModel) {
         this.Mf = Mf;
@@ -75,7 +79,7 @@ public class ScoreBoardView {
 
         
         scoreBoardModel.refreshScoreboard(players, scores);
-        scoreBoardModel.setUserScore(players, scores);
+        this.setUserScore(players, scores);
 
         scoreBoardModel.getScoreBoard().add(scoreBoardModel.getBack());
         scoreBoardModel.getScoreBoard().add(scoreBoardModel.getFieldText(), JLayeredPane.DEFAULT_LAYER);
