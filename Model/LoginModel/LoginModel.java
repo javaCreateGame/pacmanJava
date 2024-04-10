@@ -185,5 +185,5 @@ public class LoginModel extends JDialog {
     public void setEncodeVisible(JLabel encodeVisible) {
         EncodeVisible = encodeVisible;
     }
-
+    
 }

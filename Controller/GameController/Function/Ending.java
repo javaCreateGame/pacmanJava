@@ -14,13 +14,13 @@ public class Ending {
         Mf.getHappyEnding().getTimerHappy().start();
         Mf.getSoundMain().setFile(7);
         Mf.getSoundMain().start();
-        updateScoreDB(Mf);
+        //updateScoreDB(Mf);
     }
 
     public static void updateScoreDB(GameModel Mf) {
         // Phần lấy điểm và import vào database
         // Tạo ra hai object Info để lấy tên đăng nhập và điểm từ database
-        Info condition = new Info(Mf.getLogin().getUsernameI());
+        Info condition = new Info(Mf.getLogin().getLoginModel().getUsernameI());
         Info temp = InfoDAO.getInstance().selectByID(condition);
 
         // Nếu như điểm của tên đăng nhập người chơi đang chơi hiện tại ở trong database mà lớn hơn điểm người chơi vừa
@@ -31,7 +31,7 @@ public class Ending {
         // Ngược lại nếu điểm trong database nhỏ hơn điểm người chơi vừa nhận được,
         // thì lưu xuống csdl bằng hàm updateScore
         else {
-            Info t = new Info(Mf.getLogin().getUsernameI());
+            Info t = new Info(Mf.getLogin().getLoginModel().getUsernameI());
             InfoDAO.getInstance().updateScore(t, Mf.getScore());
         }
     }
@@ -45,7 +45,7 @@ public class Ending {
         Mf.getBadEnding().getTimerBad().start();
         Mf.getSoundMain().setFile(6);
         Mf.getSoundMain().start();
-        updateScoreDB(Mf);
+        //updateScoreDB(Mf);
     }
 
     public static void finalEnding(GameModel Mf) {
