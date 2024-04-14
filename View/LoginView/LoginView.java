@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Model.LoginModel.LoginModel;
@@ -62,7 +63,7 @@ public class LoginView {
 
     }
     for (int i = 0; i < loginModel.getPassword().length; i++) {
-      loginModel.getPassword()[i] = new JTextField();
+      loginModel.getPassword()[i] = new JPasswordField();
       loginModel.getPassword()[i].setBounds(15, 50, 250, 20);
     }
     loginModel.getConfirmPassInput().setBounds(15, 120, 250, 20);

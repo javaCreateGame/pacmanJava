@@ -2,6 +2,7 @@ package Controller.LoginController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -59,9 +60,38 @@ public class LoginController implements ActionListener {
         // Import vào database
 
         // // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
-        // if(loginModel.getLargeButton().getText()=="Đăng ký") {
+         if(loginModel.getLargeButton().getText()=="Đăng ký") {
         // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
-        // String usernameKiemTra = loginModel.getUsername()[0].getText();
+         String usernameKiemTra = loginModel.getUsername()[0].getText();
+         
+         if (!Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9]{4,}", usernameKiemTra)){ //kiểm tra regex của username
+          JOptionPane.showConfirmDialog(null, "Tên đăng nhập không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
+          return;
+          }
+
+          char[] passwordKiemTra = loginModel.getPassword()[0].getPassword();
+          char[] passwordcfKiemTra = loginModel.getConfirmPassInput().getPassword();
+
+          String string1 = new String(passwordKiemTra);
+          String string2 = new String(passwordcfKiemTra);
+
+          if (!Pattern.matches("[a-zA-Z0-9]{5,10}", string1)) { //kiểm tra regex của password
+            JOptionPane.showConfirmDialog(null, "Mật khẩu không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
+            return;
+          }
+          else if(!string1.equals(string2)){ //kiểm tra xác nhận mật khẩu trung khớp với mật khẩu chưa
+            JOptionPane.showConfirmDialog(null, "Xác nhận mật khẩu không đúng", "Warning", JOptionPane.PLAIN_MESSAGE);
+            return; 
+          }
+          else // nếu đúng hết thì đăng kí thành công
+          // if (Pattern.matches("$[a-zA-Z][a-zA-Z0-9]{1,}", usernameKiemTra) && 
+          // Pattern.matches("[a-zA-Z0-9]{5,10}", string1) &&
+          // string1.equals(string2))
+          {
+            JOptionPane.showConfirmDialog(null, "Đăng kí thành công", "Warning", JOptionPane.PLAIN_MESSAGE);
+          }
+
+          
         // boolean contains = false;
         // for (Info info : list) {
         // if(info.getTenDangNhap().equals(usernameKiemTra)) {
@@ -85,7 +115,7 @@ public class LoginController implements ActionListener {
         // Mf.getIntro().getIntroModel().getLoginButton().setText(
         // loginModel.getUsername()[0].getText());
         // }
-        // }
+        }
 
         // // Nếu là đăng nhập, kiểm tra điều kiện là mật khẩu phải chính xác với tài
         // khoản

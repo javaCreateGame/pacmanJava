@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Encode.EncryptionProgram;
@@ -29,9 +30,9 @@ public class LoginModel extends JDialog {
     private JLabel userNameLabel = new JLabel("Tài khoản");
     private JLabel passWordLabel = new JLabel("Mật khẩu");
     private JLabel confirmPassLabel = new JLabel("Xác nhận mật khẩu");
-    private JTextField confirmPassInput = new JTextField();
+    private JPasswordField confirmPassInput = new JPasswordField();
     private JTextField username[] = new JTextField[2];
-    private JTextField password[] = new JTextField[2];
+    private JPasswordField password[] = new JPasswordField[2];
     private JLabel EncodeVisible = new JLabel();
 
     public LoginModel(GameModel Mf) {
@@ -94,7 +95,7 @@ public class LoginModel extends JDialog {
         return confirmPassLabel;
     }
 
-    public JTextField getConfirmPassInput() {
+    public JPasswordField getConfirmPassInput() {
         return confirmPassInput;
     }
 
@@ -102,7 +103,7 @@ public class LoginModel extends JDialog {
         return username;
     }
 
-    public JTextField[] getPassword() {
+    public JPasswordField[] getPassword() {
         return password;
     }
 
@@ -166,7 +167,7 @@ public class LoginModel extends JDialog {
         this.confirmPassLabel = confirmPassLabel;
     }
 
-    public void setConfirmPassInput(JTextField confirmPassInput) {
+    public void setConfirmPassInput(JPasswordField confirmPassInput) {
         this.confirmPassInput = confirmPassInput;
     }
 
@@ -174,7 +175,7 @@ public class LoginModel extends JDialog {
         this.username = username;
     }
 
-    public void setPassword(JTextField[] password) {
+    public void setPassword(JPasswordField[] password) {
         this.password = password;
     }
 
