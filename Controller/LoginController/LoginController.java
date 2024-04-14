@@ -61,7 +61,6 @@ public class LoginController implements ActionListener {
 
         // Import vào database
 
-<<<<<<< HEAD
         // // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
          if(loginModel.getLargeButton().getText()=="Đăng ký") {
         // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
@@ -86,10 +85,7 @@ public class LoginController implements ActionListener {
             JOptionPane.showConfirmDialog(null, "Xác nhận mật khẩu không đúng", "Warning", JOptionPane.PLAIN_MESSAGE);
             return; 
           }
-          else // nếu đúng hết thì đăng kí thành công
-          // if (Pattern.matches("$[a-zA-Z][a-zA-Z0-9]{1,}", usernameKiemTra) && 
-          // Pattern.matches("[a-zA-Z0-9]{5,10}", string1) &&
-          // string1.equals(string2))
+          else
           {
             JOptionPane.showConfirmDialog(null, "Đăng kí thành công", "Warning", JOptionPane.PLAIN_MESSAGE);
           }
@@ -104,26 +100,24 @@ public class LoginController implements ActionListener {
         // }
         // // Nếu tồn tại rồi, thông báo là đã tồn tại đồng thời reset login dialog
         // if(contains) {
-        // JOptionPane.showConfirmDialog(null, "Tên đăng nhập đã tồn tại, vui lòng thử
-        // lại với tên khác", "Warning", JOptionPane.PLAIN_MESSAGE);
+        // JOptionPane.showConfirmDialog(null, "Tên đăng nhập đã tồn tại, vui lòng thử lại với tên khác", "Warning", JOptionPane.PLAIN_MESSAGE);
         // resetLoginDialog();
         // }
         // // Ngược lại nếu chưa tồn tại, import thông tin xuống cơ sở dữ liệu
         // else {
         // int diem = 0;
         // String tenDangNhap = loginModel.getUsername()[0].getText();
-        // String matKhau = loginModel.getPassword()[0].getText();
+        // String matKhau = new String(loginModel.getPassword()[0].getPassword());
         // Info if1 = new Info(tenDangNhap, matKhau, diem);
         // InfoDAO.getInstance().insert(if1);
         // Mf.getIntro().getIntroModel().getLoginButton().setText(
         // loginModel.getUsername()[0].getText());
         // }
-=======
         // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
         if(loginModel.getLargeButton().getText()=="Đăng ký") {
           // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
-          // String usernameKiemTra = loginModel.getUsername()[0].getText();
-          // boolean contains = false;
+          // String usernameKiemTra1 = loginModel.getUsername()[0].getText();
+          // boolean contains1 = false;
           // for (Info info : list) {
           //   if(info.getTenDangNhap().equals(usernameKiemTra)) {
           //     contains = true;
@@ -131,7 +125,7 @@ public class LoginController implements ActionListener {
           //   }
           // }
           // // Nếu tồn tại rồi, thông báo là đã tồn tại đồng thời reset login dialog
-          // if(contains) {
+          // if(contains1) {
           //   JOptionPane.showConfirmDialog(null, "Tên đăng nhập đã tồn tại, vui lòng thử lại", "Warning", JOptionPane.PLAIN_MESSAGE);
           //   resetLoginDialog();
           // }
@@ -139,20 +133,19 @@ public class LoginController implements ActionListener {
           // else {
           //   int diem = 0;
           //   String tenDangNhap = loginModel.getUsername()[0].getText();
-          //   String matKhau = loginModel.getPassword()[0].getText();
+          //   String matKhau = new String(loginModel.getPassword()[0].getPassword());
           //   Info if1 = new Info(tenDangNhap, matKhau, diem);
           //   InfoDAO.getInstance().insert(if1);
           //   Mf.getIntro().getIntroModel().getLoginButton().setText(
           //   loginModel.getUsername()[0].getText());
           // }
->>>>>>> upstream/main
         }
 
         // Nếu là đăng nhập, kiểm tra điều kiện là mật khẩu phải chính xác với tài
         // khoản
         if(loginModel.getLargeButton().getText()=="Đăng nhập") {
-          // String usernameKiemTra = loginModel.getUsername()[0].getText();
-          // String matKhauKiemTra = loginModel.getPassword()[0].getText();
+          // String usernameKiemTra2 = loginModel.getUsername()[0].getText();
+          // String matKhauKiemTra = new String(loginModel.getPassword()[0].getPassword());
           // String query = "tenDangNhap = '"+usernameKiemTra+"' " ;
           // ArrayList<Info> list = InfoDAO.getInstance().selectByCondition(query);
           // for (Info info : list) {
@@ -177,6 +170,8 @@ public class LoginController implements ActionListener {
       }
     }
   }
+}
+
 
   // Hàm reset lại Login
   public void resetLoginDialog() {
