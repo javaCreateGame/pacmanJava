@@ -97,7 +97,7 @@ public class LoginController implements ActionListener {
           //   }
           // }
           // // Nếu tồn tại rồi, thông báo là đã tồn tại đồng thời reset login dialog
-          // if(contains1) {
+          // if(contains) {
           //   JOptionPane.showConfirmDialog(null, "Tên đăng nhập đã tồn tại, vui lòng thử lại", "Warning", JOptionPane.PLAIN_MESSAGE);
           //   resetLoginDialog();
           // }
