@@ -2,6 +2,7 @@ package Controller.LoginController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -60,10 +61,30 @@ public class LoginController implements ActionListener {
 
         // Import vào database
 
-        // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
-        if(loginModel.getLargeButton().getText()=="Đăng ký") {
-          // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
-          // String usernameKiemTra = loginModel.getUsername()[0].getText();
+        // // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
+         if(loginModel.getLargeButton().getText()=="Đăng ký") {
+        // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
+          String usernameKiemTra = loginModel.getUsername()[0].getText();
+         
+         if (!Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9]{4,}", usernameKiemTra)){ //kiểm tra regex của username
+          JOptionPane.showConfirmDialog(null, "Tên đăng nhập không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
+          return;
+          }
+
+          char[] passwordKiemTra = loginModel.getPassword()[0].getPassword();
+          char[] passwordcfKiemTra = loginModel.getConfirmPassInput().getPassword();
+
+          String string_passwordKiemTra = new String(passwordKiemTra);
+          String string_passwordcfKiemTra = new String(passwordcfKiemTra);
+
+          if (!Pattern.matches("[a-zA-Z0-9]{5,10}", string_passwordKiemTra)) { //kiểm tra regex của password
+            JOptionPane.showConfirmDialog(null, "Mật khẩu không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
+            return;
+          }
+          else if(!string_passwordKiemTra.equals(string_passwordcfKiemTra)){ //kiểm tra xác nhận mật khẩu trung khớp với mật khẩu chưa
+            JOptionPane.showConfirmDialog(null, "Xác nhận mật khẩu không đúng", "Warning", JOptionPane.PLAIN_MESSAGE);
+            return; 
+          }
           // boolean contains = false;
           // for (Info info : list) {
           //   if(info.getTenDangNhap().equals(usernameKiemTra)) {
@@ -80,19 +101,20 @@ public class LoginController implements ActionListener {
           // else {
           //   int diem = 0;
           //   String tenDangNhap = loginModel.getUsername()[0].getText();
-          //   String matKhau = loginModel.getPassword()[0].getText();
+          //   String matKhau = new String(loginModel.getPassword()[0].getPassword());
           //   Info if1 = new Info(tenDangNhap, matKhau, diem);
           //   InfoDAO.getInstance().insert(if1);
           //   Mf.getIntro().getIntroModel().getLoginButton().setText(
           //   loginModel.getUsername()[0].getText());
+          // JOptionPane.showConfirmDialog(null, "Đăng kí thành công", "Warning", JOptionPane.PLAIN_MESSAGE);
           // }
         }
 
         // Nếu là đăng nhập, kiểm tra điều kiện là mật khẩu phải chính xác với tài
         // khoản
         if(loginModel.getLargeButton().getText()=="Đăng nhập") {
-          // String usernameKiemTra = loginModel.getUsername()[0].getText();
-          // String matKhauKiemTra = loginModel.getPassword()[0].getText();
+          // String usernameKiemTra2 = loginModel.getUsername()[0].getText();
+          // String matKhauKiemTra = new String(loginModel.getPassword()[0].getPassword());
           // String query = "tenDangNhap = '"+usernameKiemTra+"' " ;
           // ArrayList<Info> list = InfoDAO.getInstance().selectByCondition(query);
           // for (Info info : list) {
@@ -116,7 +138,9 @@ public class LoginController implements ActionListener {
         loginModel.getEncodeVisible().setText(String.valueOf(loginModel.getCode().getLetter()));
       }
     }
-  }
+  
+}
+
 
   // Hàm reset lại Login
   public void resetLoginDialog() {
