@@ -64,10 +64,6 @@ public class LoginController implements ActionListener {
         // // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
          if(loginModel.getLargeButton().getText()=="Đăng ký") {
         // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
-         
-
-        if(loginModel.getLargeButton().getText()=="Đăng ký") {
-          // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
           String usernameKiemTra = loginModel.getUsername()[0].getText();
          
          if (!Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9]{4,}", usernameKiemTra)){ //kiểm tra regex của username
@@ -142,7 +138,7 @@ public class LoginController implements ActionListener {
         loginModel.getEncodeVisible().setText(String.valueOf(loginModel.getCode().getLetter()));
       }
     }
-  }
+  
 }
 
 
