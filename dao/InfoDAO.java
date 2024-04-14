@@ -77,6 +77,38 @@ public class InfoDAO implements DAOInterface<Info> {
 	}
 
 	@Override
+	public int updateScore(Info t, int score) {
+		int kq = 0;
+		try {
+			// Buoc 1: Tao ket noi den CSDL
+			Connection con = JDBCUtil.getConnection();
+
+			// Buoc 2: Tao ra doi tuong statement
+
+			Statement st = con.createStatement();
+
+			// Buoc 3: Thuc thi cau lenh SQL
+			String sql = "UPDATE info " +
+					" SET " +
+					" Diem = " + score + " " +
+					" WHERE tenDangNhap = '" + t.getTenDangNhap() + "' ";
+			System.out.println(sql);
+			kq = st.executeUpdate(sql);
+
+			// Buoc 4:
+			System.out.println("Ban da thuc thi: " + sql);
+			System.out.println("Co " + kq + " dong bi thay doi");
+
+			// Buoc 5: Ket thuc
+			JDBCUtil.closeConnection(con);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return kq;
+	}
+
+	@Override
 	public int delete(Info t) {
 		int kq = 0;
 		try {

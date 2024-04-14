@@ -7,6 +7,8 @@ public interface DAOInterface<T> {
 
 	public int update(T t);
 
+	public int updateScore(T t, int score);
+
 	public int delete(T t);
 
 	public ArrayList<T> selectAll();
