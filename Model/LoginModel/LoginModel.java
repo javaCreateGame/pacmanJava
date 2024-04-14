@@ -103,17 +103,15 @@ public class LoginModel extends JDialog {
         return username;
     }
 
-<<<<<<< HEAD
     public JPasswordField[] getPassword() {
-=======
+        return password;
+    }
+    
     public String getUsernameI() {
         return username[0].getText();
     }
 
-    public JTextField[] getPassword() {
->>>>>>> upstream/main
-        return password;
-    }
+
 
     public JLabel getEncodeVisible() {
         return EncodeVisible;

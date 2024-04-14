@@ -64,7 +64,11 @@ public class LoginController implements ActionListener {
         // // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
          if(loginModel.getLargeButton().getText()=="Đăng ký") {
         // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
-         String usernameKiemTra = loginModel.getUsername()[0].getText();
+         
+
+        if(loginModel.getLargeButton().getText()=="Đăng ký") {
+          // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
+          String usernameKiemTra = loginModel.getUsername()[0].getText();
          
          if (!Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9]{4,}", usernameKiemTra)){ //kiểm tra regex của username
           JOptionPane.showConfirmDialog(null, "Tên đăng nhập không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
@@ -74,50 +78,18 @@ public class LoginController implements ActionListener {
           char[] passwordKiemTra = loginModel.getPassword()[0].getPassword();
           char[] passwordcfKiemTra = loginModel.getConfirmPassInput().getPassword();
 
-          String string1 = new String(passwordKiemTra);
-          String string2 = new String(passwordcfKiemTra);
+          String string_passwordKiemTra = new String(passwordKiemTra);
+          String string_passwordcfKiemTra = new String(passwordcfKiemTra);
 
-          if (!Pattern.matches("[a-zA-Z0-9]{5,10}", string1)) { //kiểm tra regex của password
+          if (!Pattern.matches("[a-zA-Z0-9]{5,10}", string_passwordKiemTra)) { //kiểm tra regex của password
             JOptionPane.showConfirmDialog(null, "Mật khẩu không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
             return;
           }
-          else if(!string1.equals(string2)){ //kiểm tra xác nhận mật khẩu trung khớp với mật khẩu chưa
+          else if(!string_passwordKiemTra.equals(string_passwordcfKiemTra)){ //kiểm tra xác nhận mật khẩu trung khớp với mật khẩu chưa
             JOptionPane.showConfirmDialog(null, "Xác nhận mật khẩu không đúng", "Warning", JOptionPane.PLAIN_MESSAGE);
             return; 
           }
-          else
-          {
-            JOptionPane.showConfirmDialog(null, "Đăng kí thành công", "Warning", JOptionPane.PLAIN_MESSAGE);
-          }
-
-          
-        // boolean contains = false;
-        // for (Info info : list) {
-        // if(info.getTenDangNhap().equals(usernameKiemTra)) {
-        // contains = true;
-        // break;
-        // }
-        // }
-        // // Nếu tồn tại rồi, thông báo là đã tồn tại đồng thời reset login dialog
-        // if(contains) {
-        // JOptionPane.showConfirmDialog(null, "Tên đăng nhập đã tồn tại, vui lòng thử lại với tên khác", "Warning", JOptionPane.PLAIN_MESSAGE);
-        // resetLoginDialog();
-        // }
-        // // Ngược lại nếu chưa tồn tại, import thông tin xuống cơ sở dữ liệu
-        // else {
-        // int diem = 0;
-        // String tenDangNhap = loginModel.getUsername()[0].getText();
-        // String matKhau = new String(loginModel.getPassword()[0].getPassword());
-        // Info if1 = new Info(tenDangNhap, matKhau, diem);
-        // InfoDAO.getInstance().insert(if1);
-        // Mf.getIntro().getIntroModel().getLoginButton().setText(
-        // loginModel.getUsername()[0].getText());
-        // }
-        // Nếu là đăng ký, kiểm tra xem username đã tồn tại trong csdl chưa
-        if(loginModel.getLargeButton().getText()=="Đăng ký") {
-          // ArrayList<Info> list = InfoDAO.getInstance().selectAll();
-          // String usernameKiemTra1 = loginModel.getUsername()[0].getText();
-          // boolean contains1 = false;
+          // boolean contains = false;
           // for (Info info : list) {
           //   if(info.getTenDangNhap().equals(usernameKiemTra)) {
           //     contains = true;
@@ -138,6 +110,7 @@ public class LoginController implements ActionListener {
           //   InfoDAO.getInstance().insert(if1);
           //   Mf.getIntro().getIntroModel().getLoginButton().setText(
           //   loginModel.getUsername()[0].getText());
+          // JOptionPane.showConfirmDialog(null, "Đăng kí thành công", "Warning", JOptionPane.PLAIN_MESSAGE);
           // }
         }
 
