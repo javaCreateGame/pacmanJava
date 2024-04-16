@@ -2,6 +2,7 @@ package Controller.GameController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -18,6 +19,24 @@ public class GameController implements ActionListener, Runnable {
     private GameModel gameModel;
     private GameView gameView;
     Thread gameThread;
+    Thread functionThread = new Thread(() -> {
+      while (gameThread!= null) {
+        if (gameModel.getNameCardLayout() == "FirstMap" || gameModel.getNameCardLayout() == "SecondMap"
+        || gameModel.getNameCardLayout() == "ThirdMap") {
+            gameModel.setCountFoot(gameModel.getCountFoot() + 1);
+            
+        }
+        Transform.getTransform(gameModel);
+        EatBook.getEatBooks(this);
+        PlayerVsMonster.PlayerFightMonster(gameModel);
+        gameView.updateScoreLabel();
+        NextMap.nextMap(gameModel);
+        if (gameModel.getNameCardLayout() == "ThirdMap") {
+            Ending.finalEnding(gameModel);
+        }
+        
+      }
+    });
 
     public GameController() {
         gameModel = new GameModel();
@@ -58,40 +77,37 @@ public class GameController implements ActionListener, Runnable {
     public void StartGame() {
         gameThread = new Thread(this);
         gameThread.start();
+        functionThread.start();
     }
 
     // Tạo hệ thống game loop để làm animation cho nhân vật với 60 khung hình trên
     // giây
     @Override
     public void run() {
-        double drawInteval = 1000000000 / gameModel.getFPS();
-        double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
+        double drawInteval = 1000000000 / gameModel.getFPS();//khoảng thời gian để vẽ lại
+        double nextDrawTime =System.nanoTime() +drawInteval;//Thời gian vẽ tiếp theo
+        
         while (gameThread != null) {
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / drawInteval;
-            lastTime = currentTime;
-            if (delta >= 1) {
-                // Vào map mới bắt đầu cho nhân vật ,quái chạy thực hiện logic
-                if (gameModel.getNameCardLayout() == "FirstMap" || gameModel.getNameCardLayout() == "SecondMap"
-                        || gameModel.getNameCardLayout() == "ThirdMap") {
+          
                     update();
-                    Transform.getTransform(gameModel);
-                    EatBook.getEatBooks(this);
-                    PlayerVsMonster.PlayerFightMonster(gameModel);
-                    gameView.updateScoreLabel();
-                    NextMap.nextMap(gameModel);
-                    if (gameModel.getNameCardLayout() == "ThirdMap") {
-                        Ending.finalEnding(gameModel);
+                    gameModel.repaint();
+        
+                    try {
+                        double remainningTime=nextDrawTime-System.nanoTime();//Tính thời gian còn lại cho đến lần vẽ kế tiếp
+                    remainningTime=remainningTime/1000000;//chuyển về dạng milis do thread.sleep chỉ chấp nhận milis
+                    if (remainningTime<0) {
+                        remainningTime=0;
                     }
-                }
-                gameModel.repaint();
-                delta--;
+                    Thread.sleep((long) remainningTime);
+                    nextDrawTime+=drawInteval;//Thiết lập thời gian vẽ kế tiếp
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
             }
 
         }
-    }
+    
 
     // Hàm viết logic các nút bấm
     @Override
@@ -100,7 +116,7 @@ public class GameController implements ActionListener, Runnable {
         if (e.getSource() == gameModel.getIntro().getIntroModel().getStart()) {
             if (gameModel.getLogin().getLoginModel().isOutDialog() == true) {
                 // Dừng âm thanh hiện tại
-                gameModel.getSoundMain().stop();
+                gameModel.getSoundMain().close();
                 // Chuyển sang cửa sổ Trailer
                 gameModel.setNameCardLayout("Trailer");
                 gameModel.getCardLayout().show(gameModel.getCardPanel(), gameModel.getNameCardLayout());
@@ -150,8 +166,8 @@ public class GameController implements ActionListener, Runnable {
 
         else if (e.getSource() == gameModel.getTrailer().getTrailerModel().getNextButton()) {
             // Dừng âm thanh phần trailer
-            gameModel.getSoundInternal().stop();
-            gameModel.getSoundMain().stop();
+            gameModel.getSoundInternal().close();
+            gameModel.getSoundMain().close();
             gameModel.setNameCardLayout("FirstMap");
             gameModel.getFirstMap().getFirstMapModel().getTimer().restart();
             gameModel.getCardLayout().show(gameModel.getCardPanel(), gameModel.getNameCardLayout());
@@ -190,8 +206,7 @@ public class GameController implements ActionListener, Runnable {
     public void update() {
         gameModel.getPlayer().update();
         gameModel.getMonster().running();
-        gameModel.setCountFoot(gameModel.getCountFoot() + 1);
-        ;
+       
 
     }
 

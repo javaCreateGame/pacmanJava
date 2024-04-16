@@ -27,7 +27,7 @@ public class NextMap {
             }
             if (next == true) {
                 // Hàm chạy thời gian third map
-                Mf.getThirdMap().updateTimer(10);
+                Mf.getThirdMap().updateTimer(60);
                 Mf.getThirdMap().getThirdMapModel().getTimerThirdMap().start();
                 Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
                 Mf.getPlayer().getPlayerModel().setPlayerPositionX(1);
@@ -42,6 +42,8 @@ public class NextMap {
                 Mf.getMonster().getMonsterModel().setyJoystick(295);
                 Mf.getMonster().getMonsterModel().setxSyrinnge(339);
                 Mf.getMonster().getMonsterModel().setySyrinnge(321);
+
+               
             }
 
         }

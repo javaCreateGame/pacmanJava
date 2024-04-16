@@ -6,6 +6,7 @@ import daoModel.*;
 
 public class Ending {
     public static void HappyEnding(GameModel Mf, int numberHappy) {
+        Mf.getSoundMain().close();
         Mf.setNameCardLayout("HappyEnding");
         Mf.getHappyEnding().getHappyEndingModel().setNumberHappy(numberHappy);
         Mf.getHappyEnding().getHappyEndingModel().getCardLayout()
@@ -37,6 +38,7 @@ public class Ending {
     }
 
     public static void BadEnding(GameModel Mf, int numberBad) {
+        Mf.getSoundMain().close();
         Mf.setNameCardLayout("BadEnding");
         Mf.getBadEnding().getBadEndingModel().setNumberBad(numberBad);
         Mf.getBadEnding().getBadEndingModel().getCardLayout().show(Mf.getBadEnding().getBadEndingModel().getCardPanel(),
