@@ -43,8 +43,8 @@ public class PlayerView {
                     ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "1.png")));
             playerModel.setRight2(
                     ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "2.png")));
-            playerModel.setRight3(
-                    ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "3.png")));
+             playerModel.setRight3(
+                     ImageIO.read(getClass().getResourceAsStream("/picture/PlayerRight" + imageName + "3.png")));
 
         } catch (Exception e) {
             e.printStackTrace();

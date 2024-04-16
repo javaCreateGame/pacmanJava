@@ -8,7 +8,7 @@ public class Transform {
     public static void transform(GameModel Mf, int heartXLocation, int heartYLocation,
             boolean addHeart, boolean removeHeart) {
         double dem = Math.floor((Math.random() * 2) + 1);
-
+       
         // Set các điều kiện để nhân vật có thể biến hình
         int X = (heartXLocation + Mf.getSecondMap().getSecondMapModel().getNewImageIconHeart().getIconWidth())
                 - (Mf.getPlayer().getPlayerModel().getPlayerWidth()
@@ -35,9 +35,19 @@ public class Transform {
                     @Override
                     public void run() {
                         Mf.getPlayer().getPlayerModel().setImgName("");
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                Mf.getSoundNext().close();
+                                
+                                
+                            }
+                        }, 50);
                         timer.cancel();
+                        
                     }
                 }, 10000);
+                
             }
             // Xóa hình trái tym trên map
 

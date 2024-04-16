@@ -78,7 +78,7 @@ public class TrailerController {
                 for (String line : trailerModel.getLinesToShow()) {
                     trailerModel.getTextArea().append(line + "\n");
                 }
-                Mf.getSoundInternal().stop();
+                Mf.getSoundInternal().close();
             }
         });
     }

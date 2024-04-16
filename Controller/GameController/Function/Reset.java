@@ -9,12 +9,14 @@ import Model.StateModel.MapModel;
 public class Reset {
     // Hàm reset mọi thứ về trạng thái ban đầu và trở về Intro
     public static void ResetAll(GameModel Mf) {
-
+        
         Mf.getFirstMap().getFirstMapModel().getMapLabel().setVisible(true);
         Mf.getSecondMap().getSecondMapModel().getMapLabel2().setVisible(true);
         Mf.getThirdMap().getThirdMapModel().getMapLabel3().setVisible(true);
         // Dừng nhạc hiện tại
-        Mf.getSoundMain().stop();
+        Mf.getSoundMain().close();
+       
+        Mf.getSoundInternal().close();
         Mf.setCountFoot(0);
 
         // Đặt lại vị trí ban đầu;

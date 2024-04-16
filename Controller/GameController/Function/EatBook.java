@@ -1,11 +1,15 @@
 package Controller.GameController.Function;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Controller.GameController.GameController;
 
 import Model.StateModel.MapModel;
+
 
 public class EatBook {
     // Hàm set sự kiến ăn sách
@@ -31,6 +35,14 @@ public class EatBook {
                 DefaultMap.setAddObj(false, i);
                 DefaultMap.setRemoveObj(true, i);
                 Mf.getGameModel().setScore(Mf.getGameModel().getScore() + 100);
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Mf.getGameModel().getSoundInternal().close();
+                        timer.cancel();
+                    }
+                }, 300);
             }
         }
     }
@@ -45,6 +57,7 @@ public class EatBook {
                         Mf.getGameModel().getFirstMap().getFirstMapModel().getChildFirstMapPanel(),
                         Mf.getGameModel().getFirstMap().getFirstMapModel().getObj());
                 Mf.getGameView().updateScore();
+              
                 break;
             case "SecondMap":
                 eatBooks(Mf, Mf.getGameModel().getSecondMap().getSecondMapModel(),
@@ -53,15 +66,15 @@ public class EatBook {
                         Mf.getGameModel().getSecondMap().getSecondMapModel().getChildSecondMapPanel(),
                         Mf.getGameModel().getSecondMap().getSecondMapModel().getObj());
                 Mf.getGameView().updateScore();
-                break;
+               break;
             case "ThirdMap":
                 eatBooks(Mf, Mf.getGameModel().getThirdMap().getThirdMapModel(),
                         Mf.getGameModel().getThirdMap().getThirdMapModel().getX(),
                         Mf.getGameModel().getThirdMap().getThirdMapModel().getY(),
                         Mf.getGameModel().getThirdMap().getThirdMapModel().getChildThirdMapPanel(),
                         Mf.getGameModel().getThirdMap().getThirdMapModel().getObj());
-                Mf.getGameView().updateScore();
-                break;
+               Mf.getGameView().updateScore();
+               break;
         }
     }
 
