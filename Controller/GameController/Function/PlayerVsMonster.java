@@ -32,7 +32,7 @@ public class PlayerVsMonster {
                 Mf.getMonster().getMonsterModel().getMonsterVisible()[2]);
         // Nếu đụng vào quái nào thì hiện lên thông báo kết thúc game và lựa chọn
         if (pVsDice == true || pVsSyrinnge == true || pVsJoystick == true) {
-            Mf.getSoundMain().stop();
+            
 
             if (pVsDice == true) {
                 Mf.getBadEnding().getBadEndingModel().setNumberBad(0);

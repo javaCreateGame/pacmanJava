@@ -101,7 +101,7 @@ public class GameController implements ActionListener, Runnable {
                     Thread.sleep((long) remainningTime);
                     nextDrawTime+=drawInteval;//Thiết lập thời gian vẽ kế tiếp
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
+                     
                         e.printStackTrace();
                     }
             }
@@ -204,8 +204,11 @@ public class GameController implements ActionListener, Runnable {
 
     // Hàm để update chuyển động ,tọa độ khi nhân vật ,monster di chuyển
     public void update() {
-        gameModel.getPlayer().update();
-        gameModel.getMonster().running();
+        if (gameModel.getNameCardLayout() == "FirstMap" || gameModel.getNameCardLayout() == "SecondMap"
+        || gameModel.getNameCardLayout() == "ThirdMap") {
+            gameModel.getPlayer().update();
+            gameModel.getMonster().running();
+        }
        
 
     }

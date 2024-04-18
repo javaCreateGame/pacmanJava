@@ -9,7 +9,7 @@ public class NextMap {
         boolean next = false;
         if (Mf.getNameCardLayout() == "SecondMap" || Mf.getNameCardLayout() == "FirstMap") {
             if (Mf.getNameCardLayout() == "SecondMap" && Mf.getScore() >= 9900) {
-                Mf.getSoundMain().stop();
+                
                 Mf.getHappyEnding().getHappyEndingModel().setNumberHappy(1);
                 Ending.HappyEnding(Mf, Mf.getHappyEnding().getHappyEndingModel().getNumberHappy());
             }

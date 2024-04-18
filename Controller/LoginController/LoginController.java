@@ -44,10 +44,14 @@ public class LoginController implements ActionListener {
       // Sự kiện chuyển từ trang đăng nhập sang đăng ký
       if (loginModel.getLargeButton().getText() == "Đăng ký" && loginModel.getSmallButton().getText() == "Đăng nhập") {
         setLocationInput_Button(165, 165, 200, 135, true);
+        loginModel.getUsername()[0].requestFocus();
+        loginModel.getUsername()[1].requestFocus();
       }
-      // Sự kiện chuyển từ trang đăng nhập sang đăng ký
+      // Sự kiện chuyển từ trang đăng ký sang đăng nhập
       else {
         setLocationInput_Button(115, 115, 150, 85, false);
+        loginModel.getUsername()[0].requestFocus();
+        loginModel.getUsername()[1].requestFocus();
       }
       // thay chuỗi mã hóa thành chuỗi mã hóa mới
       loginModel.getCode().newKey();
@@ -67,7 +71,7 @@ public class LoginController implements ActionListener {
           String usernameKiemTra = loginModel.getUsername()[0].getText();
          
          if (!Pattern.matches("^[a-zA-Z]{1}[a-zA-Z0-9]{4,}", usernameKiemTra)){ //kiểm tra regex của username
-          JOptionPane.showConfirmDialog(null, "Tên đăng nhập không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
+          JOptionPane.showConfirmDialog(null, "Tên đăng nhập phải từ 5 ký tự và chữ cái đầu không là số", "Warning", JOptionPane.PLAIN_MESSAGE);
           return;
           }
 
@@ -78,7 +82,7 @@ public class LoginController implements ActionListener {
           String string_passwordcfKiemTra = new String(passwordcfKiemTra);
 
           if (!Pattern.matches("[a-zA-Z0-9]{5,10}", string_passwordKiemTra)) { //kiểm tra regex của password
-            JOptionPane.showConfirmDialog(null, "Mật khẩu không đúng định dạng", "Warning", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "Mật khẩu từ 5 đến 10 ký tự", "Warning", JOptionPane.PLAIN_MESSAGE);
             return;
           }
           else if(!string_passwordKiemTra.equals(string_passwordcfKiemTra)){ //kiểm tra xác nhận mật khẩu trung khớp với mật khẩu chưa
@@ -155,6 +159,9 @@ public class LoginController implements ActionListener {
     loginModel.getCode().newKey();
     loginModel.getCode().encrypt((int) Math.floor((Math.random() * 3) + 1));
     loginModel.getEncodeVisible().setText(String.valueOf(loginModel.getCode().getLetter()));
+    
+    loginModel.getUsername()[0].requestFocus();
+    loginModel.getUsername()[1].requestFocus();
   }
 
   // Hàm đặt tọa độ cho vị trí các nút và vị trí phần check encode

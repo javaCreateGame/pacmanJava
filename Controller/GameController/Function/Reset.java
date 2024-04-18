@@ -15,8 +15,8 @@ public class Reset {
         Mf.getThirdMap().getThirdMapModel().getMapLabel3().setVisible(true);
         // Dừng nhạc hiện tại
         Mf.getSoundMain().close();
-       
         Mf.getSoundInternal().close();
+        
         Mf.setCountFoot(0);
 
         // Đặt lại vị trí ban đầu;
