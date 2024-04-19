@@ -21,7 +21,6 @@ public class JDBCUtil {
 			// Tao ket noi
 			c = DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			
 			e.printStackTrace();
 		}
@@ -35,7 +34,6 @@ public class JDBCUtil {
 				c.close();
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			
 			e.printStackTrace();
 		}
@@ -47,7 +45,6 @@ public class JDBCUtil {
 				java.sql.DatabaseMetaData mtdt = c.getMetaData();
 				System.out.println(mtdt.getDatabaseProductName());
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				
 				e.printStackTrace();
 			}
