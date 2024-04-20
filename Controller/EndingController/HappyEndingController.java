@@ -17,7 +17,7 @@ public class HappyEndingController {
         happyEndingModel = new HappyEndingModel();
         happyEndingView = new HappyEndingView(happyEndingModel);
         timerHappy = new Timer(25, new ActionListener() {
-
+//tương tự BadEnding Controller
             @Override
             public void actionPerformed(ActionEvent e) {
 

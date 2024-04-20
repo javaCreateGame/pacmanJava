@@ -19,16 +19,17 @@ public class GameController implements ActionListener, Runnable {
     private GameModel gameModel;
     private GameView gameView;
     Thread gameThread;
+    //Tạo 1 luồng chứa các chức năng của game
     Thread functionThread = new Thread(() -> {
       while (gameThread!= null) {
         if (gameModel.getNameCardLayout() == "FirstMap" || gameModel.getNameCardLayout() == "SecondMap"
         || gameModel.getNameCardLayout() == "ThirdMap") {
             gameModel.setCountFoot(gameModel.getCountFoot() + 1);
-            
+            PlayerVsMonster.PlayerFightMonster(gameModel);    
         }
         Transform.getTransform(gameModel);
         EatBook.getEatBooks(this);
-        PlayerVsMonster.PlayerFightMonster(gameModel);
+        
         gameView.updateScoreLabel();
         NextMap.nextMap(gameModel);
         if (gameModel.getNameCardLayout() == "ThirdMap") {
@@ -60,12 +61,12 @@ public class GameController implements ActionListener, Runnable {
         gameModel.getScoreBoard().getScoreBoardModel().getBack().addActionListener(this);
         // Thêm ActionListener cho nút "nextButton" trong Intro
         gameModel.getTrailer().getTrailerModel().getNextButton().addActionListener(this);
-
+       // Thêm ActionListener cho nút "yesButton" và noButton trong Badending
         gameModel.getBadEnding().getBadEndingModel().getButtonEnding().getButtonEndingModel().getYesButton()
                 .addActionListener(this);
         gameModel.getBadEnding().getBadEndingModel().getButtonEnding().getButtonEndingModel().getNoButton()
                 .addActionListener(this);
-
+// Thêm ActionListener cho nút "yesButton" và noButton trong happy
         gameModel.getHappyEnding().getHappyEndingModel().getButtonEnding().getButtonEndingModel().getYesButton()
                 .addActionListener(this);
         gameModel.getHappyEnding().getHappyEndingModel().getButtonEnding().getButtonEndingModel().getNoButton()

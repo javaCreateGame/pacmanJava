@@ -5,14 +5,19 @@ import dao.*;
 import daoModel.*;
 
 public class Ending {
+    //Ending Happy
     public static void HappyEnding(GameModel Mf, int numberHappy) {
+        //Đóng nhạc hiện tại
         Mf.getSoundMain().close();
+        //Chuyển sang trang happyending tương ứng
         Mf.setNameCardLayout("HappyEnding");
         Mf.getHappyEnding().getHappyEndingModel().setNumberHappy(numberHappy);
         Mf.getHappyEnding().getHappyEndingModel().getCardLayout()
                 .show(Mf.getHappyEnding().getHappyEndingModel().getCardPanel(), "happy" + numberHappy);
         Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
+        //Bắt đầu chạy timerhappy
         Mf.getHappyEnding().getTimerHappy().start();
+        //Bắt đầu chạy nhạc
         Mf.getSoundMain().setFile(7);
         Mf.getSoundMain().start();
         //updateScoreDB(Mf);
@@ -36,7 +41,7 @@ public class Ending {
             InfoDAO.getInstance().updateScore(t, Mf.getScore());
         }
     }
-
+//BadEnding
     public static void BadEnding(GameModel Mf, int numberBad) {
         Mf.getSoundMain().close();
         Mf.setNameCardLayout("BadEnding");
@@ -49,7 +54,7 @@ public class Ending {
         Mf.getSoundMain().start();
         //updateScoreDB(Mf);
     }
-
+//Ending khi hết thời gian màn 3
     public static void finalEnding(GameModel Mf) {
         if (Mf.getThirdMap().getThirdMapModel().getSecondsLeft() <= 0) {
             // Nếu điểm nhỏ hơn 4500, bạn thua
@@ -60,10 +65,13 @@ public class Ending {
             }
             // Ngược lại bạn chiến thắng
             else {
+                //Nếu score nằm trong khoảng 4500 đến 11000 thì đỗ đại học
                 if (Mf.getScore() > 4500 && Mf.getScore() < 11000) {
                     Mf.getHappyEnding().getHappyEndingModel().setNumberHappy(0);
 
-                } else {
+                }
+                //>11000 thì là thủ khoa 
+                else {
                     Mf.getHappyEnding().getHappyEndingModel().setNumberHappy(2);
                 }
                 HappyEnding(Mf, Mf.getHappyEnding().getHappyEndingModel().getNumberHappy());

@@ -46,28 +46,49 @@ public class TrailerController {
             }
         });
 
+        //line to show là 1 chuỗi chứa phần giới thiệu 
+        //curentcharacter chỉ số lượng từ hiện tại của text area ban đầu =0
+        //curentlineindex chỉ index hiện tại của lineto show=0
+        //textArea là biến để in ra các dòng chữ của linetoshow trên màn hình=0
+
         trailerModel.getTimer().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //nÊÚ curentcharacter< số luượng từ của linetoshow[curentlineindex]
+                
                 if (trailerModel
+
                         .getCurrentCharacterIndex() < trailerModel.getLinesToShow()[trailerModel.getCurrentLineIndex()]
                                 .length()) {
+                    //Nối chuỗi trong textArea với char  vị trí curentcharacter của linetoshow[curentlineindex]
                     trailerModel.getTextArea()
                             .append(String.valueOf(trailerModel.getLinesToShow()[trailerModel.getCurrentLineIndex()]
                                     .charAt(trailerModel.getCurrentCharacterIndex())));
+                    //Tăng curentcharacter lên 1
                     trailerModel.setCurrentCharacterIndex(trailerModel.getCurrentCharacterIndex() + 1);
-                } else {
+                }
+                //Ngược lại
+                 else {
+                   
+                    //lúc này textarea đã lấy xong các linetoshow[curentlineindex]
+                     //Tăng curentlineindex lên 1 
                     trailerModel.setCurrentLineIndex(trailerModel.getCurrentLineIndex() + 1);
+                     //Nếu textArea lấy hết tất cả rồi và 
                     if (trailerModel.getCurrentLineIndex() >= trailerModel.getLinesToShow().length) {
+                        //Dừng timer
                         trailerModel.getTimer().stop();
+                        //Đóng nhạc gõ phím
                         Mf.getSoundInternal().stop();
-                    } else {
+                    }//Ngược lại xuống dòng và tiếp tục 
+                    else {
                         trailerModel.getTextArea().append("\n");
+                        //set curentcharacter về 0
                         trailerModel.setCurrentCharacterIndex(0);
                     }
                 }
             }
         });
+        //Sự kiện khi ấn nút skip
         trailerModel.getSkipButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +99,7 @@ public class TrailerController {
                 for (String line : trailerModel.getLinesToShow()) {
                     trailerModel.getTextArea().append(line + "\n");
                 }
+                //Tắt nhạc gõ phím
                 Mf.getSoundInternal().close();
             }
         });

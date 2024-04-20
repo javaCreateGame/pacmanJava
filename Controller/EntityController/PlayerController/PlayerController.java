@@ -27,43 +27,61 @@ public class PlayerController {
                 || Mf.getThirdMap().getThirdMapModel().getTimer3().isRunning() == true) {
         } else
         // logic phần bấm bấm nút di chuyển
+        //Khi bấm các nút di chuyển
         if (playerMoveController.getPlayerMoveModel().isPlayerUp()
                 || playerMoveController.getPlayerMoveModel().isPlayerDown()
                 || playerMoveController.getPlayerMoveModel().isPlayerLeft()
                 || playerMoveController.getPlayerMoveModel().isPlayerRight()) {
 
+        //nếu bấm nút W
             if (playerMoveController.getPlayerMoveModel().isPlayerUp()) {
+                //sẽ có 1 biến mô tả là direction cho biết là mình đang đi lên trên  
                 playerModel.setDirection("up");
+                //Khi đó giảm tọa độ nhân vật theo trục y 1 khoảng là speed 
                 playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
             }
+              //nếu bấm nút S
             if (playerMoveController.getPlayerMoveModel().isPlayerDown()) {
                 playerModel.setDirection("down");
+                //Khi đó tăng tọa độ nhân vật theo trục y 1 khoảng là speed
                 playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
             }
+              //nếu bấm nút A
             if (playerMoveController.getPlayerMoveModel().isPlayerLeft()) {
                 playerModel.setDirection("left");
+                 //Giamr tọa độ nhân vật theo trục x 1 khoảng là speed
                 playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
             }
+              //nếu bấm nút D
             if (playerMoveController.getPlayerMoveModel().isPlayerRight()) {
                 playerModel.setDirection("right");
                 playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
             }
-            playerModel.setSpriteCounter(playerModel.getSpriteCounter() + 1);
-            if (playerModel.getSpriteCounter() >= 3) {
 
+            //Biến spriteCount chỉ số bước đi của nhân vật 
+            
+            playerModel.setSpriteCounter(playerModel.getSpriteCounter() + 1);
+            //nếu số bước đi mà lớn hơn bằng 3
+            if (playerModel.getSpriteCounter() >= 3) {
+             //cho spritenum=1 nếu hiện nó đang bằng 2 và ngược lại
+             //SpriterNum dùng để thay đổi luân phiên các hoạt ảnh của nhân vật như up1,up2,up3
                 playerModel.setSpriteNum((playerModel.getSpriteNum() == 1) ? 2 : 1);
+                //ResetSpriteCpunter
                 playerModel.setSpriteCounter(0);
             }
         }
     }
 
     public void draw(Graphics2D g2) {
+        //Tạo 1 biến img để có thể thay đổi luân phiên các hoạt ảnh
+        //Như là khi đi lên thì thay ảnh mà nhân vật đi lên
         BufferedImage img = null;
 
         // logic phần thay đổi qua lại giữa up1 và up2(down,left,right);
         switch (playerModel.getDirection()) {
-
+            //Nếu directtion là up
             case "up":
+            //img = ảnh đc trả về từ hàm swapImage
                 img = swapImage(playerModel.getUp1(), playerModel.getUp2(), playerModel.getUp3());
                 changeSpeed_Size();
                 break;
@@ -88,28 +106,42 @@ public class PlayerController {
                 playerModel.getPlayerWidth(), playerModel.getPLayerHeight(), null);
 
     }
-
+     //Hàm thay đổi ảnh
     public BufferedImage swapImage(BufferedImage action1, BufferedImage action2, BufferedImage action3) {
+       //nếu SpriteNum=1
         if (playerModel.getSpriteNum() == 1) {
+            //Nếu ImgaeNumber=2
+            // ImgaeNumber là biến để thay đổi giữa hoạt ảnh 2 và 3
             if (playerModel.getImgNumber() == 2) {
+                //Trả về hoạt ảnh số 2 (up2,down2,..)
                 return action2;
 
-            } else {
+            }
+            // nÊU iMAGEnUMBER=3 TRẢ VỀ HOẠT ảnh 3 
+            else {
+
                 return action3;
 
             }
 
         }
-
+      //Thay đổi luân phiên ImgaeNumber giữa 2 và 3
+      //Nếu hoạt ảnh số 2 có rồi thì kế tiếp là 3
         playerModel.setImgNumber((playerModel.getImgNumber() == 2) ? 3 : 2);
+        //Nếu điều kiện trên k thỏa mãn trả về hoạt ảnh 1
         return action1;
     }
-
+//Hàm thay đổi qua lại giữa dạng thường và dạng biến hình
     public void changeSpeed_Size() {
+       //Nếu Imgaename là attack thì thay đổi default size và ngược lại
+       //Imagename cho biến nhân vật hiện đanhg biến hình hay k 
         playerModel.setDefaultSize((playerModel.getImgName().contains("Attack")) ? 35 : 30);
+        //Thay đổi width 
         playerModel.setPlayerWidth(playerModel.getDefaultSize());
+        //Thay đổi height
         playerModel.setPLayerHeight((playerModel.getImgName().contains("Attack")) ? playerModel.getDefaultSize() + 15
                 : playerModel.getDefaultSize() + 10);
+        //Thay đổi speed
         playerModel.setSpeed(playerModel.getImgName().contains("Attack") ? 6 : 3);
 
     }

@@ -7,9 +7,10 @@ import java.util.TimerTask;
 public class Transform {
     public static void transform(GameModel Mf, int heartXLocation, int heartYLocation,
             boolean addHeart, boolean removeHeart) {
-        double dem = Math.floor((Math.random() * 2) + 1);
+           double dem = Math.floor((Math.random() * 2) + 1);
        
         // Set các điều kiện để nhân vật có thể biến hình
+     //Tương tự như eat book nhưng thay bằng tym
         int X = (heartXLocation + Mf.getSecondMap().getSecondMapModel().getNewImageIconHeart().getIconWidth())
                 - (Mf.getPlayer().getPlayerModel().getPlayerWidth()
                         + Mf.getPlayer().getPlayerModel().getPlayerPositionX());
@@ -38,6 +39,7 @@ public class Transform {
                         timer.schedule(new TimerTask() {
                             @Override
                             public void run() {
+                                //sau khi hết biến hình thì 50ms sau đóng nhạc biến hính
                                 Mf.getSoundNext().close();
                                 
                                 

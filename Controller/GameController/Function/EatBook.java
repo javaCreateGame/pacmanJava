@@ -17,24 +17,36 @@ public class EatBook {
             JLabel obj[]) {
         // Set các điều kiện để nhân vật ăn sách
         for (int i = 0; i < x.length; i++) {
+            //X là khoảng cách giữa nhân vật và sachs theo tọa độ X
             int X = (x[i] + Mf.getGameModel().getSecondMap().getSecondMapModel().getNewImageIcon().getIconWidth())
                     - (Mf.getGameModel().getPlayer().getPlayerModel().getPlayerWidth()
                             + Mf.getGameModel().getPlayer().getPlayerModel().getPlayerPositionX());
+            //Y là khoảng cách giữa nhân vật và sách theo tọa độ Y
             int Y = (y[i] + Mf.getGameModel().getSecondMap().getSecondMapModel().getNewImageIcon().getIconHeight())
                     - (Mf.getGameModel().getPlayer().getPlayerModel().getPLayerHeight()
                             + Mf.getGameModel().getPlayer().getPlayerModel().getPlayerPositionY());
-            if (((X >= -28 && X <= 2 && Mf.getGameModel().getPlayer().getPlayerModel().getImgName() == "")
+            //Nếu nhân vật và sách trong khoảng cách cố định và sách vẫn chưa được ăn trước đó
+            if (((X >= -28 && X <= 2 )
                     || (X >= -45 && X <= 3 && Mf.getGameModel().getPlayer().getPlayerModel().getImgName() == "Attack"))
                     &&
                     Y >= -49 && Y <= -12 && DefaultMap.getAddObj()[i] == true
                     && DefaultMap.getRemoveObj()[i] == false) {
-                // Xóa hình sách trên map và cộng 100 điểm
+               
+                //Mở âm thanh ăn sách
                 Mf.getGameModel().getSoundInternal().setFile(4);
                 Mf.getGameModel().getSoundInternal().start();
+                //Xóa sách đó ra khỏi màn hình
                 childJPanel.remove(obj[i]);
+                // cho 2 biến đổi để biết mình đã xóa rồi và k thể ăn đc 
                 DefaultMap.setAddObj(false, i);
                 DefaultMap.setRemoveObj(true, i);
+                 // Xóa hình sách trên map và cộng 100 điểm
                 Mf.getGameModel().setScore(Mf.getGameModel().getScore() + 100);
+
+                //Vì khi ăn thì sẽ có nhạc ăn hiện lên
+                //nên sẽ tạo thành các luồng âm thành dư thừa làm game chậm
+                //vậy lên sau khi ăn xong 
+                //cứ sau 300 mili thì xóa
                 Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
                     @Override
@@ -49,6 +61,7 @@ public class EatBook {
 
     // Hàm lấy ra điểm sau khi ăn sách
     public static void getEatBooks(GameController Mf) {
+        //Set ăn sách cho từng map
         switch (Mf.getGameModel().getNameCardLayout()) {
             case "FirstMap":
                 eatBooks(Mf, Mf.getGameModel().getFirstMap().getFirstMapModel(),
@@ -56,6 +69,7 @@ public class EatBook {
                         Mf.getGameModel().getFirstMap().getFirstMapModel().getY(),
                         Mf.getGameModel().getFirstMap().getFirstMapModel().getChildFirstMapPanel(),
                         Mf.getGameModel().getFirstMap().getFirstMapModel().getObj());
+                //Đổi giá trị score trên giao diện thành giá trị mới
                 Mf.getGameView().updateScore();
               
                 break;
