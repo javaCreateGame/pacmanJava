@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,19 +22,22 @@ public class InfoDAO implements DAOInterface<Info> {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
 
-			// Buoc 2: Tao ra doi tuong statement
-
-			Statement st = con.createStatement();
-
-			// Buoc 3: Thuc thi cau lenh SQL
+			// Buoc 2: Thuc thi cau lenh SQL
 			String sql = "INSERT INTO info (tenDangNhap, matKhau, Diem)" +
-					" VALUES ('" + t.getTenDangNhap() + "' , '" + t.getMatKhau() + "' ," + t.getDiem() + " )";
-			System.out.println(sql);
-			kq = st.executeUpdate(sql);
+					" VALUES (?, ?, ?)";
+			
+			// Buoc 3: Tao ra doi tuong statement
+			PreparedStatement pst = con.prepareStatement(sql);
+			
+			pst.setString(1, t.getTenDangNhap());
+			pst.setString(2, t.getMatKhau());
+			pst.setLong(3, t.getDiem());
+			
+			kq = pst.executeUpdate();
 
 			// Buoc 4:
-			System.out.println("Ban da thuc thi: " + sql);
-			System.out.println("Co " + kq + " dong bi thay doi");
+			// System.out.println("Ban da thuc thi: " + sql);
+			// System.out.println("Co " + kq + " dong bi thay doi");
 
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
@@ -51,21 +55,23 @@ public class InfoDAO implements DAOInterface<Info> {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
 
-			// Buoc 2: Tao ra doi tuong statement
-
-			Statement st = con.createStatement();
-
-			// Buoc 3: Thuc thi cau lenh SQL
+			// Buoc 2: Thuc thi cau lenh SQL
 			String sql = "UPDATE info " +
 					" SET " +
-					" Diem = " + t.getDiem() + " " +
-					" WHERE tenDangNhap = '" + t.getTenDangNhap() + "' ";
-			System.out.println(sql);
-			kq = st.executeUpdate(sql);
+					" Diem = ? " +
+					" WHERE tenDangNhap = ?";
+			
+			// Buoc 3: Tao ra doi tuong statement
+			PreparedStatement pst = con.prepareStatement(sql);
+			
+			pst.setLong(1, t.getDiem());
+			pst.setString(2, t.getTenDangNhap());
+			
+			kq = pst.executeUpdate();
 
 			// Buoc 4:
-			System.out.println("Ban da thuc thi: " + sql);
-			System.out.println("Co " + kq + " dong bi thay doi");
+			// System.out.println("Ban da thuc thi: " + sql);
+			// System.out.println("Co " + kq + " dong bi thay doi");
 
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
@@ -83,21 +89,23 @@ public class InfoDAO implements DAOInterface<Info> {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
 
-			// Buoc 2: Tao ra doi tuong statement
-
-			Statement st = con.createStatement();
-
-			// Buoc 3: Thuc thi cau lenh SQL
+			// Buoc 2: Thuc thi cau lenh SQL
 			String sql = "UPDATE info " +
 					" SET " +
-					" Diem = " + score + " " +
-					" WHERE tenDangNhap = '" + t.getTenDangNhap() + "' ";
-			System.out.println(sql);
-			kq = st.executeUpdate(sql);
+					" Diem = ?" +
+					" WHERE tenDangNhap = ? ";
+			
+			// Buoc 3: Tao ra doi tuong statement
+			PreparedStatement pst = con.prepareStatement(sql);
+			
+			pst.setLong(1, score);
+			pst.setString(2, t.getTenDangNhap());
+			
+			kq = pst.executeUpdate();
 
 			// Buoc 4:
-			System.out.println("Ban da thuc thi: " + sql);
-			System.out.println("Co " + kq + " dong bi thay doi");
+			// System.out.println("Ban da thuc thi: " + sql);
+			// System.out.println("Co " + kq + " dong bi thay doi");
 
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
@@ -115,19 +123,22 @@ public class InfoDAO implements DAOInterface<Info> {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
 
-			// Buoc 2: Tao ra doi tuong statement
-
-			Statement st = con.createStatement();
-
-			// Buoc 3: Thuc thi cau lenh SQL
+			// Buoc 2: Thuc thi cau lenh SQL
 			String sql = "DELETE from info " +
-					"WHERE tenDangNhap = '" + t.getTenDangNhap() + "'";
+					"WHERE tenDangNhap = ? ";
+			
+			// Buoc 3: Tao ra doi tuong statement
+			PreparedStatement pst = con.prepareStatement(sql);
+			
+			pst.setString(1, t.getTenDangNhap());
+			
+			
 			System.out.println(sql);
-			kq = st.executeUpdate(sql);
+			kq = pst.executeUpdate();
 
 			// Buoc 4:
-			System.out.println("Ban da thuc thi: " + sql);
-			System.out.println("Co " + kq + " dong bi thay doi");
+			// System.out.println("Ban da thuc thi: " + sql);
+			// System.out.println("Co " + kq + " dong bi thay doi");
 
 			// Buoc 5: Ket thuc
 			JDBCUtil.closeConnection(con);
@@ -155,7 +166,7 @@ public class InfoDAO implements DAOInterface<Info> {
 			ResultSet rs = st.executeQuery(sql);
 
 			// Buoc 4:
-			System.out.println("Ban da thuc thi: " + sql);
+			// System.out.println("Ban da thuc thi: " + sql);
 			while (rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");
@@ -180,17 +191,18 @@ public class InfoDAO implements DAOInterface<Info> {
 			// Buoc 1: Tao ket noi den CSDL
 			Connection con = JDBCUtil.getConnection();
 
-			// Buoc 2: Tao ra doi tuong statement
+			// Buoc 2: Thuc thi cau lenh SQL
+			String sql = "SELECT * from info WHERE tenDangNhap = ? ";
+			
+			// Buoc 3: Tao ra doi tuong statement
+			PreparedStatement pst = con.prepareStatement(sql);
+			
+			pst.setString(1, t.getTenDangNhap());
 
-			Statement st = con.createStatement();
-
-			// Buoc 3: Thuc thi cau lenh SQL
-			String sql = "SELECT * from info WHERE tenDangNhap = '" + t.getTenDangNhap() + "'";
-
-			ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = pst.executeQuery();
 
 			// Buoc 4:
-			System.out.println("Ban da thuc thi: " + sql);
+			// System.out.println("Ban da thuc thi: " + sql);
 			while (rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");
@@ -225,7 +237,7 @@ public class InfoDAO implements DAOInterface<Info> {
 			ResultSet rs = st.executeQuery(sql);
 
 			// Buoc 4:
-			System.out.println("Ban da thuc thi: " + sql);
+			// System.out.println("Ban da thuc thi: " + sql);
 			while (rs.next()) {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");

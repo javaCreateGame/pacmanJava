@@ -119,7 +119,7 @@ public class LoginController implements ActionListener {
         if(loginModel.getLargeButton().getText()=="Đăng nhập") {
           // String usernameKiemTra2 = loginModel.getUsername()[0].getText();
           // String matKhauKiemTra = new String(loginModel.getPassword()[0].getPassword());
-          // String query = "tenDangNhap = '"+usernameKiemTra+"' " ;
+          // String query = "tenDangNhap = '"+usernameKiemTra2+"' " ;
           // ArrayList<Info> list = InfoDAO.getInstance().selectByCondition(query);
           // for (Info info : list) {
           //   if (info.getMatKhau().equals(matKhauKiemTra)) {
