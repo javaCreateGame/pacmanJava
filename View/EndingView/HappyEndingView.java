@@ -17,6 +17,8 @@ public class HappyEndingView {
         this.happyEndingModel = happyEndingModel;
         setParentPanel();
         happyEndingModel.getHappyURL()[0] = "./picture/happyEnding.jpg";
+        happyEndingModel.getHappyURL()[1] = "./picture/Ending2.png";
+        happyEndingModel.getHappyURL()[2] = "./picture/Ending3.png";
         setPanel();
         setUp();
     }

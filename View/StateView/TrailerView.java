@@ -24,7 +24,7 @@ public class TrailerView {
         trailerModel.getTextArea().setFont(font);
         trailerModel.getTextArea().setForeground(Color.BLACK);
 
-        trailerModel.getTextArea().setBounds(105, 193, 410, 265);
+        trailerModel.getTextArea().setBounds(105, 185, 410, 265);
         trailerModel.getTextArea().setOpaque(false);
         trailerModel.getTextArea().setEnabled(false);
 
