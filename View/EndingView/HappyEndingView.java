@@ -46,7 +46,7 @@ public class HappyEndingView {
             happyEndingModel.getText()[i].setLineWrap(true);
             happyEndingModel.getText()[i].setWrapStyleWord(true);
 
-            ImageIcon newImage = new ImageIcon(new ImageIcon(happyEndingModel.getHappyURL()[0]).getImage()
+            ImageIcon newImage = new ImageIcon(new ImageIcon(happyEndingModel.getHappyURL()[i]).getImage()
                     .getScaledInstance(400, 400, Image.SCALE_SMOOTH));
             happyEndingModel.getImg()[i] = new JLabel();
             happyEndingModel.getImg()[i].setIcon(newImage);

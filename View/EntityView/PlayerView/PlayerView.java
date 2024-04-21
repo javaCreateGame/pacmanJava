@@ -17,7 +17,7 @@ public class PlayerView {
     public void setDefaultPlayer() {
         playerModel.setPlayerPositionX(150);
         playerModel.setPlayerPositionY(335);
-        playerModel.setSpeed(3);
+        playerModel.setSpeed(1);
         playerModel.setDirection("down");
     }
 
