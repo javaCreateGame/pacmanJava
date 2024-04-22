@@ -46,7 +46,7 @@ public class TileManager extends JPanel {
 
             tile[2] = new TileModel();
             tile[2].image = ImageIO.read(getClass().getResourceAsStream("/picture/water.png"));
-            tile[2].collision = true;
+
 
             tile[3] = new TileModel();
             tile[3].image = ImageIO.read(getClass().getResourceAsStream("/picture/AnhSanKDidc.gif"));
@@ -151,15 +151,15 @@ public class TileManager extends JPanel {
 
             tile[30] = new TileModel();
             tile[30].image = ImageIO.read(getClass().getResourceAsStream("/picture/grass.png"));
-            tile[30].collision = true;
+
 
             tile[31] = new TileModel();
             tile[31].image = ImageIO.read(getClass().getResourceAsStream("/picture/codatnuocbentrai.png"));
-            tile[31].collision = true;
+
 
             tile[32] = new TileModel();
             tile[32].image = ImageIO.read(getClass().getResourceAsStream("/picture/codatnuocbenphai.png"));
-            tile[32].collision = true;
+          
 
             tile[33] = new TileModel();
             tile[33].image = ImageIO.read(getClass().getResourceAsStream("/picture/cayto/cay1.png"));
@@ -288,4 +288,13 @@ public class TileManager extends JPanel {
         }
 
     }
+
+    public int[][] getMapTileNum() {
+        return mapTileNum;
+    }
+
+    public TileModel[] getTile() {
+        return tile;
+    }
+    
 }

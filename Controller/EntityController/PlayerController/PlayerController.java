@@ -33,31 +33,48 @@ public class PlayerController {
                 || playerMoveController.getPlayerMoveModel().isPlayerLeft()
                 || playerMoveController.getPlayerMoveModel().isPlayerRight()) {
 
-        //nếu bấm nút W
             if (playerMoveController.getPlayerMoveModel().isPlayerUp()) {
-                //sẽ có 1 biến mô tả là direction cho biết là mình đang đi lên trên  
                 playerModel.setDirection("up");
-                //Khi đó giảm tọa độ nhân vật theo trục y 1 khoảng là speed 
-                playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
+                // playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
             }
-              //nếu bấm nút S
             if (playerMoveController.getPlayerMoveModel().isPlayerDown()) {
                 playerModel.setDirection("down");
-                //Khi đó tăng tọa độ nhân vật theo trục y 1 khoảng là speed
-                playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
+                // playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
             }
-              //nếu bấm nút A
             if (playerMoveController.getPlayerMoveModel().isPlayerLeft()) {
                 playerModel.setDirection("left");
-                 //Giamr tọa độ nhân vật theo trục x 1 khoảng là speed
-                playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
+                // playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
             }
-              //nếu bấm nút D
             if (playerMoveController.getPlayerMoveModel().isPlayerRight()) {
                 playerModel.setDirection("right");
-                playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
+                // playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
             }
 
+            // check tile collision
+            playerModel.setCollision(false);
+            Mf.getCheck().checkTile(playerModel);
+            // if collision is false, player can move
+
+            if (playerModel.isCollision() == false) 
+            {
+                switch (playerModel.getDirection()) {
+                    case "up":
+                    playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
+                
+
+                    case "down":
+                    playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
+                        break;
+                    case "left":
+                    playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
+                        break;
+
+                    case "right":
+                    playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
+                        break;
+
+                }
+            }
             //Biến spriteCount chỉ số bước đi của nhân vật 
             
             playerModel.setSpriteCounter(playerModel.getSpriteCounter() + 1);
@@ -135,7 +152,7 @@ public class PlayerController {
     public void changeSpeed_Size() {
        //Nếu Imgaename là attack thì thay đổi default size và ngược lại
        //Imagename cho biến nhân vật hiện đanhg biến hình hay k 
-        playerModel.setDefaultSize((playerModel.getImgName().contains("Attack")) ? 35 : 30);
+        playerModel.setDefaultSize((playerModel.getImgName().contains("Attack")) ? 25 : 20);
         //Thay đổi width 
         playerModel.setPlayerWidth(playerModel.getDefaultSize());
         //Thay đổi height

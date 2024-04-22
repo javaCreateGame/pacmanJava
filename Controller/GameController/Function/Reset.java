@@ -9,7 +9,7 @@ import Model.StateModel.MapModel;
 public class Reset {
     // Hàm reset mọi thứ về trạng thái ban đầu và trở về Intro
     public static void ResetAll(GameModel Mf) {
-        
+        Mf.getTileManager().loadMap("/InputFiletxt/map01.txt");
         Mf.getFirstMap().getFirstMapModel().getMapLabel().setVisible(true);
         Mf.getSecondMap().getSecondMapModel().getMapLabel2().setVisible(true);
         Mf.getThirdMap().getThirdMapModel().getMapLabel3().setVisible(true);

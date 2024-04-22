@@ -1,11 +1,13 @@
 package Model.EntityModel.PlayerModel;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class PlayerModel {
-    private int defaultSize = 30;
+    boolean collision=false;
+    private int defaultSize = 20;
     int ImgNumber = 2;
-    private int PlayerWidth = 30, PLayerHeight = 40;
+    private int PlayerWidth = 20, PLayerHeight =30;
     // Tạo biến lưu trữ tọa độ của nhân vật
     private int PlayerPositionX, PlayerPositionY;
     private int speed;
@@ -16,6 +18,9 @@ public class PlayerModel {
     // Biến lưu trữ để khiến thay đổi giữa up1 và up2
     private int spriteCounter = 0, spriteNum = 1;
 
+    private Rectangle solidArea=new Rectangle(5,20,10,10);
+   
+   
     public int getDefaultSize() {
         return defaultSize;
     }
@@ -198,6 +203,18 @@ public class PlayerModel {
 
     public void setSpriteNum(int spriteNum) {
         this.spriteNum = spriteNum;
+    }
+
+    public Rectangle getSolidArea() {
+        return solidArea;
+    }
+
+    public boolean isCollision() {
+        return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 
 }

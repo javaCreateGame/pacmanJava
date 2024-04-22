@@ -21,6 +21,7 @@ import Controller.StateController.ScoreBoardController;
 import Controller.StateController.SecondMapController;
 import Controller.StateController.ThirdMapController;
 import Controller.StateController.TrailerController;
+import Controller.TileController.CollisionChecker;
 import Model.TileModel.TileModel;
 import View.TileView.TileManager;
 import View.TileView.TilePanel;
@@ -42,7 +43,7 @@ public class GameModel extends JFrame {
 
     private TileManager tileManager = new TileManager(this,"/InputFiletxt/map01.txt"); // Khởi tạo TileManager trong GameModel
     private TilePanel tilePanel = new TilePanel(this, tileManager);
-
+    CollisionChecker check=new CollisionChecker(this);
     private String nameCardLayout;
     private int score = 0;
     private int jframeWidth = 615, jframeHeight = 615;
@@ -295,6 +296,10 @@ public class GameModel extends JFrame {
 
     public TilePanel getTilePanel() {
         return tilePanel;
+    }
+
+    public CollisionChecker getCheck() {
+        return check;
     }
 
 }
