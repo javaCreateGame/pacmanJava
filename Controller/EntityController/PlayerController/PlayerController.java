@@ -35,19 +35,45 @@ public class PlayerController {
 
             if (playerMoveController.getPlayerMoveModel().isPlayerUp()) {
                 playerModel.setDirection("up");
-                // playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
+               
+            //     Mf.getCheck().checkTile(playerModel);
+            //   if (playerModel.isCollisionUp()==false) {
+            //     playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
+            //     playerModel.setCollisionUp(false);  
+            // }
+            playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
+
             }
             if (playerMoveController.getPlayerMoveModel().isPlayerDown()) {
                 playerModel.setDirection("down");
-                // playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
+               
+                // Mf.getCheck().checkTile(playerModel);
+                // if (playerModel.isCollisionDown()==false) {
+               
+                //    playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
+                //    playerModel.setCollisionDown(false);   
+                // }
+                playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
             }
             if (playerMoveController.getPlayerMoveModel().isPlayerLeft()) {
                 playerModel.setDirection("left");
-                // playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
+               
+                // Mf.getCheck().checkTile(playerModel);
+                // if (playerModel.isCollisionLeft()==false) {
+                //     playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
+                //     playerModel.setCollisionLeft(false);
+                // }
+                playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
             }
             if (playerMoveController.getPlayerMoveModel().isPlayerRight()) {
                 playerModel.setDirection("right");
-                // playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
+               
+                // Mf.getCheck().checkTile(playerModel);
+                // if (playerModel.isCollisionRight()==false) {
+                //     playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
+                //     playerModel.setCollisionRight(false);  
+                // }
+                playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
             }
 
             // check tile collision
@@ -55,26 +81,24 @@ public class PlayerController {
             Mf.getCheck().checkTile(playerModel);
             // if collision is false, player can move
 
-            if (playerModel.isCollision() == false) 
-            {
-                switch (playerModel.getDirection()) {
-                    case "up":
-                    playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());
-                
+            // if (playerModel.isCollision() == false) 
+            // {
+                // switch (playerModel.getDirection()) {
+                //     case "up":
+                //     playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() - playerModel.getSpeed());                
+                //     case "down":
+                //     playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
+                //         break;
+                //     case "left":
+                //     playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
+                //         break;
 
-                    case "down":
-                    playerModel.setPlayerPositionY(playerModel.getPlayerPositionY() + playerModel.getSpeed());
-                        break;
-                    case "left":
-                    playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() - playerModel.getSpeed());
-                        break;
+                //     case "right":
+                //     playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
+                //         break;
 
-                    case "right":
-                    playerModel.setPlayerPositionX(playerModel.getPlayerPositionX() + playerModel.getSpeed());
-                        break;
-
-                }
-            }
+                // }
+           // }
             //Biến spriteCount chỉ số bước đi của nhân vật 
             
             playerModel.setSpriteCounter(playerModel.getSpriteCounter() + 1);

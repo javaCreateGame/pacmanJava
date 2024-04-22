@@ -31,24 +31,25 @@ public class CollisionChecker {
 
         int tileNum1, tileNum2;
 
-        try {
+        
 
             switch (player.getDirection()) {
                 case "up":
                     playerTopRow = (playerTopY - player.getSpeed()) / 16;
+                  
                     tileNum1 = Mf.getTileManager().getMapTileNum()[playerLeftCol][playerTopRow];
                   
                     tileNum2 = Mf.getTileManager().getMapTileNum()[playerRightCol][playerTopRow];
                     if(Mf.getTileManager().getTile()[tileNum1].collision == true || Mf.getTileManager().getTile()[tileNum2]. collision == true){
-                        player.setCollision(true); 
+                        player.setCollisionUp(true); 
                     }
                     break;
                 case "down":
                    playerBottomRow = (playerBottomY + player.getSpeed()) / 16;
                     tileNum1 = Mf.getTileManager().getMapTileNum()[playerLeftCol][playerBottomRow];
                     tileNum2 = Mf.getTileManager().getMapTileNum()[playerRightCol][playerBottomRow];
-                    if(Mf.getTileManager().getTile()[tileNum1]. collision == true || Mf.getTileManager().getTile()[tileNum2]. collision == true){
-                        player.setCollision(true); 
+                    if(Mf.getTileManager().getTile()[tileNum1].collision == true || Mf.getTileManager().getTile()[tileNum2].collision == true){
+                        player.setCollisionDown(true); 
                     }
                 break;
 
@@ -57,7 +58,7 @@ public class CollisionChecker {
                     tileNum1 = Mf.getTileManager().getMapTileNum()[playerLeftCol][playerTopRow];
                     tileNum2 = Mf.getTileManager().getMapTileNum()[playerLeftCol][playerBottomRow];
                     if(Mf.getTileManager().getTile()[tileNum1]. collision == true || Mf.getTileManager().getTile()[tileNum2]. collision == true){
-                        player.setCollision(true); 
+                        player.setCollisionLeft(true); 
                     }
                 break;
 
@@ -66,14 +67,12 @@ public class CollisionChecker {
                     tileNum1 = Mf.getTileManager().getMapTileNum()[playerRightCol][playerTopRow];
                     tileNum2 = Mf.getTileManager().getMapTileNum()[playerRightCol][playerBottomRow];
                     if(Mf.getTileManager().getTile()[tileNum1]. collision == true || Mf.getTileManager().getTile()[tileNum2]. collision == true){
-                        player.setCollision(true); 
+                        player.setCollisionRight(true); 
                     }
                 break;
 
             }
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+        
     }
-
 }
+

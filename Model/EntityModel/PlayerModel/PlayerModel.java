@@ -5,6 +5,10 @@ import java.awt.image.BufferedImage;
 
 public class PlayerModel {
     boolean collision=false;
+    boolean collisionUp=false;
+    boolean collisionDown=false;
+    boolean collisionLeft=false;
+    boolean collisionRight= false;
     private int defaultSize = 20;
     int ImgNumber = 2;
     private int PlayerWidth = 20, PLayerHeight =30;
@@ -18,7 +22,7 @@ public class PlayerModel {
     // Biến lưu trữ để khiến thay đổi giữa up1 và up2
     private int spriteCounter = 0, spriteNum = 1;
 
-    private Rectangle solidArea=new Rectangle(5,20,10,10);
+    private Rectangle solidArea=new Rectangle(5,5,10,10);
    
    
     public int getDefaultSize() {
@@ -215,6 +219,38 @@ public class PlayerModel {
 
     public void setCollision(boolean collision) {
         this.collision = collision;
+    }
+
+    public boolean isCollisionUp() {
+        return collisionUp;
+    }
+
+    public boolean isCollisionDown() {
+        return collisionDown;
+    }
+
+    public boolean isCollisionLeft() {
+        return collisionLeft;
+    }
+
+    public boolean isCollisionRight() {
+        return collisionRight;
+    }
+
+    public void setCollisionUp(boolean collisionUp) {
+        this.collisionUp = collisionUp;
+    }
+
+    public void setCollisionDown(boolean collisionDown) {
+        this.collisionDown = collisionDown;
+    }
+
+    public void setCollisionLeft(boolean collisionLeft) {
+        this.collisionLeft = collisionLeft;
+    }
+
+    public void setCollisionRight(boolean collisionRight) {
+        this.collisionRight = collisionRight;
     }
 
 }
