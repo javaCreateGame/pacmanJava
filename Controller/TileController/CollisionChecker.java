@@ -37,7 +37,7 @@ public class CollisionChecker {
                 case "up":
                     playerTopRow = (playerTopY - player.getSpeed()) / 16;
                     tileNum1 = Mf.getTileManager().getMapTileNum()[playerLeftCol][playerTopRow];
-                    System.err.println(tileNum1);
+                  
                     tileNum2 = Mf.getTileManager().getMapTileNum()[playerRightCol][playerTopRow];
                     if(Mf.getTileManager().getTile()[tileNum1].collision == true || Mf.getTileManager().getTile()[tileNum2]. collision == true){
                         player.setCollision(true); 
