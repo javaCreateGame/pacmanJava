@@ -142,7 +142,7 @@ public class PlayerController {
         playerModel.setPLayerHeight((playerModel.getImgName().contains("Attack")) ? playerModel.getDefaultSize() + 15
                 : playerModel.getDefaultSize() + 10);
         //Thay đổi speed
-        playerModel.setSpeed(playerModel.getImgName().contains("Attack") ? 2 : 1);
+        playerModel.setSpeed(playerModel.getImgName().contains("Attack") ? 4 :2 );
 
     }
 
