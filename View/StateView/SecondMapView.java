@@ -2,6 +2,8 @@ package View.StateView;
 
 import Model.GameModel.GameModel;
 import Model.StateModel.SecondMapModel;
+import View.TileView.TileManager;
+import View.TileView.TilePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,27 +15,33 @@ import java.util.Scanner;
 public class SecondMapView {
     GameModel Mf;
     SecondMapModel secondMapModel;
-
+    TileManager tileManager;
+    TilePanel tilePanel;
     public SecondMapView(GameModel Mf, SecondMapModel secondMapModel) {
         this.Mf = Mf;
         this.secondMapModel = secondMapModel;
+        tileManager=new TileManager(Mf,"/InputFiletxt/map02.txt");
+        tilePanel=new TilePanel(Mf, tileManager);
+       
+        secondMapModel.getLayeredPane().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
 
         // Set layout cho map
+        secondMapModel.getSecondMapPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
         secondMapModel.getSecondMapPanel().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
         secondMapModel.getSecondMapPanel().setLayout(null);
 
         // Đặt hình nền cho Second Map
-        ImageIcon imageIcon = new ImageIcon("./picture/Map2.png");
+        // ImageIcon imageIcon = new ImageIcon("./picture/Map2.png");
 
-        Image imgBgr = imageIcon.getImage();
-        Image newImageBgr = imgBgr.getScaledInstance(Mf.getJframeWidth(), Mf.getJframeHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
+        // Image imgBgr = imageIcon.getImage();
+        // Image newImageBgr = imgBgr.getScaledInstance(Mf.getJframeWidth(), Mf.getJframeHeight(), Image.SCALE_SMOOTH);
+        // ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
 
         // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
-        JLabel background = new JLabel(scaledImageIcon);
+        JLabel background = new JLabel();
         background.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeight());
         // Thêm JLabel vào content pane với BorderLayout
-        secondMapModel.getSecondMapPanel().add(background);
+        // secondMapModel.getSecondMapPanel().add(background);
 
         // Tạo một JPanel để chứa các thành phần khác
         secondMapModel.getChildSecondMapPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
@@ -98,7 +106,7 @@ public class SecondMapView {
                 secondMapModel.getHeartYLocation());
         secondMapModel.getChildSecondMapPanel().add(secondMapModel.getHeart());
         secondMapModel.setAddHeart(true);
-        background.add(secondMapModel.getChildSecondMapPanel());
+        tilePanel.add(secondMapModel.getChildSecondMapPanel());
 
         // *****************************************************/
         secondMapModel.getMapLabel2().setFont(new Font("Arial", Font.BOLD, 45));
@@ -111,5 +119,12 @@ public class SecondMapView {
         secondMapModel.getMapLabel2().setBounds(labelX, labelY, secondMapModel.getMapLabel2().getPreferredSize().width,
                 secondMapModel.getMapLabel2().getPreferredSize().height);
         secondMapModel.getChildSecondMapPanel().add(secondMapModel.getMapLabel2());
+
+        tilePanel.setBounds(0,0,615,615);
+
+        secondMapModel.getLayeredPane().add(secondMapModel.getChildSecondMapPanel());
+        secondMapModel.getLayeredPane().add(tilePanel);
+
+        secondMapModel.getSecondMapPanel().add(secondMapModel.getLayeredPane());
     }
 }

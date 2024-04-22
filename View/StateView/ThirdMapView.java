@@ -2,6 +2,8 @@ package View.StateView;
 
 import Model.GameModel.GameModel;
 import Model.StateModel.ThirdMapModel;
+import View.TileView.TileManager;
+import View.TileView.TilePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,31 +15,52 @@ import java.util.Scanner;
 public class ThirdMapView {
     GameModel Mf;
     ThirdMapModel thirdMapModel;
-
+    TileManager tileManager;
+    TilePanel tilePanel;
     public ThirdMapView(GameModel Mf, ThirdMapModel thirdMapModel) {
         this.Mf = Mf;
         this.thirdMapModel = thirdMapModel;
-
+        tileManager=new TileManager(Mf,"/InputFiletxt/map03.txt");
+        tilePanel=new TilePanel(Mf, tileManager);
+      
         // Set layout cho map
         thirdMapModel.getThirdMapPanel().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
         thirdMapModel.getThirdMapPanel().setLayout(null);
 
-        // Set time đếm ngược
+
+         
 
         // Set up bad ending
 
         // Đặt hình nền cho Second Map
-        ImageIcon imageIcon = new ImageIcon("./picture/Map3.png");
+        thirdMapModel.getLayeredPane().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
 
-        Image imgBgr = imageIcon.getImage();
-        Image newImageBgr = imgBgr.getScaledInstance(Mf.getJframeWidth(), Mf.getJframeHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
+        // Set layout cho map
+        thirdMapModel.getThirdMapPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
+        thirdMapModel.getThirdMapPanel().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
+        thirdMapModel.getThirdMapPanel().setLayout(null);
+
+
+         // Khởi tạo các thành phần của biến Timer
+         thirdMapModel.getTimerJLabel().setFont(new Font("Arial", Font.PLAIN, 16));
+         thirdMapModel.getTimerJLabel().setForeground(Color.BLACK); // Điều chỉnh màu chữ
+         // Đặt vị trí của scoreLabel
+         thirdMapModel.getTimerJLabel().setBounds(285, 620, 100, 20); // Đặt ở giữa
+         // Thêm scoreLabel vào panel của ThirdMap
+         thirdMapModel.getThirdMapPanel().add(thirdMapModel.getTimerJLabel());
+       // Set time đếm ngược
+        // Đặt hình nền cho Second Map
+        // ImageIcon imageIcon = new ImageIcon("./picture/Map2.png");
+
+        // Image imgBgr = imageIcon.getImage();
+        // Image newImageBgr = imgBgr.getScaledInstance(Mf.getJframeWidth(), Mf.getJframeHeight(), Image.SCALE_SMOOTH);
+        // ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
 
         // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
-        JLabel background = new JLabel(scaledImageIcon);
+        JLabel background = new JLabel();
         background.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeight());
         // Thêm JLabel vào content pane với BorderLayout
-        thirdMapModel.getThirdMapPanel().add(background);
+        // thirdMapModel.getThirdMapPanel().add(background);
 
         // Tạo một JPanel để chứa các thành phần khác
         thirdMapModel.getChildThirdMapPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
@@ -70,7 +93,7 @@ public class ThirdMapView {
 
         // Đặt vị trí của các obj trên background
         try {
-            Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap3.txt")));
+            Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap2.txt")));
             int i = 0; // Sử dụng biến i để xác định vị trí của mỗi JLabel trong mảng obj[]
             while (sc.hasNextInt()) {
                 int p = sc.nextInt();
@@ -89,17 +112,20 @@ public class ThirdMapView {
 
         // add obj vào map
         for (int i = 0; i < thirdMapModel.getN(); i++) {
-            thirdMapModel.getObj()[i].setLocation(thirdMapModel.getX()[i], thirdMapModel.getY()[i]); // Thiết lập vị trí
-                                                                                                     // của JLabel thứ i
-            thirdMapModel.getChildThirdMapPanel().add(thirdMapModel.getObj()[i]); // Thêm JLabel vào childSecondMapPanel
+            thirdMapModel.getObj()[i].setLocation(thirdMapModel.getX()[i], thirdMapModel.getY()[i]); // Thiết lập vị
+                                                                                                        // trí của
+                                                                                                        // JLabel thứ i
+            thirdMapModel.getChildThirdMapPanel().add(thirdMapModel.getObj()[i]); // Thêm JLabel vào
+                                                                                     // childSecondMapPanel
             thirdMapModel.setAddObj(true, i);
         }
 
         // Thêm trái tim vào map
-        this.thirdMapModel.getHeart().setLocation(thirdMapModel.getHeartXLocation(), thirdMapModel.getHeartYLocation());
+        this.thirdMapModel.getHeart().setLocation(thirdMapModel.getHeartXLocation(),
+                thirdMapModel.getHeartYLocation());
         thirdMapModel.getChildThirdMapPanel().add(thirdMapModel.getHeart());
         thirdMapModel.setAddHeart(true);
-        background.add(thirdMapModel.getChildThirdMapPanel());
+        tilePanel.add(thirdMapModel.getChildThirdMapPanel());
 
         // *****************************************************/
         thirdMapModel.getMapLabel3().setFont(new Font("Arial", Font.BOLD, 45));
@@ -113,12 +139,13 @@ public class ThirdMapView {
                 thirdMapModel.getMapLabel3().getPreferredSize().height);
         thirdMapModel.getChildThirdMapPanel().add(thirdMapModel.getMapLabel3());
 
-        // Khởi tạo các thành phần của biến Timer
-        thirdMapModel.getTimerJLabel().setFont(new Font("Arial", Font.PLAIN, 16));
-        thirdMapModel.getTimerJLabel().setForeground(Color.BLACK); // Điều chỉnh màu chữ
-        // Đặt vị trí của scoreLabel
-        thirdMapModel.getTimerJLabel().setBounds(285, 620, 100, 20); // Đặt ở giữa
-        // Thêm scoreLabel vào panel của ThirdMap
-        thirdMapModel.getThirdMapPanel().add(thirdMapModel.getTimerJLabel());
+        tilePanel.setBounds(0,0,615,615);
+
+        thirdMapModel.getLayeredPane().add(thirdMapModel.getChildThirdMapPanel());
+        thirdMapModel.getLayeredPane().add(tilePanel);
+
+        thirdMapModel.getThirdMapPanel().add(thirdMapModel.getLayeredPane());
+        // Thêm lắng nghe sự kiện MouseListener vào JLabel background
+        
     }
 }

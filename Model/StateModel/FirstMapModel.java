@@ -1,6 +1,7 @@
 package Model.StateModel;
 
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -16,7 +17,7 @@ public class FirstMapModel extends MapModel {
     private int y[] = new int[getN()];
     private JLabel mapLabel;
     private Timer timer;
-
+    private JLayeredPane layeredPane=new JLayeredPane();
     public FirstMapModel() {
 
         // set up panel
@@ -114,6 +115,10 @@ public class FirstMapModel extends MapModel {
 
     public void setTimer(Timer timer) {
         this.timer = timer;
+    }
+
+    public JLayeredPane getLayeredPane() {
+        return layeredPane;
     }
 
 }

@@ -44,4 +44,9 @@ public class SecondMapController {
     public SecondMapModel getSecondMapModel() {
         return secondMapModel;
     }
+
+    public SecondMapView getSecondMapView() {
+        return secondMapView;
+    }
+    
 }

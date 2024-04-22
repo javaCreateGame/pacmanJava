@@ -35,6 +35,16 @@ public class NextMap {
             }
             
             if (next == true) {
+                // if (Mf.getNameCardLayout()=="SecondMap") {
+                //    Mf.getSecondMap().getSecondMapView().getTileManager().loadMap("/InputFiletxt/map02.txt");
+                //    Mf.getSecondMap().getSecondMapView().getTilePanel().repaint();     
+                // }
+                // if (Mf.getNameCardLayout()=="ThirdMap") {
+                //     Mf.getTileManager().loadMap("/InputFiletxt/map03.txt"); 
+                //       // Hàm chạy thời gian third map
+                // Mf.getThirdMap().updateTimer(60);
+                // Mf.getThirdMap().getThirdMapModel().getTimerThirdMap().start();
+                //  }
                 // Hàm chạy thời gian third map
                 Mf.getThirdMap().updateTimer(60);
                 Mf.getThirdMap().getThirdMapModel().getTimerThirdMap().start();

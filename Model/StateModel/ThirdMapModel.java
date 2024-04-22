@@ -19,7 +19,7 @@ public class ThirdMapModel extends MapModel {
 	private Timer timerThirdMap;
 	private int secondsLeft;
 	private int thirdMapScoreTake;
-
+	private JLayeredPane layeredPane=new JLayeredPane();
 	private JPanel cardPanel;
 
 	public ThirdMapModel() {
@@ -142,4 +142,9 @@ public class ThirdMapModel extends MapModel {
 	public Timer getTimer3() {
 		return timer3;
 	}
+
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
+	}
+	
 }

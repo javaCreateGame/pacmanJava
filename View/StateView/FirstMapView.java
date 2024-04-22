@@ -11,35 +11,38 @@ import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 
 import Model.GameModel.GameModel;
 import Model.StateModel.FirstMapModel;
+import View.TileView.TileManager;
+import View.TileView.TilePanel;
 
 public class FirstMapView {
     GameModel Mf;
     FirstMapModel firstMapModel;
+    TileManager tileManager;
+    TilePanel tilePanel;
 
     public FirstMapView(GameModel Mf, FirstMapModel firstMapModel) {
         this.Mf = Mf;
         this.firstMapModel = firstMapModel;
+          tileManager=new TileManager(Mf,"/InputFiletxt/map01.txt");
+          tilePanel=new TilePanel(Mf, tileManager);
+        
+       firstMapModel.getLayeredPane().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
+
 
         // set up panel
         firstMapModel.getFirstMapPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
         firstMapModel.getFirstMapPanel().setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeightParent());
         firstMapModel.getFirstMapPanel().setLayout(null);
 
-        // Đặt hình nền cho First Map
-        ImageIcon imageIcon = new ImageIcon("./picture/Map1.png");
-
-        Image imgBgr = imageIcon.getImage();
-        Image newImageBgr = imgBgr.getScaledInstance(Mf.getJframeWidth(), Mf.getJframeHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledImageIcon = new ImageIcon(newImageBgr);
-
         // Tạo một JLabel để chứa hình ảnh và thêm nó vào contentPane
-        JLabel background = new JLabel(scaledImageIcon);
+        JLabel background = new JLabel();
         background.setBounds(0, 0, Mf.getJframeWidth(), Mf.getJframeHeight());
         // Thêm JLabel vào content pane với BorderLayout
-        firstMapModel.getFirstMapPanel().add(background);
+       // firstMapModel.getFirstMapPanel().add(background);
 
         // Tạo một JPanel để chứa các thành phần khác
         firstMapModel.getChildFirstMapPanel().setSize(Mf.getJframeWidth(), Mf.getJframeHeight());
@@ -88,7 +91,7 @@ public class FirstMapView {
         } catch (FileNotFoundException e) {
             e.printStackTrace(); // In ra lỗi nếu tệp tin không được tìm thấy
         }
-
+// add obj vào map
         for (int i = 0; i < firstMapModel.getN(); i++) {
             firstMapModel.getObj()[i].setLocation(firstMapModel.getX()[i], firstMapModel.getY()[i]); // Thiết lập vị trí
                                                                                                      // của JLabel thứ i
@@ -100,7 +103,7 @@ public class FirstMapView {
         this.firstMapModel.getHeart().setLocation(firstMapModel.getHeartXLocation(), firstMapModel.getHeartYLocation());
         firstMapModel.getChildFirstMapPanel().add(firstMapModel.getHeart());
         firstMapModel.setAddHeart(true);
-        background.add(firstMapModel.getChildFirstMapPanel());
+        Mf.getTilePanel().add(firstMapModel.getChildFirstMapPanel());
 
         // *****************************************************/
         firstMapModel.getMapLabel().setFont(new Font("Arial", Font.BOLD, 45));
@@ -113,5 +116,23 @@ public class FirstMapView {
         firstMapModel.getMapLabel().setBounds(labelX, labelY, firstMapModel.getMapLabel().getPreferredSize().width,
                 firstMapModel.getMapLabel().getPreferredSize().height);
         firstMapModel.getChildFirstMapPanel().add(firstMapModel.getMapLabel());
+
+        firstMapModel.getChildFirstMapPanel().setOpaque(false);
+        Mf.getTilePanel().setBounds(0,0,615,615);
+        // Mf.getTilePanel().setVisible(true);
+        // Mf.getTilePanel().setOpaque(true);
+
+
+       firstMapModel.getLayeredPane().add(firstMapModel.getChildFirstMapPanel());
+       firstMapModel.getLayeredPane().add(Mf.getTilePanel());
+
+        firstMapModel.getFirstMapPanel().add(firstMapModel.getLayeredPane());
+        // Thêm lắng nghe sự kiện MouseListener vào JLabel background
+        
+     // Lớp lắng nghe sự kiện MouseListener
+     
+
+        // Các phương thức khác của MouseListener không được sử dụng trong trường hợp này
+       
     }
 }

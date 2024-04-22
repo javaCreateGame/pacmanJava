@@ -21,6 +21,9 @@ import Controller.StateController.ScoreBoardController;
 import Controller.StateController.SecondMapController;
 import Controller.StateController.ThirdMapController;
 import Controller.StateController.TrailerController;
+import Model.TileModel.TileModel;
+import View.TileView.TileManager;
+import View.TileView.TilePanel;
 
 public class GameModel extends JFrame {
     private PlayerMoveController playermove = new PlayerMoveController();
@@ -31,9 +34,14 @@ public class GameModel extends JFrame {
     private SoundEffectController soundMain = new SoundEffectController();
     private SoundEffectController soundInternal = new SoundEffectController();
     private SoundEffectController soundNext = new SoundEffectController();
-
+    private TileModel tileModel;
+    private int maxScreenRow=39;
+    private int maxScreenCol=38;
     JLabel scoreLabel = new JLabel();
     private JPanel cardPanel = new JPanel(); // Use JPanel instead of JLayeredPane
+
+    private TileManager tileManager = new TileManager(this,"/InputFiletxt/map01.txt"); // Khởi tạo TileManager trong GameModel
+    private TilePanel tilePanel = new TilePanel(this, tileManager);
 
     private String nameCardLayout;
     private int score = 0;
@@ -265,6 +273,28 @@ public class GameModel extends JFrame {
 
     public void setLogin(LoginController login) {
         Login = login;
+    }
+
+    public int getMaxScreenRow() {
+        return maxScreenRow;
+    }
+
+    public int getMaxScreenCol() {
+        return maxScreenCol;
+    }
+
+   
+
+    public TileModel getTileModel() {
+        return tileModel;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
+    }
+
+    public TilePanel getTilePanel() {
+        return tilePanel;
     }
 
 }

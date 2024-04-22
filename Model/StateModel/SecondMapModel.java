@@ -15,7 +15,7 @@ public class SecondMapModel extends MapModel {
 	private Timer timer;
 	private int x[] = new int[getN()];
 	private int y[] = new int[getN()];
-
+	private JLayeredPane layeredPane=new JLayeredPane();
 	public SecondMapModel() {
 
 		secondMapPanel = new JPanel();
@@ -93,4 +93,9 @@ public class SecondMapModel extends MapModel {
 	public Timer getTimer2() {
 		return timer;
 	}
+
+	public JLayeredPane getLayeredPane() {
+		return layeredPane;
+	}
+	
 }
