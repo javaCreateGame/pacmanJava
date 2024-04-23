@@ -27,7 +27,7 @@ public class NextMap {
 
             }
             //Nếu nhân vật ở second map đứng đúng tọa độ 
-            if (x >= 588 && (y > 278 && y < 318) && Mf.getNameCardLayout() == "SecondMap") {
+            if (x >= 588 && (y > 270 && y < 330) && Mf.getNameCardLayout() == "SecondMap") {
                 Mf.setNameCardLayout("ThirdMap");
                 Mf.getThirdMap().getThirdMapModel().getTimer3().restart();
                 next = true;

@@ -78,8 +78,8 @@ public class ScoreBoardView {
         // Lấy thông tin của người chơi từ database rồi hiện lên bảng xếp hạng
 
         
-        /*scoreBoardModel.refreshScoreboard(players, scores);
-        /this.setUserScore(players, scores);*/
+        // scoreBoardModel.refreshScoreboard(players, scores);
+        // this.setUserScore(players, scores);
 
         scoreBoardModel.getScoreBoard().add(scoreBoardModel.getBack());
         scoreBoardModel.getScoreBoard().add(scoreBoardModel.getFieldText(), JLayeredPane.DEFAULT_LAYER);

@@ -93,7 +93,7 @@ public class ThirdMapView {
 
         // Đặt vị trí của các obj trên background
         try {
-            Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap2.txt")));
+            Scanner sc = new Scanner(new FileInputStream(new File("./InputFiletxt/bookMap3.txt")));
             int i = 0; // Sử dụng biến i để xác định vị trí của mỗi JLabel trong mảng obj[]
             while (sc.hasNextInt()) {
                 int p = sc.nextInt();
