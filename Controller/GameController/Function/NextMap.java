@@ -42,7 +42,7 @@ public class NextMap {
                 //Chuyển sang map tiếp theo
                 Mf.getCardLayout().show(Mf.getCardPanel(), Mf.getNameCardLayout());
                 //set lại tọa độ nhân vâth
-                Mf.getPlayer().getPlayerModel().setPlayerPositionX(1);
+                Mf.getPlayer().getPlayerModel().setPlayerPositionX(15);
                 Mf.getPlayer().getPlayerModel().setPlayerPositionY(290);
                 //set lại countFôt
                 Mf.setCountFoot(0);
