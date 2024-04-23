@@ -140,11 +140,12 @@ public class PlayerController {
     }
 
     public void changeSpeed_Size() {
-        playerModel.setDefaultSize((playerModel.getImgName().contains("Attack")) ? 30 : 30);
-        playerModel.setPlayerWidth(playerModel.getDefaultSize());
+      
+        playerModel.setPlayerWidth((playerModel.getImgName().contains("Attack")) ? playerModel.getDefaultSize() + 5
+        : playerModel.getDefaultSize() );
         playerModel.setPLayerHeight((playerModel.getImgName().contains("Attack")) ? playerModel.getDefaultSize() + 15
                 : playerModel.getDefaultSize() + 10);
-        playerModel.setSpeed(playerModel.getImgName().contains("Attack") ? 6 : 3);
+        playerModel.setSpeed(playerModel.getImgName().contains("Attack") ? 3 : 2);
 
     }
 

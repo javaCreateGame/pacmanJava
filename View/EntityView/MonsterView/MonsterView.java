@@ -34,13 +34,13 @@ public class MonsterView {
         Arrays.fill(monsterModel.getyVelocity(), 4);
         monsterModel.getxVelocity()[1] = 5;
         monsterModel.getyVelocity()[0] = 5;
-        monsterModel.setxDice(10);
-        monsterModel.setxJoystick(40);
-        monsterModel.setxSyrinnge(70);
+        monsterModel.setxDice(566);
+        monsterModel.setxJoystick(576);
+        monsterModel.setxSyrinnge(306);
 
-        monsterModel.setyDice(60);
-        monsterModel.setyJoystick(60);
-        monsterModel.setySyrinnge(55);
+        monsterModel.setyDice(64);
+        monsterModel.setyJoystick(502);
+        monsterModel.setySyrinnge(431);
         monsterModel.setMonsterHeight(monsterModel.getDefaultSize());
         monsterModel.setMonsterWidth(monsterModel.getDefaultSize());
 

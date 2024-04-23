@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 
 public class PlayerModel {
     boolean collision=false;
-    private int defaultSize = 20;
+    private int defaultSize = 25;
     int ImgNumber = 2;
-    private int PlayerWidth = 20, PLayerHeight =30;
+    private int PlayerWidth = 25, PLayerHeight =35;
     // Tạo biến lưu trữ tọa độ của nhân vật
     private int PlayerPositionX, PlayerPositionY;
     private int speed;
@@ -18,7 +18,7 @@ public class PlayerModel {
     // Biến lưu trữ để khiến thay đổi giữa up1 và up2
     private int spriteCounter = 0, spriteNum = 1;
 
-    private Rectangle solidArea=new Rectangle(8,6,16,16);
+    private Rectangle solidArea=new Rectangle(8,6,10,16);
    
    
     public int getDefaultSize() {

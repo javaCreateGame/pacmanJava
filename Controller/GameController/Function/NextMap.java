@@ -18,7 +18,7 @@ public class NextMap {
             }
 
             //Nếu nhân vật ở first map đứng đúng tọa độ 
-            if (x >= 588 && (y > 235 && y < 275) && Mf.getNameCardLayout() == "FirstMap") {
+            if (x >= 588 && (y > 218 && y < 250) && Mf.getNameCardLayout() == "FirstMap") {
                 Mf.setNameCardLayout("SecondMap");
                 //restart timer của chứ lớp 11
                 Mf.getSecondMap().getSecondMapModel().getTimer2().restart();
@@ -27,7 +27,7 @@ public class NextMap {
 
             }
             //Nếu nhân vật ở second map đứng đúng tọa độ 
-            if (x >= 588 && (y > 270 && y < 330) && Mf.getNameCardLayout() == "SecondMap") {
+            if (x >= 588 && (y > 299 && y < 330) && Mf.getNameCardLayout() == "SecondMap") {
                 Mf.setNameCardLayout("ThirdMap");
                 Mf.getThirdMap().getThirdMapModel().getTimer3().restart();
                 next = true;
@@ -35,15 +35,7 @@ public class NextMap {
             }
             
             if (next == true) {
-                if (Mf.getNameCardLayout()=="SecondMap") {
-                   Mf.getTileManager().loadMap("/InputFiletxt/map02.txt");
-                        
-                }
-                if (Mf.getNameCardLayout()=="ThirdMap") {
-                    Mf.getTileManager().loadMap("/InputFiletxt/map03.txt"); 
-                      // Hàm chạy thời gian third map
-            
-                 }
+                
                 // Hàm chạy thời gian third map
                 Mf.getThirdMap().updateTimer(60);
                 Mf.getThirdMap().getThirdMapModel().getTimerThirdMap().start();
@@ -57,18 +49,31 @@ public class NextMap {
                 //set lại quái,kích thước của quái
                 Mf.getMonster().getMonsterView().getMonsterImage();
                 Mf.getMonster().getMonsterView().setDefaultMonster();
-                //set lại vị trí của quái
-                Mf.getMonster().getMonsterModel().setxDice(322);
-                Mf.getMonster().getMonsterModel().setyDice(295);
-                Mf.getMonster().getMonsterModel().setxJoystick(379);
-                Mf.getMonster().getMonsterModel().setyJoystick(295);
-                Mf.getMonster().getMonsterModel().setxSyrinnge(339);
-                Mf.getMonster().getMonsterModel().setySyrinnge(321);
+               
+                if (Mf.getNameCardLayout()=="SecondMap") {
+                    Mf.getTileManager().loadMap("/InputFiletxt/map02.txt");
+                    setMonster(Mf,398,58,222,403,560,525);
+                         
+                 }
+                 if (Mf.getNameCardLayout()=="ThirdMap") {
+                     Mf.getTileManager().loadMap("/InputFiletxt/map03.txt"); 
+                     setMonster(Mf, 448,155,565,514,317,430);
+                       // Hàm chạy thời gian third map
+             
+                  }
 
                
             }
 
         }
-
+       
+    }
+    static void setMonster(GameModel Mf,int xDice,int yDice,int xJoystic,int yJoystic,int xSyringe,int ySiringe){
+        Mf.getMonster().getMonsterModel().setxDice(xDice);
+        Mf.getMonster().getMonsterModel().setyDice(yDice);
+        Mf.getMonster().getMonsterModel().setxJoystick(xJoystic);
+        Mf.getMonster().getMonsterModel().setyJoystick(yJoystic);
+        Mf.getMonster().getMonsterModel().setxSyrinnge(xSyringe);
+        Mf.getMonster().getMonsterModel().setySyrinnge(ySiringe);
     }
 }
