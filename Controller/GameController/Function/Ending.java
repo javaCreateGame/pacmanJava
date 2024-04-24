@@ -20,7 +20,7 @@ public class Ending {
         //Bắt đầu chạy nhạc
         Mf.getSoundMain().setFile(7);
         Mf.getSoundMain().start();
-        //updateScoreDB(Mf);
+        updateScoreDB(Mf);
     }
 
     public static void updateScoreDB(GameModel Mf) {
@@ -52,7 +52,7 @@ public class Ending {
         Mf.getBadEnding().getTimerBad().start();
         Mf.getSoundMain().setFile(6);
         Mf.getSoundMain().start();
-        //updateScoreDB(Mf);
+        updateScoreDB(Mf);
     }
 //Ending khi hết thời gian màn 3
     public static void finalEnding(GameModel Mf) {
