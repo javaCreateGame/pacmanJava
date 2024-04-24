@@ -12,9 +12,28 @@ public class MonsterModel {
     private int yVelocity[] = new int[3];
     // Tạo biến lưu trữ ảnh chuyển động của nhân vâth
     private BufferedImage dice, joystick, syrinnge;
-
+   private boolean collisionxOnDice=false;
+   private boolean collisionyOnDice=false;
+   private boolean collision=false;
+   
     public boolean[] getMonsterVisible() {
         return monsterVisible;
+    }
+
+    public boolean isCollisionxOnDice() {
+        return collisionxOnDice;
+    }
+
+    public void setCollisionxOnDice(boolean collisionxOnDice) {
+        this.collisionxOnDice = collisionxOnDice;
+    }
+
+    public boolean isCollisionyOnDice() {
+        return collisionyOnDice;
+    }
+
+    public void setCollisionyOnDice(boolean collisionyOnDice) {
+        this.collisionyOnDice = collisionyOnDice;
     }
 
     public void setMonsterVisible(boolean[] monsterVisible) {
@@ -127,6 +146,14 @@ public class MonsterModel {
 
     public void setSyrinnge(BufferedImage syrinnge) {
         this.syrinnge = syrinnge;
+    }
+
+    public boolean isCollision() {
+        return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 
 }
